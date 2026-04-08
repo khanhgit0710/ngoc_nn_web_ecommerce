@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Liên Hệ | Ngọc NN - Bất Động Sản Uy Tín</title>
+    <link rel="stylesheet" href="../css/layout.css">
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+    <header class="main-header">
+        <div class="container header-container">
+            <div class="logo">
+                <img src="../assets/images/logo.png" alt="Ngọc NN Logo">
+            </div>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="../index.html">Trang chủ</a></li>
+                    <li><a href="#">Giới thiệu</a></li>
+                    <li><a href="#">Ký gửi</a></li>
+                    <li><a href="#" class="active">Liên hệ</a></li>
+                </ul>
+            </nav>
+            <a href="#" class="btn-cart">GIỎ HÀNG <i class="fas fa-shopping-bag"></i></a>
+        </div>
+    </header>
+
+    <section class="page-header" style="background-image: url('../assets/images/contact-bg.jpg');">
+        <div class="container">
+            <h1 class="reveal">LIÊN HỆ</h1>
+            <hr class="short-hr reveal">
+            <p class="reveal">Đồng hành cùng bạn trên mọi nẻo đường bất động sản</p>
+        </div>
+    </section>
+
+    <main class="section-padding">
+        <div class="container">
+            <div class="contact-grid">
+                <div class="contact-info reveal">
+                    <p class="sub-title">Người đồng hành</p>
+                    <h2 class="main-title">Khi bạn cần <span>Ngọc NN</span></h2>
+                    <p class="desc">Ngọc NN sẵn sàng hỗ trợ bạn nhanh chóng – đúng nhu cầu – đúng giá trị thật tại khu vực TP.HCM.</p>
+                    
+                    <ul class="info-list">
+                        <li><i class="fas fa-phone-alt"></i> <span><strong>Hotline:</strong> 088 88 19198</span></li>
+                        <li><i class="fas fa-envelope"></i> <span><strong>Email:</strong> ngocnn.vnn@gmail.com</span></li>
+                        <li><i class="fas fa-map-marker-alt"></i> <span><strong>Địa chỉ:</strong> 183/3 Phạm Văn Đồng, TP. Thủ Đức</span></li>
+                        <li><i class="fas fa-city"></i> <span><strong>Khu vực:</strong> Bình Thạnh, Gò Vấp, Phú Nhuận, Quận 3...</span></li>
+                    </ul>
+
+                    <div class="contact-commitment">
+                        <p class="note">👉 Tư vấn miễn phí 24/7</p>
+                        <p class="guarantee">Cam kết bảo mật thông tin tuyệt đối và làm việc minh bạch nhất cho quý khách hàng.</p>
+                    </div>
+                </div>
+
+                <form class="contact-form reveal">
+                    <input type="text" placeholder="Họ và Tên của bạn" required>
+                    <input type="email" placeholder="Địa chỉ Email" required>
+                    <input type="tel" placeholder="Số điện thoại liên lạc" required>
+                    <textarea placeholder="Bạn cần chúng tôi hỗ trợ điều gì?" rows="5"></textarea>
+                    <button type="submit" class="btn-submit">GỬI YÊU CẦU NGAY</button>
+                </form>
+            </div>
+
+            <div class="social-wrapper section-padding">
+                <div class="text-center reveal">
+                    <p class="sub-title">Kết nối</p>
+                    <h2 class="main-title">Theo dõi <span>Social</span></h2>
+                </div>
+                <div class="social-cards">
+                    <div class="card reveal"><i class="fab fa-facebook-f"></i><p>Facebook</p><a href="#">fb.com/ngocnn</a></div>
+                    <div class="card reveal"><i class="fab fa-tiktok"></i><p>TikTok</p><a href="#">@ngocnn_bds</a></div>
+                    <div class="card reveal"><i class="fab fa-youtube"></i><p>YouTube</p><a href="#">Ngọc NN Official</a></div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <section class="container reveal">
+        <div class="map-container">
+            <iframe src="https://www.google.com/maps/embed?..." width="100%" height="550" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+        </div>
+    </section>
+
+    <script>
+        // Hiệu ứng cuộn tới đâu hiện chữ tới đó cực mượt
+        window.addEventListener('scroll', reveal);
+        function reveal() {
+            var reveals = document.querySelectorAll('.reveal');
+            for (var i = 0; i < reveals.length; i++) {
+                var windowHeight = window.innerHeight;
+                var revealTop = reveals[i].getBoundingClientRect().top;
+                if (revealTop < windowHeight - 100) {
+                    reveals[i].classList.add('active');
+                }
+            }
+        }
+        window.onload = reveal;
+    </script>
+</body>
+</html>
