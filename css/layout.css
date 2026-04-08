@@ -206,43 +206,64 @@ a {
 /* --- FOOTER --- */
 .footer {
     background-color: var(--bg-light);
-    padding: 60px 0 20px;
-    border-top: 2px solid var(--primary);
+    padding: 80px 0 40px; /* Tăng padding trên dưới cho thoáng */
+    border-top: 1px solid #eee;
 }
 
 .footer__main {
     display: grid;
     grid-template-columns: 1.2fr 0.8fr 0.8fr;
-    gap: 40px;
-    padding-bottom: 40px;
+    gap: 60px; /* Tăng gap cho sang */
 }
 
+/* PC: Ẩn tuyệt đối icon mũi tên */
+.footer__icon-arrow {
+    display: none !important; 
+}
+
+/* Typography PC */
 .footer__title {
     color: var(--primary);
     font-weight: 900;
     font-size: 18px;
+    margin-bottom: 25px;
+    letter-spacing: 1px;
 }
 
-.footer__list {
-    list-style: none;
+.footer__list { list-style: none; }
+.footer__list li { margin-bottom: 15px; }
+.footer__list a { 
+    color: var(--text-main); 
+    font-size: 15px; 
+    font-weight: 500;
+    opacity: 0.9;
 }
+.footer__list a:hover { color: var(--primary); opacity: 1; padding-left: 5px; }
 
-.footer__list li {
-    margin-bottom: 12px;
+/* Contact info trong brand */
+.footer__contact-info { list-style: none; margin-top: 25px; }
+.footer__contact-info li { 
+    margin-bottom: 15px; 
+    display: flex; 
+    align-items: center; 
+    gap: 12px;
+    font-size: 15px;
 }
+.footer__contact-info i { color: var(--primary); font-size: 18px; width: 20px; text-align: center; }
 
-.footer__list a {
-    color: var(--text-main);
-    font-size: 14px;
-}
-
+/* Copyright bar */
 .footer__bottom {
+    margin-top: 60px;
+    padding-top: 30px;
+    border-top: 1px solid rgba(0,0,0,0.05);
     text-align: center;
-    border-top: 1px solid #eee;
-    padding-top: 20px;
-    font-weight: 700;
+}
+.footer__copyright {
+    font-size: 13px;
+    font-weight: 800;
     color: var(--primary);
-    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
 }
 
 /* --- RESPONSIVE MOBILE & TABLET --- */
@@ -318,43 +339,40 @@ a {
 }
 
 @media (max-width: 768px) {
-    .footer__main {
-        grid-template-columns: 1fr;
-        gap: 0;
+    .footer { padding: 40px 0 20px; }
+    .footer__main { grid-template-columns: 1fr; gap: 0; }
+    
+    .footer__col { 
+        border-bottom: 1px solid rgba(0,0,0,0.08); 
+        padding: 20px 0; 
+    }
+    
+    .footer__title { margin-bottom: 0; font-size: 16px; }
+
+    /* HIỆN MŨI TÊN CHỈ TRÊN MOBILE */
+    .footer__icon-arrow { 
+        display: block !important; 
+        font-size: 14px;
+        transition: 0.4s ease;
     }
 
-    .footer__col {
-        border-bottom: 1px solid #eee;
-        padding: 15px 0;
+    /* Logic ẩn/hiện accordion */
+    .footer__content { 
+        max-height: 0; 
+        overflow: hidden; 
+        transition: max-height 0.4s cubic-bezier(0, 1, 0, 1); 
     }
 
-    .footer__title-wrapper {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        cursor: pointer;
+    .footer__accordion--active .footer__content { 
+        max-height: 300px; 
+        margin-top: 20px;
+        transition: max-height 0.4s ease-in-out; 
     }
-
-    .footer__icon-arrow {
-        display: block;
-        transition: 0.3s;
-        color: var(--primary);
-    }
-
-    .footer__content {
-        max-height: 0;
-        overflow: hidden;
-        transition: max-height 0.4s ease-out;
-    }
-
-    .footer__accordion--active .footer__content {
-        max-height: 500px;
-        padding-top: 15px;
-    }
-
-    .footer__accordion--active .footer__icon-arrow {
-        transform: rotate(180deg);
-    }
+    
+    .footer__accordion--active .footer__icon-arrow { transform: rotate(180deg); }
+    
+    .footer__col--brand { border-bottom: 2px solid var(--primary); padding-bottom: 30px; }
+    .footer__bottom { margin-top: 30px; }
 }
 
 /* --- ANIMATION REVEAL --- */
