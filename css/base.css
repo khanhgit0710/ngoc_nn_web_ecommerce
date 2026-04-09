@@ -1,0 +1,45 @@
+/* Google Fonts: Roboto & Playfair Display */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&family=Playfair+Display:wght@600;700&display=swap');
+
+:root {
+    --color-primary: #8B6F47;
+    --color-primary-brown: #8B6F47;
+    --color-cart-logo: #b77246;
+    --color-accent: #d48a52;
+    --bg-info-box: #fff8f0;
+    --font-main: 'Roboto', sans-serif;
+    --font-title: 'Playfair Display', serif;
+    
+    /* Precision Spacing từ Page Ruler */
+    --side-padding: 153px;
+    --h-header: 60px;
+    --h-banner: 465px;
+    --content-max-width: 1400px;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    font-family: var(--font-main);
+    color: #1f2937;
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+a { text-decoration: none; color: inherit; transition: 0.3s; }
+button { cursor: pointer; border: none; background: none; font-family: inherit; }
+ul { list-style: none; }
+
+.header__container {
+    max-width: var(--content-max-width);
+    padding: 0 var(--side-padding);
+}
+
+/* Áp dụng cho các Section bên dưới (Contact, Social, Hero) */
+.contact, .social, .location {
+    max-width: var(--content-max-width);
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: var(--side-padding);
+    padding-right: var(--side-padding);
+}

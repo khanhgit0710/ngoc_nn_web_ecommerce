@@ -1,24 +1,33 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const contactForm = document.getElementById('contactForm');
+    // 1. Hiệu ứng Hiện dần (Reveal Animation)
+    const observerOptions = { threshold: 0.15 };
+    const revealObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('reveal--visible');
+                revealObserver.unobserve(entry.target); // Chỉ chạy 1 lần
+            }
+        });
+    }, observerOptions);
 
-    if (contactForm) {
-        contactForm.addEventListener('submit', (e) => {
+    // Áp dụng cho các thành phần chính
+    document.querySelectorAll('.contact__grid, .social__card, .location__map, .hero__content').forEach(el => {
+        el.classList.add('reveal');
+        revealObserver.observe(el);
+    });
+
+    // 2. Xử lý Form đơn giản
+    const form = document.querySelector('.form');
+    if (form) {
+        form.addEventListener('submit', (e) => {
             e.preventDefault();
-            
-            // Giả lập hiệu ứng gửi
-            const btn = contactForm.querySelector('.btn-submit');
-            btn.innerText = 'ĐANG GỬI...';
-            btn.disabled = true;
-
-            const formData = new FormData(contactForm);
-            console.log('Dữ liệu khách hàng:', Object.fromEntries(formData));
-
+            const btn = form.querySelector('.form__button');
+            btn.textContent = 'ĐANG GỬI...';
             setTimeout(() => {
-                alert('Cảm ơn bạn! Ngọc NN sẽ liên hệ lại sớm nhất.');
-                contactForm.reset();
-                btn.innerText = 'GỬI ĐI';
-                btn.disabled = false;
-            }, 1500);
+                alert('Cảm ơn bạn! Ngọc NN sẽ liên hệ sớm nhất.');
+                form.reset();
+                btn.textContent = 'GỬI ĐI';
+            }, 1000);
         });
     }
 });

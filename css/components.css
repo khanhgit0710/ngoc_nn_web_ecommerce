@@ -1,0 +1,13 @@
+.section-label { color: var(--primary); letter-spacing: 0.2em; font-size: var(--fs-sm); font-weight: 600; display: block; margin-bottom: 8px; }
+.section-heading { font-size: var(--fs-4xl); margin-bottom: 24px; font-family: Georgia, serif; }
+
+.contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; padding: 80px 0; }
+.info-box { background: var(--bg-info); border-left: 4px solid var(--primary); padding: 24px; border-radius: 4px; }
+
+.form-group { margin-bottom: 20px; }
+.form-group label { display: block; margin-bottom: 8px; font-weight: 500; }
+.input-control { width: 100%; padding: 12px 16px; border: 1px solid var(--border); border-radius: 8px; outline: none; }
+.input-control:focus { border: 2px solid var(--primary); }
+
+.btn-primary { background: var(--primary); color: #fff; padding: 12px 24px; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; transition: 0.3s; width: 100%; }
+.btn-primary:hover { background: var(--primary-hover); }

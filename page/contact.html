@@ -4,194 +4,184 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Liên Hệ | Ngọc NN</title>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&family=Playfair+Display:wght@900&display=swap"
-        rel="stylesheet">
-    <link rel="stylesheet" href="../css/layout.css">
+    <title>Liên hệ | Ngọc NN</title>
+    <link rel="stylesheet" href="../css/base.css">
     <link rel="stylesheet" href="../css/main.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 
 <body>
+
     <header class="header">
-        <div class="container header__container">
-            <div class="header__logo">
-                <a href="../index.html" class="logo-wrapper">
-                    <span class="logo-wrapper__main">NGỌC NN</span>
-                    <span class="logo-wrapper__sub">BẤT ĐỘNG SẢN UY TÍN</span>
-                </a>
+        <div class="header__container">
+            <div class="header__logo-group">
+                <span class="header__logo-sub">Nhà môi giới Bất Động Sản uy tín tại Tp HCM</span>
+                <div class="header__logo-main">NGỌC NN</div>
             </div>
 
-            <nav class="header__nav" id="mobileMenu">
-                <ul class="nav-menu">
-                    <li class="nav-menu__item"><a href="../index.html" class="nav-menu__link">Trang chủ</a></li>
-                    <li class="nav-menu__item"><a href="#" class="nav-menu__link">Giới thiệu</a></li>
-                    <li class="nav-menu__item"><a href="#" class="nav-menu__link">Ký gửi</a></li>
-                    <li class="nav-menu__item"><a href="#" class="nav-menu__link nav-menu__link--active">Liên hệ</a>
-                    </li>
-                </ul>
-            </nav>
-
             <div class="header__actions">
-                <a href="#" class="btn-cart">
-                    <span class="btn-cart__text">GIỎ HÀNG</span>
-                    <i class="fas fa-shopping-bag"></i>
-                </a>
-                <button class="header__hamburger" id="hamburgerBtn" onclick="toggleMenu()">
-                    <span></span>
-                    <span></span>
-                    <span></span>
+                <nav class="header__nav">
+                    <a href="#" class="header__nav-link header__nav-link--active">Trang chủ</a>
+                    <a href="#" class="header__nav-link">Giới thiệu</a>
+                    <a href="#" class="header__nav-link">Đặt nhà</a>
+                    <a href="#" class="header__nav-link">Kí gửi nhà đất</a>
+                    <a href="#" class="header__nav-link">Tin tức</a>
+                    <a href="#" class="header__nav-link">Quảng cáo</a>
+                    <a href="#" class="header__nav-link">Liên hệ</a>
+                </nav>
+
+                <button class="header__cart">
+                    GIỎ HÀNG <i class="fas fa-shopping-basket"></i>
                 </button>
             </div>
         </div>
     </header>
 
-    <section class="hero"
-        style="background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('../assets/images/contact-bg.jpg');">
-        <div class="container hero__container">
-            <h1 class="hero__title reveal">LIÊN HỆ</h1>
-            <hr class="hero__hr reveal">
-            <p class="hero__desc reveal">Đồng hành cùng bạn trên mọi nẻo đường bất động sản</p>
-        </div>
-    </section>
+    <main>
+        <section class="hero">
+            <div class="hero__content">
+                <h1 class="hero__title">Liên hệ</h1>
+                <p>Ngọc NN luôn luôn sẵn sàng đồng hành cùng quý khách hàng.</p>
+            </div>
+        </section>
 
-    <main class="contact-section">
-        <div class="container">
-            <div class="contact-layout">
-                <div class="contact-info reveal">
-                    <p class="contact-info__subtitle">Người đồng hành</p>
-                    <h2 class="contact-info__title">Khi bạn cần <span class="contact-info__title--highlight">Ngọc
-                            NN</span></h2>
-                    <p class="contact-info__desc">Ngọc NN sẵn sàng hỗ trợ bạn nhanh chóng tại TP.HCM.</p>
-                    <ul class="contact-list">
-                        <li class="contact-list__item">
-                            <div class="contact-list__icon"><i class="fas fa-phone-alt"></i></div>
-                            <span><strong>Hotline:</strong> 088 88 19198</span>
-                        </li>
-                        <li class="contact-list__item">
-                            <div class="contact-list__icon"><i class="fas fa-map-marker-alt"></i></div>
-                            <span><strong>Địa chỉ:</strong> 183/3 Phạm Văn Đồng, Thủ Đức</span>
-                        </li>
-                    </ul>
-                    <div class="commitment">
-                        <p class="commitment__note">👉 Tư vấn miễn phí 24/7</p>
-                        <p>Cam kết bảo mật thông tin tuyệt đối cho quý khách.</p>
+        <section class="contact">
+            <span class="section-label">NGƯỜI ĐỒNG HÀNH</span>
+            <h2 class="section-title">Khi bạn cần <span>Ngọc NN</span></h2>
+            <div class="contact__grid">
+                <div class="info">
+                    <p>Bạn <b>đang cần tìm mua nhà, bán nhà chính chủ</b> hoặc tư vấn pháp lý
+                        bất động sản tại TP.HCM?</p>
+                    <p style="margin-bottom:20px">Ngọc NN sẵn sàng hỗ trợ bạn nhanh - đúng nhu cầu - đúng giá trị thật.
+                    </p>
+                    <div class="info__item"><i class="fas fa-phone-alt info__icon"></i> 088 88 19198</div>
+                    <div class="info__item"><i class="fas fa-envelope info__icon"></i> ngocnn.vnn@gmail.com</div>
+                    <div class="info__item"><i class="fas fa-map-marker-alt info__icon"></i> 183/3 Phạm Văn Đồng, Tp Thủ
+                        Đức</div>
+                    <div class="contact__note">
+                        👉 Vui lòng để lại thông tin, Ngọc NN sẽ liên hệ tư vấn miễn phí sớm nhất. <br>
+                        Cam kết <strong>bảo mật thông tin – hỗ trợ tận tâm – làm việc rõ ràng, minh bạch</strong>.
                     </div>
                 </div>
 
-                <form class="contact-form reveal">
-                    <input type="text" class="contact-form__input" placeholder="Họ và Tên của bạn" required>
-                    <input type="email" class="contact-form__input" placeholder="Địa chỉ Email" required>
-                    <textarea class="contact-form__input" placeholder="Bạn cần hỗ trợ gì?" rows="5"></textarea>
-                    <button type="submit" class="contact-form__submit">GỬI YÊU CẦU NGAY</button>
+                <form class="form">
+                    <div class="form__group">
+                        <label class="form__label">Họ và Tên</label>
+                        <input type="text" class="form__input" placeholder="">
+                    </div>
+
+                    <div class="form__group">
+                        <label class="form__label">Email</label>
+                        <input type="email" class="form__input" placeholder="">
+                    </div>
+
+                    <div class="form__group">
+                        <label class="form__label">Số điện thoại</label>
+                        <input type="tel" class="form__input" placeholder="">
+                    </div>
+
+                    <div class="form__group">
+                        <label class="form__label">Để lại lời nhắn cho chúng tôi</label>
+                        <textarea class="form__input form__textarea" rows="1"></textarea>
+                    </div>
+
+                    <button type="submit" class="form__btn">GỬI ĐI</button>
                 </form>
             </div>
+        </section>
 
-            <div class="social-wrapper section-padding">
-                <div class="social-cards">
-                    <div class="social-card reveal"><i class="social-card__icon fab fa-facebook-f"></i>
-                        <p>Facebook</p><a href="#">fb.com/ngocnn</a>
+        <section class="social">
+            <span class="section-label">SOCIAL</span>
+            <h2 class="section-title">Theo dõi qua <span>Social</span></h2>
+            <div class="social__grid">
+                <div class="social__card">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/Facebook_Logo_%282019%29.png/500px-Facebook_Logo_%282019%29.png"
+                        class="social__icon-img" alt="FB">
+                    <div class="social__content">
+                        <strong>Facebook: Ngọc NN</strong>
+                        <a href="#" class="social__link">https://facebook.com/abcom</a>
+                        <strong>Fanpage: Ngọc NN</strong>
+                        <a href="#" class="social__link">https://tiktok.com/abcom</a>
                     </div>
-                    <div class="social-card reveal"><i class="social-card__icon fab fa-tiktok"></i>
-                        <p>TikTok</p><a href="#">@ngocnn_bds</a>
+                </div>
+                <div class="social__card">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTy2AsHG20nppAbAvFLJxWSXgnKfXd8rTZIxw&s"
+                        class="social__icon-img" alt="TikTok">
+                    <div class="social__content">
+                        <div class="social__item">
+                            <strong>Giới thiệu nhà:</strong>
+                            <a href="#" class="social__link">https://tiktok.com/abccm</a>
+                        </div>
+
+                        <div class="social__item">
+                            <strong>Nhà hẻm xe hơi:</strong>
+                            <a href="#" class="social__link">https://tiktok.com/abccm</a>
+                        </div>
                     </div>
-                    <div class="social-card reveal"><i class="social-card__icon fab fa-youtube"></i>
-                        <p>YouTube</p><a href="#">Ngọc NN Official</a>
+                </div>
+                <div class="social__card">
+                    <img src="https://img.freepik.com/vector-cao-cap/hinh-minh-hoa-bieu-tuong-youtube-logo-ung-dung-youtube-bieu-tuong-mang-xa-hoi_561158-3674.jpg"
+                        class="social__icon-img" alt="YT">
+                    <div class="social__content">
+                        <strong>Review chi tiết: Ngọc NN</strong>
+                        <a href="#" class="social__link">https://youtube.com/abccm</a>
                     </div>
                 </div>
             </div>
+        </section>
+
+        <section class="container location">
+            <span class="section-label">NGƯỜI ĐỒNG HÀNH</span>
+            <h2 class="section-title">Địa Điểm</h2>
+            <div class="location__map">
+                <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d40305.82753634683!2d106.73561543014351!3d10.836245836913882!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x317527ae000021ef%3A0x9121c7e0e32ea35e!2zVGjhu6cgxJDhu6ljLCBI4buTIENow60gTWluaCwgVmnhu4d0IE5hbQ!5e0!3m2!1svi!2s!4v1775731839295!5m2!1svi!2s"
+                    width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy">
+                </iframe>
+            </div>
+        </section>
+
+        <footer class="footer">
+    <div class="footer__container">
+        <div class="footer__col">
+            <div class="footer__logo">
+                <h2>NGỌC NN</h2>
+                <span>NHÀ MÔI GIỚI BĐS UY TÍN TẠI TP.HCM</span>
+            </div>
+            <p class="footer__slogan">Giúp bạn tìm đúng nhà – đúng giá – đúng pháp lý tại khu vực TP.HCM.</p>
+            <div class="footer__contact-info">
+                <p><i class="fas fa-map-marker-alt"></i> 183/4 Phạm Văn Đồng, Thủ Đức</p>
+                <p><i class="fas fa-phone-alt"></i> 0888819198</p>
+            </div>
         </div>
+
+        <div class="footer__col">
+            <h3 class="footer__title">MENU</h3>
+            <ul class="footer__links">
+                <li><a href="#">+ Trang chủ</a></li>
+                <li><a href="#">+ Giới thiệu</a></li>
+                <li><a href="#">+ Ký gửi nhà đất</a></li>
+                <li><a href="#">+ Liên hệ</a></li>
+            </ul>
+        </div>
+
+        <div class="footer__col">
+            <h3 class="footer__title">DỊCH VỤ</h3>
+            <ul class="footer__links">
+                <li><a href="#">+ Hỗ trợ thủ tục</a></li>
+                <li><a href="#">+ Tư vấn pháp lý</a></li>
+                <li><a href="#">+ Hỗ trợ vay vốn</a></li>
+                <li><a href="#">+ Quảng cáo BĐS</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="footer__bottom">
+        NGỌC NN BẤT ĐỘNG SẢN UY TÍN
+    </div>
+</footer>
     </main>
 
-    <section class="container reveal">
-        <div class="map-box">
-            <iframe src="https://www.google.com/maps/embed?..." width="100%" height="450" style="border:0;"
-                allowfullscreen="" loading="lazy"></iframe>
-        </div>
-    </section>
-
-    <footer class="footer">
-        <div class="container">
-            <div class="footer__main">
-                <div class="footer__col footer__col--brand">
-                    <div class="logo-wrapper">
-                        <span class="logo-wrapper__main">NGỌC NN</span>
-                        <span class="logo-wrapper__sub">NHÀ MÔI GIỚI BĐS UY TÍN TẠI TP HCM</span>
-                    </div>
-                    <p class="footer__text">Giúp bạn tìm đúng nhà – đúng giá – đúng pháp lý tại khu vực TP.HCM.</p>
-                    <ul class="footer__contact-info">
-                        <li><i class="fas fa-map-marker-alt"></i> 183/4 Phạm Văn Đồng, Thủ Đức</li>
-                        <li><i class="fas fa-phone-alt"></i> 0888819198</li>
-                    </ul>
-                </div>
-
-                <div class="footer__col footer__accordion">
-                    <div class="footer__title-wrapper" onclick="toggleFooter(this)">
-                        <h4 class="footer__title">MENU</h4>
-                        <i class="fas fa-chevron-down footer__icon-arrow"></i>
-                    </div>
-                    <ul class="footer__list footer__content">
-                        <li><a href="../index.html">+ Trang chủ</a></li>
-                        <li><a href="#">+ Giới thiệu</a></li>
-                        <li><a href="#">+ Ký gửi nhà đất</a></li>
-                        <li><a href="#">+ Liên hệ</a></li>
-                    </ul>
-                </div>
-
-                <div class="footer__col footer__accordion">
-                    <div class="footer__title-wrapper" onclick="toggleFooter(this)">
-                        <h4 class="footer__title">DỊCH VỤ</h4>
-                        <i class="fas fa-chevron-down footer__icon-arrow"></i>
-                    </div>
-                    <ul class="footer__list footer__content">
-                        <li><a href="#">+ Hỗ trợ thủ tục</a></li>
-                        <li><a href="#">+ Tư vấn pháp lý</a></li>
-                        <li><a href="#">+ Hỗ trợ vay vốn</a></li>
-                        <li><a href="#">+ Quảng cáo BĐS</a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="footer__bottom">
-                <p class="footer__copyright">NGỌC NN BẤT ĐỘNG SẢN UY TÍN</p>
-            </div>
-        </div>
-    </footer>
-
-    <script>
-        // Hiệu ứng Reveal
-        const reveal = () => {
-            const reveals = document.querySelectorAll('.reveal');
-            const triggerBottom = window.innerHeight * 0.9;
-
-            reveals.forEach(box => {
-                const boxTop = box.getBoundingClientRect().top;
-                if (boxTop < triggerBottom) {
-                    box.classList.add('active');
-                }
-            });
-        };
-
-        window.addEventListener('scroll', reveal, { passive: true });
-        window.onload = reveal;
-
-        // Header Menu Mobile
-        function toggleMenu() {
-            const nav = document.getElementById('mobileMenu');
-            const btn = document.getElementById('hamburgerBtn');
-            nav.classList.toggle('header__nav--active');
-            btn.classList.toggle('header__hamburger--active');
-            document.body.classList.toggle('no-scroll');
-        }
-
-        // Footer Accordion
-        const toggleFooter = (element) => {
-            if (window.innerWidth <= 768) {
-                const parent = element.closest('.footer__accordion');
-                parent.classList.toggle('footer__accordion--active');
-            }
-        };
-    </script>
+    <script src="../js/main.js"></script>
 </body>
 
 </html>
