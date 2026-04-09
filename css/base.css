@@ -1,14 +1,11 @@
-/* Google Fonts: Roboto & Playfair Display */
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&family=Playfair+Display:wght@600;700&display=swap');
 
 :root {
-    --color-primary: #8B6F47;
-    --color-primary-brown: #8B6F47;
-    --color-cart-logo: #b77246;
+    --color-primary-title-cart-logo: #b77246;
     --color-accent: #d48a52;
     --bg-info-box: #fff8f0;
     --font-main: 'Roboto', sans-serif;
-    --font-title: 'Playfair Display', serif;
+    --font-title: 'Playfair Display', serif;    
     
     /* Precision Spacing từ Page Ruler */
     --side-padding: 153px;
