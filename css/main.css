@@ -120,8 +120,8 @@
    ========================================================================== */
 /* --- Hero Block (Updated from Figma) --- */
 .hero {
-    height: 60vh;
-    min-height: 465px;
+    height: 40vh;
+    min-height: 400px;
 
     /* Overlay Gradient 3 lớp: Top(0.6) - Mid(0.4) - Bottom(0.6) */
     background:
@@ -229,40 +229,37 @@
 }
 
 /* --- Contact Info (Cột bên trái) --- */
+/* Giữ nguyên .contact và .contact__grid của fen */
+
 .info__item {
     display: flex;
-    align-items: center;
-    font-size: 16px;
-    /* Tăng nhẹ cho dễ đọc */
-    margin-bottom: 14px;
+    align-items: flex-start; /* Icon đứng im ở dòng đầu khi text xuống hàng */
+    gap: 15px;               /* Khoảng cách ngang giữa icon và text */
+    margin-bottom: 16px;     /* Giữ nguyên thông số của fen */
 }
 
 .info__icon {
     width: 20px;
-    /* Figma: w-5 */
     height: 20px;
-    /* Figma: h-5 */
     color: #8B6F47;
     flex-shrink: 0;
-    gap: 15px;
+    margin-top: 3px;         /* Căn icon lùi xuống tí cho khớp dòng chữ đầu */
+    text-align: center;
+    display: flex;
+    justify-content: center;
 }
 
-/* Contact Info Box (Cái hộp ghi chú) */
+.info__text {
+    flex: 1;                 /* Đẩy text chiếm nốt phần còn lại của hàng */
+    font-size: 16px;
+    line-height: 1.5;
+}
+
+/* Đảm bảo contact__note không bị dính vào info__item cuối */
 .contact__note {
-    background: #FFF8F0;
-    /* Figma: #FFF8F0 */
-    border-left: 4px solid #8B6F47;
-    padding: 16px;
-    /* p-4 */
-    border-radius: 4px;
-    /* Bo nhẹ cho tinh tế */
-    margin-top: 30px;
-    font-size: 14px;
-    /* text-sm */
-    line-height: 1.6;
-    color: #4b5563;
+    margin-top: 25px;
+    /* Các style khác giữ nguyên */
 }
-
 
 /* Nút gửi đi chuẩn màu nâu đất và bo góc nhẹ */
 .form {
@@ -283,11 +280,15 @@
     font-weight: 500;
 }
 
+.form__label--textarea {
+    margin-bottom: 30px;
+}
+
 .form__input {
     width: 100%;
     border: none;
     border-bottom: 1px solid #333;
-    /* Để 1px cho nó tinh tế thanh mảnh */
+    margin-bottom: 8px;
     border-radius: 0;
     font-size: 16px;
     background: transparent;
@@ -327,7 +328,7 @@
    BLOCK: SOCIAL & MAP
    ========================================================================== */
 .social {
-    padding: 40px var(--side-padding);
+    padding: 10px 0 40px 0;
     text-align: center;
 }
 
