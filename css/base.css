@@ -5,6 +5,8 @@
     --color-accent: #d48a52;
     --color-btn: #a0522d;
     --color-text: #373737;
+    --bg-brown: #5d3420; /* Màu nâu đậm của demo */
+    --gold-glow: rgba(243, 203, 168, 0.3);    --white-text: #ffffff;
     --bg-info-box: #fff8f0;
     --font-main: 'Roboto', sans-serif;
     --font-title: 'Playfair Display', serif;
