@@ -1,20 +1,39 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&family=Playfair+Display:wght@600;700&display=swap');
 
 :root {
-    --color-primary-title-cart-logo: #b77246;
+    --color-primary: #b77246;
     --color-accent: #d48a52;
+    --color-btn: #a0522d;
+    --color-text: #373737;
     --bg-info-box: #fff8f0;
     --font-main: 'Roboto', sans-serif;
-    --font-title: 'Playfair Display', serif;    
-    
+    --font-title: 'Playfair Display', serif;
+
     /* Precision Spacing từ Page Ruler */
     --side-padding: 153px;
     --h-header: 60px;
     --h-banner: 465px;
-    --content-max-width: 1400px;
+    --content-max-width: 1000px;
+
+    /* Font size */
+
+    --font-size-logo: 40px;    /* Cho logo */
+    --font-size-title: 36px;   /* Cho các tiêu đề lớn */
+    --font-size-label: 16px;   /* Cho mấy cái nhãn nhỏ phía trên */
+    --font-size-content: 14px; /* Cho nội dung, text, input */
+    --font-size-btn: 14px;     /* Cho chữ trong nút */
+
+    /* Animation */
+    --transition-luxury: all 0.6s cubic-bezier(0.23, 1, 0.32, 1); /* Cubic-bezier cho cảm giác "mướt" */
+    --shadow-card: 0 10px 40px rgba(0,0,0,0.03);
+    --shadow-hover: 0 20px 60px rgba(183, 114, 70, 0.15); /* Bóng đổ mang màu thương hiệu */
 }
 
-* { margin: 0; padding: 0; box-sizing: border-box; }
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
 body {
     font-family: var(--font-main);
@@ -23,9 +42,22 @@ body {
     overflow-x: hidden;
 }
 
-a { text-decoration: none; color: inherit; transition: 0.3s; }
-button { cursor: pointer; border: none; background: none; font-family: inherit; }
-ul { list-style: none; }
+a {
+    text-decoration: none;
+    color: inherit;
+    transition: 0.3s;
+}
+
+button {
+    cursor: pointer;
+    border: none;
+    background: none;
+    font-family: inherit;
+}
+
+ul {
+    list-style: none;
+}
 
 .header__container {
     max-width: var(--content-max-width);
@@ -33,7 +65,9 @@ ul { list-style: none; }
 }
 
 /* Áp dụng cho các Section bên dưới (Contact, Social, Hero) */
-.contact, .social, .location {
+.contact,
+.social,
+.location {
     max-width: var(--content-max-width);
     margin-left: auto;
     margin-right: auto;

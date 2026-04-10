@@ -1,33 +1,50 @@
-document.addEventListener('DOMContentLoaded', () => {
-    // 1. Hiệu ứng Hiện dần (Reveal Animation)
-    const observerOptions = { threshold: 0.15 };
-    const revealObserver = new IntersectionObserver((entries) => {
+// Page Contact
+document.addEventListener("DOMContentLoaded", function() {
+    const observerOptions = {
+        threshold: 0.15
+    };
+
+    const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
-                entry.target.classList.add('reveal--visible');
-                revealObserver.unobserve(entry.target); // Chỉ chạy 1 lần
+                entry.target.classList.add('active');
             }
         });
     }, observerOptions);
 
-    // Áp dụng cho các thành phần chính
-    document.querySelectorAll('.contact__grid, .social__card, .location__map, .hero__content').forEach(el => {
-        el.classList.add('reveal');
-        revealObserver.observe(el);
-    });
+    // Chỉ định các khối sẽ có hiệu ứng reveal
+    const revealElements = document.querySelectorAll(
+        '.contact__grid, .social, .location__map, .footer-contact, .hero__content'
+    );
 
-    // 2. Xử lý Form đơn giản
-    const form = document.querySelector('.form');
-    if (form) {
-        form.addEventListener('submit', (e) => {
-            e.preventDefault();
-            const btn = form.querySelector('.form__button');
-            btn.textContent = 'ĐANG GỬI...';
-            setTimeout(() => {
-                alert('Cảm ơn bạn! Ngọc NN sẽ liên hệ sớm nhất.');
-                form.reset();
-                btn.textContent = 'GỬI ĐI';
-            }, 1000);
+    revealElements.forEach(el => {
+        el.classList.add('reveal'); // Tự động gán class ẩn ban đầu
+        observer.observe(el);
+    });
+});
+
+//Page Ký gửi
+document.addEventListener("DOMContentLoaded", function() {
+    const observerOptions = {
+        threshold: 0.15
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('active');
+            }
         });
-    }
+    }, observerOptions);
+
+    // Danh sách các khối cần Animation trên cả 2 trang
+    const revealElements = document.querySelectorAll(
+        '.kygui-intro__header, .kygui-intro__grid, .why-us__grid, ' + 
+        '.form-container, .footer-grid, .social, .contact__grid, .hero__content'
+    );
+
+    revealElements.forEach(el => {
+        el.classList.add('reveal'); // Ẩn ban đầu
+        observer.observe(el);
+    });
 });
