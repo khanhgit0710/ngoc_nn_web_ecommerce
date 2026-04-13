@@ -88,13 +88,14 @@ ul {
 }
 
 section {
-    padding: 40px 0; /* Khoảng cách trên dưới cực thoáng đúng chất Luxury */
+    padding: 20px 0; /* Khoảng cách trên dưới cực thoáng đúng chất Luxury */
+    margin: 20px 0; /* Khoảng cách giữa các section */
 }
 
 .section-header {
     text-align: center;
-    margin-bottom: 50px; /* Khoảng cách từ tiêu đề xuống nội dung bên dưới */
 }
+
 
 @media (max-width: 768px) {
     :root {
