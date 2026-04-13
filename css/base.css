@@ -15,15 +15,17 @@
     --side-padding: 153px;
     --h-header: 60px;
     --h-banner: 465px;
-    --content-max-width: 1000px;
+    --content-max-width: 1100px;
+    --container-padding: 20px;
+    --line-height-luxury: 1.8;  
 
     /* Font size */
 
-    --font-size-logo: 40px;    /* Cho logo */
-    --font-size-title: 36px;   /* Cho các tiêu đề lớn */
-    --font-size-label: 16px;   /* Cho mấy cái nhãn nhỏ phía trên */
-    --font-size-content: 14px; /* Cho nội dung, text, input */
-    --font-size-btn: 14px;     /* Cho chữ trong nút */
+    --font-size-logo: 40px;      /* Cực đại cho Logo hoặc Header chính */
+    --font-size-title: 36px;     /* Tiêu đề các Section lớn */
+    --font-size-label: 16px;     /* Nhãn (Label), Tiêu đề Card, Subtitle */
+    --font-size-content: 14px;   /* Nội dung văn bản, mô tả, Input */
+    --font-size-btn: 14px;       /* Chữ trong các nút bấm */   /* Cho chữ trong nút */
 
     /* Animation */
     --transition-luxury: all 0.6s cubic-bezier(0.23, 1, 0.32, 1); /* Cubic-bezier cho cảm giác "mướt" */
@@ -75,4 +77,27 @@ ul {
     margin-right: auto;
     padding-left: var(--side-padding);
     padding-right: var(--side-padding);
+    
+}
+
+.main-wrapper {
+    width: 100%;
+    max-width: var(--content-max-width);
+    margin: 0 auto;
+    padding: 0 var(--container-padding);
+}
+
+section {
+    padding: 40px 0; /* Khoảng cách trên dưới cực thoáng đúng chất Luxury */
+}
+
+.section-header {
+    text-align: center;
+    margin-bottom: 50px; /* Khoảng cách từ tiêu đề xuống nội dung bên dưới */
+}
+
+@media (max-width: 768px) {
+    :root {
+        --font-size-h1: 32px; /* Tự động giảm size h1 toàn trang trên mobile */
+    }
 }
