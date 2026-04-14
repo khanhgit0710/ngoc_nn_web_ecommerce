@@ -37,13 +37,16 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    
 }
 
 body {
     font-family: var(--font-main);
-    color: #1f2937;
     line-height: 1.6;
     overflow-x: hidden;
+    background-color: #f2efeb; 
+    /* Giảm độ đen của chữ xuống một chút để không bị gắt trên nền kem */
+    color: #2d2d2d;
 }
 
 a {
@@ -66,6 +69,17 @@ ul {
 .header__container {
     max-width: var(--content-max-width);
     padding: 0 var(--side-padding);
+
+    background-color: #efece5;
+
+}
+
+.header.header, 
+.footer-contact {
+
+    background-color: #efece5;
+
+
 }
 
 /* Áp dụng cho các Section bên dưới (Contact, Social, Hero) */
@@ -88,12 +102,22 @@ ul {
 }
 
 section {
-    padding: 20px 0; /* Khoảng cách trên dưới cực thoáng đúng chất Luxury */
-    margin: 20px 0; /* Khoảng cách giữa các section */
+    padding: 10px 0; /* Khoảng cách trên dưới cực thoáng đúng chất Luxury */
+    margin: 5px 0; /* Khoảng cách giữa các section */
+    background-color: #efece5;
+
 }
 
 .section-header {
     text-align: center;
+}
+
+.contact,
+.blog-container, 
+.blog-header, 
+.blog-header {
+    background-color: #efece5;
+
 }
 
 

@@ -14,11 +14,10 @@
 
     <header class="header">
         <div class="header__container">
-            <input type="checkbox" id="menu-toggle" class="header__checkbox" style="display: none !important; position: absolute !important; visibility: hidden !important;">
+            <input type="checkbox" id="menu-toggle" class="header__checkbox"
+                style="display: none !important; position: absolute !important; visibility: hidden !important;">
             <label for="menu-toggle" class="header__hamburger">
-                <span></span>
-                <span></span>
-                <span></span>
+                <span></span><span></span><span></span>
             </label>
 
             <div class="header__logo-group">
@@ -28,17 +27,20 @@
 
             <div class="header__actions">
                 <nav class="header__nav">
-                    <a href="#" class="header__nav-link header__nav-link--active">Trang chủ</a>
+                    <a href="../index.html" class="header__nav-link">Trang chủ</a>
                     <a href="#" class="header__nav-link">Giới thiệu</a>
                     <a href="../page/tim_nha.html" class="header__nav-link">Đặt nhà</a>
                     <a href="../page/ky_gui.html" class="header__nav-link">Kí gửi nhà đất</a>
-                    <a href="#" class="header__nav-link">Tin tức</a>
+                    <a href="../page/blog.html" class="header__nav-link header__nav-link--active">Tin tức</a>
                     <a href="#" class="header__nav-link">Quảng cáo</a>
                     <a href="../page/contact.html" class="header__nav-link">Liên hệ</a>
                 </nav>
-
                 <button class="header__cart">
-                    GIỎ HÀNG <i class="fas fa-shopping-basket"></i>
+                    GIỎ HÀNG
+                    <svg class="header__cart-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+                        <path
+                            d="M160 112c0-30.9 25.1-56 56-56s56 25.1 56 56v48H160v-48zm-48 48H48c-26.5 0-48 21.5-48 48V416c0 53 43 96 96 96H352c53 0 96-43 96-96V208c0-26.5-21.5-48-48-48H336V112C336 50.1 285.9 0 224 0S112 50.1 112 112v48zm24 48a24 24 0 1 1 0 48 24 24 0 1 1 0-48zm152 24a24 24 0 1 1 48 0 24 24 0 1 1 -48 0z" />
+                    </svg>
                 </button>
             </div>
         </div>

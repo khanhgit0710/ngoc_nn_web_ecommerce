@@ -2,14 +2,14 @@
 
 .header {
     height: var(--h-header);
-    background: #fff;
-    border-bottom: 1px solid #f0f0f0;
+    border-bottom: 1px solid #eaeaead9;
     display: flex;
     align-items: center;
     position: sticky;
     top: 0;
     z-index: 1000;
     transition: all 0.3s ease;
+    box-shadow: 0 4px 20px rgba(183, 114, 70, 0.08);
 }
 
 .header__container {
@@ -153,9 +153,18 @@
 }
 
 /* Icon giỏ hàng nhún nhảy khi hover */
-.header__cart:hover i {
-    animation: cartBounce 0.4s ease infinite alternate;
+.header__cart-icon {
+    width: 14px; /* Chỉnh to nhỏ ở đây */
+    height: auto;
+    fill: currentColor; /* Nó sẽ tự lấy màu theo màu chữ của nút bấm */
+    transition: all 0.3s ease;
 }
+
+/* Nếu ông muốn lúc hover cái túi đổi màu hoặc to lên */
+.header__cart:hover .header__cart-icon {
+    transform: translateY(-2px);
+}
+
 
 @keyframes cartBounce {
     from {
@@ -199,7 +208,7 @@
 /* --- 1. HIỆU ỨNG NỀN (ZOOM-OUT CHẬM) --- */
 .hero {
     height: 40vh;
-    min-height: 400px;
+    min-height: 380px;
     background:
         linear-gradient(to bottom, rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0.8) 100%),
         url("../assets/images/banner-bds.jpg");
@@ -212,6 +221,7 @@
     justify-content: center;
     text-align: center;
     color: #fff;
+    padding_top: 20px;
 
     /* Animation cho background khi vừa load trang */
     animation: heroBackgroundZoom 10s ease-out forwards;
@@ -383,7 +393,6 @@
 /* --- SECTION CONTACT TỔNG THỂ --- */
 .contact {
     padding: 50px 0;
-    background: #ffffff;
     width: 100%;
 }
 
@@ -478,7 +487,7 @@
 
 /* --- CỘT PHẢI (FORM): LUXURY & SOFT --- */
 .form {
-    background: #fdfdfd;
+    background: #fffbf1;
     padding: 35px;
     border-radius: 20px;
     box-shadow: 0 10px 40px rgba(0, 0, 0, 0.03);
@@ -609,9 +618,8 @@
    ========================================================================== */
 /* --- SECTION SOCIAL --- */
 .social {
-    padding: 60px 0 100px 0;
+    padding: 60px 0 60px 0;
     /* Khoảng cách rộng rãi cho sang */
-    background: #fff;
     width: 100%;
 }
 
@@ -818,6 +826,7 @@
     font-family: "Inter", sans-serif;
     /* Giúp các hiệu ứng bên trong mượt hơn */
     backface-visibility: hidden;
+    background-color: #efece5;
 }
 
 .kygui-intro__header {
@@ -976,7 +985,7 @@
 /* --- BUTTON ĐỒNG BỘ CART (ULTRA SHINE) --- */
 /* Khung tổng gom cụm */
 .creative-problem-block {
-    background: #fff;
+    background: #fffbf0;
     padding: 40px;
     border-radius: 30px;
     border: 1px solid rgba(163, 93, 54, 0.1);
@@ -1129,7 +1138,7 @@
    WHY US - LIQUID MOTION & STAGGER SYSTEM
    ========================================================================== */
 .why-us {
-    background-color: #fff6ec;
+    background-color: #efece5;
     min-height: 500px;
     padding: 100px 0;
     position: relative;
@@ -1791,7 +1800,7 @@ textarea.input-final {
 .form-notes li {
     font-size: 14px;
     line-height: 1.6;
-    color: #666;
+    color: var(--color-text);
     /* Màu xám nhẹ cho đúng chất ghi chú */
     margin-bottom: 15px;
     position: relative;
@@ -2268,7 +2277,6 @@ textarea.input-final {
    ========================================================================== */
 .footer-contact {
     padding: 60px var(--side-padding);
-    background: #fff;
     text-align: center;
 }
 
@@ -2693,6 +2701,8 @@ textarea.input-final {
 
 .blog-container .featured-post-slider {
     margin: 0;
+    background-color: #efece5;
+
 }
 
 .featured-post-slider {
@@ -2774,30 +2784,7 @@ textarea.input-final {
     text-transform: uppercase;
 }
 
-/* Điều hướng Dots */
-.slider-dots {
-    position: absolute;
-    bottom: 30px;
-    left: 80px; /* Căn lề trái cho hiện đại */
-    display: flex;
-    gap: 10px;
-    z-index: 10;}
 
-.dot {
-    width: 4px;
-    height: 4px;
-    background: rgba(255,255,255,0.3);
-    border-radius: 50%;
-    cursor: pointer;
-    transition: all 0.4s ease;
-}
-
-.dot.active {
-    width: 10px;
-    height: 10px;
-    background: #b77246;
-    border-radius: 100px
-}
 
 /* NÚT ĐỌC CHI TIẾT LUXURY */
 .btn-readmore-luxury {
@@ -2831,7 +2818,7 @@ textarea.input-final {
     position: absolute;
     
     /* 3. Nằm đè lên ảnh, cách đáy 40px cho thoáng */
-    bottom: 40px; 
+    bottom: 10px; 
     
     /* Căn giữa */
     left: 50%;
@@ -2843,8 +2830,8 @@ textarea.input-final {
 }
 
 .dot {
-    width: 14px;
-    height: 14px;
+    width: 10px;
+    height: 10px;
     
     /* HÌNH KÉN TẰM (CAPSULE) THEO MẪU XU HƯỚNG 2026 */
     border-radius: 50px; 
@@ -2914,7 +2901,7 @@ textarea.input-final {
 .featured-post-slider {
     position: relative;
     width: 100%;
-    height: 550px;
+    height: 500px;
     overflow: hidden;
     /* Giảm margin-bottom xuống 60px để gần gũi với Grid hơn, 80px hơi thưa */
     margin-bottom: 60px; 
@@ -2929,84 +2916,122 @@ textarea.input-final {
 
 /* --- PHẦN 2: TRENDING GRID (FIX ẢNH ĐỀU TĂM TẮP) --- */
 /* Layout tổng cho Grid */
+/* --- 1. CONTAINER CHÍNH --- */
 .trending-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr); /* Chia 3 cột bằng nhau */
-    gap: 45px;
-    width: 100%;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px; /* Giữ gap hẹp theo ý ông */
+    max-width: 1000px;
+    margin: 5px auto;
+    box-sizing: border-box;
 }
 
-/* Từng card nhỏ */
+/* --- 2. TỪNG CARD BÀI VIẾT --- */
 .trending-card {
-    background: #fff;
-    border-radius: 15px;
-    overflow: hidden;
-    transition: all 0.4s ease;
-    cursor: pointer;
+    background: #ffffff;
+    padding: 12px; /* Viền trắng bọc quanh ảnh và chữ */
+    border-radius: 20px;
     display: flex;
     flex-direction: column;
-    border-top: 1px solid var(--color-primary);
-     /* Đường kẻ mờ phía trên để tạo cảm giác "nằm trong" */
+    gap: 14px;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    cursor: pointer;
+    
+    /* FIX LỖI HOVER NHẦM: Quan trọng nhất */
+    position: relative;
+    z-index: 1; 
+    
+    /* ANIMATION: Mượt mà kiểu chuyên nghiệp */
+    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
 }
 
+/* --- 3. HIỆU ỨNG KHI HOVER --- */
 .trending-card:hover {
-    transform: translateY(-10px); /* Bay lên nhẹ khi hover */
+    transform: translateY(-8px); /* Nhấc card lên */
+    box-shadow: 0 15px 35px rgba(183, 114, 70, 0.15); /* Shadow cam đất */
+    border-color: rgba(183, 114, 70, 0.3);
+    z-index: 10; /* Nổi lên trên các card còn lại để nhận chuột chuẩn */
 }
 
-/* Media (Hình ảnh) */
+/* --- 4. MEDIA (ẢNH) --- */
 .thumb-media {
     width: 100%;
     height: 200px;
+    border-radius: 14px; /* Bo góc ảnh nhỏ hơn card xíu */
     overflow: hidden;
-    position: relative;
+    pointer-events: none; /* Để chuột xuyên qua ảnh ăn vào card */
 }
 
 .thumb-media img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: transform 0.6s ease;
+    transition: transform 1.2s ease;
 }
 
 .trending-card:hover .thumb-media img {
-    transform: scale(1.1); /* Zoom ảnh nhẹ */
+    transform: scale(1.1); /* Zoom nhẹ ảnh */
 }
 
-/* Nội dung chữ trong card */
+/* --- 5. TIÊU ĐỀ --- */
 .trending-card h4 {
-    padding: 20px 15px 10px 15px;
-    margin: 0;
-    font-size: 1.1rem;
-    font-weight: 600;
-    color: #222;
-    line-height: 1.6;
-    flex-grow: 1; /* Để tiêu đề chiếm không gian đều nhau */
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 1.5;
+    color: #1a1a1a;
+    margin: 5px 0;
+    padding: 0 5px;
+    
+    /* Ép 2 dòng tăm tắp */
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    
     transition: color 0.3s ease;
+    pointer-events: none; /* Không cho chữ cướp chuột */
 }
 
 .trending-card:hover h4 {
-    color: #b77246; /* Đổi màu tiêu đề khi hover card */
+    color: var(--color-primary);
 }
 
-/* Label Kinh nghiệm (Nút mini) */
+/* --- 6. NÚT LABEL LUXURY --- */
 .btn-mini-luxury {
-    margin: 0 15px 20px 15px;
-    padding: 5px 12px;
-    border: 1px solid #b77246;
-    color: #b77246;
-    font-size: 10px;
-    font-weight: 700;
-    letter-spacing: 1px;
-    border-radius: 3px;
-    display: inline-block;
-    width: fit-content;
+    align-self: flex-start;
+    font-size: 9px;
+    font-weight: 800;
+    letter-spacing: 1.2px;
+    padding: 5px 14px;
+    margin-left: 5px;
+    margin-bottom: 5px;
+    border: 1px solid #f0f0f0;
+    color: #999;
+    border-radius: 6px;
     text-transform: uppercase;
+    transition: all 0.3s ease;
+    pointer-events: none; /* Để hover card mượt hơn */
 }
 
-/* Responsive cho Mobile */
-@media (max-width: 768px) {
+.trending-card:hover .btn-mini-luxury {
+    background: var(--color-primary);
+    color: #fff;
+    border-color: var(--color-primary);
+    box-shadow: 0 5px 10px rgba(183, 114, 70, 0.2);
+}
+
+/* --- 7. RESPONSIVE --- */
+@media (max-width: 900px) {
+    .trending-grid { 
+        grid-template-columns: repeat(2, 1fr); 
+        gap: 15px;
+    }
+}
+
+@media (max-width: 600px) {
     .trending-grid {
-        grid-template-columns: 1fr; /* Mobile thì xếp chồng 1 cột */
+        grid-template-columns: 1fr; /* Mobile thành danh sách dọc */
+        gap: 20px;
     }
 }
 
@@ -3023,114 +3048,98 @@ textarea.input-final {
 } */
 
 /* --- 4. HIGHLIGHT BOX (HỘP KEM LUXURY) --- */
-/* --- HIGHLIGHT BOX TỔNG --- */
-/* --- HIGHLIGHT SECTION --- */
-.highlight-box {
+
+/* --- NỀN TRẮNG TRÀN VIỀN --- */
+.highlight-news-full {
     width: 100%;
-    padding: 20px 0 60px 0;
-    background: #fff; /* Trắng tinh khôi */
-    margin-bottom: 0;
+    background: #ffffff;
+    border-top: 1px solid #f0f0f0;
+    border-bottom: 1px solid #f0f0f0;
+    padding: 10px 0;
+    margin: -8px 0 10px 0 !important;
 }
 
-.highlight-grid {
+/* --- NỘI DUNG NẰM GỌN TRONG KHUNG --- */
+.highlight-content {
+    max-width: 1000px;
+    margin: 0 auto;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 40px 30px;
+    gap: 10px 30px;
+    padding: 0 20px;
+    box-sizing: border-box;
 }
 
-/* --- CARD DESIGN --- */
+/* --- Từng mục nhỏ --- */
 .highlight-item {
-    padding: 25px;
-    background: #fffcf9; /* Màu nền cam sữa cực nhạt */
-    border-radius: 20px;
-    border: 1px solid rgba(183, 114, 70, 0.1);
-    transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
-    position: relative;
-}
-
-.hl-top {
-    display: flex;
-    align-items: baseline;
-    gap: 10px;
-    margin-bottom: 15px;
-    padding-bottom: 12px;
-    border-bottom: 1px solid rgba(183, 114, 70, 0.1); /* Đường kẻ mờ ngăn cách head và body */
-}
-
-/* SỐ THỨ TỰ: HIỆN RÕ VÀ SANG */
-.hl-number {
-    font-size: 20px;
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 900;
-    color: var(--color-primary);
-    line-height: 1;
-}
-
-/* TIÊU ĐỀ PHỤ */
-.hl-title {
-    font-size: 14px;
-    font-weight: 800;
-    letter-spacing: 2px;
-    color: #1a1a1a;
-    text-transform: uppercase;
-}
-
-/* MÔ TẢ (DESC) */
-.hl-desc {
-    font-size: 15px;
-    line-height: 1.6;
-    color: #555;
-    margin: 0 !important;
-    text-align: justify;
-}
-
-/* --- HOVER EFFECTS --- */
-.highlight-item:hover {
-    transform: translateY(-8px);
-    background: #ffffff;
-    border-color: var(--color-primary);
-    box-shadow: 0 15px 35px rgba(183, 114, 70, 0.12);
-}
-
-.highlight-item:hover .hl-number {
-    transform: scale(1.1);
-}
-
-.highlight-item:hover .hl-top {
-    border-bottom-color: var(--color-primary);
-}
-
-/* Responsive */
-@media (max-width: 992px) {
-    .highlight-grid { grid-template-columns: repeat(2, 1fr); }
-}
-@media (max-width: 600px) {
-    .highlight-grid { grid-template-columns: 1fr; }
-}
-
-/* Mobile: 1 cột cho dễ đọc */
-@media (max-width: 768px) {
-    .highlight-grid {
-        grid-template-columns: 1fr;
-    }
-}
-.section-label-inner {
-    font-size: 18px; 
-    letter-spacing: 5px; 
-    text-transform: uppercase;
-    color: var(--color-primary);
-margin-bottom: 10px !important;    font-weight: 800; /* Đậm hẳn lên để tạo điểm nhấn */
     display: flex;
     align-items: center;
-    gap: 25px; /* Tăng khoảng cách với đường kẻ */
-    transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+    gap: 14px;
+    padding: 6px 0;
+    overflow: hidden;
+    cursor: pointer; /* MỚI: hiện bàn tay khi rê vào */
+    position: relative; /* MỚI: làm mốc cho vệt sáng */
+    transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1); /* MỚI: Chuyển động đầm hơn */
 }
 
+/* Hiệu ứng hover cho sang */
+.highlight-item:hover {
+    transform: translateX(10px); /* MỚI: Nhích mạnh hơn xíu cho rõ */
+}
+
+/* Con số: Sáng rực lên khi hover */
+.hl-num {
+    transition: all 0.3s ease; /* MỚI */
+    opacity: 0.5; /* MỚI: Mặc định hơi mờ cho sang */
+}
+
+.highlight-item:hover .hl-num {
+    opacity: 1; /* MỚI */
+    transform: scale(1.1); /* MỚI */
+}
+
+.highlight-item p {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--color-text);
+    margin: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    transition: all 0.3s ease; /* MỚI */
+}
+
+.highlight-item:hover p {
+    color: var(--color-primary); /* MỚI: Chữ đậm lên */
+}
+
+/* --- HIỆU ỨNG VỆT SÁNG (SHINE) CHẠY NGANG --- */
+/* Thêm đoạn này vào cuối file CSS để tạo hiệu ứng lướt sáng khi hover */
+.highlight-item::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -150%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        90deg, 
+        transparent, 
+        rgba(183, 114, 70, 0.1), /* Vệt sáng màu đồng cực loãng */
+        transparent
+    );
+    transition: 0s;
+}
+
+.highlight-item:hover::after {
+    left: 150%;
+    transition: 0.6s; /* Vệt sáng lướt qua cực nhanh */
+}
 /* Đường gạch ngang mảnh mai, tinh tế */
 .section-label-inner::after {
     content: '';
     flex: 1;
-    height: 1.8px; /* Mỏng thôi mới sang */
+    height: 1.4px; /* Mỏng thôi mới sang */
     
     /* Dùng dải màu mờ dần (Gradient) thay vì màu đặc để nhìn có chiều sâu */
     background: linear-gradient(to right, rgba(183, 114, 70, 0.3), transparent);
@@ -3138,88 +3147,169 @@ margin-bottom: 10px !important;    font-weight: 800; /* Đậm hẳn lên để 
 
 /* Thêm hiệu ứng khi Section được active (reveal) */
 .reveal.active .section-label-inner {
-    letter-spacing: 8px; /* Chữ dãn ra thêm tí khi hiện hình cực nghệ */
+    letter-spacing: 6px; /* Chữ dãn ra thêm tí khi hiện hình cực nghệ */
     opacity: 1;
 }
 
-/* --- TIÊU ĐỀ NẰM NGOÀI --- */
-.section-label-inner {
-    font-size: 14px;
-    font-weight: 800;
-    color: var(--color-primary);
-    letter-spacing: 3px;
-    margin-bottom: 30px; /* Khoảng cách với cái box bên dưới */
-    text-transform: uppercase;
-}
-
-/* --- HIGHLIGHT BOX --- */
-.highlight-box {
+/* --- 1. NỀN TRẮNG TRÀN VIỀN (FULL WIDTH) --- */
+.highlight-news-full {
     width: 100%;
-    background: #fdfaf8; /* Màu kem cực nhạt cho sang */
-    padding: 20px 0;
-    border-radius: 40px; /* Bo góc lớn đồng bộ với slider */
-    margin-bottom: 0
+    background: #ffffff;
+    border-top: 1px solid #f0f0f0;
+    border-bottom: 1px solid #f0f0f0;
+    padding: 25px 0;
+    margin: 20px 0;
 }
 
-/* GRID 3 CỘT */
-.highlight-grid {
+/* --- 2. GRID: 3 CỘT (PC) -> 1 CỘT (MOBILE) --- */
+.highlight-content {
+    max-width: 1000px; /* Thẳng hàng với Logo/Menu */
+    margin: 0 auto;
     display: grid;
-    grid-template-columns: repeat(3, 1fr); /* Chia 3 cột đều tăm tắp */
-    gap: 40px 60px; /* Khoảng cách giữa các item rộng rãi */
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px 45px;
+    padding: 0 20px;
+    box-sizing: border-box;
 }
 
+/* --- 3. TỪNG MỤC NHỎ (HIGHLIGHT ITEM) --- */
 .highlight-item {
     display: flex;
-    gap: 20px;
-    align-items: flex-start;
-    transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+    align-items: center; /* Căn giữa số to với 2 dòng chữ */
+    gap: 18px;
+    padding: 12px 15px;
+    border-radius: 12px;
     cursor: pointer;
+    position: relative;
+    background: transparent;
+    transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+    overflow: hidden;
 }
 
-/* SỐ THỨ TỰ #1, #2... */
-.hl-number {
-    font-size: 24px;
-    font-weight: 900;
-    color: rgba(183, 114, 70, 0.15); /* Màu mờ ảo cực sang */
-    font-family: 'Montserrat', sans-serif;
-    line-height: 1;
-    transition: all 0.3s ease;
-}
-
-.highlight-item p {
-    font-size: 15px;
-    font-weight: 500;
-    color: #444;
-    line-height: 1.6;
-    margin: 0;
-    transition: all 0.3s ease;
-}
-
-/* --- HOVER ANIMATION --- */
+/* HIỆU ỨNG HOVER TỔNG THỂ */
 .highlight-item:hover {
-    transform: translateY(-5px);
+    background: #ffffff;
+    transform: translateY(-4px) translateX(6px);
+    box-shadow: 0 12px 30px rgba(183, 114, 70, 0.12); /* Shadow màu cam đất */
 }
 
-.highlight-item:hover .hl-number {
+/* CON SỐ: TO BẰNG 2 DÒNG CHỮ */
+.hl-num {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 36px; /* Siêu to nổi bật */
+    font-weight: 900;
     color: var(--color-primary);
+    line-height: 1;
+    opacity: 0.25; /* Mặc định mờ cho sang */
+    transition: all 0.3s ease;
+    flex-shrink: 0;
+}
+
+.highlight-item:hover .hl-num {
     opacity: 1;
     transform: scale(1.1);
 }
 
-.highlight-item:hover p {
-    color: #000;
+/* KHỐI CHỮ: TỰ ĐỘNG XUỐNG DÒNG */
+.highlight-item p {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--color-text);
+    margin: 0;
+    line-height: 1.5;
+    white-space: normal; /* Cho phép xuống dòng */
+    display: -webkit-box;
+    -webkit-line-clamp: 2; /* Ép tối đa 2 dòng */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    position: relative;
+    transition: all 0.3s ease;
 }
 
-/* Responsive cho Mobile */
-@media (max-width: 992px) {
-    .highlight-grid {
+.highlight-item:hover p {
+    color: #1a1a1a;
+}
+
+/* --- 4. HIỆU ỨNG GẠCH CHÂN (UNDERLINE ANIMATION) --- */
+.highlight-item p::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: var(--color-primary);
+    transition: width 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.highlight-item:hover p::after {
+    width: 100%; /* Chạy ra từ trái sang phải */
+}
+
+/* --- 5. HIỆU ỨNG VỆT SÁNG (SHINE) --- */
+.highlight-item::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -150%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        90deg, 
+        transparent, 
+        rgba(255, 255, 255, 0.6), 
+        transparent
+    );
+    transform: skewX(-20deg);
+    transition: 0s;
+}
+
+.highlight-item:hover::before {
+    left: 150%;
+    transition: 0.8s;
+}
+
+/* --- 6. RESPONSIVE: CHƠI KIỂU DANH SÁCH (VERTICAL LIST) --- */
+
+/* Tablet (Dưới 1024px) */
+@media (max-width: 1024px) {
+    .highlight-content {
         grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
     }
 }
 
-@media (max-width: 600px) {
-    .highlight-grid {
-        grid-template-columns: 1fr;
+/* Mobile (Dưới 768px) */
+@media (max-width: 768px) {
+    .highlight-news-full {
+        padding: 15px 0;
+    }
+    
+    .highlight-content {
+        grid-template-columns: 1fr; /* 1 cột duy nhất */
+        gap: 10px;
+    }
+    
+    .highlight-item {
+        padding: 12px;
+        border-bottom: 1px solid #f8f8f8; /* Gạch ngang mờ cho mobile */
+    }
+    
+    .highlight-item:last-child {
+        border-bottom: none;
+    }
+    
+    .hl-num {
+        font-size: 30px; /* Nhỏ lại xíu trên mobile */
+    }
+    
+    .highlight-item p {
+        font-size: 14px;
+    }
+    
+    /* Mobile bỏ nhích ngang mạnh, chỉ bay nhẹ lên */
+    .highlight-item:hover {
+        transform: translateY(-2px);
     }
 }
 
@@ -3242,10 +3332,12 @@ margin-bottom: 10px !important;    font-weight: 800; /* Đậm hẳn lên để 
     display: flex;
     align-items: center;
     gap: 30px;
-    margin-bottom: 50px;
+    margin-bottom: 20px;
+    margin-top: 10px !important;
     position: relative;
     transition: all 0.5s ease;
 }
+
 
 /* Đường kẻ ngang vô cực mỏng dính */
 .section-label-inner::after {
@@ -3297,129 +3389,182 @@ margin-bottom: 10px !important;    font-weight: 800; /* Đậm hẳn lên để 
 }
 
 /* --- 2. TIN MỚI NHẤT (NEWS LIST) --- */
-/* --- LATEST NEWS (GRID 2 CỘT) --- */
-/* --- LATEST NEWS (LIST VIEW CHUẨN) --- */
-/* Container chứa các card bài viết */
+.latest-news {
+    margin-top: 0;
+}
+.latest-news-inner {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 20px; /* Chỉnh size vừa phải theo ảnh */
+    font-weight: 800;
+    color: #1a1a1a;
+    text-transform: uppercase;
+    position: relative;
+    padding-top: 15px; /* Tạo khoảng cách giữa chữ và đường kẻ bên trên */
+    margin-bottom: 40px;
+    display: inline-block; /* Để đường kẻ chỉ dài bằng hoặc theo ý muốn */
+    margin-top: 10px;
+}
+
+/* Đường kẻ màu cam phía trên */
+.latest-news-inner::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 60px; /* Độ dài của thanh cam (ngắn hơn hoặc bằng chữ tùy fen) */
+    height: 3px; /* Độ dày của thanh */
+    background-color: var(--color-primary); /* Màu cam đất thương hiệu */
+
+}
+
+/* Đường line mờ kéo dài hết trang (nếu fen muốn giống ảnh 100%) */
+.latest-news-inner::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 1000px; /* Hoặc 100% nếu nằm trong container */
+    height: 1px;
+    background-color: #e0e0e0; /* Màu xám nhạt chạy dài phía sau */
+    z-index: -1; /* Nằm dưới thanh cam */
+}
+/* --- CONTAINER CHÍNH --- */
 .news-grid {
     display: flex;
-    flex-direction: column; /* Xếp hàng dọc các card */
-    gap: 20px; /* Khoảng cách giữa các bài viết */
+    flex-direction: column;
+    gap: 10px; /* Khoảng cách rộng cho sang */
+    max-width: 1000px;
+    margin: 0 auto;
 }
 
-.section-label-inner {
-    margin-top: 0 !important; /* Tăng khoảng cách trên cho thoáng */
-}
-
-/* Từng card bài viết */
+/* --- CARD BÀI VIẾT --- */
 .news-card {
-    display: flex; /* Cho ảnh bên trái, chữ bên phải */
-    gap: 30px;
-    padding-bottom: 30px;
-    border-bottom: 1px solid #eee; /* Đường gạch chân giữa các bài */
-    align-items: flex-start;
-    transition: 0.3s;
+    display: flex;
+    align-items: center; /* Căn giữa ảnh và chữ theo chiều dọc */
+    gap: 20px;
+    padding: 15px;
+    background: transparent;
+    border-radius: 24px;
+    transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+    position: relative;
+    cursor: pointer;
 }
 
-.news-card:last-child {
-    border-bottom: none; /* Bài cuối cùng không có gạch chân */
+/* HIỆU ỨNG HOVER TỔNG THỂ */
+.news-card:hover {
+    background: #ffffff; /* Nổi lên trên nền kem */
+    box-shadow: 0 15px 45px rgba(183, 114, 70, 0.06);
+    transform: translateX(15px); /* Nhích sang phải tạo cảm giác dẫn dắt */
 }
 
-/* Phần chứa hình ảnh */
+/* --- 1. MEDIA (ẢNH BÊN TRÁI) --- */
 .news-media {
-    flex: 0 0 320px; /* Cố định độ rộng của ảnh */
-    height: 200px;
-    border-radius: 15px; /* Bo góc ảnh */
+    flex: 0 0 320px; /* Độ rộng ảnh cố định như trong ảnh ông gửi */
+    height: 220px;
+    border-radius: 16px;
     overflow: hidden;
+    background: #efece5;;
 }
 
 .news-media img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: 0.5s;
+    transition: transform 1.2s ease;
 }
 
-/* Hiệu ứng khi rê chuột vào */
 .news-card:hover .news-media img {
-    transform: scale(1.1);
+    transform: scale(1.08); /* Zoom nhẹ cực êm */
 }
 
-/* Phần nội dung chữ */
+/* --- 2. INFO (NỘI DUNG BÊN PHẢI) --- */
 .news-info {
-    flex: 1; /* Tự động lấy hết phần diện tích còn lại */
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
+    flex: 1;
 }
 
-.news-info h3 {
+.news-title {
     font-size: var(--font-size-label);
-    font-weight: 700;
-    color: #333;
-    line-height: 1.6;
-    margin: 0;
-    cursor: pointer;
-    transition: 0.3s;
+    font-weight: 800;
+    line-height: 1.3;
+    color: #222;
+    margin-bottom: 15px;
+    transition: color 0.3s ease;
+    /* Ép 2 dòng tiêu đề */
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
 }
 
-.news-info h3:hover {
-    color: #b77246; /* Đổi màu khi hover tiêu đề */
+.news-card:hover .news-info h3 {
+    color: var(--color-primary);
 }
 
-.news-info p {
-    font-size: var(--font-size-content);
-    color: #666;
+.news-excerpt {
+    font-size: 14px;
+    color: var(--color-text);
     line-height: 1.6;
-    margin: 0;
-    /* Giới hạn text 3 dòng nếu nội dung quá dài */
+    margin-bottom: 20px;
+    /* Ép 3 dòng mô tả */
     display: -webkit-box;
     -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
     overflow: hidden;
 }
 
-/* Tag label dưới bài viết */
+/* --- 3. TAG & BUTTON --- */
 .btn-mini-luxury {
     display: inline-block;
-    align-self: flex-start; /* Không cho tag trải dài hết chiều ngang */
-    padding: 4px 12px;
-    border: 1px solid #b77246;
-    color: #b77246;
-    font-size: 10px;
+    padding: 6px 16px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 11px;
     font-weight: 700;
-    border-radius: 4px;
-    letter-spacing: 1px;
+    letter-spacing: 1.5px;
+    color: #888;
     text-transform: uppercase;
+    transition: all 0.4s ease;
 }
 
-/* Responsive cho Mobile */
+.news-card:hover .btn-mini-luxury {
+    border-color: var(--color-primary);
+    color: var(--color-primary);
+    background: rgba(183, 114, 70, 0.05); /* Nền mờ nhẹ */
+}
+
+/* --- 4. HIỆU ỨNG SỐ THỨ TỰ ẨN (DÀNH CHO DÂN CHUYÊN) --- */
+/* .news-card::before {
+    content: "0" counter(news-counter);
+    position: absolute;
+    left: -30px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-family: 'Montserrat', sans-serif;
+    font-size: 40px;
+    font-weight: 900;
+    color: var(--color-primary);
+    opacity: 0.05; 
+    transition: 0.5s;
+} */
+
+/* .news-card:hover::before {
+    opacity: 0.15;
+    left: -20px;
+} */
+
+/* --- RESPONSIVE CHO MOBILE --- */
 @media (max-width: 768px) {
     .news-card {
-        flex-direction: column; /* Mobile thì quay lại xếp dọc */
-        gap: 20px;
+        flex-direction: column; /* Mobile thì quay lại hàng dọc */
+        padding: 20px;
     }
     .news-media {
+        flex: none;
         width: 100%;
         height: 220px;
     }
 }
 
-.btn-mini-luxury {
-    display: inline-block;
-    font-size: 9px; /* Nhỏ lại 1 chút cho tinh tế */
-    font-weight: 800;
-    letter-spacing: 2px; /* Tăng độ dãn chữ lên cho sang */
-    color: var(--color-primary);
-    background: rgba(183, 114, 70, 0.05); /* Nền cực nhạt tạo khối */
-    border: 1px solid rgba(183, 114, 70, 0.2); /* Viền mờ thôi cho thanh thoát */
-    padding: 6px 16px;
-    border-radius: 50px; /* Bo tròn hoàn hảo nhìn hiện đại hơn hẳn */
-    text-transform: uppercase;
-    transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
-    cursor: pointer;
-    position: relative;
-    overflow: hidden;
-}
 
 /* Hiệu ứng khi Hover Card */
 .news-card:hover .btn-mini-luxury {
@@ -3509,7 +3654,7 @@ margin-bottom: 10px !important;    font-weight: 800; /* Đậm hẳn lên để 
 .container-1000 {
     max-width: 1000px;
     margin: 0 auto;
-    padding: 0 20px;
+    padding: 0;
     box-sizing: border-box;
 }
 
@@ -3533,6 +3678,8 @@ margin-bottom: 10px !important;    font-weight: 800; /* Đậm hẳn lên để 
     margin-bottom: 30px;
     box-shadow: 0 15px 35px rgba(0,0,0,0.06);
     background: #f0f0f0;
+    position: relative;
+    z-index: 1;
 }
 
 .main-cover {
@@ -3563,7 +3710,7 @@ margin-bottom: 10px !important;    font-weight: 800; /* Đậm hẳn lên để 
     font-size: 14px; /* Chữ nhỏ lại, spacing rộng ra là chìa khóa */
     letter-spacing: 3px; /* Tăng spacing lên 3px để cực sang */
     text-transform: uppercase;
-    margin-bottom: 20px;
+    margin: 20px 0;
     padding-left: 45px; /* Chừa chỗ cho đường gạch */
     transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
 }
@@ -3618,8 +3765,8 @@ margin-bottom: 10px !important;    font-weight: 800; /* Đậm hẳn lên để 
     display: flex;
     align-items: center;
     gap: 15px;
-    margin-bottom: 25px;
-    padding-bottom: 20px;
+    margin-bottom: 15px;
+    padding-bottom: 10px;
     border-bottom: 1px solid #f0f0f0;
 }
 
@@ -3649,7 +3796,7 @@ margin-bottom: 10px !important;    font-weight: 800; /* Đậm hẳn lên để 
     border: 1px solid #eee;
     border-radius: 20px;
     padding: 25px 30px;
-    margin-bottom: 40px;
+    margin-bottom: 20px;
 }
 
 .toc-title {
@@ -3657,7 +3804,7 @@ margin-bottom: 10px !important;    font-weight: 800; /* Đậm hẳn lên để 
     justify-content: space-between;
     align-items: center;
     font-weight: 800;
-    font-size: 14px;
+    font-size: 16px;
     margin-bottom: 15px;
     border-bottom: 1px solid #e0e0e0;
     padding-bottom: 10px;
@@ -3683,6 +3830,8 @@ margin-bottom: 10px !important;    font-weight: 800; /* Đậm hẳn lên để 
     color: #555;
     transition: all 0.3s ease;
     display: inline-block;
+    font-size: 14px;
+    font-weight: 600;
 }
 
 .toc-list a:hover {
@@ -3691,31 +3840,62 @@ margin-bottom: 10px !important;    font-weight: 800; /* Đậm hẳn lên để 
 }
 
 /* --- 5. NỘI DUNG ENTRY (ENTRY CONTENT) --- */
-.entry-content p {
-    font-size: var(--font-size-content);
-    line-height: 1.6;
-    color: #333;
-    margin-bottom: 20px;
-    text-align: justify;
-    
+/* --- TỐI ƯU NỘI DUNG BÀI VIẾT --- */
+.entry-content {
+    margin-top: 30px;
 }
 
+.entry-content p {
+    font-family: 'Inter', sans-serif;
+    font-size: 15px; /* Size chuẩn để đọc tin tức dài */
+    line-height: 1.6; /* Giúp mắt không bị mỏi */
+    color: var(--color-text);
+    margin-bottom: 20px; /* Tạo khoảng trống giữa các ý */
+    text-align: justify;
+    letter-spacing: 0.2px;
+}
+
+/* Style cho các Tiêu đề nhỏ (H2, H3) nếu fen dùng thẻ h */
 .entry-content h2 {
-    font-size: var(--font-size-h2);
+    font-family: var(--font-title);
+    font-size: 28px;
     font-weight: 800;
-    margin: 40px 0 20px;
+    margin: 30px 0 10px;
     color: #1a1a1a;
+    line-height: 1.3;
+}
+
+/* Nếu fen lỡ để tiêu đề dạng chữ in hoa trong thẻ p, hãy dùng class này */
+.entry-content p strong, 
+.content-sub-title {
+    display: block;
+    font-family: var(--font-title);
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--color-primary);
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+/* Đoạn Sapo nhỏ nằm trong bài */
+.inner-sapo {
+    background: #fdfaf7;
+    padding: 25px;
+    border-radius: 15px;
+    border-left: 4px solid var(--color-primary);
+    font-style: italic;
+    margin-bottom: 35px;
 }
 
 
 /* Khối trích dẫn Luxury */
 .luxury-quote {
-    font-size: 22px;
+    font-size: 20px;
     color: var(--color-primary);
     background: rgba(183, 114, 70, 0.05);
     padding: 35px;
     border-radius: 25px;
-    margin: 40px 0;
+    margin: 10px 0;
     text-align: center;
     font-style: italic;
     border: 1px dashed rgba(183, 114, 70, 0.2);
@@ -3736,7 +3916,7 @@ margin-bottom: 10px !important;    font-weight: 800; /* Đậm hẳn lên để 
 
 /* Ảnh minh họa trong bài */
 .post-inline-image {
-    margin: 40px 0;
+    margin: 30px 0;
     display: flex; /* Dùng flex thường để dễ xếp chồng */
     flex-direction: column; /* Ép ảnh và chữ xếp theo hàng dọc */
     align-items: center; /* Canh giữa cả ảnh và chữ */
@@ -3764,7 +3944,6 @@ margin-bottom: 10px !important;    font-weight: 800; /* Đậm hẳn lên để 
 
 /* --- 6. TAGS & SOCIAL SHARE --- */
 .post-footer-meta {
-    margin-top: 45px;
     padding-top: 25px;
     border-top: 1px solid #f0f0f0;
 }
@@ -3772,7 +3951,7 @@ margin-bottom: 10px !important;    font-weight: 800; /* Đậm hẳn lên để 
 .post-tags a {
     display: inline-block;
     padding: 5px 15px;
-    border: 1px solid #eee;
+    border: 1px solid var(--color-primary);
     border-radius: 6px;
     font-size: 13px;
     color: #666;
@@ -3809,7 +3988,7 @@ margin-bottom: 10px !important;    font-weight: 800; /* Đậm hẳn lên để 
     background: #fffcf9;
     border-radius: 30px; /* Bo góc tròn hơn cho nghệ */
     padding: 40px;
-    margin: 40px 0;
+    margin: 10px 0;
     border: 1px solid rgba(183, 114, 70, 0.1);
     transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
     position: relative;
@@ -4000,10 +4179,8 @@ margin-bottom: 10px !important;    font-weight: 800; /* Đậm hẳn lên để 
 }
 
 .blog-header {
-    background: #fff;
     padding: 10px 0 5px; /* Tăng padding top lên cho nó thoáng, nhìn mới sang */
     border-bottom: 1px solid #f0f0f0;
-    margin-bottom: 30px;
 }
 
 .breadcrumb {
@@ -4024,7 +4201,7 @@ margin-bottom: 10px !important;    font-weight: 800; /* Đậm hẳn lên để 
 }
 
 .page-title--large {
-    font-size: 42px; /* To, rõ, quyền lực */
+    font-size: 36px; /* To, rõ, quyền lực */
     font-family: 'Montserrat', sans-serif;
     font-weight: 800;
     color: var(--color-primary);
@@ -4052,7 +4229,7 @@ margin-bottom: 10px !important;    font-weight: 800; /* Đậm hẳn lên để 
     color: #888; /* Màu xám nhẹ tinh tế */
     text-transform: uppercase; /* Chữ in hoa toàn bộ */
     letter-spacing: 2px; /* Dãn chữ ra cho thoáng mắt */
-    font-weight: 500;
+    font-weight: 400;
     line-height: 1;
 }
 
@@ -4061,7 +4238,6 @@ margin-bottom: 10px !important;    font-weight: 800; /* Đậm hẳn lên để 
     display: inline-block;
     width: 3px;
     height: 3px;
-    background-color: #ccc;
     border-radius: 50%; /* Biến thành dấu chấm tròn nhỏ */
     font-size: 0; /* Ẩn cái dấu "-" cũ đi */
     margin: 0 4px;
@@ -4070,7 +4246,7 @@ margin-bottom: 10px !important;    font-weight: 800; /* Đậm hẳn lên để 
 /* Nhấn mạnh tên tác giả */
 .news-primary {
     color: var(--color-primary); /* Màu cam đất thương hiệu */
-    font-weight: 700;
+    font-weight: 400;
     position: relative;
     transition: 0.3s;
 }
