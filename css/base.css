@@ -4,9 +4,10 @@
     --color-primary: #b77246;
     --color-accent: #d48a52;
     --color-btn: #a0522d;
-    --color-text: #373737;
+    --color-text: #242424;
     --bg-brown: #5d3420; /* Màu nâu đậm của demo */
-    --gold-glow: rgba(243, 203, 168, 0.3);    --white-text: #ffffff;
+    --gold-glow: rgba(243, 203, 168, 0.3);    
+    --white-text: #ffffff;
     --bg-info-box: #fff8f0;
     --font-main: 'Roboto', sans-serif;
     --font-title: 'Playfair Display', serif;
@@ -44,9 +45,8 @@ body {
     font-family: var(--font-main);
     line-height: 1.6;
     overflow-x: hidden;
-    background-color: #f2efeb; 
-    /* Giảm độ đen của chữ xuống một chút để không bị gắt trên nền kem */
-    color: #2d2d2d;
+    background-color: #ffffff; 
+    color: var(--color-text);
 }
 
 a {
@@ -70,14 +70,14 @@ ul {
     max-width: var(--content-max-width);
     padding: 0 var(--side-padding);
 
-    background-color: #efece5;
+    background-color: #ffffff;
 
 }
 
 .header.header, 
 .footer-contact {
 
-    background-color: #efece5;
+    background-color: #ffffff;
 
 
 }
@@ -104,7 +104,7 @@ ul {
 section {
     padding: 10px 0; /* Khoảng cách trên dưới cực thoáng đúng chất Luxury */
     margin: 5px 0; /* Khoảng cách giữa các section */
-    background-color: #efece5;
+    background-color: #ffffff;
 
 }
 
@@ -116,7 +116,7 @@ section {
 .blog-container, 
 .blog-header, 
 .blog-header {
-    background-color: #efece5;
+    background-color: #ffffff;
 
 }
 
