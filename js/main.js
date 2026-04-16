@@ -49,22 +49,209 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 });
 
+// ============================================================
+
+// Deals Grid Slider
 document.addEventListener("DOMContentLoaded", function () {
-    const footerHeaders = document.querySelectorAll('.footer__column h4');
+    const dealsGrid = document.querySelector('.deals-grid');
+    const prevBtn = document.getElementById('deals-prev');
+    const nextBtn = document.getElementById('deals-next');
 
-    footerHeaders.forEach(header => {
-        header.addEventListener('click', () => {
-            const currentColumn = header.parentElement;
+    if (dealsGrid && prevBtn && nextBtn) {
+        const isActive = () => window.innerWidth <= 768;
 
-            // (Tuỳ chọn) Tự động đóng các tab khác khi mở 1 tab
-            document.querySelectorAll('.footer__column').forEach(col => {
-                if (col !== currentColumn) {
-                    col.classList.remove('active');
-                }
-            });
-
-            // Đóng/Mở tab được click
-            currentColumn.classList.toggle('active');
+        nextBtn.addEventListener('click', () => {
+            if (!isActive()) return;
+            const card = dealsGrid.querySelector('.deal-card');
+            if (!card) return;
+            const cardWidth = card.offsetWidth + parseInt(getComputedStyle(dealsGrid).gap || 15);
+            dealsGrid.scrollBy({ left: cardWidth, behavior: 'smooth' });
         });
+
+        prevBtn.addEventListener('click', () => {
+            if (!isActive()) return;
+            const card = dealsGrid.querySelector('.deal-card');
+            if (!card) return;
+            const cardWidth = card.offsetWidth + parseInt(getComputedStyle(dealsGrid).gap || 15);
+            dealsGrid.scrollBy({ left: -cardWidth, behavior: 'smooth' });
+        });
+
+        const toggleButtons = () => {
+            if (!isActive()) return;
+            prevBtn.style.opacity = dealsGrid.scrollLeft <= 0 ? '0.3' : '1';
+            nextBtn.style.opacity = dealsGrid.scrollLeft + dealsGrid.offsetWidth >= dealsGrid.scrollWidth - 5 ? '0.3' : '1';
+        };
+
+        dealsGrid.addEventListener('scroll', toggleButtons);
+        window.addEventListener('resize', toggleButtons);
+        toggleButtons();
+    }
+});
+
+// Moments Grid Slider
+document.addEventListener("DOMContentLoaded", function () {
+    const momentsGrid = document.querySelector('.moments-grid');
+    const prevBtn = document.getElementById('moments-prev');
+    const nextBtn = document.getElementById('moments-next');
+
+    if (momentsGrid && prevBtn && nextBtn) {
+        const isActive = () => window.innerWidth <= 768;
+
+        nextBtn.addEventListener('click', () => {
+            if (!isActive()) return;
+            const card = momentsGrid.querySelector('.moment-item');
+            if (!card) return;
+            const cardWidth = card.offsetWidth + parseInt(getComputedStyle(momentsGrid).gap || 15);
+            momentsGrid.scrollBy({ left: cardWidth, behavior: 'smooth' });
+        });
+
+        prevBtn.addEventListener('click', () => {
+            if (!isActive()) return;
+            const card = momentsGrid.querySelector('.moment-item');
+            if (!card) return;
+            const cardWidth = card.offsetWidth + parseInt(getComputedStyle(momentsGrid).gap || 15);
+            momentsGrid.scrollBy({ left: -cardWidth, behavior: 'smooth' });
+        });
+
+        const toggleButtons = () => {
+            if (!isActive()) return;
+            prevBtn.style.opacity = momentsGrid.scrollLeft <= 5 ? '0.3' : '1';
+            nextBtn.style.opacity = momentsGrid.scrollLeft + momentsGrid.offsetWidth >= momentsGrid.scrollWidth - 5 ? '0.3' : '1';
+        };
+
+        momentsGrid.addEventListener('scroll', toggleButtons);
+        window.addEventListener('resize', toggleButtons);
+        toggleButtons();
+    }
+});
+
+
+// ============================================================
+// HEADER SCROLL REVEAL/HIDE LOGIC
+// ============================================================
+document.addEventListener("DOMContentLoaded", function () {
+    const header = document.querySelector('.header');
+    let lastScrollY = window.scrollY;
+
+    window.addEventListener("scroll", () => {
+        if (window.scrollY > lastScrollY && window.scrollY > 100) {
+            // Scrolling down
+            header.classList.add("header--hidden");
+        } else {
+            // Scrolling up
+            header.classList.remove("header--hidden");
+        }
+        
+        lastScrollY = window.scrollY;
+        
+        // Background glassmorphism effect on scroll
+        if (window.scrollY > 50) {
+            header.classList.add("header--scrolled");
+        } else {
+            header.classList.remove("header--scrolled");
+        }
+    });
+});
+
+// ============================================================
+// MOBILE MENU BRANDING INJECTION (STRICT ISO)
+// ============================================================
+document.addEventListener("DOMContentLoaded", function () {
+    const nav = document.querySelector('.header__nav');
+    const logoGroup = document.querySelector('.header__logo-group');
+    
+    // CHỈ CHẠY TRÊN MOBILE ĐỂ TRÁNH DOUBLE LOGO TRÊN PC
+    if (nav && logoGroup && window.innerWidth <= 768) {
+        // Chỉ thực hiện nếu chưa có header (tránh duplicate khi page load)
+        if (!nav.querySelector('.nav-menu-header')) {
+            const menuHeader = document.createElement('div');
+            menuHeader.className = 'nav-menu-header';
+            
+            // Clone logo để hiển thị trong menu
+            const logoClone = logoGroup.cloneNode(true);
+            menuHeader.appendChild(logoClone);
+            
+            // Chèn vào đầu menu
+            nav.insertBefore(menuHeader, nav.firstChild);
+        }
+    }
+});
+
+
+// ============================================================
+// MOBILE "SEE MORE" TOGGLE LOGIC
+// ============================================================
+function toggleSection(targetClass, btn) {
+    const grid = document.querySelector('.' + targetClass);
+    if (!btn) btn = window.event.currentTarget; // Fallback
+    
+    const textNode = btn.querySelector('.text');
+    
+    if (grid) {
+        grid.classList.toggle('is-expanded');
+        btn.classList.toggle('is-active');
+        
+        if (grid.classList.contains('is-expanded')) {
+            textNode.innerText = 'THU GỌN';
+        } else {
+            // Trả lại text ban đầu tùy theo khối
+            if (targetClass === 'moments-grid') {
+                textNode.innerText = 'XEM THÊM KHOẢNH KHẮC';
+            } else if (targetClass === 'commit-grid') {
+                textNode.innerText = 'XEM THÊM CAM KẾT';
+            }
+            
+            // Cuộn nhẹ về đầu khối khi thu gọn để không bị mất dấu
+            grid.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+    }
+}
+
+// Đảm bảo hàm toggleSection có mặt ở Global Scope
+window.toggleSection = function(targetClass, btn) {
+    const grid = document.querySelector('.' + targetClass);
+    if (!grid) return;
+    
+    // Toggle class mở rộng
+    grid.classList.toggle('is-expanded');
+    
+    // Toggle trạng thái nút bấm
+    if (btn) {
+        btn.classList.toggle('is-active');
+        const textNode = btn.querySelector('.text');
+        if (textNode) {
+            if (grid.classList.contains('is-expanded')) {
+                textNode.innerText = 'THU GỌN';
+            } else {
+                textNode.innerText = targetClass === 'moments-grid' ? 'XEM THÊM KHOẢNH KHẮC' : 'XEM THÊM CAM KẾT';
+                // Cuộn về đầu khối khi thu gọn
+                grid.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            }
+        }
+    }
+};
+
+// ============================================================
+// NUCLEAR FOOTER ACCORDION (1200px DELEGATION)
+// ============================================================
+document.addEventListener("DOMContentLoaded", function () {
+    // Sử dụng event delegation cấp cao nhất cho Footer
+    document.addEventListener('click', function(e) {
+        // Chỉ xử lý khi click vào h4 của footer__column
+        const header = e.target.closest('.footer__column h4');
+        if (!header || window.innerWidth > 1200) return;
+
+        const column = header.parentElement;
+        const isActive = column.classList.contains('active');
+
+        // Accordion mode: Đóng các cột khác
+        document.querySelectorAll('.footer__column').forEach(col => {
+            col.classList.remove('active');
+        });
+
+        // Toggle cột hiện tại
+        if (!isActive) {
+            column.classList.add('active');
+        }
     });
 });
