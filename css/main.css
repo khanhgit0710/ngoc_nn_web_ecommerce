@@ -218,7 +218,7 @@
     height: 40vh;
     min-height: 380px;
     background:
-        linear-gradient(to bottom, rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0.8) 100%),
+        linear-gradient(to bottom, rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0.8) 100%),
         url("../assets/images/banner-bds.jpg");
     background-size: cover;
     background-position: center;
@@ -264,9 +264,9 @@
 /* --- 3. TIÊU ĐỀ (SHINE EFFECT - TIA SÁNG) --- */
 .hero__title {
     font-family: Roboto, serif;
-    font-size: var(--font-size-title);
+    font-size: 40px;
     font-weight: 700;
-    line-height: 1.2;
+    line-height: 1.3;
     letter-spacing: 2px;
     position: relative;
     background: linear-gradient(120deg, #fff 40%, #e79059 50%, #fff 60%);
@@ -382,7 +382,7 @@
 
 /* Subtitle hiện ra sau cùng */
 .hero__content p {
-    font-size: 20px;
+    font-size: 22px;
     font-weight: 400;
     color: var(--color-primary);
     line-height: 1.6;
@@ -391,18 +391,9 @@
     animation: fadeInUp 1s ease-out forwards 1.2s;
 }
 
-.hero__content p {
-    /* Subtitle theo Figma: 20px, 90% white */
-    font-size: 20px;
-    font-weight: 400;
-    color: var(--color-primary);
-    line-height: 1.6;
-    font-family: "Roboto", sans-serif;
-}
-
 /* --- SECTION CONTACT TỔNG THỂ --- */
 .contact {
-    padding: 50px 0;
+    padding: 60px 0;
     width: 100%;
     margin-top: 0;
     margin-bottom: 0;
@@ -430,11 +421,11 @@
     /* Nhỏ lại xíu cho tinh tế */
     color: #c5c5c5;
     letter-spacing: 0.5em;
-    font-weight: 500;
+    font-weight: 300;
     text-transform: uppercase;
     text-align: center;
     display: block;
-    margin-bottom: 10px;
+    margin-bottom: 20px;
 }
 
 .section-title,
@@ -466,11 +457,6 @@
     margin-left: auto;
     margin-right: auto;
     line-height: 1.6;
-}
-
-.section-title:hover {
-    transform: scale(1.02);
-    /* Nhích nhẹ khi nhìn vào */
 }
 
 /* --- CỘT TRÁI (INFO): GỌN GÀNG HƠN --- */
@@ -516,19 +502,18 @@
 
 /* --- CỘT PHẢI (FORM): LUXURY & SOFT --- */
 .form {
-    background: #fffaf7;
+    background: #ffffff;
     padding: 35px;
-    border-radius: 20px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
-    /* Bóng đổ cực mịn */
+    border-radius: 8px;
+    box-shadow: 0 0 32px 0 rgb(0 0 0 / .08);
     border: 1px solid #f1ecd6;
+    border-top: 2px solid var(--color-primary);
 
 }
 
 .form__group {
     position: relative;
-    margin-bottom: 35px;
-    /* Khoảng cách đều đặn */
+    margin-bottom: 45px;
 }
 
 /* Label nằm đè lên Input kiểu Floating */
@@ -737,21 +722,21 @@
    ========================================================================== */
 /* --- SECTION SOCIAL --- */
 .social {
-    padding: 0;
-    /* Khoảng cách rộng rãi cho sang */
-    width: 100%;
-    margin: 0 auto !important;
+    width: 100% !important;      /* Ép nó lấy hết chiều ngang trình duyệt */
+    max-width: none !important;  /* Gỡ bỏ mọi giới hạn 1000px ở lớp này */
+    background-color: #f2efea;
+    padding: 60px 0;
+    margin: 0 !important;        /* Xóa margin auto ở đây vì nó đã full rồi */
+    display: block;              /* Đảm bảo nó là khối độc lập */
 }
 
+/* 2. Lớp Ruột: Giới hạn 1000px và căn giữa */
 .social__container {
-    max-width: var(--content-max-width);
-    /* Chốt 1000px đồng bộ toàn trang */
+    max-width: var(--content-max-width); /* Mặc định 1000px */
     margin: 0 auto;
-    padding: 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    padding: 0 20px;
 }
+
 
 .social__grid {
     display: grid;
@@ -842,7 +827,7 @@
 .social__content {
     display: flex;
     flex-direction: column;
-    gap: 4px;
+    gap: 6px;
     flex: 1;
 }
 
@@ -850,8 +835,9 @@
     display: flex;
     flex-direction: row;
     align-items: center;
-    gap: 8px;
+    gap: 1px;
     flex-wrap: wrap;
+    padding: 4px 0;
 }
 
 .social__item strong {
@@ -918,14 +904,15 @@
     width: 100%;
     max-width: 100%;
     padding: 0;
-    margin-bottom: 0;
-    margin-top: 50px;
+    margin: 0;
+    padding-top: 60px;
 }
 
 .location__map {
     width: 100%;
     height: 450px;
     overflow: hidden;
+    padding-top: 40px;
 }
 
 .location__map iframe {
@@ -958,37 +945,28 @@
 
 /* --- CONTAINER: Tối giản tuyệt đối --- */
 .kygui-intro__desc {
-    max-width: 850px;
+    max-width: 1000px;
     /* Nới nhẹ ra để đoạn văn không quá ngắn */
-    margin: 40px auto 70px;
+    margin: 20px auto 80px;
     text-align: center;
-    padding: 0 20px;
 }
 
 .kygui-intro__desc p {
     font-size: 18px !important;
-    line-height: 1.6;
+    line-height: 1.8;
     color: #444;
-    font-family: "Playfair Display", serif;
 }
 
 /* --- TỪ KHÓA (STRONG) NHẤP NHÁY (GIỮ NGUYÊN CSS CỦA KHÁNH) --- */
 .kygui-intro__desc p strong {
     color: var(--color-primary);
     display: inline-block;
-    font-weight: 400;
+    font-weight: 200;
     /* Giữ nguyên animation fen code */
     animation: luxuryPulse 2s ease-in-out infinite !important;
     transition: all 0.5s ease;
     padding: 0 2px;
     /* Tạo tí khoảng trống cho chữ đỡ dính vào nhau khi scale */
-}
-
-/* Hover vào đoạn văn thì các chữ strong sáng rực lên để khách dễ đọc */
-.kygui-intro__desc p:hover strong {
-    animation-play-state: paused;
-    filter: brightness(1.2);
-    transform: translateY(-2px);
 }
 
 /* Bỏ cái CSS fix <br> cũ vì mình không dùng nữa */
@@ -1028,13 +1006,15 @@
 .media-box {
     position: relative;
     overflow: hidden;
-    border-radius: 30px;
+    border-radius: 8px;
     box-shadow: 20px 20px 60px rgba(0, 0, 0, 0.06);
     background: #f0f0f0;
 }
 
 .media-box img {
     width: 100%;
+        height: 500px;
+
     aspect-ratio: 1.2 / 1;
     object-fit: cover;
     display: block;
@@ -1120,10 +1100,7 @@
 /* --- BUTTON ĐỒNG BỘ CART (ULTRA SHINE) --- */
 /* Khung tổng gom cụm */
 .creative-problem-block {
-    background: #fffbf0;
     padding: 40px;
-    border-radius: 30px;
-    border: 1px solid rgba(163, 93, 54, 0.1);
     box-shadow: 0 20px 60px rgba(0, 0, 0, 0.03);
     position: relative;
     overflow: hidden;
@@ -1184,11 +1161,10 @@
 
 /* Nút bấm Luxury */
 /* --- NÚT LUXURY GỐC (Cập nhật thêm position relative) --- */
-.btn-luxury {
+/* .btn-luxury {
     width: 100%;
-    padding: 18px;
+    padding: 30px 30px;
     background: var(--color-primary);
-    /* Màu nâu cafe đặc trưng */
     color: #fff;
     border: none;
     border-radius: 15px;
@@ -1200,11 +1176,9 @@
     gap: 12px;
     cursor: pointer;
     position: relative;
-    /* Bắt buộc để tia sáng không chạy lung tung */
     overflow: hidden;
-    /* Để tia sáng không tràn ra ngoài bo góc */
     transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-}
+} */
 
 /* Hiệu ứng tia sáng quét qua (Shine) - Màu vàng đồng nhẹ */
 .btn-luxury::before {
@@ -1275,7 +1249,7 @@
    ========================================================================== */
 .why-us {
     background-color: #fcead6;
-    min-height: 430px;
+    min-height: 480px;
     padding: 40px 0;
     position: relative;
     margin-bottom: 0;;
@@ -1488,7 +1462,7 @@
     font-weight: 500;
     letter-spacing: 0.5px;
     max-width: 900px;
-    margin: 10px auto 1px;
+    margin: 20px auto 20px;
     /* Thêm margin top để tách khỏi dấu nháy */
     font-style: italic;
     /* Quote thường nên để nghiêng nhẹ nhìn sẽ rất 'thơ' */
@@ -1717,13 +1691,16 @@
 /* --- FORM LAYOUT --- */
 .form-final {
     max-width: 700px;
-    /* Tăng nhẹ để input nhìn thoáng như demo */
     margin: 0 auto;
     display: flex;
     flex-direction: column;
-    gap: 10px;
-    /* Dãn cách các hàng */
+    gap: 15px; /* Tăng nhẹ khoảng cách */
     text-align: left;
+    padding: 40px;
+    border: 1px solid #eee;
+    border-radius: 8px;
+    background-color: #ffffff;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.08); /* Bóng đổ đậm hơn theo yêu cầu */
 }
 
 /* --- STYLE INPUT BOX (GIỐNG DEMO) --- */
@@ -1755,7 +1732,9 @@
 /* Đặc biệt cho ô TextArea */
 textarea.input-final {
     resize: none;
-    line-height: 1.3;
+    line-height: 1.6;
+    font-family: inherit; /* Đồng bộ font với các input khác */
+    min-height: 120px;
 }
 
 /* --- LABEL & TEXT --- */
@@ -1769,7 +1748,7 @@ textarea.input-final {
 .field-group {
     display: flex;
     flex-direction: column;
-    gap: 5px;
+    gap: 1px;
 }
 
 /* 1. Style Label gốc */
@@ -1778,7 +1757,7 @@ textarea.input-final {
     font-size: 15px;
     color: var(--color-primary);
     font-weight: 600;
-    margin-bottom: 5px;
+    margin-bottom: 2px;
 
     /* Chốt chặn để nhảy cho mượt */
     transition: all 0.4s cubic-bezier(0.2, 1, 0.3, 1);
@@ -2052,17 +2031,10 @@ textarea.input-final {
 }
 
 .form-notes strong {
-    color: var(--color-primary);
+    color: #252422;
     font-weight: 600;
 }
 
-/* Số điện thoại badge */
-.form-notes strong:last-child {
-    color: var(--color-text);
-    background: rgba(183, 114, 70, 0.05);
-    padding: 0 5px;
-    border-radius: 4px;
-}
 
 /* ICON ✦ Tự xoay nhẹ khi hiện ra */
 .form-notes li::before {
@@ -2070,7 +2042,7 @@ textarea.input-final {
     position: absolute;
     left: 0;
     color: var(--color-primary);
-    font-size: 12px;
+    font-size: 18px;
     top: 2px;
     animation: starSpin 1.5s ease-out forwards;
     animation-delay: inherit;
@@ -2100,7 +2072,7 @@ textarea.input-final {
     align-items: flex-start;
     gap: 15px;
     padding: 15px;
-    border-radius: 12px;
+    border-radius: 8px;
     transition: var(--transition-soft);
 }
 
@@ -2159,7 +2131,7 @@ textarea.input-final {
     position: relative;
     flex-shrink: 0; /* Nếu cha là flex, ép nó không được co lại */
     min-height: 500px;
-    border-radius: 30px;
+    border-radius: 8px;
     overflow: hidden;
     box-shadow: 30px 30px 80px rgba(0, 0, 0, 0.1);
 }
@@ -2363,6 +2335,7 @@ textarea.input-final {
     filter: drop-shadow(0 0 5px var(--gold-glow));
     display: flex;
     align-items: flex-start;
+    font-size: 20px;
 }
 
 li.reveal.reveal-5.active {
@@ -2419,7 +2392,7 @@ li.reveal.reveal-5.active p {
     border: 1px solid #f3cba8;
     color: #f3cba8;
     padding: 12px 40px;
-    border-radius: 50px;
+    border-radius: 8px;
     font-weight: 700;
     text-transform: uppercase;
     /* Thêm cái này cho sang như demo */
@@ -2582,17 +2555,17 @@ li.reveal.reveal-5.active p {
     object-fit: contain;
 }
 
-.hotline-display {
+/* .hotline-display {
     border: 1.5px solid #9d3133;
-    border-radius: 10px;
-    padding: 15px 40px;
+    border-radius: 8px;
+    padding: 8px 40px;
     display: flex;
     align-items: center;
     gap: 15px;
     font-size: 36px;
-    font-weight: 800;
+    font-weight: 600;
     color: #9d3133;
-}
+} */
 
 .hotline-display i {
     color: #9d3133;
@@ -2618,11 +2591,7 @@ li.reveal.reveal-5.active p {
     /* Căn giữa lại */
 }
 
-/* --- STYLE CHUNG CHO CẢ 2 NÚT --- */
-.btn-call,
-.btn-zalo {
-    /* Rules unified in global luxury button section */
-}
+
 
 /* --- BIẾN THỂ ZALO --- */
 .btn-zalo {
@@ -2674,7 +2643,7 @@ li.reveal.reveal-5.active p {
 .social-box {
     background: #fffaf5;
     border: 1px solid #f3e5ab;
-    border-radius: 15px;
+    border-radius: 8px;
     padding: 15px 25px;
     display: flex;
     align-items: center;
@@ -2793,13 +2762,13 @@ li.reveal.reveal-5.active p {
 /* --- HOTLINE DISPLAY RUNG BẦN BẬT --- */
 .hotline-display {
     border: 1.5px solid #9d3133;
-    border-radius: 10px;
-    padding: 15px 40px;
+    border-radius: 8px;
+    padding: 1px 40px;
     display: flex;
     align-items: center;
     gap: 15px;
     font-size: 36px;
-    font-weight: 800;
+    font-weight: 600;
     color: #9d3133;
     transition: 0.3s;
 }
@@ -2929,8 +2898,27 @@ li.reveal.reveal-5.active p {
 .blog-container {
     max-width: var(--content-max-width);
     margin: 0 auto;
-    padding: 0;
+    padding: 0 0;
     box-sizing: border-box;
+}
+
+/* Breadcrumb alignment to 1000px */
+.blog-header {
+    width: 100%;
+    margin: 25px 0 0 0;
+    padding: 0;
+}
+
+.breadcrumb {
+    font-size: 13px;
+    font-weight: 600;
+    color: #888;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.breadcrumb span {
+    color: var(--color-primary);
 }
 
 /* Đồng bộ khoảng cách 80px giữa các Section */
@@ -2973,23 +2961,26 @@ li.reveal.reveal-5.active p {
     margin: 0;
     background-color: #ffffff;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+    border-radius: 8px;
 
 }
 
 .featured-post-slider {
     position: relative;
     width: 100%;
-    height: 420px;
+    height: 480px;
     overflow: hidden;
     background: #ffffff;
     padding: 0;
-    margin-top: 40px;
+    margin-top: 30px;
     margin-bottom: 0;
+    border-radius: 12px;
 }
 
 .slider-viewport {
     width: 100%;
     height: 450px;
+        border-radius: 8px;
 
 }
 
@@ -2997,6 +2988,7 @@ li.reveal.reveal-5.active p {
     display: flex;
     width: 100%;
     height: 450px;
+    border-radius: 8px;
     transition: transform 0.8s cubic-bezier(0.65, 0, 0.35, 1);
     /* Hiệu ứng lướt mượt kiểu iPhone */
 }
@@ -3020,26 +3012,24 @@ li.reveal.reveal-5.active p {
 /* --- UNIFIED LUXURY BUTTONS --- */
 .btn-main,
 .btn-sub,
-.btn-hero-solid,
 .btn-luxury,
 .btn-final,
 .btn-show-more,
 .btn-connect,
 .btn-luxury-toggle,
-.btn-hero-link,
 .btn-call,
 .btn-zalo,
 .form__btn {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    height: 38px;
-    padding: 0 22px;
+    height: 50px;
+    padding: 20px 22px;
     background: var(--color-primary);
     color: #fff !important;
     border-radius: 8px;
-    font-size: var(--font-size-btn);
-    font-weight: 600;
+    font-size: 16px;
+    font-weight: 300; /* Tăng độ đậm cho tất cả nút Luxury để đồng bộ và sang trọng */
     text-transform: uppercase;
     letter-spacing: 0.5px;
     border: none;
@@ -3053,13 +3043,11 @@ li.reveal.reveal-5.active p {
 /* Hiệu ứng Shine cho tất cả các nút */
 .btn-main::before,
 .btn-sub::before,
-.btn-hero-solid::before,
 .btn-luxury::before,
 .btn-final::before,
 .btn-show-more::before,
 .btn-connect::before,
 .btn-luxury-toggle::before,
-.btn-hero-link::before,
 .btn-call::before,
 .btn-zalo::before,
 .form__btn::before {
@@ -3075,13 +3063,10 @@ li.reveal.reveal-5.active p {
 
 .btn-main:hover,
 .btn-sub:hover,
-.btn-hero-solid:hover,
 .btn-luxury:hover,
 .btn-final:hover,
 .btn-show-more:hover,
-.btn-connect:hover,
 .btn-luxury-toggle:hover,
-.btn-hero-link:hover,
 .btn-call:hover,
 .btn-zalo:hover,
 .form__btn:hover {
@@ -3090,15 +3075,15 @@ li.reveal.reveal-5.active p {
     box-shadow: 0 10px 25px rgba(183, 114, 70, 0.25);
 }
 
+
+
 .btn-main:hover::before,
 .btn-sub:hover::before,
-.btn-hero-solid:hover::before,
 .btn-luxury:hover::before,
 .btn-final:hover::before,
 .btn-show-more:hover::before,
 .btn-connect:hover::before,
 .btn-luxury-toggle:hover::before,
-.btn-hero-link:hover::before,
 .btn-call:hover::before,
 .btn-zalo:hover::before,
 .form__btn:hover::before {
@@ -3117,9 +3102,14 @@ li.reveal.reveal-5.active p {
     color: #fff !important;
 }
 
+/* .btn-connect:hover {
+    color: #ffffff;
+} */
+
 /* Hiệu ứng ảnh zoom khi slide được hiển thị */
 .slide.active img {
     transform: scale(1.1);
+    border-radius: 8px;
 }
 
 /* Overlay đen mờ sang trọng */
@@ -3134,6 +3124,7 @@ li.reveal.reveal-5.active p {
     /* Giữ chữ ở dưới */
     padding: 40px 40px;
     z-index: 2;
+    border-radius: 8px;
 }
 
 .overlay-content {
@@ -3160,7 +3151,6 @@ li.reveal.reveal-5.active p {
     font-weight: 700;
     line-height: 1.6;
     margin: 0;
-    text-transform: uppercase;
 }
 
 
@@ -3309,74 +3299,136 @@ li.reveal.reveal-5.active p {
 /* --- PHẦN 2: TRENDING GRID (FIX ẢNH ĐỀU TĂM TẮP) --- */
 /* Layout tổng cho Grid */
 /* --- 1. CONTAINER CHÍNH --- */
-.trending-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
-    /* Giữ gap hẹp theo ý ông */
-    max-width: var(--content-max-width);
-    margin: 5px auto;
+.trending-section {
+    padding: 60px 0;
+    margin: 0;
+    overflow: hidden; /* Quan trọng để không bị vỡ layout page */
+}
+
+.trending-section--exp {
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    overflow: hidden;
+}
+
+.trending-container {
+    width: 100% !important;
+    max-width: 100% !important;
+    position: relative;
+    padding: 0 !important;
     box-sizing: border-box;
+}
+
+.trending-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 40px;
+}
+
+/* Nút điều hướng */
+.slider-nav {
+    display: absolute;
+    gap: 10px;
+}
+
+.slider-nav i {
+    color: var(--color-text);
+}
+
+.nav-btn-trending-news {
+position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 100;
+    width: 45px;
+    height: 45px;
+    background: #fff;
+    color: #999; /* Màu xám mặc định ông muốn */
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 20; /* Cho nổi lên trên cùng */
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+}
+
+.prev-btn--trending-news {
+    left: 0px; /* Số âm để nó bay ra ngoài lề container */
+}
+
+/* Đưa nút qua phải hẳn ra ngoài lề */
+.next-btn--trending-news {
+    right: 15px;
+}
+
+/* Hover vô màu primary của ông */
+.nav-btn-trending-news:hover {
+    background: var(--color-primary);
+}
+
+@media (max-width: 1200px) {
+    .prev-btn { left: 5px; }
+    .next-btn { right: 5px; }
+    .nav-btn { background: rgba(255, 255, 255, 0.8); }
+}
+
+/* Viewport slider */
+.trending-slider-viewport {
+width: 100%;
+    overflow: hidden;
+}
+
+.trending-grid {
+display: flex !important;
+    flex-wrap: nowrap !important;
+    gap: 2px;
+    width: max-content; /* QUAN TRỌNG: Ép nó dài theo nội dung, không theo cha */
+    transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+    will-change: transform;
 }
 
 /* --- 2. TỪNG CARD BÀI VIẾT --- */
 .trending-card {
+flex: 0 0 320px !important; /* Đặt cứng chiều rộng 1 card là 320px hoặc số px ông muốn */
+    width: 320px !important;
+    flex-shrink: 0 !important;
     background: #ffffff;
-    padding: 12px;
-    /* Viền trắng bọc quanh ảnh và chữ */
-    border-radius: 20px;
-    display: flex;
-    flex-direction: column;
-    gap: 14px;
-    border: 1px solid rgba(0, 0, 0, 0.05);
-    cursor: pointer;
-
-    /* FIX LỖI HOVER NHẦM: Quan trọng nhất */
-    position: relative;
-    z-index: 1;
-
-    /* ANIMATION: Mượt mà kiểu chuyên nghiệp */
-    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+    padding: 8px;
+    border-radius: 8px;
+    box-sizing: border-box;
 }
 
 /* --- 3. HIỆU ỨNG KHI HOVER --- */
 .trending-card:hover {
     transform: translateY(-8px);
-    /* Nhấc card lên */
-    box-shadow: 0 15px 35px rgba(183, 114, 70, 0.15);
-    /* Shadow cam đất */
     border-color: rgba(183, 114, 70, 0.3);
     z-index: 10;
-    /* Nổi lên trên các card còn lại để nhận chuột chuẩn */
 }
 
 /* --- 4. MEDIA (ẢNH) --- */
 .thumb-media {
     width: 100%;
-    height: 200px;
-    border-radius: 14px;
-    /* Bo góc ảnh nhỏ hơn card xíu */
+    aspect-ratio: 16 / 9; /* Sếp ông thích cái này nè */
     overflow: hidden;
-    pointer-events: none;
-    /* Để chuột xuyên qua ảnh ăn vào card */
+    border-radius: 8px;
+    margin-bottom: 15px;
 }
 
 .thumb-media img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: transform 1.2s ease;
+    transition: 0.5s;
 }
 
-.trending-card:hover .thumb-media img {
-    transform: scale(1.1);
-    /* Zoom nhẹ ảnh */
-}
 
 /* --- 5. TIÊU ĐỀ --- */
 .trending-card h4 {
     font-size: 16px;
-    font-weight: 700;
+    font-weight: 500;
     line-height: 1.5;
     color: #1a1a1a;
     margin: 5px 0;
@@ -3393,9 +3445,6 @@ li.reveal.reveal-5.active p {
     /* Không cho chữ cướp chuột */
 }
 
-.trending-card:hover h4 {
-    color: var(--color-primary);
-}
 
 /* --- 6. NÚT LABEL LUXURY --- */
 .btn-mini-luxury {
@@ -3450,120 +3499,17 @@ li.reveal.reveal-5.active p {
     letter-spacing: 0.5px;
 } */
 
-/* --- 4. HIGHLIGHT BOX (HỘP KEM LUXURY) --- */
-
-/* --- NỀN TRẮNG TRÀN VIỀN --- */
-.highlight-news-full {
-    width: 100%;
-    background: #ffffff;
-    border-top: 1px solid #f0f0f0;
-    border-bottom: 1px solid #f0f0f0;
-    padding: 10px 0;
-    margin: -8px 0 10px 0 !important;
-}
-
-/* --- NỘI DUNG NẰM GỌN TRONG KHUNG --- */
-.highlight-content {
-    max-width: var(--content-max-width);
-    margin: 0 auto;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 10px 30px;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-/* --- Từng mục nhỏ --- */
-.highlight-item {
-    display: flex;
-    align-items: center;
-    gap: 14px;
-    padding: 6px 0;
-    overflow: hidden;
-    cursor: pointer;
-    /* MỚI: hiện bàn tay khi rê vào */
-    position: relative;
-    /* MỚI: làm mốc cho vệt sáng */
-    transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
-    /* MỚI: Chuyển động đầm hơn */
-}
-
-/* Hiệu ứng hover cho sang */
-.highlight-item:hover {
-    transform: translateX(10px);
-    /* MỚI: Nhích mạnh hơn xíu cho rõ */
-}
-
-/* Con số: Sáng rực lên khi hover */
-.hl-num {
-    transition: all 0.3s ease;
-    /* MỚI */
-    opacity: 0.5;
-    /* MỚI: Mặc định hơi mờ cho sang */
-}
-
-.highlight-item:hover .hl-num {
-    opacity: 1;
-    /* MỚI */
-    transform: scale(1.1);
-    /* MỚI */
-}
-
-.highlight-item p {
-    font-size: 13px;
-    font-weight: 600;
-    color: var(--color-text);
-    margin: 0;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    transition: all 0.3s ease;
-    /* MỚI */
-}
-
-.highlight-item:hover p {
-    color: var(--color-primary);
-    /* MỚI: Chữ đậm lên */
-}
-
-/* --- HIỆU ỨNG VỆT SÁNG (SHINE) CHẠY NGANG --- */
-/* Thêm đoạn này vào cuối file CSS để tạo hiệu ứng lướt sáng khi hover */
-.highlight-item::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -150%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg,
-            transparent,
-            rgba(183, 114, 70, 0.1),
-            /* Vệt sáng màu đồng cực loãng */
-            transparent);
-    transition: 0s;
-}
-
-.highlight-item:hover::after {
-    left: 150%;
-    transition: 0.6s;
-    /* Vệt sáng lướt qua cực nhanh */
-}
-
 /* Đường gạch ngang mảnh mai, tinh tế */
 .section-label-inner::after {
     content: '';
     flex: 1;
     height: 1.4px;
-    /* Mỏng thôi mới sang */
-
-    /* Dùng dải màu mờ dần (Gradient) thay vì màu đặc để nhìn có chiều sâu */
     background: linear-gradient(to right, rgba(183, 114, 70, 0.3), transparent);
 }
 
 /* Thêm hiệu ứng khi Section được active (reveal) */
 .reveal.active .section-label-inner {
-    letter-spacing: 6px;
-    /* Chữ dãn ra thêm tí khi hiện hình cực nghệ */
+    letter-spacing: 2px;
     opacity: 1;
 }
 
@@ -3571,22 +3517,18 @@ li.reveal.reveal-5.active p {
 .highlight-news-full {
     width: 100%;
     background: #ffffff;
-    border-top: 1px solid #f0f0f0;
-    border-bottom: 1px solid #f0f0f0;
-    padding: 25px 0;
-    margin: 20px 0;
+    padding: 0px 0;
+    margin: 0px 0;
 }
 
 /* --- 2. GRID: 3 CỘT (PC) -> 1 CỘT (MOBILE) --- */
 .highlight-content {
-    max-width: var(--content-max-width);
-    /* Thẳng hàng với Logo/Menu */
-    margin: 0 auto;
+    width: 100%;
+    margin: 0;
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 25px 45px;
-    padding: 0 20px;
-    box-sizing: border-box;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px 58px;
+    padding: 0px 0;
 }
 
 /* --- 3. TỪNG MỤC NHỎ (HIGHLIGHT ITEM) --- */
@@ -3595,13 +3537,14 @@ li.reveal.reveal-5.active p {
     align-items: center;
     /* Căn giữa số to với 2 dòng chữ */
     gap: 18px;
-    padding: 12px 15px;
+    padding: 12px 0px;
     border-radius: 12px;
     cursor: pointer;
     position: relative;
     background: transparent;
     transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
     overflow: hidden;
+    text-align: justify;
 }
 
 /* HIỆU ỨNG HOVER TỔNG THỂ */
@@ -3615,7 +3558,7 @@ li.reveal.reveal-5.active p {
 /* CON SỐ: TO BẰNG 2 DÒNG CHỮ */
 .hl-num {
     font-family: 'Montserrat', sans-serif;
-    font-size: 36px;
+    font-size: 48px;
     /* Siêu to nổi bật */
     font-weight: 900;
     color: var(--color-primary);
@@ -3633,7 +3576,7 @@ li.reveal.reveal-5.active p {
 
 /* KHỐI CHỮ: TỰ ĐỘNG XUỐNG DÒNG */
 .highlight-item p {
-    font-size: 15px;
+    font-size: 16px;
     font-weight: 600;
     color: var(--color-text);
     margin: 0;
@@ -3740,10 +3683,15 @@ li.reveal.reveal-5.active p {
 
 /* --- 5. LATEST NEWS (LIST DỌC) --- */
 .categories-section {
-    padding: 10px 0;
-    /* Tăng khoảng cách trên cho thoáng */
-    max-width: var(--content-max-width);
-    margin: 0 auto;
+    padding: 60px 0 0 0;
+    margin: 0;
+    width: 100%;
+}
+
+.categories-section--exp {
+    padding: 0 !important;
+    margin: 0;
+    width: 100%;
 }
 
 .section-label-inner {
@@ -3754,13 +3702,13 @@ li.reveal.reveal-5.active p {
     text-transform: uppercase;
 
     /* Chìa khóa của sự sang trọng: Spacing rộng */
-    letter-spacing: 8px;
+    letter-spacing: 2px;
 
     display: flex;
     align-items: center;
     gap: 30px;
     margin-bottom: 20px;
-    margin-top: 10px !important;
+    margin-top: 20px !important;
     position: relative;
     transition: all 0.5s ease;
 }
@@ -3792,19 +3740,16 @@ li.reveal.reveal-5.active p {
 /* CHỈNH LẠI TAGS CHO ĐỒNG BỘ */
 .tags-group {
     display: flex;
-    gap: 20px;
+    gap: 10px;
     justify-content: flex-start;
     /* Để lệch trái theo tiêu đề cho sang */
-    padding-left: 5px;
 }
 
 .tag-item {
-    padding: 12px 30px;
-    border: 1px solid rgba(183, 114, 70, 0.2);
-    border-radius: 100px;
+    padding: 16px 36px;
     /* Bo tròn tuyệt đối kiểu kén tằm */
-    font-size: 10px;
-    font-weight: 700;
+    font-size: 14px;
+    font-weight: 500;
     letter-spacing: 1.5px;
     color: #666;
     background: #fff;
@@ -3812,11 +3757,9 @@ li.reveal.reveal-5.active p {
 }
 
 .tag-item:hover {
-    background: var(--color-primary);
     color: #fff;
-    border-color: var(--color-primary);
+    color: var(--color-primary);
     transform: translateY(-5px);
-    box-shadow: 0 10px 20px rgba(183, 114, 70, 0.15);
 }
 
 /* --- 2. TIN MỚI NHẤT (NEWS LIST) --- */
@@ -3825,19 +3768,16 @@ li.reveal.reveal-5.active p {
 }
 
 .latest-news-inner {
+    padding: 15px 0;
     font-family: 'Montserrat', sans-serif;
     font-size: 20px;
-    /* Chỉnh size vừa phải theo ảnh */
     font-weight: 800;
     color: #1a1a1a;
     text-transform: uppercase;
     position: relative;
-    padding-top: 15px;
-    /* Tạo khoảng cách giữa chữ và đường kẻ bên trên */
-    margin-bottom: 40px;
+    margin-bottom: 20px;
     display: inline-block;
-    /* Để đường kẻ chỉ dài bằng hoặc theo ý muốn */
-    margin-top: 10px;
+    margin-top: 20px;
 }
 
 /* Đường kẻ màu cam phía trên */
@@ -3875,9 +3815,7 @@ li.reveal.reveal-5.active p {
     display: flex;
     flex-direction: column;
     gap: 10px;
-    /* Khoảng cách rộng cho sang */
-    max-width: var(--content-max-width);
-    margin: 0 auto;
+    width: 100%;
 }
 
 /* --- CARD BÀI VIẾT --- */
@@ -3886,12 +3824,13 @@ li.reveal.reveal-5.active p {
     align-items: center;
     /* Căn giữa ảnh và chữ theo chiều dọc */
     gap: 20px;
-    padding: 15px;
+    padding: 0px;
     background: transparent;
-    border-radius: 24px;
     transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
     position: relative;
     cursor: pointer;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #ccc;
 }
 
 /* HIỆU ỨNG HOVER TỔNG THỂ */
@@ -3907,8 +3846,8 @@ li.reveal.reveal-5.active p {
 .news-media {
     flex: 0 0 320px;
     /* Độ rộng ảnh cố định như trong ảnh ông gửi */
+    aspect-ratio: 16 / 9;
     height: 220px;
-    border-radius: 16px;
     overflow: hidden;
     background: #efece5;
     ;
@@ -3932,8 +3871,8 @@ li.reveal.reveal-5.active p {
 }
 
 .news-title {
-    font-size: var(--font-size-label);
-    font-weight: 800;
+    font-size: 17px;
+    font-weight: 600;
     line-height: 1.3;
     color: #222;
     margin-bottom: 15px;
@@ -3950,7 +3889,7 @@ li.reveal.reveal-5.active p {
 }
 
 .news-excerpt {
-    font-size: 14px;
+    font-size: 15px;
     color: var(--color-text);
     line-height: 1.6;
     margin-bottom: 20px;
@@ -4105,10 +4044,7 @@ li.reveal.reveal-5.active p {
 }
 
 .container-1000 {
-    max-width: var(--content-max-width);
-    margin: 0 auto;
-    padding: 0;
-    box-sizing: border-box;
+    width: 100%;
 }
 
 /* Hiệu ứng Reveal khi cuộn trang */
@@ -4126,7 +4062,7 @@ li.reveal.reveal-5.active p {
 /* --- 2. ẢNH COVER CHÍNH --- */
 .post-media {
     width: 100%;
-    border-radius: 30px;
+    border-radius: 8px;
     overflow: hidden;
     margin-bottom: 30px;
     box-shadow: 0 15px 35px rgba(0, 0, 0, 0.06);
@@ -4153,8 +4089,8 @@ li.reveal.reveal-5.active p {
 .post-body {
     width: 100%;
     max-width: 100%;
-    /* Đảm bảo không bị bóp nhỏ hơn 1000px */
     margin: 0;
+    padding: 0;
 }
 
 .post-category {
@@ -4163,39 +4099,21 @@ li.reveal.reveal-5.active p {
     align-items: center;
     color: var(--color-primary);
     font-weight: 800;
-    font-size: 14px;
-    /* Chữ nhỏ lại, spacing rộng ra là chìa khóa */
+    font-size: 16px;
     letter-spacing: 3px;
-    /* Tăng spacing lên 3px để cực sang */
     text-transform: uppercase;
-    margin: 20px 0;
-    padding-left: 45px;
-    /* Chừa chỗ cho đường gạch */
-    transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+    margin: 30px 0;
+    border: 1px solid var(--color-primary);
+    border-radius: 8px;
+    padding: 15px 20px
 }
 
 /* Đường gạch ngang tinh tế */
-.post-category::before {
-    content: '';
-    position: absolute;
-    left: 0;
-    width: 30px;
-    height: 1px;
-    /* Chỉ để 1px cho mảnh dẻ */
-    background: var(--color-primary);
-    transition: width 0.4s cubic-bezier(0.23, 1, 0.32, 1);
-}
+
 
 /* Hiệu ứng Hover: Đường gạch dài ra và chữ sáng lên */
 .post-category:hover {
-    padding-left: 55px;
-    letter-spacing: 4px;
-    /* Chữ dãn ra thêm khi hover */
-    cursor: pointer;
-}
 
-.post-category:hover::before {
-    width: 45px;
 }
 
 /* Bonus: Animation quét nhẹ khi mới hiện ra */
@@ -4226,15 +4144,15 @@ li.reveal.reveal-5.active p {
     font-weight: 800;
     line-height: 1.6;
     color: #1a1a1a;
-    margin-bottom: 18px;
+    margin-bottom: 20px;
+    padding: 0;
 }
 
 .post-meta-author {
     display: flex;
     align-items: center;
     gap: 15px;
-    margin-bottom: 15px;
-    padding-bottom: 10px;
+    margin: 30px auto;
     border-bottom: 1px solid #f0f0f0;
 }
 
@@ -4247,31 +4165,32 @@ li.reveal.reveal-5.active p {
 
 .author-name {
     font-weight: 700;
-    font-size: 15px;
+    font-size: 18px;
     color: var(--color-primary);
 }
 
 .post-date {
-    font-size: 13px;
+    font-size: 15px;
     color: #999;
 }
 
 /* --- 4. SAPÔ & MỤC LỤC --- */
 .post-sapo {
-    font-size: 14px;
+    margin: 30px auto;
+    padding-left: 10px;
+    margin-left: 0;
+    border-left: 4px solid var(--color-primary);
+    font-size: 17px;
     line-height: 1.6;
     color: #444;
     font-style: italic;
-    margin-bottom: 35px;
-    padding-left: 20px;
-    border-left: 4px solid var(--color-primary);
 }
 
 .post-toc {
     background: #f9f9f9;
     border: 1px solid #eee;
     border-radius: 20px;
-    padding: 25px 30px;
+    padding: 25px 10px;
     margin-bottom: 20px;
 }
 
@@ -4280,7 +4199,7 @@ li.reveal.reveal-5.active p {
     justify-content: space-between;
     align-items: center;
     font-weight: 800;
-    font-size: 16px;
+    font-size: 18px;
     margin-bottom: 15px;
     border-bottom: 1px solid #e0e0e0;
     padding-bottom: 10px;
@@ -4307,11 +4226,10 @@ li.reveal.reveal-5.active p {
 
 .toc-list a {
     text-decoration: none;
-    color: #555;
+    /* border: 1px solid #eee; */
     transition: all 0.3s ease;
     display: inline-block;
-    font-size: 14px;
-    font-weight: 600;
+    font-size: 17px;
 }
 
 .toc-list a:hover {
@@ -4328,9 +4246,9 @@ li.reveal.reveal-5.active p {
 
 .entry-content p {
     font-family: 'Inter', sans-serif;
-    font-size: 15px;
+    font-size: 17px;
     /* Size chuẩn để đọc tin tức dài */
-    line-height: 1.6;
+    line-height: 1.8;
     /* Giúp mắt không bị mỏi */
     color: var(--color-text);
     margin-bottom: 20px;
@@ -4374,12 +4292,12 @@ li.reveal.reveal-5.active p {
 
 /* Khối trích dẫn Luxury */
 .luxury-quote {
-    font-size: 20px;
+    font-size: 22px;
     color: var(--color-primary);
     background: rgba(183, 114, 70, 0.05);
     padding: 35px;
-    border-radius: 25px;
-    margin: 10px 0;
+    border-radius: 8px;
+    margin: 30px 0;
     text-align: center;
     font-style: italic;
     border: 1px dashed rgba(183, 114, 70, 0.2);
@@ -4407,37 +4325,32 @@ li.reveal.reveal-5.active p {
 .post-inline-image {
     margin: 30px 0;
     display: flex;
-    /* Dùng flex thường để dễ xếp chồng */
     flex-direction: column;
-    /* Ép ảnh và chữ xếp theo hàng dọc */
     align-items: center;
-    /* Canh giữa cả ảnh và chữ */
     width: 100%;
 }
 
 .post-inline-image img {
     width: 100%;
-    max-width: 900px;
-    /* Giới hạn độ rộng ảnh cho sang, không bị quá to */
-    border-radius: 20px;
+    max-width: 1000px;
+    border-radius: 8px;
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
     margin-bottom: 15px;
-    /* Khoảng cách giữa ảnh và caption */
 }
 
 .post-inline-image figcaption {
     font-family: 'Inter', sans-serif;
-    font-size: 13px;
+    font-size: 18px;
     /* Nhỏ hơn chút cho tinh tế */
     font-style: italic;
     color: #888;
     /* Màu xám mờ hơn chút */
     line-height: 1.6;
-    max-width: 80%;
+    max-width: 100%;
     /* Để caption không quá dài tràn hết khung */
     text-align: center;
     /* Canh giữa nội dung chữ */
-    padding: 0 20px;
+    padding: 0 10px;
 }
 
 /* --- 6. TAGS & SOCIAL SHARE --- */
@@ -4446,12 +4359,15 @@ li.reveal.reveal-5.active p {
     border-top: 1px solid #f0f0f0;
 }
 
+.post-tags {
+    margin-bottom: 20px
+}
+
 .post-tags a {
     display: inline-block;
     padding: 5px 15px;
-    border: 1px solid var(--color-primary);
-    border-radius: 6px;
-    font-size: 13px;
+    border-radius: 8px;
+    font-size: 16px;
     color: #666;
     margin: 0 8px 8px 0;
     transition: 0.3s;
@@ -4464,16 +4380,22 @@ li.reveal.reveal-5.active p {
     transform: translateY(-3px);
 }
 
+.share-icons{
+    margin-bottom: 20px;
+
+}
+
 .share-icons a {
-    width: 35px;
-    height: 35px;
+    width: 45px;
+    height: 45px;
     border: 1px solid #eee;
     border-radius: 50%;
     display: inline-flex;
     align-items: center;
     justify-content: center;
     color: #888;
-    margin-right: 10px;
+    margin-right: 5px;
+    margin-left: 10px;
     transition: 0.4s cubic-bezier(0.23, 1, 0.32, 1);
 }
 
@@ -4487,11 +4409,10 @@ li.reveal.reveal-5.active p {
 /* --- AUTHOR CARD: GỌN - SANG - XỊN --- */
 .author-info-card {
     background: #fffcf9;
-    border-radius: 30px;
-    /* Bo góc tròn hơn cho nghệ */
-    padding: 40px;
-    margin: 10px 0;
-    border: 1px solid rgba(183, 114, 70, 0.1);
+    margin: 0;
+    padding-top: 60px;
+    border-top: 1px solid rgba(183, 114, 70, 0.1);
+    border-bottom: 1px solid rgba(183, 114, 70, 0.1);
     transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
     position: relative;
     overflow: hidden;
@@ -4506,9 +4427,7 @@ li.reveal.reveal-5.active p {
 .author-card-inner {
     display: flex;
     align-items: center;
-    /* Căn giữa avatar và chữ theo chiều dọc */
     gap: 40px;
-    /* Khoảng cách rộng rãi giữa ảnh và text */
 }
 
 /* AVATAR: ĐIỂM NHẤN CHIẾN LƯỢC */
@@ -4532,15 +4451,19 @@ li.reveal.reveal-5.active p {
 
 .author-label {
     display: block;
-    font-weight: 800;
+    font-weight: 500;
     color: var(--color-primary);
-    font-size: 18px;
+    font-size: 20px;
     letter-spacing: 1px;
 }
 
 /* CONTENT: TYPOGRAPHY NGHỆ THUẬT */
 .author-content {
     flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 .author-content p {
@@ -4567,12 +4490,12 @@ li.reveal.reveal-5.active p {
 /* NÚT XEM THÊM: TINH TẾ */
 .btn-author-more {
     display: inline-block;
-    padding: 10px 35px;
+    padding: 18px 35px;
     border: 1.5px solid var(--color-primary);
     color: var(--color-primary);
-    font-weight: 700;
-    font-size: 12px;
-    border-radius: 50px;
+    font-weight: 300;
+    font-size: 14px;
+    border-radius: 8px;
     text-decoration: none;
     letter-spacing: 2px;
     text-transform: uppercase;
@@ -4689,12 +4612,13 @@ li.reveal.reveal-5.active p {
 
 .blog-header {
     padding: 10px 0 5px;
+    margin: 0;
     /* Tăng padding top lên cho nó thoáng, nhìn mới sang */
     border-bottom: 1px solid #f0f0f0;
 }
 
 .breadcrumb {
-    font-size: 14px;
+    font-size: 16px;
     color: #999;
     letter-spacing: 2px;
     text-transform: uppercase;
@@ -4839,6 +4763,7 @@ li.reveal.reveal-5.active p {
     transition: transform 0.3s ease;
     letter-spacing: 1.8;
     line-height: 1.8;
+    margin-top: 40px;
 }
 
 .about-hero-premium__title span {
@@ -4859,10 +4784,11 @@ li.reveal.reveal-5.active p {
 .about-hero-premium__actions {
     display: flex;
     align-items: center;
-    gap: 20px;
+    gap: 50px;
     /* Animation delay 0.6s */
     opacity: 0;
     animation: aboutSlideUp 0.8s ease forwards 0.6s;
+    margin-top: 100px;
 }
 
 /* --- 4. BÊN PHẢI: KHỐI ẢNH MINI --- */
@@ -4880,23 +4806,6 @@ li.reveal.reveal-5.active p {
     /* Giữ nguyên animation mượt mà của ông */
     opacity: 0;
     animation: aboutScaleIn 1s cubic-bezier(0.2, 1, 0.3, 1) forwards 0.4s;
-}
-
-/* Khối cam (Shape) phía sau */
-.about-hero-premium__shape {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    background: #f8b183;
-    /* Tăng border-radius cho mượt với size mới */
-    border-radius: 8px;
-    /* Điều chỉnh độ lệch (offset) cho cân xứng với size to */
-    top: 15px;
-    right: -20px;
-    z-index: 1;
-    opacity: 0.9;
-    /* Thêm tí hiệu ứng đổ bóng cho shape nó tách khối */
-    filter: blur(2px);
 }
 
 .about-hero-premium__img-box {
@@ -4956,32 +4865,61 @@ li.reveal.reveal-5.active p {
 
 /* --- 6. BUTTONS --- */
 .btn-hero-solid {
-    background: #f8b183;
-    color: #5d3420;
-    padding: 12px 24px;
+    background: var(--color-btn);
+    color: #ffffff;
+    padding: 12px 30px;
     border-radius: 8px;
-    font-size: 14px;
-    font-weight: 700;
+    font-size: 16px;
+    font-weight: 300;
     text-decoration: none;
-    transition: 0.3s;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+/* Hiệu ứng Shine chuẩn Luxury */
+.btn-hero-solid::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        120deg,
+        transparent,
+        rgba(255, 255, 255, 0.35),
+        transparent
+    );
+    transition: all 0.6s ease;
 }
 
 .btn-hero-solid:hover {
-    background: #ffffff;
-    transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(248, 177, 131, 0.4);
+    transform: scale(1.05) translateY(-2px);
+    box-shadow: 0 10px 25px rgba(248, 177, 131, 0.3);
+    background: var(--color-primary); /* Đậm hơn chút khi hover */
+}
+
+.btn-hero-solid:hover::before {
+    left: 100%;
 }
 
 .btn-hero-link {
+    border: 1px solid #ffffff;
+    border-radius: 8px;
+    padding: 12px 24px;
     color: #ffffff;
-    font-size: 14px;
-    font-weight: 700;
+    font-size: 16px;
+    font-weight: 300;
     text-decoration: none;
 }
 
 .btn-hero-link:hover {
     transform: translateY(-2px);
-    color: var(--color-primary)
+    color: #ffffff;
 }
 
 .profile-quote {
@@ -4999,12 +4937,13 @@ li.reveal.reveal-5.active p {
 
 /* --- HIỆU ỨNG CHỮ CHẠY SÁNG --- */
 .profile-quote__text {
-    font-family: "Playfair Display", serif;
-    font-size: clamp(16px, 4vw, 36px);
+    font-family: 'Dancing Script', cursive;
+    font-size: clamp(16px, 4vw, 50px);
     font-style: italic;
-    font-weight: 600;
+    font-weight: 900;
     line-height: 1.6;
     margin-bottom: 10px;
+    width: 100%;
 
     /* Màu gốc là nâu đậm */
     color: var(--color-primary);
@@ -5034,18 +4973,17 @@ li.reveal.reveal-5.active p {
 }
 
 .profile-quote__author .line {
-    width: 70px;
+    width: 150px;
     height: 2px;
     background: var(--color-primary);
-    /* Gạch đen mảnh như demo */
 }
 
 .profile-quote__author p {
-    font-size: 26px;
-    font-weight: 500;
-    color: var(--color-primary);
+    font-size: 36px;
+    font-weight: 400;
+    color: rgb(201, 201, 201);
     letter-spacing: 1px;
-    margin: 0;
+    margin: 20px;
 }
 
 /* KEYFRAMES CHO VỆT SÁNG */
@@ -5069,7 +5007,7 @@ li.reveal.reveal-5.active p {
 }
 
 .story-premium {
-    padding: 40px 0;
+    padding: 60px 0;
     background: #f2efea;
     /* Nền kem cực nhẹ cho sang */
     overflow: hidden;
@@ -5079,6 +5017,7 @@ li.reveal.reveal-5.active p {
 /* FIX CỨNG 1000PX */
 .story-premium__container {
     max-width: var(--content-max-width);
+    min-height: 550px;
     margin: 0 auto;
     display: flex;
     justify-content: space-between;
@@ -5169,13 +5108,25 @@ p.story-premium__desc {
 .story-premium__cards {
     display: flex;
     gap: 12px;
-    margin-bottom: 10px;
+    margin-bottom: 40px;
+    margin-top: 40px;
+
+}
+
+.story-premium__actions {
+    display: flex;
+    justify-content: center;
+    margin-top: 40px;
+}
+
+.btn-main {
+    margin-right: 30px;
 }
 
 .v-card {
     background: #ffffff;
     padding: 10px 15px;
-    border-radius: 15px;
+    border-radius: 8px;
     flex: 1;
     text-align: center;
     border: 1px solid #eee;
@@ -5202,8 +5153,8 @@ p.story-premium__desc {
 }
 
 .v-card__icon {
-    width: 35px;
-    height: 35px;
+    width: 45px;
+    height: 45px;
     background: #fdf6f2;
     color: #a35d36;
     border-radius: 50%;
@@ -5211,7 +5162,7 @@ p.story-premium__desc {
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 14px;
+    font-size: 22px;
 }
 
 .v-card h3 {
@@ -5256,7 +5207,7 @@ p.story-premium__desc {
     position: absolute;
     inset: -15px -15px 15px 15px;
     border: 2px solid #f8b183;
-    border-radius: 30px;
+    border-radius: 8px;
     z-index: 1;
 
     /* THÊM VÀO: Cho cái khung mờ hơn và lệch sâu hơn để tạo hiệu ứng lớp đuổi nhau */
@@ -5290,7 +5241,7 @@ p.story-premium__desc {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    border-radius: 30px;
+    border-radius: 8px;
     position: relative;
     z-index: 2;
     box-shadow: 20px 20px 60px rgba(0, 0, 0, 0.1);
@@ -5309,15 +5260,8 @@ p.story-premium__desc {
     /* Khung khớp vào ảnh */
 }
 
-/* --- BUTTONS --- */
-/* Redundant btn overrides removed */
-
-/* Redundant btn-sub override removed */
-
-/* Redundant btn-main hover removed - now unified in global btn rule */
-
 .strengths {
-    padding: 35px 0;
+    padding: 60px 0;
     margin: 0;
     background: #f0ede8;
 }
@@ -5454,13 +5398,20 @@ p.story-premium__desc {
     /* Đảm bảo nút cao bằng nhau và thẳng hàng */
     justify-content: center;
     gap: 20px;
-    margin-top: 30px;
+    margin-top: 40px;
 }
 
-.btn-connect {
+.btn-connect,
+.btn-show-more {
     background: transparent;
     border: 2px solid var(--color-primary);
     color: var(--color-primary) !important;
+}
+
+.btn-connect:hover,
+.btn-show-more:hover {
+    color: #fff !important;
+    background-color: var(--color-primary);
 }
 
 .btn-zalo {
@@ -5520,7 +5471,7 @@ p.story-premium__desc {
     width: 520px;
     background: rgba(93, 52, 32, 0.96);
     padding: 30px;
-    border-radius: 15px;
+    border-radius: 8px;
     color: #ffffff;
     box-shadow: 15px 15px 40px rgba(0, 0, 0, 0.15);
 
@@ -5534,7 +5485,7 @@ p.story-premium__desc {
     font-size: 18px;
     letter-spacing: 2px;
     color: #c9c9c9;
-    margin-bottom: 12px;
+    margin-bottom: 20px;
     display: block;
     font-weight: 300;
     /* Animation */
@@ -5552,12 +5503,12 @@ p.story-premium__desc {
 }
 
 .core-values__title span {
-    color: var(--color-primary);
+    color: #fcead6;
 
 }
 
 .core-values__subtitle {
-    color: var(--color-primary);
+    color: #fcead6;
     /* Màu nâu/đồng chủ đạo của ông */
     text-align: left;
     /* Nằm giữa chuẩn bài */
@@ -5609,7 +5560,7 @@ p.story-premium__desc {
 
 .value-item__num {
     /* 5. SỐ THỨ TỰ NHỎ LẠI: Nhưng vẫn to mờ */
-    font-size: 45px;
+    font-size: 100px;
     font-weight: 900;
     color: rgba(255, 255, 255, 0.15);
     /* Mờ xịt đúng demo */
@@ -5697,7 +5648,7 @@ p.story-premium__desc {
 }
 
 .experience {
-    padding: 50px 0;
+    padding: 60px 0;
     background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
         url('https://ongtre.com.vn/wp-content/uploads/2023/02/hinh-anh-hoa-minh-voi-thien-nhien-cung-voi-phong-cach-thiet-ke-noi-that-organic-so-1_1630467662.jpg') no-repeat center center/cover;
     background-attachment: fixed;
@@ -5737,7 +5688,7 @@ p.story-premium__desc {
 }
 
 .experience__desc {
-    color: var(--color-primary);
+    color: #fcead6;
     /* Màu nâu/đồng chủ đạo của ông */
     text-align: center;
     /* Nằm giữa chuẩn bài */
@@ -5764,7 +5715,7 @@ p.story-premium__desc {
 
 .ex-card {
     padding: 30px 20px;
-    border-radius: 15px;
+    border-radius: 8px;
     backdrop-filter: blur(5px);
     /* Làm mờ nền phía sau */
     transition: all 0.4s ease;
@@ -5884,7 +5835,7 @@ p.story-premium__desc {
 
 /* --- CONTAINER CHUẨN 950PX --- */
 .expertise-slim {
-    padding: 50px 0;
+    padding: 60px 0;
     margin: 0;
     background: #fff7ec;
     overflow: hidden;
@@ -5927,7 +5878,7 @@ p.story-premium__desc {
 
 /* --- CẤU TRÚC CARD & ANIMATION --- */
 .slim-box {
-    border-radius: 15px;
+    border-radius: 8px;
     position: relative;
     overflow: hidden;
     cursor: pointer;
@@ -6037,13 +5988,13 @@ p.story-premium__desc {
     justify-content: center;
 }
 
-.btn-show-more {
+.expertise-slim__action.btn-show-more {
     display: inline-block;
     width: auto;
     /* Để width tự động theo padding */
     min-width: 10px;
     /* Độ dài tối thiểu vừa phải */
-    padding: 10px 20px;
+    padding: 15px 20px;
     border: 1.5px solid var(--color-primary);
     border-radius: 4px;
     /* Bo nhẹ kiểu cổ điển */
@@ -6052,8 +6003,13 @@ p.story-premium__desc {
     transition: 0.3s;
 }
 
+.expertise-slim__action.btn-show-more:hover {
+
+    color: #fff;
+}
+
 .expertise-slim__action a {
-    color: #ffffff !important;
+    color: var(--color-primary) !important;
 }
 
 .slim-box--1 {
@@ -6169,37 +6125,11 @@ p.story-premium__desc {
     z-index: 10;
 }
 
-.slim-box .list li:hover {
-    opacity: 1;
-    padding-left: 18px;
-    /* Đẩy chữ sang phải để lấy chỗ cho dấu chấm */
-    background: rgba(255, 255, 255, 0.05);
-    /* Sáng nhẹ nền dòng đó */
-}
 
-/* HIỆN DẤU CHẤM KHI HOVER */
-.slim-box .list li:hover::before {
-    left: 0;
-    /* Trượt vào vị trí */
-    opacity: 1;
-    /* Hiện hình */
-}
-
-/* Riêng ô số 3 màu nhạt thì cho dấu chấm màu đậm hơn tí */
-.slim-box--3 .list li::before {
-    color: #a35d36;
-}
-
-.slim-box .tags:hover {
-    color: var(--color-primary);
-    background: rgba(255, 255, 255, 0.05);
-    /* Sáng nhẹ nền dòng đó */
-
-}
 
 /* --- CONTAINER CHUẨN 950PX --- */
 .impressive-deals {
-    padding: 50px 0;
+    padding: 60px 0;
     margin: 0;
     background: #fff;
 }
@@ -6292,7 +6222,6 @@ p.story-premium__desc {
     max-width: 85%;
     max-height: 85%;
     object-fit: contain;
-    border: 2px solid #d4af37;
     z-index: 10;
     /* Ảnh nằm lớp dưới nút */
 }
@@ -6316,7 +6245,7 @@ p.story-premium__desc {
     position: absolute;
     font-size: 60px;
     /* To rõ ràng */
-    color: #fff;
+    color: #d4af37;
     /* Màu trắng nổi bật trên nền đen */
     cursor: pointer;
     z-index: 1000;
@@ -6328,7 +6257,7 @@ p.story-premium__desc {
 
 /* Thêm hiệu ứng hover cho nó xịn */
 .lb-close:hover {
-    color: #d4af37;
+    color: #ffffff;
     /* Hover lên biến thành màu vàng đồng Ngọc NN */
     transform: scale(1.1);
     /* Phóng to nhẹ */
@@ -6370,11 +6299,11 @@ p.story-premium__desc {
     height: 100%;
 
     /* 1. Giảm từ 0.95 xuống tầm 0.6 để thấy được lớp nền ở dưới */
-    background: rgba(0, 0, 0, 0.6);
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.05) 0%, rgba(0, 0, 0, 0.8) 100%);
 
     /* 2. Tăng độ mờ (blur) để nhìn nó xịn và Luxury hơn */
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
+    backdrop-filter: blur(1px);
+    -webkit-backdrop-filter: blur(1px);
 
     z-index: 99999999;
     display: none;
@@ -6384,19 +6313,29 @@ p.story-premium__desc {
 }
 
 #lb-img-main {
-    /* Ép khung cố định: 80% chiều rộng và 80% chiều cao màn hình */
     width: 80vw;
     height: 80vh;
-
-    /* Tuyệt chiêu: Giữ đúng tỉ lệ ảnh, không méo, không nhảy khung */
     object-fit: contain;
-
-    border: 2px solid #d4af37;
+    border: none;
     border-radius: 4px;
-    box-shadow: 0 0 50px rgba(0, 0, 0, 0.8);
     animation: lbZoom 0.3s ease;
     background: rgba(0, 0, 0, 0.05);
-    /* Thêm nền tối nhẹ để lấp khoảng trống nếu ảnh hẹp */
+}
+
+#modalImg {
+    /* Đảm bảo ảnh luôn giữ đúng tỷ lệ, không bị kéo dãn */
+    object-fit: contain; 
+    background-color: #000; /* Nếu ảnh quá nhỏ thì nền đen sẽ bù vào */
+}
+
+/* Thêm hiệu ứng trỏ chuột cho khách biết là click được */
+.moment-item img {
+    cursor: zoom-in;
+    transition: filter 0.3s ease;
+}
+
+.moment-item img:hover {
+    filter: brightness(0.8); /* Hover vào hơi tối tí cho chuyên nghiệp */
 }
 
 /* --- ẢNH & OVERLAY --- */
@@ -6420,11 +6359,12 @@ p.story-premium__desc {
 .deal-price {
     position: absolute;
     bottom: 20px;
-    left: 0;
+    left: 20px;
     right: 0;
     z-index: 2;
     color: #fff;
     transition: all 0.3s ease;
+    pointer-events: none;
 }
 
 .deal-price .number {
@@ -6443,6 +6383,87 @@ p.story-premium__desc {
     font-weight: 400;
     margin-left: 2px;
     text-transform: uppercase;
+}
+
+.deal-card:hover .number {
+    animation: flyUpAndOut 0.5s ease-in-out forwards;
+}
+
+.deal-card:hover .unit {
+    animation: flyUpAndOut 0.1 0.1s ease-in-out forwards; /* Bay chậm hơn 0.1s */
+}
+
+@keyframes flyUpAndOut {
+    0% {
+        transform: translateY(100%); /* Bắt đầu từ dưới đáy (mất tích) */
+        opacity: 0;
+    }
+    30% {
+        transform: translateY(0);    /* Bay lên vị trí chuẩn */
+        opacity: 1;
+    }
+    70% {
+        transform: translateY(0);    /* Đứng lại cho khách kịp nhìn cái giá tiền */
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(-150%); /* Bay vút lên trên đỉnh rồi biến mất */
+        opacity: 0;
+    }
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 9999;
+    left: 0; top: 0;
+    width: 100%; height: 100%;
+    background-color: rgba(0, 0, 0, 0.9);
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content-wrapper {
+    max-width: 80%;
+    max-height: 80%;
+    text-align: center;
+}
+
+#modalImg {
+    width: 100%;
+    height: auto;
+    transition: transform 0.3s ease; /* Cho zoom */
+    border: 3px solid #fff;
+}
+
+/* Nút điều hướng */
+.modal-prev, .modal-next {
+    z-index: 10000 !important; /* Ép nó nổi lên trên cùng */
+    color: #FFD700 !important; /* Cho màu vàng đồng cho nổi bần bật */
+    display: block !important;  /* Đảm bảo nó không bị hide */
+    background: rgba(0,0,0,0.5); /* Thêm nền mờ cho dễ thấy */
+    padding: 15px;
+    border-radius: 5px;
+}
+
+.modal-prev { left: 50px; }
+.modal-next { right: 50px; }
+
+/* Thanh công cụ góc trên */
+.modal-tools {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    display: flex;
+    gap: 15px;
+}
+
+.modal-tools button {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 20px;
+    cursor: pointer;
 }
 
 /* Trỏ trực tiếp từ header của section đó */
@@ -6494,10 +6515,12 @@ p.story-premium__desc {
 
 /* --- 1. LAYOUT GỌN GÀNG --- */
 .criteria-section {
-    padding: 50px 0;
+    min-height: 350px;
+    padding: 60px 0 0 0;
     /* Giảm padding xuống cho nhỏ xíu */
     margin: 0;
-    background: #fdfbf9;
+    background: #fff7ec;
+    padding: 40px 0;
 }
 
 .criteria-container {
@@ -6507,7 +6530,7 @@ p.story-premium__desc {
     align-items: center;
     justify-content: space-between;
     /* Đẩy đều ra 2 bên */
-    gap: 20px;
+    gap: 40px;
 }
 
 /* --- 2. LEFT CONTENT (NHỎ NHẮN) --- */
@@ -6523,8 +6546,8 @@ p.story-premium__desc {
 .criteria__label {
     font-size: 18px;
     letter-spacing: 2px;
-    color: #c9c9c9;
-    margin-bottom: 12px;
+    color: #636363;
+    margin-bottom: 20px;
     display: block;
     font-weight: 300;
     /* Animation */
@@ -6539,7 +6562,7 @@ p.story-premium__desc {
     color: rgba(163, 93, 54, 0.15);
     /* Màu đồng mờ xịt */
     line-height: 1;
-    margin-bottom: -5px;
+    margin-bottom: 20px;
 }
 
 .criteria__left {
@@ -6592,7 +6615,7 @@ p,
 }
 
 .criteria__title {
-    font-size: 22px;
+    font-size: 40px;
     /* Hạ size chữ tiêu đề */
     font-weight: 800;
     color: #a35d36;
@@ -6611,10 +6634,10 @@ p,
 
 .criteria__img-box {
     width: 100%;
-    height: 350px;
+    height: 450px;
     /* Hạ chiều cao ảnh */
     background: #c5c9c1;
-    border-radius: 30px;
+    border-radius: 8px;
     /* Bo góc nhỏ lại cho cân */
     overflow: hidden;
     box-shadow: 0 15px 35px rgba(0, 0, 0, 0.08);
@@ -6633,7 +6656,7 @@ p,
     align-items: flex-start;
     gap: 15px;
     padding: 10px;
-    border-radius: 12px;
+    border-radius: 8px;
     cursor: pointer;
     transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 
@@ -6783,7 +6806,7 @@ p,
 /* --- 3. ĐỊNH HÌNH CÁC Ô THEO MOCKUP --- */
 .moment-item {
     position: relative;
-    border-radius: 16px;
+    border-radius: 8px;
     /* Bo góc vừa phải */
     overflow: hidden;
     cursor: pointer;
@@ -6976,7 +6999,7 @@ p,
 
 /* --- 4. ĐOẠN MÔ TẢ (P) --- */
 .feedback__content p {
-    color: var(--color-primary);
+    color: var(--color-text);
     /* Màu nâu/đồng chủ đạo của ông */
 
     /* Typography cho sang */
@@ -7018,7 +7041,7 @@ p,
 .feedback-img {
     flex: 1;
     /* 5 tấm ảnh chia đều độ rộng */
-    border-radius: 20px;
+    border-radius: 8px;
     overflow: hidden;
     background: #ccc;
     /* Nền chờ */
@@ -7122,8 +7145,8 @@ p,
 /* --- 2. CỘT TRÁI: ẢNH (BAY TỪ TRÁI VÀO) --- */
 .commit__img {
     flex: 0 0 450px;
-    height: 500px;
-    border-radius: 25px;
+    height: 650px;
+    border-radius: 8px;
     overflow: hidden;
     z-index: 1;
     /* Trạng thái ẩn */
@@ -7143,8 +7166,8 @@ p,
     flex: 1;
     background: #fff;
     padding: 50px;
-    border-radius: 25px;
-    margin-left: -80px;
+    border-radius: 8px;
+    margin-left: -100px;
     /* Đè lên ảnh tạo hiệu ứng stacking */
     z-index: 2;
     box-shadow: 0 20px 50px rgba(0, 0, 0, 0.08);
@@ -7217,7 +7240,6 @@ p,
 .commit__header p {
     color: var(--color-primary);
     /* Màu nâu/đồng chủ đạo của ông */
-    text-align: center;
     /* Nằm giữa chuẩn bài */
 
     /* Typography cho sang */
@@ -7229,6 +7251,7 @@ p,
     margin-left: auto;
     margin-right: auto;
     line-height: 1.6;
+    margin-bottom: 40px;
 }
 
 .commit-item__icon {
@@ -7278,7 +7301,7 @@ p,
 .footer-section {
     background: #fdfbf9;
     padding: 60px 0 0 0;
-    border-top: 1px solid #e0d5c1;
+    border-top: 5px solid #5d3420;
     color: #5d3420;
 }
 
@@ -7517,6 +7540,7 @@ p,
 .btn-luxury-toggle {
     display: none;
 }
+
 
 @media (max-width: 768px) {
     .btn-luxury-toggle {

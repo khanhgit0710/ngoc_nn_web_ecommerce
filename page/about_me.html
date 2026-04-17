@@ -14,6 +14,7 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Montserrat:wght@400;500;600&display=swap"
         rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Playfair+Display:ital,wght@1,600&display=swap" rel="stylesheet">
 </head>
 
 <body>
@@ -63,13 +64,12 @@
                     </h1>
                     <div class="about-hero-premium__actions">
                         <a href="../page/contact.html" class="btn-hero-solid">Xem nhà ngay</a>
-                        <a href="../page/ky_gui.html" class="btn-hero-link">Nhận tư vấn<span> →</span></a>
+                        <a href="../page/ky_gui.html" class="btn-hero-link">Nhận tư vấn → <span> </span></a>
                     </div>
                 </div>
 
                 <div class="about-hero-premium__right">
                     <div class="about-hero-premium__image-wrapper">
-                        <div class="about-hero-premium__shape"></div>
                         <div class="about-hero-premium__img-box">
                             <img src="https://file4.batdongsan.com.vn/crop/492x273/2026/03/28/20260328164932-541e_wm.jpg"
                                 alt="Ngọc NN">
@@ -108,17 +108,17 @@
 
                     <div class="story-premium__cards">
                         <div class="v-card">
-                            <div class="v-card__icon">✓</div>
+                            <div class="v-card__icon"><i class="fa-solid fa-book"></i></div>
                             <h3>Pháp lý rõ ràng</h3>
                             <p>Minh bạch giấy tờ</p>
                         </div>
                         <div class="v-card">
-                            <div class="v-card__icon">🏠</div>
+                            <div class="v-card__icon"><i class="fa-solid fa-house"></i></div>
                             <h3>Sản phẩm chọn lọc</h3>
                             <p>Giá trị thực tế</p>
                         </div>
                         <div class="v-card">
-                            <div class="v-card__icon">🧭</div>
+                            <div class="v-card__icon"><i class="fa-solid fa-check-double"></i></div>
                             <h3>Tư vấn chuẩn xác</h3>
                             <p>Tối ưu rủi ro</p>
                         </div>
@@ -445,9 +445,9 @@
                     <span class="criteria__label">TIÊU CHÍ</span>
                     <div class="criteria__big-num">3</div>
                     <h2 class="criteria__title">Tiêu chí<br>Vàng đồng hành</h2>
-                    <p style="font-size: 18px; color: #666; margin-top: 20px;">Sự uy tín được nuôi dưỡng qua thời gian.
+                    <p style="font-size: 18px; color: #666; margin: 20px 0;">Sự uy tín được nuôi dưỡng qua thời gian.
                     </p>
-                    <a href="#" class="btn-show-more" style="margin-top: 30px;">XEM THÊM</a>
+                    <a href="#" class="btn-show-more" style="margin-top: 50px;">XEM THÊM</a>
                 </div>
 
                 <div class="criteria__middle">
@@ -820,6 +820,7 @@
                 All rights reserved ©2025 Ngọc NN. Website Được Quản Lý Và Duy Trì Bởi Team Ngọc NN và cộng sự
             </div>
         </footer>
+        
     </main>
 
     <script>
@@ -893,15 +894,14 @@
         coreObserver.observe(document.querySelector('.core-values'));
 
         (function() {
-    // 1. TỰ ĐỘNG CHÈN CSS (Để đảm bảo giao diện luôn chuẩn Luxury)
+    // 1. TỰ ĐỘNG CHÈN CSS
     const style = document.createElement('style');
     style.innerHTML = `
         #lb-master {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0, 0, 0, 0.95);
-            z-index: 99999999; /* Đè mọi thứ trên đời */
+            z-index: 99999999;
             display: none; justify-content: center; align-items: center;
-            backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+            backdrop-filter: blur(4px);
         }
         #lb-master.show { display: flex; }
         
@@ -912,10 +912,9 @@
         
         #lb-img-main {
             max-width: 100%; max-height: 90vh;
-            border: 2px solid #d4af37; /* Viền vàng đồng Ngọc NN */
             border-radius: 4px; object-fit: contain;
-            box-shadow: 0 0 50px rgba(0,0,0,0.8);
             animation: lbZoom 0.3s ease;
+            box-shadow: 0 0 30px rgba(0,0,0,0.5);
         }
 
         .lb-control {
@@ -944,20 +943,24 @@
             #lb-img-main { max-width: 95%; }
         }
 
-        /* Fix lỗi không click được do thẻ khác đè */
-        .deal-card { cursor: zoom-in !important; }
-        .deal-price, .deal-card span, .deal-card div { pointer-events: none !important; }
+        /* ÉP TRỎ CHUỘT VÀ MỞ KHÓA CLICK CHO TẤT CẢ CÁC MỤC */
+        .deal-card, .moment-item, .feedback-img { cursor: zoom-in !important; }
+        
+        /* Chống các thẻ con (text, span, div overlay) cướp mất sự kiện click của ảnh */
+        .deal-price, .deal-card span, .moment-item::after, .feedback-img::after { 
+            pointer-events: none !important; 
+        }
     `;
     document.head.appendChild(style);
 
-    // 2. TỰ ĐỘNG TẠO HTML LIGHTBOX
+    // 2. TỰ ĐỘNG TẠO HTML LIGHTBOX (Giữ nguyên)
     const lb = document.createElement('div');
     lb.id = 'lb-master';
     lb.innerHTML = `
         <div id="lb-img-box">
             <span class="lb-control lb-close" id="lbClose">&times;</span>
             <button class="lb-control lb-prev" id="lbPrev">&#10094;</button>
-            <img id="lb-img-main" src="" alt="Ngọc NN - Deal">
+            <img id="lb-img-main" src="" alt="Ngọc NN Gallery">
             <button class="lb-control lb-next" id="lbNext">&#10095;</button>
         </div>
     `;
@@ -968,21 +971,24 @@
     let images = [];
     let currIdx = 0;
 
-    // 3. LOGIC XỬ LÝ SỰ KIỆN (Event Delegation - Chống mọi loại lỗi click)
+    // 3. LOGIC XỬ LÝ SỰ KIỆN (MỞ RỘNG RA 3 PHÂN ĐOẠN)
     document.addEventListener('click', function(e) {
-        // Tìm xem có click vào ảnh trong deal-card không
-        const targetCard = e.target.closest('.deal-card');
+        // Kiểm tra xem click vào thằng nào trong 3 hội này
+        const target = e.target.closest('.deal-card, .moment-item, .feedback-img');
         
-        if (targetCard) {
+        if (target) {
             e.preventDefault();
-            // Lấy danh sách ảnh mới nhất mỗi khi click (đề phòng ảnh render động)
-            images = Array.from(document.querySelectorAll('.deal-card img'));
-            const clickedImg = targetCard.querySelector('img');
+            
+            // GOM TẤT CẢ ẢNH TỪ 3 NGUỒN VÀO 1 MẢNG ĐỂ LƯỚT LIÊN TỤC
+            images = Array.from(document.querySelectorAll('.deal-card img, .moment-item img, .feedback-img img'));
+            
+            const clickedImg = target.querySelector('img');
             
             if (clickedImg) {
                 currIdx = images.indexOf(clickedImg);
                 lbImg.src = clickedImg.src;
                 lbMain.classList.add('show');
+                document.body.style.overflow = 'hidden'; // Khóa cuộn trang khi xem
             }
         }
     });
@@ -991,32 +997,41 @@
     function navigate(step) {
         if (images.length === 0) return;
         currIdx = (currIdx + step + images.length) % images.length;
-        lbImg.src = images[currIdx].src;
+        
+        // Hiệu ứng chuyển ảnh mượt hơn tí
+        lbImg.style.opacity = '0.5';
+        setTimeout(() => {
+            lbImg.src = images[currIdx].src;
+            lbImg.style.opacity = '1';
+        }, 50);
     }
 
     // 5. GÁN SỰ KIỆN NÚT BẤM
     document.getElementById('lbNext').onclick = (e) => { e.stopPropagation(); navigate(1); };
     document.getElementById('lbPrev').onclick = (e) => { e.stopPropagation(); navigate(-1); };
-    document.getElementById('lbClose').onclick = () => lbMain.classList.remove('show');
     
-    // Click ra ngoài ảnh thì đóng
-    lbMain.onclick = (e) => {
-        if (e.target === lbMain) lbMain.classList.remove('show');
+    const closeLightbox = () => {
+        lbMain.classList.remove('show');
+        document.body.style.overflow = 'auto'; // Mở lại cuộn trang
     };
+    
+    document.getElementById('lbClose').onclick = closeLightbox;
+    lbMain.onclick = (e) => { if (e.target === lbMain) closeLightbox(); };
 
-    // 6. PHÍM TẮT BÀN PHÍM (Phải có cho sang)
+    // 6. PHÍM TẮT
     document.addEventListener('keydown', (e) => {
         if (!lbMain.classList.contains('show')) return;
         if (e.key === "ArrowRight") navigate(1);
         if (e.key === "ArrowLeft") navigate(-1);
-        if (e.key === "Escape") lbMain.classList.remove('show');
+        if (e.key === "Escape") closeLightbox();
     });
 
-    console.log("Lightbox System by Gemini: Đã sẵn sàng!");
+    console.log("Super Lightbox (Deals + Moments + Feedback) by Gemini: Đã sẵn sàng!");
 })();
     </script>
     <script src="../js/animations.js"></script>
     <script src="../js/main.js"></script>
+    
 
 </body>
 

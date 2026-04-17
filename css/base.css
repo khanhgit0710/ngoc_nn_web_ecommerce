@@ -8,7 +8,8 @@
     --bg-brown: #5d3420; /* Màu nâu đậm của demo */
     --gold-glow: rgba(243, 203, 168, 0.3);    
     --white-text: #ffffff;
-    --bg-info-box: #fff8f0;
+    --bg-box: #f2efea;
+
     --font-main: 'Roboto', sans-serif;
     --font-title: 'Playfair Display', serif;
 
@@ -19,7 +20,7 @@
     --content-max-width: 1000px;
     --container-padding: 0;
     --section-padding-pc: 60px 0;
-    --section-margin-pc: 70px auto;
+    --section-margin-pc: 60px auto;
     --section-padding-mb: 40px 0;
     --line-height-luxury: 1.8;  
 
@@ -50,6 +51,11 @@ body {
     overflow-x: hidden;
     background-color: #ffffff; 
     color: var(--color-text);
+}
+
+body {
+    height: 100vh;
+    overflow: hidden;
 }
 
 a {

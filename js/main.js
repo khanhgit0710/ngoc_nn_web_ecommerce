@@ -255,3 +255,51 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 });
+
+// BUTTON TRENDING NEWS
+document.addEventListener('DOMContentLoaded', () => {
+    const grid = document.querySelector('.trending-grid');
+    const cards = document.querySelectorAll('.trending-card');
+    const nextBtn = document.querySelector('.next-btn--trending-news');
+    const prevBtn = document.querySelector('.prev-btn--trending-news');
+
+    let index = 0;
+
+    function updateSlider() {
+        const cardWidth = cards[0].offsetWidth + 20; // 20 là gap
+        grid.style.transform = `translateX(${-index * cardWidth}px)`;
+        
+        // Disable nút khi hết card (optional)
+        prevBtn.style.opacity = index === 0 ? "0.5" : "1";
+        prevBtn.style.pointerEvents = index === 0 ? "none" : "auto";
+        
+        // Tính toán số card hiển thị dựa trên màn hình
+        let visibleCards = window.innerWidth > 992 ? 3 : (window.innerWidth > 600 ? 2 : 1);
+        
+        nextBtn.style.opacity = index >= cards.length - visibleCards ? "0.5" : "1";
+        nextBtn.style.pointerEvents = index >= cards.length - visibleCards ? "none" : "auto";
+    }
+
+    nextBtn.addEventListener('click', () => {
+        let visibleCards = window.innerWidth > 992 ? 3 : (window.innerWidth > 600 ? 2 : 1);
+        if (index < cards.length - visibleCards) {
+            index++;
+            updateSlider();
+        }
+    });
+
+    prevBtn.addEventListener('click', () => {
+        if (index > 0) {
+            index--;
+            updateSlider();
+        }
+    });
+
+    // Cập nhật lại khi xoay màn hình hoặc resize
+    window.addEventListener('resize', updateSlider);
+});
+
+/* ==========================================
+   LOGIC MODAL GALLERY - NGOC NN PROJECTS
+   ========================================== */
+
