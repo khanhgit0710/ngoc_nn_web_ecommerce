@@ -14,10 +14,25 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Montserrat:wght@400;500;600&display=swap"
         rel="stylesheet">
-        <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Playfair+Display:ital,wght@1,600&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Playfair+Display:ital,wght@1,600&display=swap"
+        rel="stylesheet">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+        <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 </head>
 
 <body>
+    <!-- LUXURY PRELOADER -->
+    <div class="preloader">
+        <div class="preloader__logo">NGỌC NN</div>
+        <div class="preloader__line"></div>
+    </div>
+
+    <!-- SCROLL PROGRESS BAR -->
+    <div class="scroll-progress-container">
+        <div class="scroll-progress-bar"></div>
+    </div>
+
     <header class="header">
         <div class="header__container">
             <input type="checkbox" id="menu-toggle" class="header__checkbox"
@@ -55,31 +70,101 @@
     <main>
         <section class="about-hero-premium">
             <div class="about-hero-premium__container">
-                <div class="about-hero-premium__left">
+                <div class="about-hero-premium__left reveal reveal-left">
                     <span class="about-hero-premium__tag">GIỚI THIỆU</span>
-                    <h1 class="about-hero-premium__title">
-                        Ngọc NN <br>
-                        <span>Nhà môi giới</span> <br>
-                        <span>BDS uy tín TpHCM</span>
-                    </h1>
-                    <div class="about-hero-premium__actions">
-                        <a href="../page/contact.html" class="btn-hero-solid">Xem nhà ngay</a>
-                        <a href="../page/ky_gui.html" class="btn-hero-link">Nhận tư vấn → <span> </span></a>
+                    <h1 class="about-hero-premium__title">Ngọc NN</h1>
+                    <div class="about-hero-premium__subtitle-box">
+                        <span class="about-hero-premium__subtitle">NHÀ MÔI GIỚI BẤT ĐỘNG SẢN</span>
+                        <span class="about-hero-premium__subtitle-main">uy tín tại TP. HCM</span>
                     </div>
-                </div>
+                    <div class="about-hero-premium__tagline">
+                        <span class="about-tag-badge">Đúng nhà</span>
+                        <span class="about-tag-badge">Đúng giá</span>
+                        <span class="about-tag-badge">Đúng pháp lý</span>
+                    </div>
 
-                <div class="about-hero-premium__right">
-                    <div class="about-hero-premium__image-wrapper">
-                        <div class="about-hero-premium__img-box">
-                            <img src="https://file4.batdongsan.com.vn/crop/492x273/2026/03/28/20260328164932-541e_wm.jpg"
-                                alt="Ngọc NN">
+                    <div class="about-stats-group">
+                        <div class="about-stats-item reveal reveal-scale reveal-delay-1">
+                            <div class="about-stats__number"><span class="count">5</span>+</div>
+                            <div class="about-stats__label">Kinh nghiệm</div>
+                        </div>
+
+                        <div class="about-stats-item reveal reveal-scale reveal-delay-2">
+                            <div class="about-stats__number"><span class="count">250</span>+</div>
+                            <div class="about-stats__label">Giao dịch</div>
+                        </div>
+
+                        <div class="about-stats-item reveal reveal-scale reveal-delay-3">
+                            <div class="about-stats__number"><span class="count">1000</span>+</div>
+                            <div class="about-stats__label">Khách hàng</div>
+                        </div>
+
+                        <div class="about-stats-item reveal reveal-scale reveal-delay-4">
+                            <div class="about-stats__number"><span class="count">6000</span>+</div>
+                            <div class="about-stats__label">Khảo sát</div>
                         </div>
                     </div>
+
+                    <div class="about-hero-premium__actions">
+                        <a href="../page/contact.html" class="btn-hero-solid">Xem nhà ngay</a>
+                        <a href="../page/ky_gui.html" class="btn-hero-link">Nhận tư vấn →</a>
+                    </div>
                 </div>
+                <div class="about-hero-premium__right reveal reveal-right">
+    <div class="swiper aboutSwiper">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide">
+                <div class="about-hero-premium__img-box reveal reveal-zoom reveal-delay-1">
+                    <img src="https://channel.mediacdn.vn/2020/11/28/photo-1-1606529143640136190400.jpg" alt="Ngọc NN 1">
+                </div>
+            </div>
+            <div class="swiper-slide">
+                <div class="about-hero-premium__img-box reveal reveal-zoom reveal-delay-2">
+                    <img src="https://media.thuonghieucongluan.vn/uploads/2025/07/24/du-lich-hcm-1753345810.jpg" alt="Ngọc NN 2">
+                </div>
+            </div>
+            <div class="swiper-slide">
+                <div class="about-hero-premium__img-box reveal reveal-zoom reveal-delay-3">
+                    <img src="https://media.vneconomy.vn/images/upload/2024/11/04/hinh-anh-sai-gon-16699761844401689766048.jpg" alt="Ngọc NN 3">
+                </div>
+            </div>
+            <div class="swiper-slide">
+                <div class="about-hero-premium__img-box reveal reveal-zoom reveal-delay-4">
+                    <img src="https://images.pexels.com/photos/34973979/pexels-photo-34973979.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" alt="Ngọc NN 4">
+                </div>
+            </div>
+            <div class="swiper-slide">
+                <div class="about-hero-premium__img-box reveal reveal-zoom reveal-delay-5">
+                    <img src="https://static1.cafeland.vn/cafelandnew/hinh-anh/2023/12/23/135/Nhin-lai-bat-dong-san-2023_Co-phan-khuc-tang-gia-lien-tuc-phan-khuc-khac-giam-gia-manh-10-20.jpg" alt="Ngọc NN 5">
+                </div>
+            </div>
+            <div class="swiper-slide">
+                <div class="about-hero-premium__img-box reveal reveal-zoom reveal-delay-6">
+                    <img src="https://www.tapdoantrananh.com.vn/uploads/files/2022/02/17/bat-dong-san-dep-2.jpg" alt="Ngọc NN 6">
+                </div>
+            </div>
+            <div class="swiper-slide">
+                <div class="about-hero-premium__img-box reveal reveal-zoom reveal-delay-7">
+                    <img src="https://thietkenoithatatz.com/wp-content/uploads/2021/11/3-4.jpg" alt="Ngọc NN 7">
+                </div>
+            </div>
+            <div class="swiper-slide">
+                <div class="about-hero-premium__img-box reveal reveal-zoom reveal-delay-8">
+                    <img src="https://media.thuonghieucongluan.vn/uploads/2025/07/24/du-lich-hcm-1753345810.jpg" alt="Ngọc NN 8">
+                </div>
+            </div>
+            <div class="swiper-slide">
+                <div class="about-hero-premium__img-box reveal reveal-zoom reveal-delay-9">
+                    <img src="https://media.vneconomy.vn/images/upload/2024/11/04/hinh-anh-sai-gon-16699761844401689766048.jpg" alt="Ngọc NN 9">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
             </div>
         </section>
 
-        <section class="profile-quote reveal active">
+        <section class="profile-quote reveal">
             <div class="profile-quote__container">
                 <h2 class="profile-quote__text">
                     “Niềm tin đúng chỗ - giao dịch chắc chắn - kết nối bền lâu”
@@ -92,32 +177,33 @@
             </div>
         </section>
 
-        <section class="story-premium reveal active">
+        <section class="story-premium reveal">
             <div class="story-premium__container">
-                <div class="story-premium__left">
+                <div class="story-premium__left reveal reveal-left">
                     <div class="story-premium__header">
                         <span class="story-premium__tag">TRUYỀN THỐNG & ĐỔI MỚI</span>
                         <h2 class="story-premium__title">
-                            Làm nghề bằng <span> sự tử tế  </br></span> & <span>minh bạch</span>
+                            Làm nghề bằng <span> sự tử tế </br></span> & <span>minh bạch</span>
                         </h2>
                         <p class="story-premium__desc">
                             Trong một thị trường nhiều thông tin nhiễu loạn, Ngọc NN chọn cách làm nghề khác biệt
-                            <span class="story-premium__desc--black">- chọn lọc kỹ sản phẩm, minh bạch pháp lý</span> và <span class="story-premium__desc--gold">tư vấn đúng giá trị thật</span>
+                            <span class="story-premium__desc--black">- chọn lọc kỹ sản phẩm, minh bạch pháp lý</span> và
+                            <span class="story-premium__desc--gold">tư vấn đúng giá trị thật</span>
                         </p>
                     </div>
 
                     <div class="story-premium__cards">
-                        <div class="v-card">
+                        <div class="v-card reveal reveal-scale reveal-delay-1">
                             <div class="v-card__icon"><i class="fa-solid fa-book"></i></div>
                             <h3>Pháp lý rõ ràng</h3>
                             <p>Minh bạch giấy tờ</p>
                         </div>
-                        <div class="v-card">
+                        <div class="v-card reveal reveal-scale reveal-delay-2">
                             <div class="v-card__icon"><i class="fa-solid fa-house"></i></div>
                             <h3>Sản phẩm chọn lọc</h3>
                             <p>Giá trị thực tế</p>
                         </div>
-                        <div class="v-card">
+                        <div class="v-card reveal reveal-scale reveal-delay-3">
                             <div class="v-card__icon"><i class="fa-solid fa-check-double"></i></div>
                             <h3>Tư vấn chuẩn xác</h3>
                             <p>Tối ưu rủi ro</p>
@@ -130,9 +216,9 @@
                     </div>
                 </div>
 
-                <div class="story-premium__right active">
+                <div class="story-premium__right reveal reveal-right">
                     <div class="story-premium__img-wrapper">
-                        <div class="story-premium__decoration"></div>
+                        <div class="story-premium__decoration reveal"></div>
                         <img src="https://file4.batdongsan.com.vn/crop/492x273/2026/03/28/20260328164932-541e_wm.jpg"
                             alt="Ngọc NN">
                     </div>
@@ -140,24 +226,25 @@
             </div>
         </section>
 
-<section class="quote-bar reveal">
-    <div class="quote-container">
-<div class="quote-icons">
-    <i class="mark-georgia">“</i>
-    <i class="mark-georgia">”</i>
-</div>
+        <section class="quote-bar reveal">
+            <div class="quote-container">
+                <div class="quote-icons">
+                    <i class="mark-georgia">“</i>
+                    <i class="mark-georgia">”</i>
+                </div>
 
-        <div class="quote-content">
-            <p>Mục tiêu không phải là bán được nhà - mà là giúp khách hàng chọn đúng giá trị cho tương lai của họ.</p>
+                <div class="quote-content">
+                    <p>Mục tiêu không phải là bán được nhà - mà là giúp khách hàng chọn đúng giá trị cho tương lai của
+                        họ.</p>
 
-            <div class="quote-divider">
-                <div class="line left"></div>
-                <div class="sparkle"></div>
-                <div class="line right"></div>
+                    <div class="quote-divider">
+                        <div class="line left"></div>
+                        <div class="sparkle"></div>
+                        <div class="line right"></div>
+                    </div>
+                </div>
             </div>
-        </div>
-    </div>
-</section>
+        </section>
 
         <section class="strengths">
             <div class="strengths__container active">
@@ -170,7 +257,7 @@
                 </div>
 
                 <div class="strengths__grid">
-                    <div class="s-card">
+                    <div class="s-card reveal reveal-scale reveal-delay-1">
                         <div class="s-card__content">
                             <h3>Hiểu sâu khu vực</h3>
                             <p>Hiểu rõ từng tuyến hẻm, từng khu dân cư tại những khu vực hoạt động thường xuyên</p>
@@ -178,7 +265,7 @@
                         <span class="s-card__number">01</span>
                     </div>
 
-                    <div class="s-card">
+                    <div class="s-card reveal reveal-scale reveal-delay-2">
                         <div class="s-card__content">
                             <h3>Phân tích minh bạch</h3>
                             <p>Đánh giá rõ ưu - nhược điểm từng căn nhà trước khi khách hàng ra quyết định</p>
@@ -186,7 +273,7 @@
                         <span class="s-card__number">02</span>
                     </div>
 
-                    <div class="s-card">
+                    <div class="s-card reveal reveal-scale reveal-delay-3">
                         <div class="s-card__content">
                             <h3>Đàm phán giá tốt</h3>
                             <p>Thương lượng trực tiếp với chủ nhà để tối đa quyền lợi cho khách mua</p>
@@ -194,7 +281,7 @@
                         <span class="s-card__number">03</span>
                     </div>
 
-                    <div class="s-card">
+                    <div class="s-card reveal reveal-scale reveal-delay-4">
                         <div class="s-card__content">
                             <h3>Đồng hành trọn quy trình</h3>
                             <p>Từ xem nhà, đặt cọc, công chứng đến sang tên hoàn chỉnh</p>
@@ -211,8 +298,8 @@
         </section>
 
 
-        <section class="core-values reveal active">
-            <div class="core-values__container reveal active">
+        <section class="core-values reveal">
+            <div class="core-values__container reveal">
                 <div class="core-values__spacer"></div>
 
                 <div class="core-values__content">
@@ -222,29 +309,29 @@
                         <p class="core-values__subtitle">Những nguyên tắc làm nghề được giữ vững trong mọi giao dịch</p>
                     </div>
 
-                    <div class="core-values__list reveal active">
-                        <div class="value-item ">
+                    <div class="core-values__list">
+                        <div class="value-item reveal reveal-left reveal-delay-1">
                             <div class="value-item__num">1</div>
                             <div class="value-item__text">
                                 <h3>Uy tín</h3>
                                 <p>Nói đúng sự thật - không "tô vẽ" - không dẫn khách chỉ để bán</p>
                             </div>
                         </div>
-                        <div class="value-item">
+                        <div class="value-item reveal reveal-left reveal-delay-2">
                             <div class="value-item__num">2</div>
                             <div class="value-item__text">
                                 <h3>Minh bạch</h3>
                                 <p>Pháp lý minh bạch - giá cả rõ ràng - không mập mờ - không phát sinh</p>
                             </div>
                         </div>
-                        <div class="value-item">
+                        <div class="value-item reveal reveal-left reveal-delay-3">
                             <div class="value-item__num">3</div>
                             <div class="value-item__text">
                                 <h3>Tận tâm</h3>
                                 <p>Làm việc như mua nhà cho chính mình - luôn đặt khách hàng lên trước</p>
                             </div>
                         </div>
-                        <div class="value-item">
+                        <div class="value-item reveal reveal-left reveal-delay-4">
                             <div class="value-item__num">4</div>
                             <div class="value-item__text">
                                 <h3>Hiệu quả</h3>
@@ -258,10 +345,10 @@
 
         <section class="quote-bar reveal">
             <div class="quote-container">
-<div class="quote-icons">
-    <i class="mark-georgia">“</i>
-    <i class="mark-georgia">”</i>
-</div>
+                <div class="quote-icons">
+                    <i class="mark-georgia">“</i>
+                    <i class="mark-georgia">”</i>
+                </div>
 
                 <div class="quote-content">
                     <p>Minh bạch - Chủ động - Đồng hành đến cùng <br /> Đó là lý do khiến khách hàng của Ngọc đến từ
@@ -276,7 +363,7 @@
             </div>
         </section>
 
-        <section class="experience">
+        <section class="experience reveal">
             <div class="experience__container">
                 <div class="experience__header">
                     <span class="section-label reveal">KINH NGHIỆM</span>
@@ -289,28 +376,28 @@
                 </div>
 
                 <div class="experience__grid">
-                    <div class="ex-card card-dark">
+                    <div class="ex-card card-dark reveal reveal-scale reveal-delay-1">
                         <div class="ex-card__header">
                             <span>Kinh nghiệm</span>
                         </div>
                         <div class="ex-card__number"><span class="count">5</span>+</div>
                     </div>
 
-                    <div class="ex-card card-medium">
+                    <div class="ex-card card-medium reveal reveal-scale reveal-delay-2">
                         <div class="ex-card__header">
                             <span>Giao dịch</span>
                         </div>
                         <div class="ex-card__number"><span class="count">250</span>+</div>
                     </div>
 
-                    <div class="ex-card card-light">
+                    <div class="ex-card card-light reveal reveal-scale reveal-delay-3">
                         <div class="ex-card__header">
                             <span>Khách hàng</span>
                         </div>
                         <div class="ex-card__number"><span class="count">1000</span>+</div>
                     </div>
 
-                    <div class="ex-card card-gold">
+                    <div class="ex-card card-gold reveal reveal-scale reveal-delay-4">
                         <div class="ex-card__header">
                             <span>Khảo sát nhà</span>
                         </div>
@@ -332,7 +419,7 @@
                 </header>
 
                 <div class="expertise-slim__grid">
-                    <div class="slim-box slim-box--1">
+                    <div class="slim-box slim-box--1 reveal reveal-scale reveal-delay-1">
                         <div class="slim-box__inner">
                             <h3>Khu vực thường xuyên</h3>
                             <div class="icon"><i class="fa-solid fa-location-dot"></i></div>
@@ -341,7 +428,7 @@
                         </div>
                     </div>
 
-                    <div class="slim-box slim-box--2">
+                    <div class="slim-box slim-box--2 reveal reveal-scale reveal-delay-2">
                         <div class="slim-box__inner">
                             <h3>Phân khúc sản phẩm</h3>
                             <div class="icon"><i class="fa-solid fa-house"></i></div>
@@ -354,7 +441,7 @@
                         </div>
                     </div>
 
-                    <div class="slim-box slim-box--3">
+                    <div class="slim-box slim-box--3 reveal reveal-scale reveal-delay-3">
                         <div class="slim-box__inner">
                             <h3>Khách hàng phù hợp</h3>
                             <div class="icon"><i class="fa-regular fa-user"></i></div>
@@ -373,23 +460,24 @@
             </div>
         </section>
 
-        <section class="impressive-deals reveal active">
-            <div class="deals-container reveal active">
+        <section class="impressive-deals reveal">
+            <div class="deals-container reveal">
                 <div class="section-header">
                     <span class="section-label reveal">ẤN TƯỢNG</span>
                     <h2 class="section-title reveal reveal-1">Ngọc NN và <span>giao dịch ấn tượng</span></h2>
                     <p>Mang đến cho khách hàng nhiều giá trị và an tâm giao dịch</p>
                 </div>
+            </div> <!-- Đóng deals-container (Centered) -->
 
-                <div class="deals-grid">
-                    <div class="deal-card">
+            <div class="deals-grid">
+                    <div class="deal-card reveal reveal-zoom reveal-delay-1">
                         <img src="https://cdn.chotot.com/OgK2MRg5cn4izooHFFOlTR8og6F5hnUc7zIx-wbJK8I/preset:listing/plain/57f59cf66b46985a52454a2cc5091e2a-2978710619282300611.jpg"
                             alt="Deal 9 tỷ">
                         <div class="deal-price">
                             <span class="number">7<span class="unit">tỷ</span></span>
                         </div>
                     </div>
-                    <div class="deal-card">
+                    <div class="deal-card reveal reveal-zoom reveal-delay-2">
                         <img src="https://cdn.thuviennhadat.vn/Upload/images/post-image/2503281210107205-6401-z6445670692938_afea7106f7f28c99ac62f89d0c1837c3.jpg"
                             alt="Deal 9 tỷ">
                         <div class="deal-price">
@@ -397,7 +485,7 @@
                         </div>
                     </div>
 
-                    <div class="deal-card">
+                    <div class="deal-card reveal reveal-zoom reveal-delay-3">
                         <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTSKpm8-KzW7p4OAP1ZsI2QZHl0qWz7hvbRhQ&s"
                             alt="Deal 9 tỷ">
                         <div class="deal-price">
@@ -405,7 +493,7 @@
                         </div>
                     </div>
 
-                    <div class="deal-card">
+                    <div class="deal-card reveal reveal-zoom reveal-delay-4">
                         <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSZrGDq3NMh_h7Lin6A-DkYqTMv5VJH92c5UQ&s"
                             alt="Deal 9 tỷ">
                         <div class="deal-price">
@@ -418,10 +506,10 @@
 
         <section class="quote-bar reveal">
             <div class="quote-container">
-<div class="quote-icons">
-    <i class="mark-georgia">“</i>
-    <i class="mark-georgia">”</i>
-</div>
+                <div class="quote-icons">
+                    <i class="mark-georgia">“</i>
+                    <i class="mark-georgia">”</i>
+                </div>
 
                 <div class="quote-content">
                     <p>"Ngọc NN không hứa giúp khách hàng mua rẻ nhất thị trường, </br> nhưng cam kết giúp bạn đặt giá
@@ -438,16 +526,15 @@
             </div>
         </section>
 
-        <section class="criteria-section reveal active">
+        <section class="criteria-section reveal">
             <div class="criteria-container">
 
                 <div class="criteria__left">
                     <span class="criteria__label">TIÊU CHÍ</span>
                     <div class="criteria__big-num">3</div>
-                    <h2 class="criteria__title">Tiêu chí<br>Vàng đồng hành</h2>
-                    <p style="font-size: 18px; color: #666; margin: 20px 0;">Sự uy tín được nuôi dưỡng qua thời gian.
-                    </p>
-                    <a href="#" class="btn-show-more" style="margin-top: 50px;">XEM THÊM</a>
+                    <h2 class="criteria__title">Tiêu chí <span>Vàng</span><br>đồng hành cùng bạn</h2>
+                    <p class="criteria__desc">Sự uy tín được nuôi dưỡng qua giá trị thật.</p>
+                    <a href="#" class="button btn-show-more">XEM THÊM</a>
                 </div>
 
                 <div class="criteria__middle">
@@ -458,7 +545,7 @@
                 </div>
 
                 <div class="criteria__right">
-                    <div class="criteria-item">
+                    <div class="criteria-item reveal reveal-right reveal-delay-1">
                         <div class="criteria-item__icon">
                             <i class="fa-solid fa-star-of-david"></i>
                         </div>
@@ -468,7 +555,7 @@
                         </div>
                     </div>
 
-                    <div class="criteria-item">
+                    <div class="criteria-item reveal reveal-right reveal-delay-2">
                         <div class="criteria-item__icon">
                             <i class="fa-regular fa-handshake"></i>
                         </div>
@@ -478,7 +565,7 @@
                         </div>
                     </div>
 
-                    <div class="criteria-item">
+                    <div class="criteria-item reveal reveal-right reveal-delay-3">
                         <div class="criteria-item__icon">
                             <i class="fa-solid fa-award"></i>
                         </div>
@@ -491,8 +578,8 @@
             </div>
         </section>
 
-        <section class="moments-section reveal active">
-            <div class="moments-container active">
+        <section class="moments-section reveal">
+            <div class="moments-container">
 
                 <div class="section-header">
                     <span class="section-label">KHOẢNH KHẮC</span>
@@ -501,37 +588,37 @@
                 </div>
 
                 <div class="moments-grid">
-                    <div class="moment-item moment-item--large">
+                    <div class="moment-item moment-item--large reveal reveal-scale reveal-delay-1">
                         <img src="https://images.pexels.com/photos/34973979/pexels-photo-34973979.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
                             alt="Khoảnh khắc Ngọc NN">
                     </div>
 
-                    <div class="moment-item moment-item--square">
+                    <div class="moment-item moment-item--square reveal reveal-scale reveal-delay-2">
                         <img src="https://images2.thanhnien.vn/528068263637045248/2025/5/8/bcons-solary-1-1746707968497895317632.jpg"
                             alt="Khoảnh khắc Ngọc NN">
                     </div>
 
-                    <div class="moment-item moment-item--square">
+                    <div class="moment-item moment-item--square reveal reveal-scale reveal-delay-3">
                         <img src="https://hoangphucphoto.com/wp-content/uploads/2024/11/anh-bds-4.webp"
                             alt="Khoảnh khắc Ngọc NN">
                     </div>
 
-                    <div class="moment-item moment-item--square">
+                    <div class="moment-item moment-item--square reveal reveal-scale reveal-delay-4">
                         <img src="https://images.pexels.com/photos/33639465/pexels-photo-33639465/free-photo-of-hinh-nh-tren-khong-c-a-can-h-cao-c-p-t-i-vi-t-nam.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
                             alt="Khoảnh khắc Ngọc NN">
                     </div>
 
-                    <div class="moment-item moment-item--square-bottom">
+                    <div class="moment-item moment-item--square-bottom reveal reveal-scale reveal-delay-5">
                         <img src="https://vcdn1-vnexpress.vnecdn.net/2026/01/17/DJI-20251211135501-0113-D-4716-1768629318.jpg?w=680&h=0&q=100&dpr=2&fit=crop&s=H5hsy4yikqAyrUZfqRu30A"
                             alt="Khoảnh khắc Ngọc NN">
                     </div>
 
-                    <div class="moment-item moment-item--square">
+                    <div class="moment-item moment-item--square reveal reveal-scale reveal-delay-6">
                         <img src="https://thietkenoithatatz.com/wp-content/uploads/2021/11/3-4.jpg"
                             alt="Khoảnh khắc Ngọc NN">
                     </div>
 
-                    <div class="moment-item moment-item--wide">
+                    <div class="moment-item moment-item--wide reveal reveal-scale reveal-delay-7">
                         <img src="https://tq4.mediacdn.vn/2020/7/21/hinh-9-1595295532400867517071-crop-15952955421051108753658.jpg"
                             alt="Khoảnh khắc Ngọc NN">
                     </div>
@@ -549,10 +636,10 @@
 
         <section class="quote-bar reveal">
             <div class="quote-container">
-<div class="quote-icons">
-    <i class="mark-georgia">“</i>
-    <i class="mark-georgia">”</i>
-</div>
+                <div class="quote-icons">
+                    <i class="mark-georgia">“</i>
+                    <i class="mark-georgia">”</i>
+                </div>
 
                 <div class="quote-content">
                     <p>"Ngọc NN không hứa giúp khách hàng mua rẻ nhất thị trường, </br> nhưng cam kết giúp bạn đặt giá
@@ -569,8 +656,8 @@
             </div>
         </section>
 
-        <section class="feedback-section reveal active">
-            <div class="feedback-container reveal active">
+        <section class="feedback-section reveal">
+            <div class="feedback-container reveal">
 
                 <div class="feedback__content">
                     <div class="section-header">
@@ -582,22 +669,22 @@
                 </div>
 
                 <div class="feedback__gallery">
-                    <div class="feedback-img">
+                    <div class="feedback-img reveal reveal-zoom reveal-delay-1">
                         <img src="https://images.pexels.com/photos/21575151/pexels-photo-21575151/free-photo-of-thanh-ph-toa-nha-ch-c-tr-i-thanh-th-c-nh-quan-thanh-ph.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
                             alt="Feedback">
                     </div>
-                    <div class="feedback-img">
+                    <div class="feedback-img reveal reveal-zoom reveal-delay-2">
                         <img src="https://kdiholdings.com.vn/wp-content/uploads/2026/01/bat-dong-san-la-gi-1-1024x619.jpg"
                             alt="Feedback">
                     </div>
-                    <div class="feedback-img">
+                    <div class="feedback-img reveal reveal-zoom reveal-delay-3">
                         <img src="https://batdongsanexpress.vn/wp-content/uploads/2016/02/saigon2015-19.jpg"
                             alt="Feedback">
                     </div>
-                    <div class="feedback-img">
+                    <div class="feedback-img reveal reveal-zoom reveal-delay-4">
                         <img src="https://kienangroup.vn/upload/baiviet/bdsmuabanandchothue-1602.jpg" alt="Feedback">
                     </div>
-                    <div class="feedback-img">
+                    <div class="feedback-img reveal reveal-zoom reveal-delay-5">
                         <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQzUbZwRALJNDR7OaCmq5wT8fVFLICF4S-89A&s"
                             alt="Feedback">
                     </div>
@@ -606,15 +693,15 @@
             </div>
         </section>
 
-        <section class="commit-sectionani reveal active">
+        <section class="commit-sectionani">
             <div class="commit-container">
 
-                <div class="commit__img ani-item active">
+                <div class="commit__img reveal reveal-left">
                     <img src="https://anviethouse.vn/wp-content/uploads/2018/08/Thiet-ke-van-phong-hien-dai-2-1.jpg"
                         alt="Cam kết Ngọc NN">
                 </div>
 
-                <div class="commit__content ani-item revseal active">
+                <div class="commit__content reveal reveal-right reveal-delay-1">
                     <div class="commit__header">
                         <span class="tag">CAM KẾT</span>
                         <h2>Cam kết từ <span>Ngọc NN</span></h2>
@@ -623,7 +710,7 @@
 
                     <div class="commit__grid">
 
-                        <div class="commit-item ani-item" style="--i: 1">
+                        <div class="commit-item reveal reveal-right reveal-delay-1">
                             <div class="commit-item__icon"><i class="fa-regular fa-thumbs-up"></i></div>
                             <div class="commit-item__text">
                                 <h4>Không dấu thông tin</h4>
@@ -631,7 +718,7 @@
                             </div>
                         </div>
 
-                        <div class="commit-item ani-item" style="--i: 2">
+                        <div class="commit-item reveal reveal-right reveal-delay-2">
                             <div class="commit-item__icon"><i class="fa-regular fa-bookmark"></i></div>
                             <div class="commit-item__text">
                                 <h4>Tư vấn đúng giá trị</h4>
@@ -639,7 +726,7 @@
                             </div>
                         </div>
 
-                        <div class="commit-item ani-item" style="--i: 3">
+                        <div class="commit-item reveal reveal-right reveal-delay-3">
                             <div class="commit-item__icon"><i class="fa-solid fa-shield"></i></div>
                             <div class="commit-item__text">
                                 <h4>Bảo vệ quyền lợi khách</h4>
@@ -647,7 +734,7 @@
                             </div>
                         </div>
 
-                        <div class="commit-item ani-item" style="--i: 4">
+                        <div class="commit-item reveal reveal-right reveal-delay-4">
                             <div class="commit-item__icon"><i class="fa-regular fa-handshake"></i></div>
                             <div class="commit-item__text">
                                 <h4>Đồng hành đến cuối cùng</h4>
@@ -669,10 +756,10 @@
 
         <section class="quote-bar reveal">
             <div class="quote-container">
-<div class="quote-icons">
-    <i class="mark-georgia">“</i>
-    <i class="mark-georgia">”</i>
-</div>
+                <div class="quote-icons">
+                    <i class="mark-georgia">“</i>
+                    <i class="mark-georgia">”</i>
+                </div>
                 <div class="quote-content">
                     <p>Khách hàng tìm đến Ngọc NN là để mua được nhà - Khách hàng không phải đi "tìm nhà", </br>
                         Tìm nhà là nhiệm vụ của môi giới</p>
@@ -754,7 +841,10 @@
                 <div class="footer__brand">
                     <h2>NGỌC NN</h2>
                     <div class="footer__brand-sub">NHÀ MÔI GIỚI BĐS UY TÍN TẠI TP HCM</div>
-                    <p>Giúp bạn tìm <strong>đúng nhà – đúng giá – đúng pháp lý</strong>. Chuyên nhà phố, nhà hẻm, nhà mặt tiền tại Gò Vấp – Phú Nhuận – Bình Thạnh – Thủ Đức – Quận 3, Quận 10, Tân Bình, Tân Phú... Với Ngọc NN, mỗi giao dịch không chỉ là mua/bán được một căn nhà, mà là <strong>giúp khách hàng tránh rủi ro – tiết kiệm tiền – và an tâm lâu dài</strong> sau khi mua.</p>
+                    <p>Giúp bạn tìm <strong>đúng nhà – đúng giá – đúng pháp lý</strong>. Chuyên nhà phố, nhà hẻm, nhà
+                        mặt tiền tại Gò Vấp – Phú Nhuận – Bình Thạnh – Thủ Đức – Quận 3, Quận 10, Tân Bình, Tân Phú...
+                        Với Ngọc NN, mỗi giao dịch không chỉ là mua/bán được một căn nhà, mà là <strong>giúp khách hàng
+                            tránh rủi ro – tiết kiệm tiền – và an tâm lâu dài</strong> sau khi mua.</p>
                 </div>
 
                 <div class="footer__column">
@@ -783,16 +873,17 @@
                 <div class="footer__column">
                     <h4>KẾT NỐI NGỌC NN</h4>
                     <ul class="footer__contact-info">
-                        <li><i class="fas fa-phone-alt"></i> Hotline: <strong>0888819198</strong></li>
-                        <li><i class="fas fa-comments"></i> Zalo: zalo.com/0888819198</li>
-                        <li><i class="fas fa-globe"></i> Website: ngocnn.vn</li>
-                        <li><i class="fas fa-envelope"></i> Email: ngocnn.vnn@gmail.com</li>
-                        <li><i class="fas fa-map-marker-alt"></i> Địa chỉ: 183/4 Phạm Văn Đồng, Hiệp Bình Thủ Đức</li>
+                        <li><i class="fas fa-phone-alt"></i><strong>0888819198</strong></li>
+                        <li><i class="fas fa-comments"></i>zalo.com/0888819198</li>
+                        <li><i class="fas fa-globe"></i>ngocnn.vn</li>
+                        <li><i class="fas fa-envelope"></i>ngocnn.vnn@gmail.com</li>
+                        <li><i class="fas fa-map-marker-alt"></i>183/4 Phạm Văn Đồng, Hiệp Bình Thủ Đức</li>
                     </ul>
 
                     <div class="footer__badges">
                         <img src="https://www.dmca.com/img/dmca-compliant-grayscale.png" alt="DMCA">
-                        <img src="https://realtycandy.com/wp-content/uploads/bb-plugin/cache/The-Joy-of-SSL-landscape-c5b03a8795fb50e615cf246b8d38ebd8-6yg97adjtowh.png" alt="SSL">
+                        <img src="https://realtycandy.com/wp-content/uploads/bb-plugin/cache/The-Joy-of-SSL-landscape-c5b03a8795fb50e615cf246b8d38ebd8-6yg97adjtowh.png"
+                            alt="SSL">
                     </div>
                 </div>
             </div>
@@ -820,33 +911,28 @@
                 All rights reserved ©2025 Ngọc NN. Website Được Quản Lý Và Duy Trì Bởi Team Ngọc NN và cộng sự
             </div>
         </footer>
-        
+
     </main>
 
     <script>
+var swiper = new Swiper(".aboutSwiper", {
+    direction: "horizontal",
+    loop: true,
+    centeredSlides: true,
+    slidesPerView: 2.2, /* Cố định số slide hiển thị để tính toán tâm chuẩn xác */
+    spaceBetween: 20,
+    speed: 1000,
+    autoplay: {
+        delay: 3000,
+        disableOnInteraction: false,
+    },
+    observer: true,
+    observeParents: true,
+    centeredSlidesBounds: true,
+    loopedSlides: 6,
+});
+        
         document.addEventListener("DOMContentLoaded", function () {
-            const observerOptions = {
-                threshold: 0.1, // Hiện ra 10% là kích hoạt
-                rootMargin: '0px 0px -50px 0px'
-            };
-
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        // Khi cuộn tới: Thêm active để trồi lên
-                        entry.target.classList.add('active');
-                    } else {
-                        // KHI CUỘN QUA (Lên hoặc Xuống): Gỡ active để nó ẩn lại
-                        // Đây là chỗ giúp animation lặp lại vĩnh viễn
-                        entry.target.classList.remove('active');
-                    }
-                });
-            }, observerOptions);
-
-            // Quét tất cả các thẻ có class .reveal
-            const revealElements = document.querySelectorAll('.reveal');
-            revealElements.forEach(el => observer.observe(el));
-
             // --- COUNT UP ANIMATION ---
             const countElements = document.querySelectorAll('.count');
             const countObserver = new IntersectionObserver((entries) => {
@@ -860,21 +946,21 @@
             }, { threshold: 0.5 });
 
             function animateCount(el, target) {
+                if (isNaN(target) || target <= 0) return;
                 let current = 0;
-                const duration = 1500; // 1.5s - Tốc độ nhanh theo yêu cầu
+                const duration = 1500;
                 const start = performance.now();
 
                 function update(now) {
                     const progress = Math.min((now - start) / duration, 1);
-                    // Ease out cubic cho cảm giác mượt mà
                     const easedProgress = 1 - Math.pow(1 - progress, 3);
                     const value = Math.floor(easedProgress * target);
 
-                    el.innerText = value;
+                    el.textContent = value;
                     if (progress < 1) {
                         requestAnimationFrame(update);
                     } else {
-                        el.innerText = target;
+                        el.textContent = target;
                     }
                 }
                 requestAnimationFrame(update);
@@ -893,145 +979,317 @@
 
         coreObserver.observe(document.querySelector('.core-values'));
 
-        (function() {
-    // 1. TỰ ĐỘNG CHÈN CSS
-    const style = document.createElement('style');
-    style.innerHTML = `
+        (function () {
+            // 1. TỰ ĐỘNG CHÈN CSS (Thiết kế Luxury & Ultra-Premium)
+            const style = document.createElement('style');
+            style.innerHTML = `
         #lb-master {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             z-index: 99999999;
-            display: none; justify-content: center; align-items: center;
-            backdrop-filter: blur(4px);
+            display: none; flex-direction: column;
+            background: rgba(10, 10, 10, 0.9);
+            color: #fff; font-family: 'Inter', sans-serif;
+            transition: all 0.4s ease;
         }
-        #lb-master.show { display: flex; }
+        #lb-master.show { display: flex; animation: lbFadeIn 0.5s ease; }
+
+        /* Header Bar */
+        #lb-header {
+            height: 70px; display: flex; justify-content: space-between; align-items: center;
+            padding: 0 40px; background: rgba(0,0,0,0.3); z-index: 1001;
+            backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px);
+        }
+        #lb-counter { font-size: 16px; font-weight: 500; letter-spacing: 2px; color: rgba(255,255,255,0.7); }
         
+        #lb-actions { display: flex; gap: 25px; align-items: center; }
+        .lb-action-btn {
+            background: none; border: none; color: rgba(255,255,255,0.7);
+            font-size: 20px; cursor: pointer; transition: 0.3s;
+            padding: 10px; border-radius: 50%; display: flex; align-items: center;
+        }
+        .lb-action-btn:hover { color: #d4af37; transform: scale(1.1); }
+        .lb-action-btn.close-btn { font-size: 26px; }
+
+        /* Share Dropdown */
+        .lb-share-container { position: relative; }
+        #lb-share-menu {
+            position: absolute; top: 50px; right: 0;
+            background: rgba(30, 30, 30, 0.9);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 12px; padding: 10px 0;
+            width: 220px; display: none; flex-direction: column;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            z-index: 1002;
+        }
+        #lb-share-menu.active { display: flex; animation: lbDropDown 0.3s ease; }
+        
+        .lb-share-item {
+            padding: 12px 20px; color: #ccc; text-decoration: none;
+            font-size: 14px; display: flex; align-items: center; gap: 12px;
+            transition: 0.2s; cursor: pointer; border: none; background: none; width: 100%;
+        }
+        .lb-share-item:hover { background: rgba(212, 175, 55, 0.15); color: #d4af37; }
+        .lb-share-item i { width: 20px; font-size: 16px; text-align: center; }
+
+        /* Body & Image */
+        #lb-body {
+            flex: 1; position: relative; display: flex; justify-content: center; align-items: center;
+            overflow: hidden;
+        }
         #lb-img-box {
-            position: relative; max-width: 85%; max-height: 85%;
+            position: relative; width: 90%; height: 90%;
             display: flex; justify-content: center; align-items: center;
+            transition: transform 0.1s ease;
         }
-        
         #lb-img-main {
-            max-width: 100%; max-height: 90vh;
-            border-radius: 4px; object-fit: contain;
-            animation: lbZoom 0.3s ease;
-            box-shadow: 0 0 30px rgba(0,0,0,0.5);
+            max-width: 100%; max-height: 100%;
+            object-fit: contain; transition: transform 0.3s cubic-bezier(0.2, 0, 0.2, 1);
+            box-shadow: 0 10px 50px rgba(0,0,0,0.8);
         }
 
-        .lb-control {
-            position: absolute; background: none; border: none;
-            color: #d4af37; font-size: 50px; cursor: pointer;
-            padding: 20px; transition: 0.3s; user-select: none;
-            z-index: 100;
+        /* Nav Arrows */
+        .lb-nav {
+            position: absolute; top: 50%; transform: translateY(-50%);
+            background: none; border: none; color: rgba(255,255,255,0.3);
+            font-size: 50px; cursor: pointer; transition: 0.3s; z-index: 1000;
+            padding: 40px 20px;
         }
-        .lb-control:hover { color: #fff; transform: scale(1.2); }
-        
-        .lb-close { top: -50px; right: -50px; font-size: 60px; color: #fff; }
-        .lb-prev { left: -80px; }
-        .lb-next { right: -80px; }
+        .lb-nav:hover { color: #d4af37; transform: translateY(-50%) scale(1.2); }
+        .lb-prev { left: 40px; }
+        .lb-next { right: 40px; }
 
-        @keyframes lbZoom {
-            from { transform: scale(0.8); opacity: 0; }
-            to { transform: scale(1); opacity: 1; }
+        /* Footer & Caption */
+        #lb-footer {
+            height: 60px; display: flex; justify-content: center; align-items: center;
+            padding: 0 40px; background: rgba(0,0,0,0.3);
+            backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px);
+        }
+        #lb-caption {
+            font-size: 14px; color: rgba(255,255,255,0.6); font-weight: 300;
+            letter-spacing: 1px; text-align: center;
         }
 
-        /* Responsive cho mobile */
+        /* Animations */
+        @keyframes lbFadeIn { from { opacity: 0; } to { opacity: 1; } }
+        @keyframes lbDropDown { from { transform: translateY(-10px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+
+        /* Mobile */
         @media (max-width: 768px) {
-            .lb-control { font-size: 40px; padding: 10px; }
-            .lb-prev { left: 0px; bottom: -60px; top: auto; }
-            .lb-next { right: 0px; bottom: -60px; top: auto; }
-            .lb-close { top: -60px; right: 0; }
-            #lb-img-main { max-width: 95%; }
+            #lb-header { padding: 0 15px; }
+            #lb-actions { gap: 10px; }
+            .lb-nav { font-size: 30px; padding: 20px 10px; }
+            .lb-prev { left: 10px; } .lb-next { right: 10px; }
+            #lb-share-menu { right: -50px; }
         }
 
-        /* ÉP TRỎ CHUỘT VÀ MỞ KHÓA CLICK CHO TẤT CẢ CÁC MỤC */
+        /* Triggers Pointer */
         .deal-card, .moment-item, .feedback-img { cursor: zoom-in !important; }
-        
-        /* Chống các thẻ con (text, span, div overlay) cướp mất sự kiện click của ảnh */
-        .deal-price, .deal-card span, .moment-item::after, .feedback-img::after { 
-            pointer-events: none !important; 
+
+        /* Feedback Content Luxury Redesign */
+        .feedback__content {
+            padding-right: 40px;
+        }
+        .feedback-section .section-header {
+            margin-bottom: 30px;
+        }
+        .feedback-section .section-header h2 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 36px;
+            font-weight: 700;
+            color: var(--color-text);
+            line-height: 1.3;
+            margin: 15px 0;
+            letter-spacing: 1px;
+            text-transform: none;
+        }
+        .feedback-section .section-header h2 span {
+            color: var(--color-primary);
+            position: relative;
+            display: inline-block;
+        }
+        .feedback-section .section-header p {
+            font-family: 'Inter', sans-serif;
+            font-size: 18px;
+            color: #777;
+            max-width: 450px;
+            line-height: 1.6;
+            margin-bottom: 25px;
+            font-weight: 400;
         }
     `;
-    document.head.appendChild(style);
+            document.head.appendChild(style);
 
-    // 2. TỰ ĐỘNG TẠO HTML LIGHTBOX (Giữ nguyên)
-    const lb = document.createElement('div');
-    lb.id = 'lb-master';
-    lb.innerHTML = `
-        <div id="lb-img-box">
-            <span class="lb-control lb-close" id="lbClose">&times;</span>
-            <button class="lb-control lb-prev" id="lbPrev">&#10094;</button>
-            <img id="lb-img-main" src="" alt="Ngọc NN Gallery">
-            <button class="lb-control lb-next" id="lbNext">&#10095;</button>
+            // 2. TẠO HTML GIAO DIỆN LUXURY
+            const lb = document.createElement('div');
+            lb.id = 'lb-master';
+            lb.innerHTML = `
+        <div id="lb-header">
+            <div id="lb-counter">0 / 0</div>
+            <div id="lb-actions">
+                <button class="lb-action-btn" id="lbFullscreen" title="Toàn màn hình"><i class="fas fa-expand"></i></button>
+                <div class="lb-share-container">
+                    <button class="lb-action-btn" id="lbShareBtn" title="Chia sẻ"><i class="fas fa-share-nodes"></i></button>
+                    <div id="lb-share-menu">
+                        <button class="lb-share-item" id="shareFB"><i class="fab fa-facebook-f"></i> Facebook</button>
+                        <button class="lb-share-item" id="sharePin"><i class="fab fa-pinterest-p"></i> Pinterest</button>
+                        <button class="lb-share-item" id="shareCopy"><i class="fas fa-link"></i> Sao chép liên kết</button>
+                    </div>
+                </div>
+                <button class="lb-action-btn" id="lbZoomReset" title="Reset Zoom"><i class="fas fa-magnifying-glass"></i></button>
+                <button class="lb-action-btn close-btn" id="lbClose"><i class="fas fa-xmark"></i></button>
+            </div>
+        </div>
+        <div id="lb-body">
+            <button class="lb-nav lb-prev" id="lbPrev">&#10094;</button>
+            <div id="lb-img-box">
+                <img id="lb-img-main" src="" alt="">
+            </div>
+            <button class="lb-nav lb-next" id="lbNext">&#10095;</button>
+        </div>
+        <div id="lb-footer">
+            <div id="lb-caption"></div>
         </div>
     `;
-    document.body.appendChild(lb);
+            document.body.appendChild(lb);
 
-    const lbMain = document.getElementById('lb-master');
-    const lbImg = document.getElementById('lb-img-main');
-    let images = [];
-    let currIdx = 0;
+            const lbMain = document.getElementById('lb-master');
+            const lbImg = document.getElementById('lb-img-main');
+            const lbCounter = document.getElementById('lb-counter');
+            const lbCaption = document.getElementById('lb-caption');
+            const shareMenu = document.getElementById('lb-share-menu');
+            let images = [];
+            let currIdx = 0;
+            let zoomLevel = 1;
 
-    // 3. LOGIC XỬ LÝ SỰ KIỆN (MỞ RỘNG RA 3 PHÂN ĐOẠN)
-    document.addEventListener('click', function(e) {
-        // Kiểm tra xem click vào thằng nào trong 3 hội này
-        const target = e.target.closest('.deal-card, .moment-item, .feedback-img');
-        
-        if (target) {
-            e.preventDefault();
-            
-            // GOM TẤT CẢ ẢNH TỪ 3 NGUỒN VÀO 1 MẢNG ĐỂ LƯỚT LIÊN TỤC
-            images = Array.from(document.querySelectorAll('.deal-card img, .moment-item img, .feedback-img img'));
-            
-            const clickedImg = target.querySelector('img');
-            
-            if (clickedImg) {
-                currIdx = images.indexOf(clickedImg);
-                lbImg.src = clickedImg.src;
+            // 3. LOGIC LIGHTBOX
+            document.addEventListener('click', function (e) {
+                const target = e.target.closest('.deal-card, .moment-item, .feedback-img');
+                if (target) {
+                    e.preventDefault();
+                    let selector = '';
+                    if (target.classList.contains('deal-card')) selector = '.deal-card img';
+                    else if (target.classList.contains('moment-item')) selector = '.moment-item img';
+                    else if (target.classList.contains('feedback-img')) selector = '.feedback-img img';
+
+                    images = Array.from(document.querySelectorAll(selector));
+                    const clickedImg = target.querySelector('img');
+                    if (clickedImg) {
+                        currIdx = images.indexOf(clickedImg);
+                        openLightbox();
+                    }
+                }
+            });
+
+            function openLightbox() {
+                updateImage();
                 lbMain.classList.add('show');
-                document.body.style.overflow = 'hidden'; // Khóa cuộn trang khi xem
+                document.body.style.overflow = 'hidden';
             }
-        }
-    });
 
-    // 4. HÀM CHUYỂN SLIDE
-    function navigate(step) {
-        if (images.length === 0) return;
-        currIdx = (currIdx + step + images.length) % images.length;
-        
-        // Hiệu ứng chuyển ảnh mượt hơn tí
-        lbImg.style.opacity = '0.5';
-        setTimeout(() => {
-            lbImg.src = images[currIdx].src;
-            lbImg.style.opacity = '1';
-        }, 50);
-    }
+            function updateImage() {
+                const img = images[currIdx];
+                lbImg.src = img.src;
+                lbCounter.innerText = `${currIdx + 1} / ${images.length}`;
+                lbCaption.innerText = img.alt || "Giao dịch ấn tượng - Ngọc NN";
+                zoomLevel = 1;
+                lbImg.style.transform = `scale(1)`;
+                shareMenu.classList.remove('active');
+            }
 
-    // 5. GÁN SỰ KIỆN NÚT BẤM
-    document.getElementById('lbNext').onclick = (e) => { e.stopPropagation(); navigate(1); };
-    document.getElementById('lbPrev').onclick = (e) => { e.stopPropagation(); navigate(-1); };
-    
-    const closeLightbox = () => {
-        lbMain.classList.remove('show');
-        document.body.style.overflow = 'auto'; // Mở lại cuộn trang
-    };
-    
-    document.getElementById('lbClose').onclick = closeLightbox;
-    lbMain.onclick = (e) => { if (e.target === lbMain) closeLightbox(); };
+            function closeLightbox() {
+                lbMain.classList.remove('show');
+                document.body.style.overflow = '';
+                shareMenu.classList.remove('active');
+                if (document.fullscreenElement) document.exitFullscreen();
+            }
 
-    // 6. PHÍM TẮT
-    document.addEventListener('keydown', (e) => {
-        if (!lbMain.classList.contains('show')) return;
-        if (e.key === "ArrowRight") navigate(1);
-        if (e.key === "ArrowLeft") navigate(-1);
-        if (e.key === "Escape") closeLightbox();
-    });
+            // Zoom Control
+            document.getElementById('lbZoomReset').onclick = () => { zoomLevel = 1; lbImg.style.transform = `scale(1)`; };
+            lbMain.onwheel = (e) => {
+                e.preventDefault();
+                zoomLevel += e.deltaY < 0 ? 0.1 : -0.1;
+                zoomLevel = Math.max(0.5, Math.min(3, zoomLevel));
+                lbImg.style.transform = `scale(${zoomLevel})`;
+            };
 
-    console.log("Super Lightbox (Deals + Moments + Feedback) by Gemini: Đã sẵn sàng!");
-})();
+            // Fullscreen
+            document.getElementById('lbFullscreen').onclick = () => {
+                if (!document.fullscreenElement) lbMain.requestFullscreen();
+                else document.exitFullscreen();
+            };
+
+            // Share Dropdown
+            document.getElementById('lbShareBtn').onclick = (e) => {
+                e.stopPropagation();
+                shareMenu.classList.toggle('active');
+            };
+
+            // Share Actions
+            document.getElementById('shareFB').onclick = () => {
+                window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(lbImg.src)}`, '_blank', 'width=600,height=400');
+            };
+            document.getElementById('sharePin').onclick = () => {
+                window.open(`https://www.pinterest.com/pin/create/button/?url=${encodeURIComponent(window.location.href)}&media=${encodeURIComponent(lbImg.src)}&description=${encodeURIComponent(lbCaption.innerText)}`, '_blank', 'width=750,height=550');
+            };
+            document.getElementById('shareCopy').onclick = function() {
+                navigator.clipboard.writeText(lbImg.src);
+                const originalText = this.innerHTML;
+                this.innerHTML = '<i class="fas fa-check"></i> Đã sao chép!';
+                setTimeout(() => { this.innerHTML = originalText; }, 2000);
+            };
+
+            // Navigation
+            function navigate(step) {
+                currIdx = (currIdx + step + images.length) % images.length;
+                updateImage();
+            }
+
+            document.getElementById('lbNext').onclick = (e) => { e.stopPropagation(); navigate(1); };
+            document.getElementById('lbPrev').onclick = (e) => { e.stopPropagation(); navigate(-1); };
+            document.getElementById('lbClose').onclick = closeLightbox;
+
+            // Close on Backdrop Click
+            lbMain.onclick = (e) => {
+                if (e.target === lbMain || e.target.id === 'lb-body') closeLightbox();
+                else if (!shareMenu.contains(e.target)) shareMenu.classList.remove('active');
+            };
+
+            document.addEventListener('keydown', (e) => {
+                if (!lbMain.classList.contains('show')) return;
+                if (e.key === "ArrowRight") navigate(1);
+                if (e.key === "ArrowLeft") navigate(-1);
+                if (e.key === "Escape") closeLightbox();
+            });
+
+            console.log("Luxury Gallery System Activated.");
+        })();
     </script>
     <script src="../js/animations.js"></script>
     <script src="../js/main.js"></script>
-    
+
+
+    <!-- LUXURY FLOATING CONTACT CLUSTER (RIGHT SIDE) -->
+    <div class="floating-contact">
+        <!-- BACK TO TOP (Appears on scroll) -->
+        <div class="back-to-top" data-label="Lên đầu trang">
+            <i class="fas fa-chevron-up"></i>
+        </div>
+
+        <a href="https://zalo.me/0901234567" class="contact-bubble contact-bubble--zalo" data-label="Chat Zalo" target="_blank">
+            <i class="fas fa-comment-dots"></i>
+        </a>
+        <a href="https://m.me/ngocnn" class="contact-bubble contact-bubble--chat" data-label="Messenger" target="_blank">
+            <i class="fab fa-facebook-messenger"></i>
+        </a>
+        <a href="tel:0901234567" class="contact-bubble contact-bubble--hotline" data-label="Hotline">
+            <i class="fas fa-phone"></i>
+        </a>
+    </div>
+
+    <!-- PC ONLY: CUSTOM CURSOR -->
+    <div class="custom-cursor"></div>
+    <div class="cursor-follower"></div>
 
 </body>
 

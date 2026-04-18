@@ -303,3 +303,139 @@ document.addEventListener('DOMContentLoaded', () => {
    LOGIC MODAL GALLERY - NGOC NN PROJECTS
    ========================================== */
 
+
+/* ============================================================
+   BLOCK: LUXURY POLISH LOGIC (PRELOADER, CURSOR, BACK TO TOP)
+   ============================================================ */
+
+// 1. PRELOADER HANDLER
+window.addEventListener("load", function() {
+    const preloader = document.querySelector(".preloader");
+    if (preloader) {
+        setTimeout(() => {
+            preloader.classList.add("preloader--hidden");
+        }, 1000); // 1s delay for luxury feeling
+    }
+});
+
+// 2. BACK TO TOP HANDLER
+document.addEventListener("DOMContentLoaded", function() {
+    const backToTop = document.querySelector(".back-to-top");
+    
+    if (backToTop) {
+        window.addEventListener("scroll", () => {
+            if (window.scrollY > 400) {
+                backToTop.classList.add("show");
+            } else {
+                backToTop.classList.remove("show");
+            }
+        });
+
+        backToTop.addEventListener("click", () => {
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth"
+            });
+        });
+    }
+});
+
+// 3. CUSTOM CURSOR ENGINE (PC ONLY)
+document.addEventListener("DOMContentLoaded", function() {
+    if (window.innerWidth > 1024) {
+        const cursor = document.querySelector(".custom-cursor");
+        const follower = document.querySelector(".cursor-follower");
+        
+        if (cursor && follower) {
+            document.addEventListener("mousemove", e => {
+                cursor.style.transform = `translate(${e.clientX}px, ${e.clientY}px)`;
+                
+                // Add a micro-delay for the follower (Luxury lag effect)
+                setTimeout(() => {
+                    follower.style.transform = `translate(${e.clientX}px, ${e.clientY}px)`;
+                }, 50);
+            });
+
+            // Hover effects for interactive elements
+            const hoverables = document.querySelectorAll("a, button, .contact-bubble, .header__hamburger, .deal-card");
+            
+            hoverables.forEach(el => {
+                el.addEventListener("mouseenter", () => {
+                    document.body.classList.add("cursor-hover");
+                });
+                el.addEventListener("mouseleave", () => {
+                    document.body.classList.remove("cursor-hover");
+                });
+            });
+        }
+    }
+});
+
+
+// 4. SCROLL PROGRESS HANDLER
+window.addEventListener("scroll", () => {
+    const progressBar = document.querySelector(".scroll-progress-bar");
+    if (progressBar) {
+        const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+        const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+        const scrolled = (winScroll / height) * 100;
+        progressBar.style.width = scrolled + "%";
+    }
+});
+
+// 5. ANIMATED COUNTER ENGINE
+document.addEventListener("DOMContentLoaded", function () {
+    const counters = document.querySelectorAll(".count");
+    const speed = 200; // The lower the slower
+
+    const animate = (counter) => {
+        const target = +counter.innerText;
+        const count = +counter.getAttribute("data-current") || 0;
+        const inc = target / speed;
+
+        if (count < target) {
+            const nextCount = Math.ceil(count + inc);
+            counter.innerText = nextCount;
+            counter.setAttribute("data-current", nextCount);
+            setTimeout(() => animate(counter), 1);
+        } else {
+            counter.innerText = target;
+        }
+    };
+
+    const counterObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const counter = entry.target;
+                if (!counter.classList.contains("animated")) {
+                    // Store final value and reset to 0
+                    const finalValue = counter.innerText.replace("+", "");
+                    counter.innerText = "0";
+                    counter.setAttribute("data-target", finalValue);
+                    
+                    // Run animation
+                    const runAnim = (c) => {
+                        const target = +c.getAttribute("data-target");
+                        const curr = +c.innerText;
+                        const increment = target / 50;
+
+                        if (curr < target) {
+                            c.innerText = Math.ceil(curr + increment);
+                            setTimeout(() => runAnim(c), 30);
+                        } else {
+                            c.innerText = target;
+                        }
+                    };
+                    
+                    runAnim(counter);
+                    counter.classList.add("animated");
+                }
+            }
+        });
+    }, { threshold: 0.5 });
+
+    counters.forEach(counter => {
+        counterObserver.observe(counter);
+    });
+});
+

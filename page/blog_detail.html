@@ -50,10 +50,11 @@
     <main class="blog-container ">
         <article class="post-body reveal active">
             <span class="post-category reveal active">Kinh nghiệm BĐS</span>
-                        <div class="post-media reveal active">
+            <div class="post-media reveal active">
                 <img src="https://i.ytimg.com/vi/ezj8iyjRq64/maxresdefault.jpg" class="main-cover">
             </div>
-            <h1 class="post-main-title reveal active">Bản đồ quy hoạch TP.HCM 2026: Những "toạ độ vàng" đang thay đổi diện mạo đô thị
+            <h1 class="post-main-title reveal active">Bản đồ quy hoạch TP.HCM 2026: Những "toạ độ vàng" đang thay đổi
+                diện mạo đô thị
             </h1>
 
             <div class="post-meta-author reveal active">
@@ -173,7 +174,7 @@
             </section>
         </article>
 
-      <section class="latest-news reveal active">
+        <section class="latest-news reveal active">
             <h2 class="latest-news-inner">MỚI NHẤT</h2>
             <div class="news-grid">
 
@@ -268,56 +269,7 @@
 
     </main>
 
-    <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            const wrapper = document.querySelector('.slider-wrapper');
-            const slides = document.querySelectorAll('.slide');
-            const dots = document.querySelectorAll('.dot');
-            let currentIndex = 0;
-            let autoSlide;
-
-            function goToSlide(index) {
-                // Luôn dùng index * 100 vì mỗi slide là 100%
-                wrapper.style.transform = `translateX(-${index * 100}%)`;
-
-                // Cập nhật class active cho Slide và Dot
-                slides.forEach(s => s.classList.remove('active'));
-                dots.forEach(d => d.classList.remove('active'));
-
-                slides[index].classList.add('active');
-                dots[index].classList.add('active');
-                currentIndex = index;
-            }
-
-            function startAutoSlide() {
-                autoSlide = setInterval(() => {
-                    currentIndex = (currentIndex + 1) % slides.length;
-                    goToSlide(currentIndex);
-                }, 5000);
-            }
-
-            // Sự kiện Click Dot
-            dots.forEach((dot, index) => {
-                dot.addEventListener('click', () => {
-                    clearInterval(autoSlide);
-                    goToSlide(index);
-                    startAutoSlide();
-                });
-            });
-
-            // Initialize
-            goToSlide(0);
-            startAutoSlide();
-
-            // Intersection Observer cho hiệu ứng Reveal (giữ lại của ông)
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) entry.target.classList.add('active');
-                });
-            }, { threshold: 0.1 });
-            document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-        });
-    </script>
+    <script src="../js/animations.js"></script>
 
     <script src="../js/animations.js"></script>
 </body>

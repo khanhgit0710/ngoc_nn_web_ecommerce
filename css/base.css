@@ -22,7 +22,13 @@
     --section-padding-pc: 60px 0;
     --section-margin-pc: 60px auto;
     --section-padding-mb: 40px 0;
-    --line-height-luxury: 1.8;  
+    --line-height-luxury: 1.8;
+
+    /* Responsive Side Padding (Hugging Layout) */
+    --side-padding-1024: 20px;
+    --side-padding-768: 15px;
+    --side-padding-480: 10px;
+    --side-padding-360: 8px;  
 
     /* Font size */
 
@@ -45,18 +51,20 @@
     
 }
 
-body {
-    font-family: var(--font-main);
-    line-height: 1.6;
-    overflow-x: hidden;
-    background-color: #ffffff; 
-    color: var(--color-text);
+html {
+    scroll-behavior: smooth;
 }
 
 body {
-    height: 100vh;
-    overflow: hidden;
+    overflow-x: hidden; /* Chuyển sang body để không làm hỏng position: sticky của header */
+    font-family: var(--font-main);
+    line-height: 1.6;
+    background-color: #ffffff; 
+    color: var(--color-text);
+    min-height: 100vh;
+    margin: 0;
 }
+
 
 a {
     text-decoration: none;
