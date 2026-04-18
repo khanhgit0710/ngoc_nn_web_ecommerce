@@ -386,53 +386,61 @@ window.addEventListener("scroll", () => {
 // 5. ANIMATED COUNTER ENGINE
 document.addEventListener("DOMContentLoaded", function () {
     const counters = document.querySelectorAll(".count");
-    const speed = 200; // The lower the slower
 
-    const animate = (counter) => {
-        const target = +counter.innerText;
-        const count = +counter.getAttribute("data-current") || 0;
-        const inc = target / speed;
-
-        if (count < target) {
-            const nextCount = Math.ceil(count + inc);
-            counter.innerText = nextCount;
-            counter.setAttribute("data-current", nextCount);
-            setTimeout(() => animate(counter), 1);
-        } else {
-            counter.innerText = target;
+    // Khởi tạo data-target chứa số gốc trên HTML trước khi bị thay đổi
+    counters.forEach(counter => {
+        const text = counter.innerText.replace(/[^0-9]/g, "");
+        const target = parseInt(text, 10);
+        if (!isNaN(target)) {
+            counter.setAttribute("data-target", target);
+            counter.innerText = "0"; // Đặt sẵn về 0
         }
-    };
+    });
 
     const counterObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                const counter = entry.target;
-                if (!counter.classList.contains("animated")) {
-                    // Store final value and reset to 0
-                    const finalValue = counter.innerText.replace("+", "");
-                    counter.innerText = "0";
-                    counter.setAttribute("data-target", finalValue);
-                    
-                    // Run animation
-                    const runAnim = (c) => {
-                        const target = +c.getAttribute("data-target");
-                        const curr = +c.innerText;
-                        const increment = target / 50;
+            const counter = entry.target;
+            const target = parseInt(counter.getAttribute("data-target"), 10);
+            
+            if (isNaN(target)) return;
 
-                        if (curr < target) {
-                            c.innerText = Math.ceil(curr + increment);
-                            setTimeout(() => runAnim(c), 30);
-                        } else {
-                            c.innerText = target;
-                        }
-                    };
+            if (entry.isIntersecting) {
+                // Khách hàng cuộn tới -> Bắt đầu đếm
+                if (!counter.classList.contains("is-counting")) {
+                    counter.classList.add("is-counting");
+                    counter.innerText = "0";
                     
-                    runAnim(counter);
-                    counter.classList.add("animated");
+                    setTimeout(() => {
+                        const duration = 2000; // Đếm mượt mà trong 2s
+                        const start = performance.now();
+
+                        const animate = (currentTime) => {
+                            if (!counter.classList.contains("is-counting")) return; // Dừng nếu đã cuộn qua
+
+                            const elapsed = currentTime - start;
+                            const progress = Math.min(elapsed / duration, 1);
+                            
+                            // Cubic ease-out cho cảm giác số chậm dần cực kỳ Luxury
+                            const easeProgress = 1 - Math.pow(1 - progress, 3);
+                            
+                            counter.innerText = Math.floor(easeProgress * target);
+
+                            if (progress < 1) {
+                                requestAnimationFrame(animate);
+                            } else {
+                                counter.innerText = target;
+                            }
+                        };
+                        requestAnimationFrame(animate);
+                    }, 200); // Trì hoãn nhẹ 200ms để hiệu ứng gộp tự nhiên
                 }
+            } else {
+                // Khách hàng cuộn qua -> Trả về 0 chờ lần sau
+                counter.classList.remove("is-counting");
+                counter.innerText = "0"; 
             }
         });
-    }, { threshold: 0.5 });
+    }, { threshold: 0.1 }); 
 
     counters.forEach(counter => {
         counterObserver.observe(counter);

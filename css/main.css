@@ -7953,6 +7953,11 @@ p,
 
 /* --- 2. CUSTOM LUXURY CURSOR (PC ONLY) --- */
 @media (min-width: 1025px) {
+    /* Tắt con trỏ mặc định để tối ưu trải nghiệm Custom Cursor */
+    body, a, button, .contact-bubble, .header__hamburger { 
+        cursor: none !important; 
+    }
+
     .custom-cursor {
         position: fixed;
         top: 0;
