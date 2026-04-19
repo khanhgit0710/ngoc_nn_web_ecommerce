@@ -51,40 +51,39 @@ document.addEventListener("DOMContentLoaded", function () {
 
 // ============================================================
 
-// Deals Grid Slider
+// Deals Grid Slider - Upgraded to Swiper for Infinite Auto-sliding
 document.addEventListener("DOMContentLoaded", function () {
-    const dealsGrid = document.querySelector('.deals-grid');
-    const prevBtn = document.getElementById('deals-prev');
-    const nextBtn = document.getElementById('deals-next');
-
-    if (dealsGrid && prevBtn && nextBtn) {
-        const isActive = () => window.innerWidth <= 768;
-
-        nextBtn.addEventListener('click', () => {
-            if (!isActive()) return;
-            const card = dealsGrid.querySelector('.deal-card');
-            if (!card) return;
-            const cardWidth = card.offsetWidth + parseInt(getComputedStyle(dealsGrid).gap || 15);
-            dealsGrid.scrollBy({ left: cardWidth, behavior: 'smooth' });
+    if (document.querySelector('.dealsSwiper')) {
+        const dealsSwiper = new Swiper('.dealsSwiper', {
+            slidesPerView: 1,
+            spaceBetween: 8,
+            loop: true,
+            autoplay: {
+                delay: 2500,
+                disableOnInteraction: false,
+                pauseOnMouseEnter: true,
+            },
+            speed: 800,
+            pagination: {
+                el: '.deals-pagination',
+                clickable: true,
+                dynamicBullets: true,
+            },
+            breakpoints: {
+                640: {
+                    slidesPerView: 2,
+                    spaceBetween: 8,
+                },
+                768: {
+                    slidesPerView: 3,
+                    spaceBetween: 8,
+                },
+                1024: {
+                    slidesPerView: 4,
+                    spaceBetween: 8,
+                },
+            }
         });
-
-        prevBtn.addEventListener('click', () => {
-            if (!isActive()) return;
-            const card = dealsGrid.querySelector('.deal-card');
-            if (!card) return;
-            const cardWidth = card.offsetWidth + parseInt(getComputedStyle(dealsGrid).gap || 15);
-            dealsGrid.scrollBy({ left: -cardWidth, behavior: 'smooth' });
-        });
-
-        const toggleButtons = () => {
-            if (!isActive()) return;
-            prevBtn.style.opacity = dealsGrid.scrollLeft <= 0 ? '0.3' : '1';
-            nextBtn.style.opacity = dealsGrid.scrollLeft + dealsGrid.offsetWidth >= dealsGrid.scrollWidth - 5 ? '0.3' : '1';
-        };
-
-        dealsGrid.addEventListener('scroll', toggleButtons);
-        window.addEventListener('resize', toggleButtons);
-        toggleButtons();
     }
 });
 
@@ -340,36 +339,7 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 });
 
-// 3. CUSTOM CURSOR ENGINE (PC ONLY)
-document.addEventListener("DOMContentLoaded", function() {
-    if (window.innerWidth > 1024) {
-        const cursor = document.querySelector(".custom-cursor");
-        const follower = document.querySelector(".cursor-follower");
-        
-        if (cursor && follower) {
-            document.addEventListener("mousemove", e => {
-                cursor.style.transform = `translate(${e.clientX}px, ${e.clientY}px)`;
-                
-                // Add a micro-delay for the follower (Luxury lag effect)
-                setTimeout(() => {
-                    follower.style.transform = `translate(${e.clientX}px, ${e.clientY}px)`;
-                }, 50);
-            });
-
-            // Hover effects for interactive elements
-            const hoverables = document.querySelectorAll("a, button, .contact-bubble, .header__hamburger, .deal-card");
-            
-            hoverables.forEach(el => {
-                el.addEventListener("mouseenter", () => {
-                    document.body.classList.add("cursor-hover");
-                });
-                el.addEventListener("mouseleave", () => {
-                    document.body.classList.remove("cursor-hover");
-                });
-            });
-        }
-    }
-});
+// 3. CUSTOM CURSOR REMOVED PER USER REQUEST
 
 
 // 4. SCROLL PROGRESS HANDLER
@@ -446,4 +416,3 @@ document.addEventListener("DOMContentLoaded", function () {
         counterObserver.observe(counter);
     });
 });
-

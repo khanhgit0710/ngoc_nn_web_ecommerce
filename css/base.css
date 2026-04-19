@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&family=Playfair+Display:wght@600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&family=Playfair+Display:ital,wght@0,600;0,700;1,600&family=Dancing+Script:wght@700&display=swap');
 
 :root {
     --color-primary: #b77246;
@@ -14,11 +14,11 @@
     --font-title: 'Playfair Display', serif;
 
     /* Precision Spacing từ Page Ruler */
-    --side-padding: 0;
+    --side-padding: 20px;
     --h-header: 60px;
     --h-banner: 465px;
     --content-max-width: 1000px;
-    --container-padding: 0;
+    --container-padding: 0 20px;
     --section-padding-pc: 60px 0;
     --section-margin-pc: 60px auto;
     --section-padding-mb: 40px 0;
@@ -173,11 +173,12 @@ ul {
     
 }
 
-.main-wrapper {
+.main-wrapper,
+.container-1000 {
     width: 100%;
     max-width: var(--content-max-width);
     margin: 0 auto;
-    padding: 0 0;
+    padding: 0 var(--side-padding);
 }
 
 section {
