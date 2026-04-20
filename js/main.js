@@ -140,9 +140,9 @@ document.addEventListener("DOMContentLoaded", function () {
             // Scrolling up
             header.classList.remove("header--hidden");
         }
-        
+
         lastScrollY = window.scrollY;
-        
+
         // Background glassmorphism effect on scroll
         if (window.scrollY > 50) {
             header.classList.add("header--scrolled");
@@ -158,18 +158,18 @@ document.addEventListener("DOMContentLoaded", function () {
 document.addEventListener("DOMContentLoaded", function () {
     const nav = document.querySelector('.header__nav');
     const logoGroup = document.querySelector('.header__logo-group');
-    
+
     // CHỈ CHẠY TRÊN MOBILE ĐỂ TRÁNH DOUBLE LOGO TRÊN PC
     if (nav && logoGroup && window.innerWidth <= 768) {
         // Chỉ thực hiện nếu chưa có header (tránh duplicate khi page load)
         if (!nav.querySelector('.nav-menu-header')) {
             const menuHeader = document.createElement('div');
             menuHeader.className = 'nav-menu-header';
-            
+
             // Clone logo để hiển thị trong menu
             const logoClone = logoGroup.cloneNode(true);
             menuHeader.appendChild(logoClone);
-            
+
             // Chèn vào đầu menu
             nav.insertBefore(menuHeader, nav.firstChild);
         }
@@ -183,13 +183,13 @@ document.addEventListener("DOMContentLoaded", function () {
 function toggleSection(targetClass, btn) {
     const grid = document.querySelector('.' + targetClass);
     if (!btn) btn = window.event.currentTarget; // Fallback
-    
+
     const textNode = btn.querySelector('.text');
-    
+
     if (grid) {
         grid.classList.toggle('is-expanded');
         btn.classList.toggle('is-active');
-        
+
         if (grid.classList.contains('is-expanded')) {
             textNode.innerText = 'THU GỌN';
         } else {
@@ -199,7 +199,7 @@ function toggleSection(targetClass, btn) {
             } else if (targetClass === 'commit-grid') {
                 textNode.innerText = 'XEM THÊM CAM KẾT';
             }
-            
+
             // Cuộn nhẹ về đầu khối khi thu gọn để không bị mất dấu
             grid.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
         }
@@ -207,13 +207,13 @@ function toggleSection(targetClass, btn) {
 }
 
 // Đảm bảo hàm toggleSection có mặt ở Global Scope
-window.toggleSection = function(targetClass, btn) {
+window.toggleSection = function (targetClass, btn) {
     const grid = document.querySelector('.' + targetClass);
     if (!grid) return;
-    
+
     // Toggle class mở rộng
     grid.classList.toggle('is-expanded');
-    
+
     // Toggle trạng thái nút bấm
     if (btn) {
         btn.classList.toggle('is-active');
@@ -235,7 +235,7 @@ window.toggleSection = function(targetClass, btn) {
 // ============================================================
 document.addEventListener("DOMContentLoaded", function () {
     // Sử dụng event delegation cấp cao nhất cho Footer
-    document.addEventListener('click', function(e) {
+    document.addEventListener('click', function (e) {
         // Chỉ xử lý khi click vào h4 của footer__column
         const header = e.target.closest('.footer__column h4');
         if (!header || window.innerWidth > 1200) return;
@@ -267,14 +267,14 @@ document.addEventListener('DOMContentLoaded', () => {
     function updateSlider() {
         const cardWidth = cards[0].offsetWidth + 20; // 20 là gap
         grid.style.transform = `translateX(${-index * cardWidth}px)`;
-        
+
         // Disable nút khi hết card (optional)
         prevBtn.style.opacity = index === 0 ? "0.5" : "1";
         prevBtn.style.pointerEvents = index === 0 ? "none" : "auto";
-        
+
         // Tính toán số card hiển thị dựa trên màn hình
         let visibleCards = window.innerWidth > 992 ? 3 : (window.innerWidth > 600 ? 2 : 1);
-        
+
         nextBtn.style.opacity = index >= cards.length - visibleCards ? "0.5" : "1";
         nextBtn.style.pointerEvents = index >= cards.length - visibleCards ? "none" : "auto";
     }
@@ -308,7 +308,7 @@ document.addEventListener('DOMContentLoaded', () => {
    ============================================================ */
 
 // 1. PRELOADER HANDLER
-window.addEventListener("load", function() {
+window.addEventListener("load", function () {
     const preloader = document.querySelector(".preloader");
     if (preloader) {
         setTimeout(() => {
@@ -318,9 +318,9 @@ window.addEventListener("load", function() {
 });
 
 // 2. BACK TO TOP HANDLER
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", function () {
     const backToTop = document.querySelector(".back-to-top");
-    
+
     if (backToTop) {
         window.addEventListener("scroll", () => {
             if (window.scrollY > 400) {
@@ -357,6 +357,7 @@ window.addEventListener("scroll", () => {
 document.addEventListener("DOMContentLoaded", function () {
     const counters = document.querySelectorAll(".count");
 
+
     // Khởi tạo data-target chứa số gốc trên HTML trước khi bị thay đổi
     counters.forEach(counter => {
         const text = counter.innerText.replace(/[^0-9]/g, "");
@@ -371,7 +372,7 @@ document.addEventListener("DOMContentLoaded", function () {
         entries.forEach(entry => {
             const counter = entry.target;
             const target = parseInt(counter.getAttribute("data-target"), 10);
-            
+
             if (isNaN(target)) return;
 
             if (entry.isIntersecting) {
@@ -379,7 +380,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 if (!counter.classList.contains("is-counting")) {
                     counter.classList.add("is-counting");
                     counter.innerText = "0";
-                    
+
                     setTimeout(() => {
                         const duration = 2000; // Đếm mượt mà trong 2s
                         const start = performance.now();
@@ -389,10 +390,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
                             const elapsed = currentTime - start;
                             const progress = Math.min(elapsed / duration, 1);
-                            
+
                             // Cubic ease-out cho cảm giác số chậm dần cực kỳ Luxury
                             const easeProgress = 1 - Math.pow(1 - progress, 3);
-                            
+
                             counter.innerText = Math.floor(easeProgress * target);
 
                             if (progress < 1) {
@@ -407,12 +408,28 @@ document.addEventListener("DOMContentLoaded", function () {
             } else {
                 // Khách hàng cuộn qua -> Trả về 0 chờ lần sau
                 counter.classList.remove("is-counting");
-                counter.innerText = "0"; 
+                counter.innerText = "0";
             }
         });
-    }, { threshold: 0.1 }); 
-
+    }, { threshold: 0.1 });
     counters.forEach(counter => {
         counterObserver.observe(counter);
+    });
+});
+
+// ============================================================
+// SIDEBAR ACCORDION TOGGLE (TOC & INTERESTED POSTS)
+// ============================================================
+document.addEventListener("DOMContentLoaded", function () {
+    const sidebarTitles = document.querySelectorAll('.toc-title, .interested-title');
+    
+    sidebarTitles.forEach(title => {
+        title.addEventListener('click', function () {
+            // Tìm block bao ngoài cùng (aside hoặc section)
+            const parent = this.closest('.post-toc, .interested-posts-wrapper');
+            if (parent) {
+                parent.classList.toggle('is-collapsed');
+            }
+        });
     });
 });

@@ -163,8 +163,7 @@ ul {
 
 /* Áp dụng cho các Section bên dưới (Contact, Social, Hero) */
 .contact,
-.social,
-.location {
+.social {
     max-width: var(--content-max-width);
     margin-left: auto;
     margin-right: auto;
