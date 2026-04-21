@@ -3111,8 +3111,8 @@ textarea.input-final {
 /* Breadcrumb alignment to 1000px */
 .blog-header {
     width: 100%;
-    margin: 25px 0 0 0;
-    padding: 0;
+    margin: 30px 0 0 0;
+    padding: 0 0 15px 0;
 }
 
 .breadcrumb {
@@ -3343,22 +3343,21 @@ textarea.input-final {
     background: #b77246;
     /* Màu nâu đồng đặc trưng */
     color: #fff;
-    padding: 5px 15px;
-    font-size: 12px;
-    font-weight: 600;
-    letter-spacing: 1.5px;
+    padding: 5px 25px;
+    font-size: 13px;
+    font-weight: 400;
     border-radius: 4px;
     display: inline-block;
     margin-bottom: 20px;
 }
 
-.featured-title {
+/* .featured-title {
     font-family: 'Montserrat', sans-serif;
     font-size: 2.8rem;
     font-weight: 700;
     line-height: 1.6;
     margin: 0;
-}
+} */
 
 
 
@@ -3459,7 +3458,7 @@ textarea.input-final {
 }
 
 /* TEXT STYLE */
-.tag-label {
+/* .tag-label {
     display: inline-block;
     background: var(--color-primary);
     color: #fff;
@@ -3468,14 +3467,14 @@ textarea.input-final {
     padding: 5px 15px;
     border-radius: 4px;
     margin-bottom: 15px;
-}
+} */
 
 .featured-title {
-    font-size: 32px;
+    font-size: 36px;
     /* Hoặc var(--font-size-title) */
-    font-family: var(--font-title);
+    font-family: 'Roboto', sans-serif;
     color: #fff;
-    line-height: 1.6;
+    line-height: 1.5;
     max-width: 800px;
 }
 
@@ -3502,6 +3501,8 @@ textarea.input-final {
     padding: 0 0 30px 0;
     margin: 0;
     overflow: hidden;
+        color: #bababa !important;
+
     /* Quan trọng để không bị vỡ layout page */
 }
 
@@ -3826,7 +3827,7 @@ textarea.input-final {
 .highlight-item p {
     font-size: 18px;
     color: #444;
-    font-weight: 700; /* Trình bày đậm như yêu cầu */
+    font-weight: 600; /* Trình bày đậm như yêu cầu */
     line-height: 1.5;
     margin: 0;
     transition: all 0.3s ease;
@@ -3891,13 +3892,13 @@ textarea.input-final {
 
 /* --- 5. LATEST NEWS (LIST DỌC) --- */
 .categories-section {
-    padding: 30px 0 0 0;
+    padding: 30px 0 30px 0;
     margin: 0;
     width: 100%;
 }
 
 .categories-section--exp {
-    padding: 0 !important;
+    padding: 30px 0 !important;
     margin: 0;
     width: 100%;
 }
@@ -3957,9 +3958,9 @@ textarea.input-final {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    padding: 8px 22px;
-    font-size: 13px;
-    font-weight: 700;
+    padding: 10px 30px;
+    font-size: 17px;
+    font-weight: 500;
     color: var(--color-primary);
     background: #fcead6; /* Nền kem nhẹ đặc trưng */
     border: 1px solid var(--color-primary);
@@ -4006,7 +4007,7 @@ textarea.input-final {
 /* --- 2. TIN MỚI NHẤT (NEWS LIST) --- */
 .latest-news {
     margin: 0;
-    padding: 15px 0 !important;
+    padding: 0 0 !important;
 }
 
 .latest-news-inner {
@@ -4108,7 +4109,6 @@ textarea.input-final {
 .news-media {
     flex: 0 0 320px;
     aspect-ratio: 16 / 9;
-    height: 220px;
     overflow: hidden;
     background: #efece5;
 }
@@ -4138,7 +4138,7 @@ textarea.input-final {
     font-weight: 500;
     line-height: 1.3;
     color: #1a1a1a;
-    margin-bottom: 10px;
+    margin-bottom: 0;
     transition: all 0.3s ease;
     text-align: justify;
 }
@@ -4151,12 +4151,13 @@ textarea.input-final {
     font-size: 16px;
     color: #555;
     line-height: 1.6;
-    margin-bottom: 0; /* Để space-between lo liệu */
+    margin-bottom: 15px; /* Để space-between lo liệu */
+    margin-top: 10px;
     display: -webkit-box;
     -webkit-line-clamp: 3; /* Tăng lên 3 dòng cho khớp chiều cao ảnh */
     -webkit-box-orient: vertical;
     overflow: hidden;
-        text-align: justify;
+    text-align: justify;
 
 }
 
@@ -4294,7 +4295,7 @@ textarea.input-final {
     display: flex;
     justify-content: center;
     gap: 15px;
-    margin: 40px 0 60px;
+    margin: 40px 0 20px;
     width: 100%;
 }
 
@@ -4453,17 +4454,23 @@ textarea.input-final {
 }
 
 .post-category {
-    position: relative;
     display: inline-flex;
     align-items: center;
-    color: var(--color-primary);
-    font-weight: 700;
-    font-size: 16px;
-    text-transform: uppercase;
-    margin: 5px 0;
+    justify-content: center;
+    font-size: 13px;
+    font-weight: 500;
+    padding: 6px 40px;
+    margin-bottom: 5px;
     border: 1px solid var(--color-primary);
-    border-radius: 8px;
-    padding: 8px 10px
+    color: var(--color-primary);
+    background: transparent;
+    border-radius: 4px;
+    text-transform: uppercase;
+    transition: 0.3s;
+    position: relative;
+    overflow: hidden;
+    z-index: 2;
+    text-decoration: none;
 }
 
 /* Đường gạch ngang tinh tế */
@@ -4496,11 +4503,12 @@ textarea.input-final {
 
 .post-main-title {
     font-size: 36px;
-    font-family: var(--font-title);
+    font-family: 'Roboto', sans-serif;    
     font-weight: 800;
     line-height: 1.6;
     color: #1a1a1a;
     margin-bottom: 25px;
+    margin-top: 25px;
     padding: 0;
 }
 
@@ -4510,23 +4518,24 @@ textarea.input-final {
     gap: 15px;
     margin: 30px auto;
     border-bottom: 1px solid #f0f0f0;
+    padding: 0 0 10px 0;
 }
 
 .author-avatar {
-    width: 45px;
-    height: 45px;
+    width: 60px;
+    height: 60px;
     border-radius: 50%;
     object-fit: cover;
 }
 
 .author-name {
     font-weight: 700;
-    font-size: 18px;
+    font-size: 20px;
     color: var(--color-primary);
 }
 
 .post-date {
-    font-size: 15px;
+    font-size: 18px;
     color: #999;
 }
 
@@ -4566,8 +4575,7 @@ textarea.input-final {
 
 /* Style cho các Tiêu đề nhỏ (H2, H3) nếu fen dùng thẻ h */
 .entry-content h2 {
-    font-family: var(--font-title);
-    font-size: 28px;
+font-family: 'Roboto', sans-serif;    font-size: 28px;
     font-weight: 800;
     margin: 20px 0 20px;
     color: #1a1a1a;
@@ -4603,6 +4611,7 @@ textarea.input-final {
     color: var(--color-primary);
     background: rgba(183, 114, 70, 0.05);
     padding: 35px;
+    font-weight: 450;
     border-radius: 8px;
     margin: 30px 0;
     text-align: center;
@@ -4713,23 +4722,14 @@ textarea.input-final {
     transform: rotate(360deg) scale(1.1);
 }
 
-/* KHUNG CHUNG (Box) */
-.post-toc {
-    background: #f9f9f9;
-    border: 1px solid #eee;
-    border-radius: 20px;
-    padding: 25px 15px; /* Size nhỏ gọn chuẩn Luxury */
-    margin: 30px 0;
-}
-
 /* DANH SÁCH CHUNG (List) */
 /* CONTAINER - Trắng sạch, bo góc lớn */
 .post-toc {
     background: #fdfdfd; 
     border: 1px solid #efefef;
     border-radius: 12px; /* Bo góc nhẹ nhàng theo hình mẫu */
-    padding: 15px 20px;
-    margin: 25px 0;
+    padding: 20px 20px;
+    margin: 30px 0;
     box-shadow: none; /* Bỏ đổ bóng để đúng chất minimalist */
 }
 
@@ -4913,10 +4913,10 @@ textarea.input-final {
 }
 
 /* Hiệu ứng bóng đổ nhẹ khi hover */
-.author-info-card:hover {
+/* .author-info-card:hover {
     transform: translateY(-8px);
     box-shadow: 0 25px 50px -12px rgba(183, 114, 70, 0.15);
-}
+} */
 
 .author-card-inner {
     display: flex;
@@ -4949,12 +4949,6 @@ textarea.input-final {
     );
     transition: 0.6s;
     z-index: 1;
-}
-
-.author-card-inner:hover {
-    transform: translateX(12px) translateY(-5px);
-    border-color: var(--color-primary);
-    box-shadow: 0 20px 40px rgba(183, 114, 70, 0.18);
 }
 
 .author-card-inner:hover::before {
@@ -5004,7 +4998,7 @@ textarea.input-final {
     font-style: italic;
     line-height: 1.6;
     color: #555;
-    font-size: 16px;
+    font-size: 17px;
     margin-bottom: 25px !important;
     position: relative;
     text-align: justify;
@@ -5647,7 +5641,7 @@ textarea.input-final {
 }
 
 .profile-quote {
-    padding: 20px 0;
+    padding: 60px 0;
     background: #ffffff;
     text-align: center;
     overflow: hidden;
@@ -5656,17 +5650,21 @@ textarea.input-final {
 .profile-quote__container {
     max-width: var(--content-max-width);
     margin: 0 auto;
-    padding: 0;
+    padding: 0 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
 }
 
 /* --- HIỆU ỨNG CHỮ CHẠY SÁNG --- */
 .profile-quote__text {
     font-family: 'Dancing Script', cursive;
-    font-size: clamp(16px, 4vw, 44px);
+    font-size: 26px;
     font-style: italic;
-    font-weight: 900;
-    line-height: 1.6;
-    margin-bottom: 10px;
+    font-weight: 500;
+    line-height: 1.4;
+    margin-bottom: 0;
     width: 100%;
 
     /* Màu gốc là nâu đậm */
@@ -5700,7 +5698,7 @@ textarea.input-final {
     display: flex;
     align-items: center;
     gap: 30px;
-    margin: 10px 0;
+    margin: 0;
 }
 
 .diamonds-divider span {
@@ -5720,10 +5718,10 @@ textarea.input-final {
 }
 
 .profile-quote__author p {
-    font-size: 33px;
-    font-weight: 450;
-    color: rgb(101, 101, 101);
-    margin: 10px;
+    font-size: 30px;
+    font-weight: 500;
+    color: #333;
+    margin: 0;
 }
 
 /* KEYFRAMES CHO VỆT SÁNG */
@@ -7920,17 +7918,14 @@ p,
     margin: 0 auto;
     display: flex;
     align-items: center;
-    /* Căn giữa Text với dàn ảnh theo chiều dọc */
     justify-content: space-between;
-    /* Đẩy Text sang trái, Ảnh sang phải */
-    gap: 40px;
-    /* Khoảng cách giữa 2 khối chính */
+    gap: 60px; /* Tăng gap để airy hơn */
 }
 
 /* --- 2. KHỐI TEXT BÊN TRÁI (NHỎ GỌN) --- */
 /* --- 1. SETUP KHỐI TỔNG --- */
 .feedback__content {
-    flex: 0 0 380px;
+    width: 380px;
     /* Tăng nhẹ độ rộng để chữ dàn hàng đẹp hơn */
 }
 
@@ -7986,7 +7981,7 @@ p,
 /* --- 5. NÚT XEM THÊM (TO & VỮNG CHÃI) --- */
 /* Feedback btn unified */
 
-.feedback__content .btn-show-more-feedback {
+.btn-show-more-feedback {
      display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -8030,21 +8025,41 @@ p,
     left: 100%;
 }
 
+/* --- TÙY CHỈNH PAGINATION LUXURY --- */
+.feedback-pagination {
+    bottom: -10px !important;
+}
+
+.feedback-pagination .swiper-pagination-bullet {
+    width: 10px;
+    height: 10px;
+    background: rgba(163, 93, 54, 0.2);
+    opacity: 1;
+}
+
+.feedback-pagination .swiper-pagination-bullet-active {
+    background: var(--color-primary) !important;
+    width: 25px;
+    border-radius: 5px;
+}
+
 /* --- 3. DÀN ẢNH BÊN PHẢI (HỆ BẬC THANG) --- */
 .feedback__gallery {
     flex: 1;
-    /* Chiếm hết phần còn lại của 950px */
+    /* Chiếm hết phần còn lại của container */
+    position: relative;
+    overflow: hidden;
+}
+
+.feedbackSwiper .swiper-slide {
     display: flex;
     align-items: flex-end;
-    /* Căn đáy các tấm ảnh để tạo bậc thang trồi lên */
-    gap: 10px;
-    /* Khoảng cách giữa các ảnh nhỏ tinh tế */
+    height: 400px; /* Chiều cao cố định cho wrapper để bậc thang có chỗ trồi sụt */
 }
 
 /* Base style cho từng tấm ảnh */
 .feedback-img {
-    flex: 1;
-    /* 5 tấm ảnh chia đều độ rộng */
+    width: 100%;
     border-radius: 8px;
     overflow: hidden;
     background: #ccc;
@@ -8059,24 +8074,25 @@ p,
 
 /* Tự động tính chiều cao giảm dần (Đây là chỗ ăn tiền nè) */
 /* Thằng đầu tiên to nhất, mấy thằng sau nhỏ dần theo tỉ lệ % */
-.feedback-img:nth-child(1) {
+/* Cập nhật selector để ăn theo swiper-slide */
+.swiper-slide:nth-child(1) .feedback-img {
     height: 350px;
 }
 
 /* Chiều cao base */
-.feedback-img:nth-child(2) {
+.swiper-slide:nth-child(2) .feedback-img {
     height: calc(350px * 0.85);
 }
 
-.feedback-img:nth-child(3) {
+.swiper-slide:nth-child(3) .feedback-img {
     height: calc(350px * 0.70);
 }
 
-.feedback-img:nth-child(4) {
+.swiper-slide:nth-child(4) .feedback-img {
     height: calc(350px * 0.55);
 }
 
-.feedback-img:nth-child(5) {
+.swiper-slide:nth-child(5) .feedback-img {
     height: calc(350px * 0.40);
 }
 
@@ -8557,7 +8573,7 @@ p,
         color: #fff;
         border: none;
         border-radius: 8px;
-        font-weight: 600;
+        font-weight: 300;
         cursor: pointer;
         align-items: center;
         gap: 10px;

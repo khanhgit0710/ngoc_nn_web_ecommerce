@@ -85,6 +85,32 @@ document.addEventListener("DOMContentLoaded", function () {
             }
         });
     }
+
+    // Feedback Slider - Duo View (Hiện 2 ảnh - To tắp lự)
+    if (document.querySelector('.feedbackSwiper')) {
+        const feedbackSwiper = new Swiper('.feedbackSwiper', {
+            slidesPerView: 2,
+            spaceBetween: 30,
+            loop: true,
+            autoplay: {
+                delay: 4000,
+                disableOnInteraction: false,
+            },
+            speed: 1000,
+            pagination: {
+                el: '.feedback-pagination',
+                clickable: true,
+                dynamicBullets: true,
+            },
+            breakpoints: {
+                // Trên PC vẫn giữ 2.2 cho nó có độ sâu
+                1024: {
+                    slidesPerView: 2.2,
+                    spaceBetween: 30,
+                }
+            }
+        });
+    }
 });
 
 // Moments Grid Slider
@@ -152,29 +178,7 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 });
 
-// ============================================================
-// MOBILE MENU BRANDING INJECTION (STRICT ISO)
-// ============================================================
-document.addEventListener("DOMContentLoaded", function () {
-    const nav = document.querySelector('.header__nav');
-    const logoGroup = document.querySelector('.header__logo-group');
-
-    // CHỈ CHẠY TRÊN MOBILE ĐỂ TRÁNH DOUBLE LOGO TRÊN PC
-    if (nav && logoGroup && window.innerWidth <= 768) {
-        // Chỉ thực hiện nếu chưa có header (tránh duplicate khi page load)
-        if (!nav.querySelector('.nav-menu-header')) {
-            const menuHeader = document.createElement('div');
-            menuHeader.className = 'nav-menu-header';
-
-            // Clone logo để hiển thị trong menu
-            const logoClone = logoGroup.cloneNode(true);
-            menuHeader.appendChild(logoClone);
-
-            // Chèn vào đầu menu
-            nav.insertBefore(menuHeader, nav.firstChild);
-        }
-    }
-});
+// Logic clone logo vào menu đã được loại bỏ theo yêu cầu tinh giản
 
 
 // ============================================================
@@ -418,17 +422,24 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 // ============================================================
-// SIDEBAR ACCORDION TOGGLE (TOC & INTERESTED POSTS)
+// FOOTER ACCORDION TOGGLE (MOBILE & TABLET)
 // ============================================================
 document.addEventListener("DOMContentLoaded", function () {
-    const sidebarTitles = document.querySelectorAll('.toc-title, .interested-title');
+    const footerHeaders = document.querySelectorAll('.footer__column h4');
     
-    sidebarTitles.forEach(title => {
-        title.addEventListener('click', function () {
-            // Tìm block bao ngoài cùng (aside hoặc section)
-            const parent = this.closest('.post-toc, .interested-posts-wrapper');
+    footerHeaders.forEach(header => {
+        header.addEventListener('click', function () {
+            // Chỉ chạy khi màn hình <= 768px
+            if (window.innerWidth > 768) return;
+            
+            const parent = this.closest('.footer__column');
             if (parent) {
-                parent.classList.toggle('is-collapsed');
+                // Đóng các cái khác nếu đang mở (Tùy chọn: nếu muốn kiểu Accordion chuẩn)
+                // document.querySelectorAll('.footer__column').forEach(col => {
+                //     if (col !== parent) col.classList.remove('is-active');
+                // });
+                
+                parent.classList.toggle('is-active');
             }
         });
     });

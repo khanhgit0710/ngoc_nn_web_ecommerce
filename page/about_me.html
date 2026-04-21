@@ -5,9 +5,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Về chúng tôi | Ngọc NN</title>
-    <link rel="stylesheet" href="../css/base.css?v=2.0">
-    <link rel="stylesheet" href="../css/main.css?v=2.0">
-    <link rel="stylesheet" href="../css/reponsive.css?v=2.0">
+    <link rel="stylesheet" href="../css/base.css?v=2.1">
+    <link rel="stylesheet" href="../css/main.css?v=2.1">
+    <link rel="stylesheet" href="../css/reponsive.css?v=2.1">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -57,7 +57,7 @@
                     <a href="../page/contact.html" class="header__nav-link">Liên hệ</a>
                 </nav>
                 <button class="header__cart">
-                    GIỎ HÀNG
+                    <span class="header__cart-text">GIỎ HÀNG</span>
                     <svg class="header__cart-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
                         <path
                             d="M160 112c0-30.9 25.1-56 56-56s56 25.1 56 56v48H160v-48zm-48 48H48c-26.5 0-48 21.5-48 48V416c0 53 43 96 96 96H352c53 0 96-43 96-96V208c0-26.5-21.5-48-48-48H336V112C336 50.1 285.9 0 224 0S112 50.1 112 112v48zm24 48a24 24 0 1 1 0 48 24 24 0 1 1 0-48zm152 24a24 24 0 1 1 48 0 24 24 0 1 1 -48 0z" />
@@ -215,8 +215,14 @@
                     </div>
 
                     <div class="story-premium__actions">
-                        <a href="../page/contact.html" class="btn-main">Liên hệ ngay</a>
-                        <a href="../page/tim_nha.html" class="btn-sub">Xem nhà đang bán</a>
+                        <a href="../page/contact.html" class="btn-main">
+                            <span class="btn-text-full">Liên hệ ngay</span>
+                            <span class="btn-text-short">Liên hệ</span>
+                        </a>
+                        <a href="../page/tim_nha.html" class="btn-sub">
+                            <span class="btn-text-full">Xem nhà đang bán</span>
+                            <span class="btn-text-short">Xem nhà</span>
+                        </a>
                     </div>
                 </div>
 
@@ -295,8 +301,8 @@
                 </div>
 
                 <div class="strengths__btns">
-                    <a href="#" class="btn-connect">Kết nối Ngọc NN ngay!</a>
-                    <a href="#" class="btn-zalo">Chat Zalo</a>
+                    <a href="#" class="btn-connect">KẾT NỐI</a>
+                    <a href="#" class="btn-zalo">CHAT</a>
                 </div>
             </div>
         </section>
@@ -586,7 +592,6 @@
                     <div class="criteria__big-num">3</div>
                     <h2 class="criteria__title">Tiêu chí <span>Vàng</span><br>đồng hành cùng bạn</h2>
                     <p class="criteria__desc">Sự uy tín được nuôi dưỡng qua giá trị thật.</p>
-                    <a href="#" class="button btn-show-more">XEM THÊM</a>
                 </div>
 
                 <div class="criteria__middle">
@@ -627,6 +632,8 @@
                         </div>
                     </div>
                 </div>
+
+                <a href="#" class="button btn-show-more">XEM THÊM</a>
             </div>
         </section>
 
@@ -717,29 +724,47 @@
                         <h2>Feedback từ <span>khách hàng</span></h2>
                         <p>Niềm tin được xây dựng từ những trải nghiệm thực tế</p>
                     </div>
-                    <a href="#" class="btn-show-more-feedback">XEM THÊM</a>
                 </div>
 
-                <div class="feedback__gallery">
-                    <div class="feedback-img reveal reveal-zoom reveal-delay-1">
-                        <img src="https://images.pexels.com/photos/21575151/pexels-photo-21575151/free-photo-of-thanh-ph-toa-nha-ch-c-tr-i-thanh-th-c-nh-quan-thanh-ph.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
-                            alt="Feedback">
+                <div class="feedback__gallery swiper feedbackSwiper">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide">
+                            <div class="feedback-img">
+                                <img src="https://images.pexels.com/photos/21575151/pexels-photo-21575151/free-photo-of-thanh-ph-toa-nha-ch-c-tr-i-thanh-th-c-nh-quan-thanh-ph.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
+                                    alt="Feedback">
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="feedback-img">
+                                <img src="https://kdiholdings.com.vn/wp-content/uploads/2026/01/bat-dong-san-la-gi-1-1024x619.jpg"
+                                    alt="Feedback">
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="feedback-img">
+                                <img src="https://batdongsanexpress.vn/wp-content/uploads/2016/02/saigon2015-19.jpg"
+                                    alt="Feedback">
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="feedback-img">
+                                <img src="https://kienangroup.vn/upload/baiviet/bdsmuabanandchothue-1602.jpg"
+                                    alt="Feedback">
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="feedback-img">
+                                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQzUbZwRALJNDR7OaCmq5wT8fVFLICF4S-89A&s"
+                                    alt="Feedback">
+                            </div>
+                        </div>
                     </div>
-                    <div class="feedback-img reveal reveal-zoom reveal-delay-2">
-                        <img src="https://kdiholdings.com.vn/wp-content/uploads/2026/01/bat-dong-san-la-gi-1-1024x619.jpg"
-                            alt="Feedback">
-                    </div>
-                    <div class="feedback-img reveal reveal-zoom reveal-delay-3">
-                        <img src="https://batdongsanexpress.vn/wp-content/uploads/2016/02/saigon2015-19.jpg"
-                            alt="Feedback">
-                    </div>
-                    <div class="feedback-img reveal reveal-zoom reveal-delay-4">
-                        <img src="https://kienangroup.vn/upload/baiviet/bdsmuabanandchothue-1602.jpg" alt="Feedback">
-                    </div>
-                    <div class="feedback-img reveal reveal-zoom reveal-delay-5">
-                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQzUbZwRALJNDR7OaCmq5wT8fVFLICF4S-89A&s"
-                            alt="Feedback">
-                    </div>
+                    <!-- BỘ CHẤM ĐIỀU HƯỚNG LUXURY -->
+                    <div class="swiper-pagination feedback-pagination"></div>
+                </div>
+
+                <div class="feedback-btn-wrapper reveal" style="text-align: center; padding-top: 40px; width: 100%;">
+                    <a href="#" class="btn-show-more-feedback">XEM THÊM</a>
                 </div>
 
             </div>
@@ -830,7 +855,7 @@
         <section class="footer-contact reveal">
             <div class="container-1000">
                 <span class="section-label">LIÊN HỆ</span>
-                <h2 class="section-title">Kết nối trực tiếp với <span>Ngọc NN</span> ngay</h2>
+                <h2 class="section-title">Kết nối trực tiếp với <br><span class="u-nowrap">Ngọc NN ngay</span></h2>
                 <div class="values-badges why-us__desc reveal reveal-1">
                     <p>Chọn cách liên hệ phù hợp nhất - Phản hồi nhanh - Hỗ trợ xuyên suốt</p>
                 </div>
@@ -984,6 +1009,20 @@ var swiper = new Swiper(".aboutSwiper", {
     observeParents: true,
     centeredSlidesBounds: true,
     loopedSlides: 6,
+    breakpoints: {
+        1024: {
+            slidesPerView: 1.8,
+            spaceBetween: 30
+        },
+        768: {
+            slidesPerView: 1.5,
+            spaceBetween: 20
+        },
+        480: {
+            slidesPerView: 1.2,
+            spaceBetween: 10
+        }
+    }
 });
         
         document.addEventListener("DOMContentLoaded", function () {
@@ -1143,6 +1182,7 @@ var swiper = new Swiper(".aboutSwiper", {
         /* Feedback Content Luxury Redesign */
         .feedback__content {
             padding-right: 40px;
+            height: 222px;
         }
         .feedback-section .section-header {
             margin-bottom: 30px;
@@ -1319,8 +1359,8 @@ var swiper = new Swiper(".aboutSwiper", {
             console.log("Luxury Gallery System Activated.");
         })();
     </script>
-    <script src="../js/animations.js?v=2.0"></script>
-    <script src="../js/main.js?v=2.0"></script>
+    <script src="../js/animations.js?v=2.1"></script>
+    <script src="../js/main.js?v=2.1"></script>
 
 
     <!-- LUXURY FLOATING CONTACT CLUSTER (RIGHT SIDE) -->
@@ -1330,7 +1370,7 @@ var swiper = new Swiper(".aboutSwiper", {
             <i class="fas fa-chevron-up"></i>
         </div>
 
-        <a href="https://zalo.me/0901234567" class="contact-bubble contact-bubble--zalo" data-label="Chat Zalo" target="_blank">
+        <a href="https://zalo.me/0901234567" class="contact-bubble contact-bubble--zalo" data-label="Chat" target="_blank">
             <i class="fas fa-comment-dots"></i>
         </a>
         <a href="https://m.me/ngocnn" class="contact-bubble contact-bubble--chat" data-label="Messenger" target="_blank">

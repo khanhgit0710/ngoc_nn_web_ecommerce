@@ -1,146 +1,964 @@
-/* 
-   REPOSIVE.CSS - LUXURY CLEAN VERSION
-   Tất cả code ở đây chỉ có tác dụng trên Mobile/Tablet.
-   Tuyệt đối không có CSS toàn cục để bảo vệ layout PC.
-*/
+/* ==========================================================================
+   GLOBAL RULES
+   ========================================================================== */
+.btn-text-short { display: none !important; }
+.btn-text-full { display: inline !important; }
 
 /* ==========================================================================
-   TABLET & MOBILE (991px trở xuống)
+   DESKTOP RESTORATION (MIN-WIDTH: 1025PX)
    ========================================================================== */
-@media (max-width: 991px) {
-    /* Reset Section Header Spacing */
-    .section-title {
-        font-size: 32px !important;
-        margin-bottom: 30px !important;
+@media (min-width: 1025px) {
+    .feedbackSwiper.swiper { display: flex !important; overflow: visible !important; }
+    .feedbackSwiper .swiper-wrapper { display: flex !important; transform: none !important; width: 100% !important; align-items: flex-end !important; gap: 4px !important; }
+    .feedbackSwiper .swiper-slide { width: auto !important; flex: 1 1 100px !important; display: flex !important; align-items: flex-end !important; }
+    
+    .criteria-container {
+        display: grid !important;
+        grid-template-columns: 350px 1fr 400px !important;
+        grid-template-areas: "left middle right" "button middle right" !important;
+        gap: 20px !important;
+        align-items: center !important;
+    }
+    .criteria__left { height: 250px !important; grid-area: left !important; border-left: 2px solid rgba(163, 93, 54, 0.2) !important; padding-left: 30px !important; }
+    .criteria__middle { grid-area: middle !important; }
+    .criteria__right { grid-area: right !important; }
+    .btn-show-more { grid-area: button !important; margin-left: 20px !important; margin-top: 20px !important; }
+}
+
+/* ==========================================================================
+   BASE MOBILE/TABLET RULES (MAX-WIDTH: 1024PX)
+   ========================================================================== */
+@media (max-width: 1024px) {
+    html, body { max-width: 100vw !important; overflow-x: hidden !important; }
+
+    /* QUY TẮC PADDING TOÀN CỤC CHO CÁC CONTAINER */
+    .header__container,
+    .about-hero-premium__container,
+    .experience__container,
+    .story-premium__container,
+    .strengths__container,
+    .expertise-slim__container,
+    .deals-container,
+    .criteria-container,
+    .moments-container,
+    .feedback-container,
+    .commit-container,
+    .footer-container,
+    .footer-bottom-container,
+    .footer-copyright-bar,
+    .section-title,
+    .section-label {
+        width: 100% !important;
+        max-width: 100% !important;
+        padding-left: 20px !important;
+        padding-right: 20px !important;
+        margin-left: auto !important;
+        margin-right: auto !important;
     }
 
-    /* EXPERTISE SLIM GRID: Chuyển sang dạng dọc */
-    .expertise-slim__grid {
+    /* 1. HEADER & NAVIGATION */
+    .header__container { position: relative !important; justify-content: space-between !important; height: var(--h-header) !important; display: flex !important; align-items: center !important; padding: 0 15px !important; }
+    .header__logo-group { position: absolute !important; left: 50% !important; transform: translateX(-50%) !important; z-index: 1002 !important; align-items: center !important; text-align: center !important; }
+    .header__cart { background: transparent !important; border: none !important; padding: 0 !important; min-width: auto !important; margin-right: 0 !important; }
+    .header__cart-text { display: none !important; }
+    .header__cart-icon { width: 22px !important; height: 22px !important; fill: var(--color-primary) !important; }
+    .header__hamburger { display: flex !important; flex-direction: column !important; justify-content: space-between !important; width: 25px !important; height: 18px !important; z-index: 1001 !important; }
+    .header__hamburger span { display: block !important; height: 2px !important; width: 100% !important; background-color: var(--color-primary) !important; border-radius: 2px !important; transition: 0.3s !important; }
+    
+    #menu-toggle:checked ~ .header__hamburger span:nth-child(1) { transform: translateY(8px) rotate(45deg) !important; }
+    #menu-toggle:checked ~ .header__hamburger span:nth-child(2) { opacity: 0 !important; }
+    #menu-toggle:checked ~ .header__hamburger span:nth-child(3) { transform: translateY(-8px) rotate(-45deg) !important; }
+
+    .header__nav { position: fixed !important; top: 0 !important; left: -100% !important; width: 33.33vw !important; min-width: 260px !important; height: 100vh !important; background: #fff !important; flex-direction: column !important; padding: 100px 20px !important; transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important; z-index: 999 !important; box-shadow: 20px 0 40px rgba(0,0,0,0.05) !important; align-items: center !important; text-align: center !important; }
+    #menu-toggle:checked ~ .header__actions .header__nav { left: 0 !important; }
+    .header__nav-link { width: 100% !important; padding: 20px 0 !important; font-size: 20px !important; border-bottom: 1px solid #f5f5f5 !important; display: flex !important; justify-content: center !important; }
+
+    /* 2. HERO SECTION */
+    .about-hero-premium { padding: 100px 0 60px !important; }
+    .about-hero-premium__container { display: flex !important; flex-direction: row !important; align-items: center !important; gap: 40px !important; }
+    .about-hero-premium__left { width: 45% !important; flex: none !important; }
+    .about-hero-premium__title { font-size: 38px !important; white-space: nowrap !important; margin-bottom: 15px !important; }
+    .about-hero-premium__right { display: flex !important; flex: 1 !important; overflow: hidden !important; }
+    
+    /* Cinematic Blur Effect for side slides */
+    .aboutSwiper .swiper-slide { 
+        filter: blur(8px) !important; 
+        opacity: 0.3 !important; 
+        transform: scale(0.85) !important;
+        transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    }
+    
+    .aboutSwiper .swiper-slide-active { 
+        filter: blur(0) !important; 
+        opacity: 1 !important; 
+        transform: scale(1) !important;
+        z-index: 2 !important;
+    }
+    
+    .about-hero-premium__actions { display: flex !important; flex-direction: row !important; gap: 15px !important; margin-top: 35px !important; flex-wrap: nowrap !important; }
+    .btn-hero-solid, .btn-hero-link { padding: 12px 20px !important; font-size: 14px !important; min-width: 140px !important; white-space: nowrap !important; text-align: center !important; }
+
+    /* 3. CRITERIA SECTION (KIẾN TRÚC HỘP - SPACING SIẾT CHẶT) */
+    .criteria-container {
+        flex-direction: column !important;
+        gap: 15px !important; /* Siết chặt hơn nữa */
+        padding-top: 20px !important;
+        padding-bottom: 20px !important; /* CẮT BỎ PHẦN TÍM THỪA */
+        display: flex !important;
+    }
+
+    /* ÉP CHIỀU CAO TIÊU CHÍ VÀNG - LÁ CHẮN 3 LỚP */
+    section.criteria .criteria-container .criteria__left,
+    .criteria__left {
+        width: 100% !important;
+        height: 260px !important; /* KHÓA CỨNG 260 */
+        min-height: 260px !important;
+        max-height: 260px !important;
         display: flex !important;
         flex-direction: column !important;
-        gap: 20px !important;
+        justify-content: center !important;
+        text-align: center !important;
+        border-left: none !important;
+        padding: 0 !important;
+        margin: 0 !important;
+        position: relative !important;
+        overflow: visible !important; /* Để số 3 vẫn hiện được nếu lòi ra */
     }
 
-    .slim-box {
+    .criteria__desc {
+        margin-bottom: 0 !important;
+    }
+
+    .criteria__big-num {
+        left: 50% !important;
+        transform: translateX(-50%) !important;
+        top: -10px !important; /* Hạ thấp bệ phóng để cân đối với 260px */
+        font-size: 130px !important;
+        color: rgba(163, 93, 54, 0.08) !important;
+        z-index: 0 !important;
+    }
+    .criteria__middle { display: none !important; }
+    .criteria__right { width: 100% !important; padding: 0 !important; }
+    .criteria-list { display: flex !important; flex-direction: column !important; gap: 12px !important; }
+    .criteria-item { background: rgba(163, 93, 54, 0.03) !important; border: 1px solid rgba(163, 93, 54, 0.1) !important; border-radius: 15px !important; padding: 22px 18px !important; flex-direction: column !important; text-align: center !important; align-items: center !important; gap: 12px !important; }
+    .criteria-item__icon { margin: 0 !important; width: 50px !important; height: 50px !important; background: #fff !important; border-radius: 50% !important; display: flex !important; align-items: center !important; justify-content: center !important; font-size: 20px !important; color: var(--color-primary) !important; box-shadow: 0 5px 12px rgba(163, 93, 54, 0.1) !important; }
+    .criteria-item__text h3 { font-size: 18px !important; margin-bottom: 5px !important; }
+    .criteria-item__text p {
+        font-size: 16px important}   /* 5. FEEDBACK SECTION (DUO VIEW - 2 ẢNH CẠNH NHAU) */
+    
+        .feedback-container {
+        flex-direction: column !important;
+        gap: 40px !important; /* Tăng gap để thoáng đãng hơn */
+        text-align: center !important;
+        padding-top: 20px !important;
+        padding-bottom: 20px !important;
+        display: flex !important;
+    }
+
+    .feedback__content {
         width: 100% !important;
-        flex: none !important;
-    }
-
-    .slim-box__inner {
+        align-items: center !important;
+        display: flex !important;
         flex-direction: column !important;
         text-align: center !important;
-        padding: 25px !important;
+        /* padding: 0 15px !important; */
+    }
+
+    /* -----------------------------------------
+       SITE-WIDE TYPOGRAPHY UNIFICATION (1024PX)
+    ----------------------------------------- */
+    .section-label, .criteria__label, .story-premium__tag, 
+    .strengths__tag, .commit__header .tag, .feedback__content .tag,
+    .core-values__subtitle {
+        font-size: 22px !important;
+        letter-spacing: 0.3em !important;
+        margin-bottom: 15px !important;
+        font-weight: 300 !important;
+    }
+
+    .section-title, .criteria__title, .story-premium__title, 
+    .strengths__title, .commit__header h2, .feedback__content h2,
+    .core-values__title {
+        font-size: 40px !important;
+        line-height: 1.2 !important;
+        text-transform: uppercase !important; /* Đồng bộ viết hoa cho cân */
+    }
+
+    .section-description, .experience__desc, .story-premium__desc, 
+    .strengths__subtitle, .expertise-slim__header p, .criteria__desc, 
+    .commit__header p, .feedback__content p {
+        font-size: 20px !important;
+        line-height: 1.6 !important;
+    }
+
+    .feedback__content .section-header {
+        text-align: center !important;
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        margin-bottom: 5px;
+    }
+
+    .feedback__gallery {
+        width: 100% !important;
+        margin-top: 0 !important; /* Bỏ margin top vì đã có gap ở container */
+        padding: 0 5px !important;
+    }
+
+    .feedbackSwiper .swiper-slide {
+        width: 48% !important; 
+        height: auto !important;
+        opacity: 1 !important;
+        transform: none !important;
+        display: flex !important;
+        align-items: center !important; /* Căn giữa ảnh theo chiều dọc nếu chiều cao slide lớn */
+    }
+
+    .feedback-img {
+        width: 100% !important;
+        border-radius: 12px !important;
+        overflow: hidden !important;
+        box-shadow: 0 10px 20px rgba(163, 93, 54, 0.1) !important;
+        height: 280px !important; /* Giảm height lại theo yêu cầu */
+    }
+
+    .feedback-img img {
+        height: 100% !important; 
+        object-fit: cover !important;
+        width: 100% !important;
+    }
+
+    /* CHẤM ĐIỀU HƯỚNG */
+    .feedback-pagination {
+        position: relative !important;
+        margin-top: 30px !important;
+        bottom: 0 !important;
+    }
+
+    /* NÚT XEM THÊM */
+    .btn-show-more-feedback {
+        margin-top: 5px !important;
+        order: 10 !important;
+    }
+
+
+    .btn-show-more { align-self: center !important; margin: 30px auto 0 !important; }
+
+    /* 4. FOOTER & LIÊN HỆ (HÚT MỠ SPACING) */
+    .footer-grid {
+        grid-template-columns: 1fr !important;
+        gap: 30px !important; /* LẤP HỐ 150PX CỦA PC */
+        margin-top: 20px !important;
+    }
+
+    .footer-left {
+        width: 100% !important;
         gap: 15px !important;
     }
 
-    /* CRITERIA SECTION: Xếp chồng dọc */
-    .criteria-section {
+    .qr-box img {
+        width: 180px !important;
+        height: 180px !important;
+    }
+
+    .footer-right {
+        width: 100% !important;
+        padding: 0 !important;
+    }
+
+    .social-box {
+        margin-bottom: 10px !important;
+    }
+
+    /* FOOTER CHÍNH (CĂP LỀ TRÁI CHO MOBILE/TABLET) */
+    .footer-container {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 25px !important;
+        text-align: left !important;
+    }
+
+    .footer__column {
+        width: 100% !important;
+        text-align: left !important;
+        padding: 0 !important;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.05); /* Đường chia nhẹ nhàng */
+    }
+
+    .footer__column h4 {
+        margin-bottom: 0 !important;
+        padding: 15px 0 !important;
+        cursor: pointer;
+        display: flex !important;
+        justify-content: space-between !important;
+        align-items: center !important;
+    }
+
+    /* Thêm icon mũi tên (Chevron) cho Accordion */
+    .footer__column h4::after {
+        content: '\f067'; /* FontAwesome Plus icon */
+        font-family: "Font Awesome 6 Free";
+        font-weight: 900;
+        font-size: 14px;
+        transition: transform 0.3s ease;
+    }
+
+    .footer__column.is-active h4::after {
+        content: '\f068'; /* FontAwesome Minus icon */
+        transform: rotate(180deg);
+    }
+
+    /* Collapse logic */
+    .footer__list, .footer__contact-info {
+        max-height: 0 !important;
+        overflow: hidden !important;
+        transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1) !important;
+        padding-bottom: 0 !important;
+        opacity: 0 !important;
+    }
+
+    .footer__column.is-active .footer__list, 
+    .footer__column.is-active .footer__contact-info {
+        max-height: 1000px !important; /* Đủ to để chứa hết */
+        padding-bottom: 20px !important;
+        opacity: 1 !important;
+    }
+
+    .footer__contact-info li {
+        justify-content: flex-start !important;
+        text-align: left !important;
+    }
+
+    /* FOOTER BOTTOM BARS */
+    .footer-bottom-bar {
+        padding: 30px 0 !important;
+    }
+
+    .footer-bottom-container {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 25px !important;
+        align-items: center !important;
+        text-align: center !important;
+    }
+
+    .footer-social-group {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        gap: 15px !important;
+    }
+
+    .footer-links-group {
+        display: flex !important;
+        flex-direction: row !important;
+        flex-wrap: wrap !important;
+        justify-content: center !important;
+        gap: 10px 15px !important; /* Gap ngang 15px, dọc 10px nếu xuống hàng */
+        margin-top: 5px !important;
+    }
+
+    .footer-links-group span {
+        display: inline-block !important; /* Hiện lại dấu | */
+        opacity: 0.3 !important;
+        margin: 0 !important;
+    }
+
+    .footer-copyright-bar {
+        padding: 20px !important;
+        line-height: 1.6 !important;
+        text-align: center !important;
+        font-size: 13px !important;
+    }
+
+    .news-card {
+        flex-direction: column !important;
+        gap: 15px !important;
+        margin-bottom: 10px !important;
+    }
+
+    .news-media {
+        width: 100% !important;
+        aspect-ratio: 16/9 !important;
+    }
+
+    /* EXPERIENCE SECTION RESPONSIVE */
+    .experience {
+        padding: 40px 0 !important;
+        background-attachment: scroll !important;
+    }
+
+    .experience__grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 20px !important;
+        margin-top: 40px !important;
+    }
+
+    .ex-card {
+        padding: 25px 15px !important;
+    }
+}
+
+/* ==========================================================================
+   MOBILE-ONLY REFINEMENTS (MAX-WIDTH: 768PX)
+   ========================================================================== */
+@media (max-width: 768px) {
+    :root {
+        --side-padding: 15px !important;
+    }
+    .about-hero-premium {
+        min-height: 500px !important; /* "Hút mỡ" khoảng trống thừa */
+        padding: 60px 0 40px !important;
+        display: flex !important;
+        align-items: center !important;
+    }
+    .about-hero-premium__container {
+        flex-direction: column !important;
+        text-align: center !important;
+        align-items: center !important;
+        justify-content: center !important;
+    }
+    .about-hero-premium__left {
+        width: 100% !important;
+        max-width: 100% !important;
+        padding: 0 !important;
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        text-align: center !important;
+    }
+    .about-hero-premium__title { 
+        font-size: 54px !important; 
+        text-align: center !important;
+        width: 100% !important;
+        font-weight: 800 !important; /* Đậm đà hơn cho sang */
+    }
+    .about-hero-premium__subtitle-box,
+    .about-hero-premium__subtitle,
+    .about-hero-premium__subtitle-main {
+        text-align: center !important;
+        align-items: center !important;
+    }
+    .about-hero-premium__tagline {
+        justify-content: center !important;
+        margin-left: auto !important;
+        margin-right: auto !important;
+    }
+    .about-stats-group {
+        justify-content: center !important;
+        margin-left: auto !important;
+        margin-right: auto !important;
+        max-width: 100% !important;
+    }
+    .about-stats-item:first-child {
+        padding-left: 20px !important; /* Balance with other items */
+    }
+    .about-hero-premium__actions {
+        justify-content: center !important;
+        margin-top: 25px !important;
+        width: 100% !important;
+    }
+    .about-hero-premium__right { display: none !important; }
+
+    /* CORE VALUES RESET FOR 768PX */
+    .core-values {
+        padding: 40px 0 !important;
+        background-attachment: scroll !important; /* Mobile performance */
+    }
+
+    .core-values__container {
+        padding: 0 15px !important;
+        justify-content: center !important;
+    }
+
+    .core-values__content {
+        width: 100% !important;
+        max-width: 650px !important;
+        margin: 0 auto !important;
+        padding: 40px 25px !important;
+        text-align: center !important;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.2) !important;
+        animation: aboutSlideUp 1s ease forwards !important;
+    }
+
+    .core-values__header, 
+    .core-values__title, 
+    .core-values__subtitle {
+        text-align: center !important;
+    }
+
+    .core-values__list {
+        display: grid !important;
+        grid-template-columns: 1fr 1fr !important;
+        gap: 25px !important;
+        margin-top: 30px !important;
+    }
+
+    .value-item {
+        flex-direction: column !important;
+        align-items: center !important;
+        text-align: center !important;
+        gap: 10px !important;
+        animation: aboutSlideUp 0.8s ease forwards !important;
+    }
+
+    .value-item__num {
+        font-size: 70px !important;
+        margin-bottom: -20px !important; /* Overlap slightly for luxury feel */
+        color: rgba(255,255,255,0.1) !important;
+    }
+
+    .value-item__text h3 {
+        font-size: 20px !important;
+        margin-bottom: 5px !important;
+    }
+
+    .value-item__text p {
+        font-size: 15px !important;
+        line-height: 1.4 !important;
+        opacity: 0.8 !important;
+    }
+
+    .core-values__spacer {
+        display: none !important;
+    }
+
+    /* -----------------------------------------
+       STORY PREMIUM RESPONSIVE
+    ----------------------------------------- */
+    .story-premium {
+        padding: 40px 0 !important;
+    }
+    .story-premium__container {
+        flex-direction: column-reverse !important; /* Đẩy ảnh lên trên cho cân */
+        text-align: center !important;
+        gap: 40px !important;
+    }
+    .story-premium__right {
+        flex: none !important;
+        width: 100% !important;
+        display: flex !important;
+        justify-content: center !important;
+    }
+    .story-premium__img-wrapper {
+        margin: 0 auto !important;
+        width: 280px !important;
+        height: 380px !important;
+        transform: none !important;
+        opacity: 1 !important;
+    }
+    .story-premium__title {
+        font-size: 32px !important;
+    }
+    .story-premium__cards {
+        flex-direction: column !important;
+        align-items: center !important;
+        gap: 15px !important;
+    }
+    .v-card {
+        width: 100% !important;
+        max-width: 300px !important;
+    }
+    .story-premium__actions {
+        flex-direction: column !important;
+        gap: 15px !important;
+        align-items: center !important;
+    }
+    .story-premium__actions .btn-main {
+        margin-right: 0 !important;
+    }
+
+    /* -----------------------------------------
+       STRENGHTS GRID (1 COLUMN)
+    ----------------------------------------- */
+    .strengths__grid {
+        grid-template-columns: 1fr !important;
+        gap: 15px !important;
+    }
+
+    /* -----------------------------------------
+       EXPERTISE SLIM (VERTICAL STACK)
+    ----------------------------------------- */
+    .expertise-slim__grid {
+        flex-direction: column !important;
+        gap: 20px !important;
+    }
+    .slim-box {
+        flex: none !important;
+        width: 100% !important;
+        transform: none !important;
+        opacity: 1 !important;
+    }
+
+    /* -----------------------------------------
+       MOMENTS GRID (MOBILE SCROLL)
+    ----------------------------------------- */
+    .moments-grid {
+        display: flex !important;
+        overflow-x: auto !important;
+        scroll-snap-type: x mandatory !important;
+        gap: 15px !important;
+        padding-bottom: 20px !important;
+        grid-template-columns: none !important;
+    }
+    .moment-item {
+        flex: 0 0 260px !important;
+        height: 350px !important;
+        scroll-snap-align: center !important;
+    }
+    .moment-item--large, .moment-item--wide {
+        grid-row: auto !important;
+        grid-column: auto !important;
+        height: 350px !important;
+    }
+
+    /* -----------------------------------------
+       COMMIT SECTION (VERTICAL STACK)
+    ----------------------------------------- */
+    .commit-sectionani {
+        padding: 40px 0 !important;
+    }
+    .commit-container {
+        flex-direction: column !important;
+        gap: 30px !important;
+    }
+    .commit__img {
+        flex: none !important;
+        width: 100% !important;
+        height: 300px !important;
+        transform: none !important;
+        opacity: 1 !important;
+    }
+    .commit__content {
+        width: 100% !important;
+        margin-left: 0 !important;
+        margin-top: -40px !important; /* Giữ chút hiệu ứng đè nhẹ cho luxury */
+        padding: 30px 20px !important;
+        transform: none !important;
+        opacity: 1 !important;
+    }
+    .commit__header h2 {
+        font-size: 30px !important;
+        text-align: center !important;
+    }
+    .commit__header p {
+        text-align: center !important;
+    }
+    .commit__grid {
+        grid-template-columns: 1fr !important;
+    }
+
+    .btn-luxury-toggle {
+        margin-top: 60px !important;
+    }
+
+    .criteria-section .btn-show-more {
+        margin-top: 40px !important;
+    }
+
+    .expertise-slim__action {
+        margin-top: 30px !important;
+    }
+
+    /* -----------------------------------------
+       CENTERING & ALIGNMENT REFINEMENTS
+    ----------------------------------------- */
+    /* -----------------------------------------
+       CENTERING & ALIGNMENT REFINEMENTS
+    ----------------------------------------- */
+    .section-header, 
+    .section-title, 
+    .section-label,
+    .experience__header,
+    .deals-container .section-header,
+    .moments-section .section-header,
+    .feedback__content .section-header {
+        text-align: center !important;
+        margin-left: auto !important;
+        margin-right: auto !important;
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+    }
+
+    .experience__header p,
+    .deals-container .section-header p,
+    .moments-section .section-header p,
+    .feedback__content p {
+        text-align: center !important;
+        margin-left: auto !important;
+        margin-right: auto !important;
+    }
+
+    .dealsSwiper, .feedbackSwiper {
+        margin-left: auto !important;
+        margin-right: auto !important;
+    }
+
+    /* Đảm bảo Moments Grid cân đối */
+    .moments-container {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+    }
+    .moments-grid {
+        width: 100% !important;
+        justify-content: flex-start !important; /* Để scroll mượt */
+    }
+
+    /* -----------------------------------------
+       CATEGORIES SECTION (TAGS)
+    ----------------------------------------- */
+    .categories-section, .categories-section--exp,
+    .trending-container, .latest-news, .latest-news-inner,
+    .blog-header, .trending-header, .page-title,
+    .post-body, .interested-posts-wrapper {
+        padding-left: var(--side-padding) !important;
+        padding-right: var(--side-padding) !important;
+    }
+
+    /* Đặc biệt cho Chuyên mục: Bọc lề cho tiêu đề nhưng để tags/container tràn lề */
+    .categories-section .container-1000,
+    .categories-section--exp {
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+    }
+    
+    .categories-section .section-label-inner,
+    .categories-section--exp .section-label-inner {
+        padding-left: var(--side-padding) !important;
+        padding-right: var(--side-padding) !important;
+    }
+
+    .main-cover {
+        width: 100% !important;
+        height: auto !important;
+        max-height: none !important;
+        object-fit: contain !important;
+        border-radius: 8px !important;
+    }
+
+    .categories-section, .categories-section--exp {
+        padding-top: 30px !important;
+        padding-bottom: 30px !important;
+    }
+
+    .tags-group {
+        display: flex !important;
+        flex-wrap: wrap !important;
+        gap: 10px !important;
+        justify-content: center !important;
+    }
+
+    .tag-item {
+        padding: 6px 15px !important;
+        font-size: 13px !important;
+        border-radius: 6px !important;
+    }
+
+    /* Reset Hover News-card on Mobile: No movement, color only */
+    .news-card:hover:not(:has(.btn-mini-luxury:hover)) {
+        transform: none !important;
+        box-shadow: none !important;
+        background: transparent !important;
+    }
+
+    /* -----------------------------------------
+       SITE-WIDE TYPOGRAPHY UNIFICATION (768PX)
+    ----------------------------------------- */
+    .section-label, .criteria__label, .story-premium__tag, 
+    .strengths__tag, .commit__header .tag, .feedback__content .tag,
+    .core-values__subtitle {
+        font-size: 20px !important;
+        letter-spacing: 0.3em !important;
+        margin-bottom: 15px !important;
+        font-weight: 300 !important;
+    }
+
+    .section-title, .criteria__title, .story-premium__title, 
+    .strengths__title, .commit__header h2, .feedback__content h2,
+    .core-values__title {
+        font-size: 36px !important;
+        line-height: 1.2 !important;
+        text-transform: uppercase !important; /* Đồng bộ viết hoa cho cân */
+    }
+
+    .section-description, .experience__desc, .story-premium__desc, 
+    .strengths__subtitle, .expertise-slim__header p, .criteria__desc, 
+    .commit__header p, .feedback__content p {
+        font-size: 18px !important;
+        line-height: 1.6 !important;
+        max-width: 650px !important;
+        margin-left: auto !important;
+        margin-right: auto !important;
+    }
+
+    .news-card {
+        margin-bottom: 0 !important;
+    }
+}
+
+@media (max-width: 480px) {
+    :root {
+        --side-padding: 15px !important;
+    }
+    .about-hero-premium { 
+        padding: 0 !important; 
+        min-height: 520px !important; 
+        display: flex !important; 
+        align-items: center !important; 
+        justify-content: center !important; 
+        background-attachment: scroll !important;
+    }
+    .about-hero-premium__container {
+        display: flex !important;
+        flex-direction: column !important;
+        justify-content: center !important;
+        align-items: center !important;
+        height: auto !important;
         padding: 40px 15px !important;
     }
-
-    .criteria-container {
-        grid-template-columns: 1fr !important;
-        gap: 25px !important;
-    }
-
-    .criteria-item {
-        flex-direction: column !important;
-        text-align: center !important;
-        padding: 25px !important;
-    }
-}
-
-/* ==========================================================================
-   MOBILE CHUẨN (768px trở xuống)
-   ========================================================================== */
-@media (max-width: 768px) {
-    /* HERO SECTION ALIGNMENT */
-    .hero {
-        min-height: 350px !important;
-        padding-top: 80px !important;
-    }
-
-    .hero__title {
-        font-size: 28px !important;
-    }
-
-    /* DEALS SLIDER is now handled by Swiper JS breakpoints */
-    .deal-card {
-        min-height: 500px !important;
-    }
-
-    /* FOOTER CLEAN STACK */
-    .footer-bottom__container {
-        flex-direction: column !important;
-        text-align: center !important;
-        gap: 20px !important;
-    }
-
-    .footer-bottom__left,
-    .footer-bottom__right {
+    .about-hero-premium__left {
         width: 100% !important;
-        justify-content: center !important;
-    }
-
-    /* BRAND LOGO CENTERING */
-    .header__logo-group {
+        max-width: 100% !important;
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
         text-align: center !important;
-        margin: 0 auto !important;
-    }
-
-    /* BENEFITS PREMIUM MOBILE */
-    .benefits-premium {
-        padding: 40px 0 !important;
-        background-attachment: scroll !important; /* Tránh giật lag trên mobile */
-    }
-
-    .benefits-premium__container {
-        justify-content: center !important;
-        padding: 0 15px !important;
-    }
-
-    .benefits-premium__content {
-        width: 100% !important;
-        padding: 25px !important;
-    }
-
-    .benefits-premium__title {
-        font-size: 26px !important;
-    }
-
-    .benefit-item {
         gap: 15px !important;
     }
+    .about-hero-premium__tag,
+    .about-hero-premium__title,
+    .about-hero-premium__subtitle-box,
+    .about-hero-premium__subtitle,
+    .about-hero-premium__subtitle-main,
+    .about-hero-premium__tagline,
+    .about-hero-premium__actions {
+        margin: 0 !important;
+        padding: 0 !important;
+        text-align: center !important;
+        width: 100% !important;
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+    }
+    .about-hero-premium__title { font-size: 62px !important; line-height: 1 !important; margin: 5px 0 !important; } 
+    .about-stats-group { display: none !important; }
+    .about-hero-premium__tagline { flex-direction: row !important; flex-wrap: wrap !important; justify-content: center !important; gap: 8px !important; margin-top: 10px !important; }
+    .about-hero-premium__actions { flex-direction: column !important; align-items: center !important; margin-top: 30px !important; gap: 12px !important; }
+    .btn-hero-solid, .btn-hero-link { width: 100% !important; max-width: 280px !important; margin: 0 !important; }
 
-    .benefit-item__num {
-        font-size: 60px !important;
-        left: -10px !important;
-        opacity: 0.1 !important;
+    .experience__grid {
+        grid-template-columns: 1fr !important;
     }
 
-    .benefit-item h3 {
-        font-size: 17px !important;
+    /* Standard Scale for 480px */
+    .section-label, .criteria__label, .story-premium__tag, 
+    .strengths__tag, .commit__header .tag, .feedback__content .tag,
+    .core-values__subtitle {
+        font-size: 18px !important;
+    }
+
+    .section-title, .criteria__title, .story-premium__title, 
+    .strengths__title, .commit__header h2, .feedback__content h2,
+    .core-values__title {
+        font-size: 30px !important;
+        text-transform: uppercase !important;
+    }
+
+    .section-description, .experience__desc, .story-premium__desc, 
+    .strengths__subtitle, .expertise-slim__header p, .criteria__desc, 
+    .commit__header p, .feedback__content p {
+        font-size: 16px !important;
+    }
+
+    .form-final {
+        margin-top: 0 !important;
+        padding-top: 0 !important;
+    }
+
+    /* Đưa Feedback và Commit vô giữa ở mobile */
+    .feedback__content,
+    .feedback__content h2,
+    .feedback__content .tag,
+    .feedback__content p,
+    .commit__header,
+    .commit__header h2,
+    .commit__header .tag,
+    .commit__header p {
+        text-align: center !important;
+        margin-left: auto !important;
+        margin-right: auto !important;
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+    }
+
+    /* Fix quote-bar bị tràn màn hình */
+    .luxury-quote {
+        width: 100% !important;
+        box-sizing: border-box !important;
+        padding: 25px 20px !important;
+        font-size: 16px !important;
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+    }
+
+    .error-msg {
+        font-size: 18px !important;
     }
 }
 
-/* ==========================================================================
-   XỬ LÝ ĐẶC BIỆT CHO NAVBAR (HAMBURGER)
-   ========================================================================== */
-@media (max-width: 768px) {
-    .header__nav {
-        position: fixed !important;
-        top: 60px !important;
-        left: -100% !important;
-        width: 100% !important;
-        height: calc(100vh - 60px) !important;
-        background: #fff !important;
-        flex-direction: column !important;
-        padding: 40px 0 !important;
-        transition: 0.4s cubic-bezier(0.23, 1, 0.32, 1) !important;
-        z-index: 999 !important;
+@media (max-width: 360px) {
+    :root {
+        --side-padding: 15px !important;
+    }
+    /* Standard Scale for 360px */
+    .section-label, .criteria__label, .story-premium__tag, 
+    .strengths__tag, .commit__header .tag, .feedback__content .tag,
+    .core-values__subtitle {
+        font-size: 16px !important;
     }
 
-    input#menu-toggle:checked ~ .header__actions .header__nav {
-        left: 0 !important;
+    .section-title, .criteria__title, .story-premium__title, 
+    .strengths__title, .commit__header h2, .feedback__content h2,
+    .core-values__title {
+        font-size: 28px !important;
+        text-transform: uppercase !important;
     }
+
+    .section-description, .experience__desc, .story-premium__desc, 
+    .strengths__subtitle, .expertise-slim__header p, .criteria__desc, 
+    .commit__header p, .feedback__content p {
+        font-size: 15px !important;
+    }
+
+    .error-msg {
+        font-size: 16px !important;
+    }
+
+    .action-buttons {
+        gap: 8px !important;
+    }
+
+    .btn-call, .btn-zalo {
+        padding: 10px 15px !important;
+        font-size: 14px !important;
+        height: 45px !important;
+        white-space: nowrap !important;
+        min-width: 120px !important;
+    }
+}
+
+/* Global Utilities */
+.u-nowrap {
+    white-space: nowrap !important;
+    display: inline-block !important;
+}
+
+/* Force brown color for the contact title span group */
+.footer-contact .u-nowrap {
+    color: var(--color-primary) !important;
 }
