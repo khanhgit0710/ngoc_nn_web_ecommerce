@@ -89,24 +89,18 @@ document.addEventListener("DOMContentLoaded", function () {
     // Feedback Slider - Duo View (Hiện 2 ảnh - To tắp lự)
     if (document.querySelector('.feedbackSwiper')) {
         const feedbackSwiper = new Swiper('.feedbackSwiper', {
-            slidesPerView: 2,
-            spaceBetween: 30,
+            slidesPerView: 'auto', // Để width tự lấy từ CSS (110px)
+            spaceBetween: 5,
             loop: true,
             autoplay: {
                 delay: 4000,
                 disableOnInteraction: false,
             },
             speed: 1000,
-            pagination: {
-                el: '.feedback-pagination',
-                clickable: true,
-                dynamicBullets: true,
-            },
             breakpoints: {
-                // Trên PC vẫn giữ 2.2 cho nó có độ sâu
                 1024: {
-                    slidesPerView: 2.2,
-                    spaceBetween: 30,
+                    slidesPerView: 'auto',
+                    spaceBetween: 8,
                 }
             }
         });
@@ -259,47 +253,81 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 });
 
-// BUTTON TRENDING NEWS
+// BUTTON TRENDING NEWS - UPGRADED WITH MOBILE AUTO-SLIDE
 document.addEventListener('DOMContentLoaded', () => {
+    const viewport = document.querySelector('.trending-slider-viewport');
     const grid = document.querySelector('.trending-grid');
     const cards = document.querySelectorAll('.trending-card');
     const nextBtn = document.querySelector('.next-btn--trending-news');
     const prevBtn = document.querySelector('.prev-btn--trending-news');
 
+    if (!grid || !cards.length) return;
+
     let index = 0;
+    let autoSlideInterval;
 
     function updateSlider() {
+        if (window.innerWidth <= 768) return; // Skip transform on mobile (uses native scroll)
+
         const cardWidth = cards[0].offsetWidth + 20; // 20 là gap
         grid.style.transform = `translateX(${-index * cardWidth}px)`;
 
-        // Disable nút khi hết card (optional)
-        prevBtn.style.opacity = index === 0 ? "0.5" : "1";
-        prevBtn.style.pointerEvents = index === 0 ? "none" : "auto";
+        if (prevBtn && nextBtn) {
+            prevBtn.style.opacity = index === 0 ? "0.5" : "1";
+            prevBtn.style.pointerEvents = index === 0 ? "none" : "auto";
 
-        // Tính toán số card hiển thị dựa trên màn hình
-        let visibleCards = window.innerWidth > 992 ? 3 : (window.innerWidth > 600 ? 2 : 1);
-
-        nextBtn.style.opacity = index >= cards.length - visibleCards ? "0.5" : "1";
-        nextBtn.style.pointerEvents = index >= cards.length - visibleCards ? "none" : "auto";
+            let visibleCards = window.innerWidth > 992 ? 3 : 2;
+            nextBtn.style.opacity = index >= cards.length - visibleCards ? "0.5" : "1";
+            nextBtn.style.pointerEvents = index >= cards.length - visibleCards ? "none" : "auto";
+        }
     }
 
-    nextBtn.addEventListener('click', () => {
-        let visibleCards = window.innerWidth > 992 ? 3 : (window.innerWidth > 600 ? 2 : 1);
-        if (index < cards.length - visibleCards) {
-            index++;
-            updateSlider();
-        }
-    });
+    if (nextBtn && prevBtn) {
+        nextBtn.addEventListener('click', () => {
+            let visibleCards = window.innerWidth > 992 ? 3 : 2;
+            if (index < cards.length - visibleCards) {
+                index++;
+                updateSlider();
+            }
+        });
 
-    prevBtn.addEventListener('click', () => {
-        if (index > 0) {
-            index--;
-            updateSlider();
-        }
-    });
+        prevBtn.addEventListener('click', () => {
+            if (index > 0) {
+                index--;
+                updateSlider();
+            }
+        });
+    }
 
-    // Cập nhật lại khi xoay màn hình hoặc resize
-    window.addEventListener('resize', updateSlider);
+    // MOBILE AUTO-SLIDE LOGIC
+    function startAutoSlide() {
+        if (window.innerWidth > 768) return;
+        
+        autoSlideInterval = setInterval(() => {
+            if (viewport.scrollLeft + viewport.offsetWidth >= viewport.scrollWidth - 10) {
+                viewport.scrollTo({ left: 0, behavior: 'smooth' });
+            } else {
+                const scrollAmount = cards[0].offsetWidth + 10; // card + gap
+                viewport.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+            }
+        }, 3000);
+    }
+
+    function stopAutoSlide() {
+        clearInterval(autoSlideInterval);
+    }
+
+    if (window.innerWidth <= 768) {
+        startAutoSlide();
+        viewport.addEventListener('touchstart', stopAutoSlide);
+        viewport.addEventListener('touchend', startAutoSlide);
+    }
+
+    window.addEventListener('resize', () => {
+        updateSlider();
+        stopAutoSlide();
+        if (window.innerWidth <= 768) startAutoSlide();
+    });
 });
 
 /* ==========================================

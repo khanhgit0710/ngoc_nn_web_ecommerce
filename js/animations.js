@@ -7,9 +7,9 @@ document.addEventListener("DOMContentLoaded", () => {
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
-                // Thêm class active và ngừng quan sát để animation mượt mà, không bị lặp lại gây giật
                 entry.target.classList.add("active");
-                observer.unobserve(entry.target);
+            } else {
+                entry.target.classList.remove("active");
             }
         });
     }, observerOptions);

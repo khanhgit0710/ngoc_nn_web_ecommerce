@@ -30,18 +30,32 @@
     --side-padding-480: 10px;
     --side-padding-360: 8px;  
 
-    /* Font size */
+    /* --- FLUID TYPOGRAPHY (PC-FIRST) --- */
+    /* Công thức chuẩn: clamp(MIN, CALC_BASE + CALC_VW, MAX) */
+    --font-size-h1: clamp(28px, 24px + 1.11vw, 40px);      /* 40px @ 1440px -> 28px @ 360px */
+    --font-size-h2: clamp(24px, 20px + 1.11vw, 36px);      /* 36px @ 1440px -> 24px @ 360px */
+    --font-size-h3: clamp(20px, 18.7px + 0.37vw, 24px);    /* 24px @ 1440px -> 20px @ 360px */
+    --font-size-h4: clamp(18px, 17.3px + 0.19vw, 20px);    /* 20px @ 1440px -> 18px @ 360px */
+    --font-size-h5: clamp(16px, 15.3px + 0.19vw, 18px);    /* 18px @ 1440px -> 16px @ 360px */
+    
+    --font-size-logo: 32px;
+    --font-size-title: var(--font-size-h2);
+    --font-size-label: clamp(16px, 15.3px + 0.19vw, 18px); /* Bump: 18px PC -> 16px MB */
+    --font-size-content: clamp(16px, 15.7px + 0.09vw, 17px);/* Bump: 17px PC -> 16px MB */
+    --font-size-btn: clamp(13px, 12.3px + 0.19vw, 15px);   /* Refined: 15px PC -> 13px MB */
 
-    --font-size-logo: 40px;      /* Cực đại cho Logo hoặc Header chính */
-    --font-size-title: 36px;     /* Tiêu đề các Section lớn */
-    --font-size-label: 16px;     /* Nhãn (Label), Tiêu đề Card, Subtitle */
-    --font-size-content: 15px;   /* Nội dung văn bản, mô tả, Input */
-    --font-size-btn: 15px;       /* Chữ trong các nút bấm */   /* Cho chữ trong nút */
-
+    /* --- FLUID SPACING & BUTTONS --- */
+    --btn-h: clamp(34px, 32px + 0.55vw, 38px);        /* PC: 38px */
+    --btn-px: clamp(16px, 14px + 0.55vw, 22px);       /* PC: 22px */
+    
+    --btn-h-lg: clamp(38px, 33.3px + 1.3vw, 52px);     /* PC: 52px -> MB: 38px */
+    --btn-px-lg: clamp(8px, -4.3px + 3.4vw, 45px);     /* PC: 45px -> MB: 8px */
+    
     /* Animation */
-    --transition-luxury: all 0.6s cubic-bezier(0.23, 1, 0.32, 1); /* Cubic-bezier cho cảm giác "mướt" */
+    --radius-luxury: 8px;
+    --transition-luxury: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
     --shadow-card: 0 10px 40px rgba(0,0,0,0.03);
-    --shadow-hover: 0 20px 60px rgba(183, 114, 70, 0.15); /* Bóng đổ mang màu thương hiệu */
+    --shadow-hover: 0 20px 60px rgba(183, 114, 70, 0.15);
 }
 
 * {
@@ -86,8 +100,8 @@ button {
     justify-content: center;
     
     /* DNA từ nút btn_cart chuẩn 19:00 */
-    height: 38px;
-    padding: 0 22px;
+    height: var(--btn-h);
+    padding: 0 var(--btn-px);
     background: var(--color-primary);
     color: #fff !important;
     border-radius: 8px; /* Bo góc 8px tuyệt đối theo yêu cầu */
@@ -186,10 +200,31 @@ section {
     background-color: #ffffff;
 }
 
+@media (max-width: 1024px) {
+    :root {
+        --side-padding: var(--side-padding-1024);
+    }
+}
+
 @media (max-width: 768px) {
+    :root {
+        --side-padding: var(--side-padding-768);
+    }
     section {
         padding: var(--section-padding-mb);
         margin: 0; /* Reset margin trên mobile để tránh quá thưa */
+    }
+}
+
+@media (max-width: 480px) {
+    :root {
+        --side-padding: var(--side-padding-480);
+    }
+}
+
+@media (max-width: 360px) {
+    :root {
+        --side-padding: var(--side-padding-360);
     }
 }
 
