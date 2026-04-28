@@ -70,7 +70,7 @@ html {
 }
 
 body {
-    overflow-x: hidden; /* Chuyển sang body để không làm hỏng position: sticky của header */
+    overflow-x: clip; /* Prevent horizontal overflow without creating a scroll container */
     font-family: var(--font-main);
     line-height: 1.6;
     background-color: #ffffff; 
@@ -197,7 +197,7 @@ ul {
 section {
     padding: var(--section-padding-pc); /* Khoảng cách trên dưới cực thoáng đúng chất Luxury */
     margin: var(--section-margin-pc); /* Tạo khoảng giãn giữa các section trên PC */
-    background-color: #ffffff;
+    /* background-color: #ffffff; */
 }
 
 @media (max-width: 1024px) {

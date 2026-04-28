@@ -55,9 +55,10 @@ document.addEventListener("DOMContentLoaded", function () {
 document.addEventListener("DOMContentLoaded", function () {
     if (document.querySelector('.dealsSwiper')) {
         const dealsSwiper = new Swiper('.dealsSwiper', {
-            slidesPerView: 1,
+            slidesPerView: 2,
             spaceBetween: 8,
             loop: true,
+            loopedSlides: 8,
             autoplay: {
                 delay: 2500,
                 disableOnInteraction: false,
@@ -96,6 +97,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 delay: 4000,
                 disableOnInteraction: false,
             },
+
             speed: 1000,
             breakpoints: {
                 1024: {
@@ -299,6 +301,88 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    // PC MOUSE DRAG SLIDER FUNCTIONALITY
+    let isDown = false;
+    let startX;
+    let currentTranslate = 0;
+    let prevTranslate = 0;
+    let dragged = false;
+
+    viewport.addEventListener('mousedown', (e) => {
+        if (window.innerWidth <= 768) return;
+        isDown = true;
+        dragged = false;
+        startX = e.pageX - viewport.offsetLeft;
+        const cardWidth = cards[0].offsetWidth + 20;
+        prevTranslate = -index * cardWidth;
+        currentTranslate = prevTranslate;
+        grid.style.transition = 'none';
+        viewport.style.cursor = 'grabbing';
+    });
+
+    viewport.addEventListener('mouseleave', () => {
+        if (!isDown) return;
+        isDown = false;
+        viewport.style.cursor = 'grab';
+        snapToGrid();
+    });
+
+    viewport.addEventListener('mouseup', () => {
+        if (!isDown) return;
+        isDown = false;
+        viewport.style.cursor = 'grab';
+        snapToGrid();
+    });
+
+    viewport.addEventListener('mousemove', (e) => {
+        if (!isDown) return;
+        e.preventDefault();
+        const x = e.pageX - viewport.offsetLeft;
+        const walk = x - startX;
+        
+        if (Math.abs(walk) > 5) {
+            dragged = true;
+        }
+
+        currentTranslate = prevTranslate + walk;
+        
+        // Limit boundaries
+        const cardWidth = cards[0].offsetWidth + 20;
+        const visibleCards = window.innerWidth > 992 ? 3 : 2;
+        const maxTranslate = 0;
+        const minTranslate = -(cards.length - visibleCards) * cardWidth;
+        
+        if (currentTranslate > maxTranslate) currentTranslate = maxTranslate;
+        if (currentTranslate < minTranslate) currentTranslate = minTranslate;
+
+        grid.style.transform = `translateX(${currentTranslate}px)`;
+    });
+
+    // Prevent navigation if dragged
+    viewport.addEventListener('click', (e) => {
+        if (dragged) {
+            e.preventDefault();
+            e.stopPropagation();
+        }
+    }, true);
+
+    function snapToGrid() {
+        const cardWidth = cards[0].offsetWidth + 20;
+        grid.style.transition = 'transform 0.3s ease-out';
+        
+        index = Math.round(-currentTranslate / cardWidth);
+        const visibleCards = window.innerWidth > 992 ? 3 : 2;
+        if (index > cards.length - visibleCards) index = cards.length - visibleCards;
+        if (index < 0) index = 0;
+
+        updateSlider();
+    }
+
+    // Set cursor to grab by default for PC
+    if (window.innerWidth > 768) {
+        viewport.style.cursor = 'grab';
+    }
+
     // MOBILE AUTO-SLIDE LOGIC
     function startAutoSlide() {
         if (window.innerWidth > 768) return;
@@ -472,3 +556,48 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     });
 });
+
+// ============================================================
+// INJECT BOTTOM NAVIGATION DOCK (MOBILE & TABLET)
+// ============================================================
+document.addEventListener("DOMContentLoaded", function () {
+    if (!document.querySelector('.bottom-nav-dock')) {
+        const dock = document.createElement('div');
+        dock.className = 'bottom-nav-dock';
+        dock.innerHTML = `
+            <a href="about_me.html" class="bottom-nav-item">
+                <i class="fas fa-home"></i>
+                <span>Xem Nhà</span>
+            </a>
+            <a href="ky_gui.html" class="bottom-nav-item">
+                <i class="fas fa-hand-holding-usd"></i>
+                <span>Ký Gửi</span>
+            </a>
+            <a href="tim_nha.html" class="bottom-nav-item bottom-nav-item--center">
+                <i class="fas fa-map-marked-alt"></i>
+                <span>Đặt Nhà</span>
+            </a>
+            <a href="javascript:void(0)" class="bottom-nav-item">
+                <i class="fas fa-calculator"></i>
+                <span>Tính Lãi</span>
+            </a>
+            <a href="javascript:void(0)" class="bottom-nav-item">
+                <i class="fas fa-tv"></i>
+                <span>Quảng Cáo</span>
+            </a>
+        `;
+        document.body.appendChild(dock);
+
+        // Đánh dấu active cho trang hiện tại
+        const currentPath = window.location.pathname;
+        const navItems = dock.querySelectorAll('.bottom-nav-item');
+        
+        navItems.forEach(item => {
+            const href = item.getAttribute('href');
+            if (href && href !== '#' && href !== 'javascript:void(0)' && currentPath.includes(href)) {
+                item.classList.add('active');
+            }
+        });
+    }
+});
+

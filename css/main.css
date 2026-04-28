@@ -791,8 +791,8 @@
 
 /* 2. Lớp Ruột: Giới hạn 1000px và căn giữa */
 .social__container {
-    max-width: var(--content-max-width);
-    /* Mặc định 1000px */
+    max-width: 1040px;
+    /* 1000px ruột + 40px padding */
     margin: 0 auto;
     padding: 0 20px;
 }
@@ -1161,7 +1161,7 @@
 /* --- BUTTON ĐỒNG BỘ CART (ULTRA SHINE) --- */
 /* Khung tổng gom cụm */
 .creative-problem-block {
-    padding: 0 0 40px 0px;
+    padding: 0 0 20px 0px;
     /* box-shadow: 0 20px 60px rgba(0, 0, 0, 0.03); */
     position: relative;
     overflow: hidden;
@@ -1223,7 +1223,7 @@
 .btn-container-creative {
     display: flex;
     justify-content: center;
-    margin-top: 25px;
+    margin-top: 30px;
 }
 
 /* Nút bấm Luxury */
@@ -1314,7 +1314,7 @@
    ========================================================================== */
 .why-us {
     position: relative;
-    padding: 100px 0;
+    padding: 60px 0 0 0;
     background: url('../assets/images/bg-timnha.webp') no-repeat center center / cover;
     overflow: hidden;
 }
@@ -1352,12 +1352,11 @@
 }
 
 .why-us-minimal {
-    background: rgba(255, 255, 255, 0.9);    /* Milky Glass - Plan 2 */
-    backdrop-filter: blur(25px);
+    /* backdrop-filter: blur(25px); */
     /* Tăng Blur cực mạnh để làm nhòa chi tiết sau quạt/cửa sổ */
-    -webkit-backdrop-filter: blur(25px);
+    /* -webkit-backdrop-filter: blur(25px); */
     border-radius: 8px;
-    padding: 80px 40px;
+    padding: 60px 40px;
     border: 1px solid rgba(255, 255, 255, 0.8);
     box-shadow: 0 30px 70px rgba(0, 0, 0, 0.06);
 }
@@ -1428,7 +1427,7 @@
     flex-direction: column;
     align-items: center;
     text-align: center;
-    gap: 20px;
+    gap: 15px;
     transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
     cursor: pointer;
     position: relative;
@@ -1437,9 +1436,9 @@
 }
 
 /* Masonry nhẹ nhàng */
-.why-card-small:nth-child(even) {
+/* .why-card-small:nth-child(even) {
     margin-top: 30px;
-}
+} */
 
 .why-card-small:hover {
     transform: translateY(-15px) scale(1.02);
@@ -1482,7 +1481,7 @@
 .why-card-small__content h3 {
     color: #5d3420 !important;
     /* Đổi sang màu nâu đậm của Ngọc NN để tăng độ tương phản */
-    font-size: 20px;
+    font-size: 18px;
     font-weight: 700;
     margin-bottom: 16px;
     letter-spacing: -0.5px;
@@ -1490,15 +1489,15 @@
 }
 
 .why-card-small:hover .why-card-small__content h3 {
-    font-size: 21px;
+    font-size: 19px;
     color: var(--color-primary) !important;
 }
 
 .why-card-small__content p {
     color: #333333 !important;
     /* Màu xám than để text mô tả rõ nét nhất - Plan 3 */
-    font-size: var(--font-size-content);
-    line-height: 1.6;
+    font-size: 16px;
+    line-height: 1.4;
     margin: 0;
     opacity: 0.95;
 }
@@ -2226,12 +2225,11 @@ textarea.input-final {
 }
 
 /* HOVER EFFECT */
-.form-notes li:hover {
+/* .form-notes li:hover {
     color: var(--color-btn);
     transform: translateX(8px);
-    /* Nhích nhẹ sang phải khi hover */
     transition: all 0.4s ease;
-}
+} */
 
 .social-box {
     display: flex;
@@ -2814,14 +2812,12 @@ textarea.input-final {
    FOOTER & SOCIAL ANIMATIONS
    ========================================================================== */
 .footer-contact {
-    max-width: var(--content-max-width);
-    /* Chốt hạ 1000px chuẩn */
-    margin-left: auto;
-    margin-right: auto;
+    width: 100%;
+    background-color: #fff7ec;
 
     /* 2. Căn chỉnh nội dung bên trong */
-    padding: 40xp 0;
-    margin: 0 auto;
+    padding: 40px 0;
+    margin: 0;
     text-align: center;
 
     /* 3. Dùng Flexbox để các thành phần con tự canh giữa theo chiều dọc */
@@ -2881,7 +2877,7 @@ textarea.input-final {
 .footer-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 150px !important;
+    gap: 80px !important;
     width: 100%;
     margin-top: 40px;
     align-items: start;
@@ -2957,9 +2953,9 @@ textarea.input-final {
 }
 
 .social-box {
-    background: #fff;
-    border: 1px solid rgba(183, 114, 70, 0.15);
-    border-radius: 15px;
+    background: #fff7ec;
+    border: 1px solid rgba(183, 114, 70, 0.3);
+    border-radius: 8px;
     padding: 15px 25px;
     display: flex;
     align-items: center;
@@ -3080,7 +3076,7 @@ textarea.input-final {
 .hotline-display {
     border: 1.5px solid #9d3133;
     border-radius: 8px;
-    padding: 10px 70px;
+    padding: 10px 80px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -3292,7 +3288,7 @@ textarea.input-final {
 .featured-post-slider {
     position: relative;
     width: 100%;
-    height: 480px;
+    height: 450px;
     overflow: hidden;
     background: #ffffff;
     padding: 0;
@@ -3330,8 +3326,7 @@ textarea.input-final {
     width: 100%;
     height: 450px;
     object-fit: cover;
-    transition: transform 8s ease;
-    /* Zoom nhẹ */
+    border-radius: 8px;
 }
 
 /* --- UNIFIED LUXURY BUTTONS --- */
@@ -3456,9 +3451,8 @@ textarea.input-final {
     color: #ffffff;
 } */
 
-/* Hiệu ứng ảnh zoom khi slide được hiển thị */
+/* Hiệu ứng ảnh zoom khi slide được hiển thị (đã tắt theo yêu cầu) */
 .slide.active img {
-    transform: scale(1.1);
     border-radius: 8px;
 }
 
@@ -3597,9 +3591,9 @@ textarea.input-final {
     }
 }
 
-/* Hover nhẹ vào Slider thì ảnh zoom từ từ cực sang */
+/* Hover nhẹ vào Slider thì ảnh zoom từ từ cực sang (đã tắt) */
 .featured-post-slider:hover .slide img {
-    transform: scale(1.05);
+    /* transform: scale(1.05); */
 }
 
 /* TEXT STYLE */
@@ -3629,7 +3623,8 @@ textarea.input-final {
     position: relative;
     width: 100%;
     overflow: hidden;
-    margin-bottom: 60px;
+    margin-bottom: 20px;
+    padding-bottom: 0;
 }
 
 .slide img {
@@ -3692,6 +3687,7 @@ textarea.input-final {
     height: 45px;
     background: #fff;
     color: #999;
+    border-radius: 8px !important;
     /* Màu xám mặc định ông muốn */
     cursor: pointer;
     transition: all 0.3s ease;
@@ -3710,7 +3706,7 @@ textarea.input-final {
 
 /* Đưa nút qua phải hẳn ra ngoài lề */
 .next-btn--trending-news {
-    right: 15px;
+    right: 0px !important;
 }
 
 /* Hover vô màu primary của ông */
@@ -3812,7 +3808,7 @@ textarea.input-final {
 /* --- 5. TIÊU ĐỀ --- */
 .trending-card h4 {
     font-size: var(--font-size-h5);
-    font-weight: 500;
+    font-weight: 750;
     line-height: 1.2;
     color: #1a1a1a;
     margin: 5px 0 12px;
@@ -3978,8 +3974,8 @@ textarea.input-final {
 
 .hl-num {
     font-family: 'Montserrat', sans-serif;
-    font-size: 55px;
-    line-height: 0.8;
+    font-size: 57px;
+    line-height: 0.9;
     font-weight: 800;
     color: #b8adb6;
     flex-shrink: 0;
@@ -3987,7 +3983,7 @@ textarea.input-final {
 }
 
 .highlight-item p {
-    font-size: var(--font-size-h5);
+    font-size: 18px;
     color: #444;
     font-weight: 600;
     /* Trình bày đậm như yêu cầu */
@@ -3999,8 +3995,9 @@ textarea.input-final {
 .highlight-item:hover p {
     color: var(--color-primary);
     /* Đổi sang màu thương hiệu cho nổi bật */
-}
+        transform: translateX(10px);
 
+}
 
 /* --- 6. RESPONSIVE: CHƠI KIỂU DANH SÁCH (VERTICAL LIST) --- */
 
@@ -4040,7 +4037,7 @@ textarea.input-final {
     }
 
     .hl-num {
-        font-size: 30px;
+        font-size: 40px;
         /* Nhỏ lại xíu trên mobile */
     }
 
@@ -4139,7 +4136,7 @@ textarea.input-final {
 }
 
 /* Hiệu ứng tia sáng Shine tương tự Cart */
-/* .tag-item::before {
+.tag-item::before {
     content: "";
     position: absolute;
     top: 0;
@@ -4148,16 +4145,16 @@ textarea.input-final {
     height: 100%;
     background: linear-gradient(120deg,
             transparent,
-            rgba(255, 255, 255, 0.45),
+            rgba(255, 255, 255, 0.35),
             transparent);
     transition: all 0.6s ease;
-} */
+}
 
 .tag-item:hover {
-    background: var(--color-primary) !important;
+    background: var(--color-btn) !important;
     color: #fff !important;
-    transform: scale(1.08) translateY(-3px);
-    box-shadow: 0 10px 20px rgba(183, 114, 70, 0.25);
+    transform: scale(1.06) translateY(-2px);
+    box-shadow: 0 8px 20px rgba(160, 82, 45, 0.3);
 }
 
 .tag-item:hover::before {
@@ -4176,10 +4173,10 @@ textarea.input-final {
 }
 
 .latest-news-inner {
-    padding: 15px 0;
+    padding: 15px 0 0 0;
     font-family: 'Roboto', sans-serif;
-    font-size: 20px;
-    font-weight: 600;
+    font-size: 22px;
+    font-weight: 500;
     color: #5c5c5c;
     text-transform: uppercase;
     position: relative;
@@ -4222,7 +4219,7 @@ textarea.input-final {
 .news-grid {
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 18px;
     width: 100%;
 }
 
@@ -4242,7 +4239,7 @@ textarea.input-final {
     margin-bottom: 0px;
     /* Tạo khoảng cách giữa các card */
     /* padding-bottom: 10px; */
-    padding-bottom: 20px;
+    padding-bottom: 12px;
     border-bottom: 1px solid #eee;
     /* Đường kẻ nhạt hơn cho sang */
 }
@@ -4278,6 +4275,7 @@ textarea.input-final {
 
 .news-media {
     flex: 0 0 320px;
+    align-self: flex-start; /* Prevent stretching to maintain aspect ratio */
     aspect-ratio: 16 / 9;
     overflow: hidden;
     background: #efece5;
@@ -4332,8 +4330,8 @@ textarea.input-final {
     /* Để space-between lo liệu */
     margin-top: 10px;
     display: -webkit-box;
-    -webkit-line-clamp: 3;
-    /* Tăng lên 3 dòng cho khớp chiều cao ảnh */
+    -webkit-line-clamp: 2;
+    /* Giới hạn 2 dòng để nội dung vừa bằng ảnh */
     -webkit-box-orient: vertical;
     overflow: hidden;
     text-align: justify;
@@ -4642,8 +4640,6 @@ textarea.input-final {
     font-size: 13px;
     font-weight: 500;
     padding: 6px 40px;
-    margin-top: 15px;
-    margin-bottom: 5px;
     border: 1px solid var(--color-primary);
     color: var(--color-primary);
     background: transparent;
@@ -4691,7 +4687,7 @@ textarea.input-final {
     line-height: 1.6;
     color: #1a1a1a;
     margin-bottom: 25px;
-    margin-top: 25px;
+    margin-top: 20px;
     padding: 0;
 }
 
@@ -4712,13 +4708,20 @@ textarea.input-final {
 }
 
 .author-name {
-    font-weight: 700;
+    font-weight: 500;
     font-size: 20px;
     color: var(--color-primary);
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.author-name:hover {
+    color: var(--color-primary-dark, #8a5332); /* Fallback color just in case */
+    text-decoration: underline;
 }
 
 .post-date {
-    font-size: var(--font-size-h5);
+    font-size: 15px;
     color: #999;
 }
 
@@ -4876,7 +4879,7 @@ textarea.input-final {
 
 .post-tags a {
     display: inline-block;
-    padding: 5px 15px;
+    padding: 0px 15px;
     border: 1px solid #cfcfcf;
     border-radius: 8px;
     font-size: var(--font-size-label);
@@ -4944,13 +4947,13 @@ textarea.input-final {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    font-weight: 700;
-    font-size: var(--font-size-h5);
+    font-weight: 500;
+    font-size: 22px;
     margin-bottom: 15px;
     padding-bottom: 15px;
     border-bottom: 1px solid #eee;
     /* Đường line mờ chạy dài */
-    color: #1a1a1a;
+    color: #5c5c5c;
     font-family: inherit;
     /* Dùng font hệ thống cho tự nhiên */
 }
@@ -4985,7 +4988,7 @@ textarea.input-final {
 /* LINK - Không hover bay nhảy, chỉ đổi màu nhẹ */
 .toc-list a {
     color: #333;
-    font-size: 17px;
+    font-size: 18px;
     text-decoration: none;
     transition: color 0.2s ease;
     font-weight: 400;
@@ -5018,12 +5021,12 @@ textarea.input-final {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    font-weight: 700;
-    font-size: var(--font-size-h5);
+    font-weight: 500;
+    font-size: 22px;
     padding-bottom: 15px;
     margin-bottom: 20px;
     border-bottom: 1.5px solid #eee;
-    color: var(--color-text);
+    color: #5c5c5c;
     text-transform: uppercase;
     letter-spacing: 1px;
 }
@@ -5059,7 +5062,7 @@ textarea.input-final {
 
 .interested-list li a {
     color: #444;
-    font-size: 17px;
+    font-size: 18px;
     text-decoration: none;
     font-weight: 500;
     line-height: 1.4;
@@ -5186,7 +5189,7 @@ textarea.input-final {
     object-fit: cover;
     border: 4px solid #fff;
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-    margin-bottom: 12px;
+    /* margin-bottom: 4px; */
     transition: all 0.4s ease;
 }
 
@@ -5197,10 +5200,9 @@ textarea.input-final {
 
 .author-label {
     display: block;
-    font-weight: 700;
+    font-weight: 500;
     color: var(--color-primary);
-    font-size: 24px;
-    letter-spacing: 0.5px;
+    font-size: 20px;
 }
 
 .author-content {
@@ -5397,7 +5399,6 @@ textarea.input-final {
 .breadcrumb {
     font-size: var(--font-size-label);
     color: #999;
-    letter-spacing: 2px;
     text-transform: uppercase;
     margin-bottom: 10px;
 }
@@ -5412,7 +5413,7 @@ textarea.input-final {
 }
 
 .page-title--large {
-    font-size: 34px;
+    font-size: 42px;
     /* To, rõ, quyền lực */
     font-family: 'Montserrat', sans-serif;
     font-weight: 800;
@@ -5568,7 +5569,7 @@ textarea.input-final {
     font-weight: 600;
     color: #ffffff;
     text-transform: uppercase;
-    margin-bottom: 20px;
+    /* margin-bottom: 1px; */
 }
 
 .about-hero-premium__subtitle-main {
@@ -5786,7 +5787,7 @@ textarea.input-final {
     height: var(--btn-h-lg);
     padding: 0 var(--btn-px-lg);
     border-radius: 8px;
-    font-size: var(--font-size-btn);
+    font-size: 17px;
     font-weight: 300;
     text-decoration: none;
     display: inline-flex;
@@ -5829,7 +5830,7 @@ textarea.input-final {
     height: var(--btn-h-lg);
     padding: 0 var(--btn-px-lg);
     color: #ffffff;
-    font-size: var(--font-size-btn);
+    font-size: 17px;
     font-weight: 300;
     text-decoration: none;
     display: inline-flex;
@@ -8264,20 +8265,19 @@ p,
 
 /* --- 5. NÚT XEM THÊM (OUTLINE LUXURY) --- */
 .btn-show-more-feedback {
-    display: inline-flex;
+    display: flex;
     align-items: center;
     justify-content: center;
     height: 48px;
-    padding: 0 45px;
-    margin-top: 30px;
+    padding: 0 10px;
+    margin-top: 50px;
     background: transparent;
     color: var(--color-primary) !important;
     border: 1px solid var(--color-primary);
-    border-radius: 12px;
+    border-radius: 8px;
     font-size: 14px;
     font-weight: 300;
     text-transform: uppercase;
-    letter-spacing: 1px;
     cursor: pointer;
     text-decoration: none !important;
     transition: all 0.4s ease;
@@ -8428,7 +8428,7 @@ p,
 /* --- 2. CỘT TRÁI: ẢNH (BAY TỪ TRÁI VÀO) --- */
 .commit__img {
     flex: 0 0 450px;
-    height: 650px;
+    height: 700px;
     border-radius: 8px;
     overflow: hidden;
     z-index: 1;
@@ -8580,7 +8580,7 @@ p,
     margin: 0 auto;
     display: grid;
     grid-template-columns: 1.5fr 1fr 1fr 1.2fr;
-    gap: 30px;
+    gap: 35px;
     padding-bottom: 40px;
 }
 
@@ -8609,7 +8609,7 @@ p,
 }
 
 .footer__brand p {
-    font-size: var(--font-size-label);
+    font-size: 14px;
     line-height: 1.7;
     color: #000;
     text-align: justify;
@@ -8617,7 +8617,7 @@ p,
 
 /* --- 3. COLUMN HEADERS --- */
 .footer__column h4 {
-    font-size: var(--font-size-h5);
+    font-size: 16px;
     font-weight: 800;
     color: #000;
     margin-bottom: 25px;
@@ -8648,7 +8648,7 @@ p,
 
 .footer__list a {
     text-decoration: none;
-    font-size: var(--font-size-label);
+    font-size: 16px;
     color: #000;
     transition: all 0.3s ease;
 }
@@ -8677,7 +8677,7 @@ p,
     /* Căn giữa icon và chữ theo chiều dọc */
     gap: 12px;
     margin-bottom: 12px;
-    font-size: var(--font-size-label);
+    font-size: 16px;
 }
 
 .footer__contact-info i {
@@ -8710,7 +8710,7 @@ p,
     display: flex;
     justify-content: space-between;
     align-items: center;
-    font-size: var(--font-size-label);
+    font-size: 14px;
     font-weight: 600;
 }
 
@@ -8719,6 +8719,10 @@ p,
     align-items: center;
     gap: 15px;
     color: #000;
+}
+
+.footer-social-group span {
+    font-size: 15px !important;
 }
 
 .footer-social-icons {
@@ -8776,7 +8780,7 @@ p,
     color: rgba(255, 255, 255, 0.8);
     text-align: center;
     padding: 15px 0;
-    font-size: var(--font-size-label);
+    font-size: 13px;
     letter-spacing: 0.5px;
 }
 
