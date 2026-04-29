@@ -339,19 +339,19 @@ document.addEventListener('DOMContentLoaded', () => {
         e.preventDefault();
         const x = e.pageX - viewport.offsetLeft;
         const walk = x - startX;
-        
+
         if (Math.abs(walk) > 5) {
             dragged = true;
         }
 
         currentTranslate = prevTranslate + walk;
-        
+
         // Limit boundaries
         const cardWidth = cards[0].offsetWidth + 20;
         const visibleCards = window.innerWidth > 992 ? 3 : 2;
         const maxTranslate = 0;
         const minTranslate = -(cards.length - visibleCards) * cardWidth;
-        
+
         if (currentTranslate > maxTranslate) currentTranslate = maxTranslate;
         if (currentTranslate < minTranslate) currentTranslate = minTranslate;
 
@@ -369,7 +369,7 @@ document.addEventListener('DOMContentLoaded', () => {
     function snapToGrid() {
         const cardWidth = cards[0].offsetWidth + 20;
         grid.style.transition = 'transform 0.3s ease-out';
-        
+
         index = Math.round(-currentTranslate / cardWidth);
         const visibleCards = window.innerWidth > 992 ? 3 : 2;
         if (index > cards.length - visibleCards) index = cards.length - visibleCards;
@@ -386,7 +386,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // MOBILE AUTO-SLIDE LOGIC
     function startAutoSlide() {
         if (window.innerWidth > 768) return;
-        
+
         autoSlideInterval = setInterval(() => {
             if (viewport.scrollLeft + viewport.offsetWidth >= viewport.scrollWidth - 10) {
                 viewport.scrollTo({ left: 0, behavior: 'smooth' });
@@ -538,19 +538,19 @@ document.addEventListener("DOMContentLoaded", function () {
 // ============================================================
 document.addEventListener("DOMContentLoaded", function () {
     const footerHeaders = document.querySelectorAll('.footer__column h4');
-    
+
     footerHeaders.forEach(header => {
         header.addEventListener('click', function () {
             // Chỉ chạy khi màn hình <= 768px
             if (window.innerWidth > 768) return;
-            
+
             const parent = this.closest('.footer__column');
             if (parent) {
                 // Đóng các cái khác nếu đang mở (Tùy chọn: nếu muốn kiểu Accordion chuẩn)
                 // document.querySelectorAll('.footer__column').forEach(col => {
                 //     if (col !== parent) col.classList.remove('is-active');
                 // });
-                
+
                 parent.classList.toggle('is-active');
             }
         });
@@ -591,7 +591,7 @@ document.addEventListener("DOMContentLoaded", function () {
         // Đánh dấu active cho trang hiện tại
         const currentPath = window.location.pathname;
         const navItems = dock.querySelectorAll('.bottom-nav-item');
-        
+
         navItems.forEach(item => {
             const href = item.getAttribute('href');
             if (href && href !== '#' && href !== 'javascript:void(0)' && currentPath.includes(href)) {
@@ -600,4 +600,154 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 });
+
+// ============================================================
+// LUXURY POPUP LOGIC
+// ============================================================
+document.addEventListener("DOMContentLoaded", function () {
+    let popupOverlay = document.getElementById('luxuryPopupOverlay');
+    
+    // Tự động tiêm HTML Popup vào toàn trang nếu chưa có
+    if (!popupOverlay) {
+        const popupHTML = `
+        <div class="luxury-popup-overlay" id="luxuryPopupOverlay">
+            <div class="luxury-popup">
+                <button class="luxury-popup__close" id="closeLuxuryPopup" aria-label="Đóng">&times;</button>
+                <h2 class="luxury-popup__title">NHẬN TƯ VẤN TỪ <span style="color: var(--color-primary);">NGỌC NN</span></h2>
+                <p class="luxury-popup__subtitle">Để lại thông tin, Ngọc NN sẽ liên hệ hỗ trợ bạn tìm căn nhà ưng ý nhất.</p>
+                <form class="luxury-popup__form" id="luxuryPopupForm">
+                    <label class="label-top">Có dấu (*) là thông tin cần thiết</label>
+                    <input type="text" id="popupName" class="input-final--strong" placeholder="*Họ tên của bạn" required>
+                    <input type="tel" id="popupPhone" class="input-final--strong" placeholder="*Số điện thoại" required>
+                    <button type="submit" class="btn-final">NHẬN TƯ VẤN MIỄN PHÍ</button>
+                </form>
+                <div class="luxury-popup__footer">
+                    <span class="hotline-text">Hoặc gọi trực tiếp: <a href="tel:0888819198">0888819198</a></span>
+                </div>
+            </div>
+        </div>
+        `;
+        document.body.insertAdjacentHTML('beforeend', popupHTML);
+        popupOverlay = document.getElementById('luxuryPopupOverlay');
+    }
+
+    const closeBtn = document.getElementById('closeLuxuryPopup');
+    const popupForm = document.getElementById('luxuryPopupForm');
+
+    if (!popupOverlay || !closeBtn || !popupForm) return;
+
+    // Đóng popup khi bấm nút X hoặc bấm ra ngoài
+    document.addEventListener('click', function(e) {
+        if (e.target.closest('#closeLuxuryPopup') || e.target.matches('#luxuryPopupOverlay')) {
+            popupOverlay.classList.remove('active');
+        }
+    });
+
+    // Xử lý submit form (Demo)
+    popupForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const name = document.getElementById('popupName').value;
+        const phone = document.getElementById('popupPhone').value;
+
+        alert(`Cảm ơn ${name}! Ngọc NN sẽ liên hệ với bạn qua số ${phone} trong thời gian sớm nhất.`);
+        popupOverlay.classList.remove('active');
+    });
+
+    // Gán popup cho nút Hotline (Tạm thời để bàn giao)
+    const hotlineBtn = document.querySelector('.contact-bubble--hotline');
+    if (hotlineBtn) {
+        hotlineBtn.addEventListener('click', function(e) {
+            e.preventDefault(); // Ngăn hành động gọi điện
+            popupOverlay.classList.add('active');
+        });
+    }
+
+    // Chỉ tự động hiện popup (15s / 50% scroll) ở trang tim_nha.html
+    if (!window.location.pathname.includes('tim_nha.html')) return;
+
+    // Kiểm tra xem đã hiện popup trong session này chưa
+    if (sessionStorage.getItem('luxuryPopupShown')) return;
+
+    let popupTriggered = false;
+
+    function showPopup() {
+        if (popupTriggered) return;
+        popupTriggered = true;
+        sessionStorage.setItem('luxuryPopupShown', 'true');
+        popupOverlay.classList.add('active');
+    }
+
+    // Logic 1: Hiện sau 15 giây
+    const timer = setTimeout(showPopup, 15000);
+
+    // Logic 2: Hiện khi cuộn xuống 50%
+    function handleScroll() {
+        const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+        const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+        if (height <= 0) return;
+
+        const scrolled = (winScroll / height) * 100;
+
+        if (scrolled >= 50) {
+            showPopup();
+            clearTimeout(timer);
+            window.removeEventListener('scroll', handleScroll);
+        }
+    }
+    window.addEventListener('scroll', handleScroll);
+
+
+
+
+});
+
+// ============================================================
+// ACTIVE NAV LINK DETECTOR
+// ============================================================
+document.addEventListener("DOMContentLoaded", function () {
+    const currentPath = window.location.pathname;
+    const navLinks = document.querySelectorAll('.header__nav-link');
+
+    navLinks.forEach(link => {
+        link.classList.remove('header__nav-link--active');
+
+        const href = link.getAttribute('href');
+        if (href && href !== '#' && href !== 'javascript:void(0)') {
+            const filename = href.split('/').pop();
+            if (currentPath.includes(filename)) {
+                link.classList.add('header__nav-link--active');
+            }
+        }
+    });
+
+    // Đặc biệt cho trang chủ (about_me.html)
+    if (currentPath.endsWith('/') || currentPath.endsWith('index.html') || currentPath.includes('about_me.html')) {
+        navLinks.forEach(link => {
+            const href = link.getAttribute('href');
+            if (href && href.includes('about_me.html')) {
+                link.classList.add('header__nav-link--active');
+            }
+        });
+    }
+});
+
+// ============================================================
+// CLICK OUTSIDE TO CLOSE MOBILE MENU
+// ============================================================
+document.addEventListener('click', function (event) {
+    const menuToggle = document.getElementById('menu-toggle');
+
+    if (menuToggle && menuToggle.checked) {
+        // Bỏ qua nếu click vào chính checkbox (tránh sự kiện phụ do browser tự kích hoạt)
+        if (event.target === menuToggle) return;
+
+        const clickedOutsideMenu = !event.target.closest('.header__nav');
+        const clickedOutsideHamburger = !event.target.closest('.header__hamburger');
+
+        if (clickedOutsideMenu && clickedOutsideHamburger) {
+            menuToggle.checked = false;
+        }
+    }
+});
+
 

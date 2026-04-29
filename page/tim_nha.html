@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="../css/base.css?v=2.1">
     <link rel="stylesheet" href="../css/main.css?v=2.1">
     <link rel="stylesheet" href="../css/reponsive.css?v=2.1">
+    <link rel="stylesheet" href="../css/popup.css?v=2.1">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -268,7 +269,7 @@
                 </div>
             </div>
         </section>
-
+        
         <section class="footer-contact reveal reveal-scale">
             <div class="container-1000">
                 <span class="section-label">LIÊN HỆ</span>
@@ -407,6 +408,24 @@
 
     <script src="../js/main.js?v=2.1"></script>
     <script src="../js/animations.js?v=2.1"></script>
+    <!-- LUXURY CONSULTATION POPUP -->
+    <div class="luxury-popup-overlay" id="luxuryPopupOverlay">
+        <div class="luxury-popup">
+            <button class="luxury-popup__close" id="closeLuxuryPopup" aria-label="Đóng">&times;</button>
+            <h2 class="luxury-popup__title">NHẬN TƯ VẤN TỪ <span style="color: var(--color-primary);">NGỌC NN</span></h2>
+            <p class="luxury-popup__subtitle">Để lại thông tin, Ngọc NN sẽ liên hệ hỗ trợ bạn tìm căn nhà ưng ý nhất.</p>
+            <form class="luxury-popup__form" id="luxuryPopupForm">
+                <label class="label-top">Có dấu (*) là thông tin cần thiết</label>
+                <input type="text" id="popupName" class="input-final--strong" placeholder="*Họ tên của bạn" required>
+                <input type="tel" id="popupPhone" class="input-final--strong" placeholder="*Số điện thoại" required>
+                <button type="submit" class="btn-final">NHẬN TƯ VẤN MIỄN PHÍ</button>
+            </form>
+            <div class="luxury-popup__footer">
+                <span class="hotline-text">Hoặc gọi trực tiếp: <a href="tel:0888819198">0888819198</a></span>
+            </div>
+        </div>
+    </div>
+
     <!-- LUXURY FLOATING CONTACT CLUSTER (RIGHT SIDE) -->
     <div class="floating-contact">
         <!-- BACK TO TOP (Appears on scroll) -->

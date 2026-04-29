@@ -77,6 +77,18 @@
         display: none !important;
     }
 
+    .luxury-popup__title {
+        font-size: 26px !important;
+    }
+
+    .luxury-popup__subtitle {
+        font-size: 18px !important;
+    }
+
+    .luxury-popup__footer {
+        font-size: 18px !important;
+    }
+
     /* ==========================================================================
        GLOBAL BUTTON UNIFICATION (45PX - BALANCED & HARMONIOUS)
        ========================================================================== */
@@ -149,6 +161,7 @@
     }
 
     .post-main-title {
+        font-size: 28px !important;
         margin-bottom: 20px !important;
     }
 
@@ -164,8 +177,20 @@
         padding-bottom: 80px !important;
     }
 
+    .section-label-inner,
+    .section-label-inner--exp,
+    .toc-title,
+    .interested-title {
+        font-size: 20px !important;
+    }
+
     .section-label-inner--exp {
         padding-left: 8px !important;
+    }
+
+    .toc-list a,
+    .interested-list li a {
+        font-size: 18px !important;
     }
 
     .page-title--large {
@@ -292,7 +317,8 @@
 
     .pagination {
         margin-top: 20px !important;
-        margin-bottom: 120px !important; /* Tránh bị che bởi bottom nav dock */
+        margin-bottom: 120px !important;
+        /* Tránh bị che bởi bottom nav dock */
     }
 
     .header__container,
@@ -375,6 +401,11 @@
         transition: 0.3s !important;
     }
 
+    #menu-toggle:checked~.header__hamburger span {
+        background-color: #ffffff !important;
+        /* Dấu X màu trắng */
+    }
+
     #menu-toggle:checked~.header__hamburger span:nth-child(1) {
         transform: translateY(8px) rotate(45deg) !important;
     }
@@ -394,13 +425,15 @@
         width: 33.33vw !important;
         min-width: 260px !important;
         height: 100vh !important;
-        background: #fff !important;
+        background: var(--color-primary, #b77246) !important;
+        /* Background màu primary */
         flex-direction: column !important;
         padding: 100px 20px !important;
         transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
         z-index: 999 !important;
-        box-shadow: 20px 0 40px rgba(0, 0, 0, 0.05) !important;
+        box-shadow: 20px 0 40px rgba(0, 0, 0, 0.1) !important;
         align-items: center !important;
+        /* Căn giữa */
         text-align: center !important;
     }
 
@@ -410,11 +443,37 @@
 
     .header__nav-link {
         width: 100% !important;
-        padding: 20px 0 !important;
-        font-size: 20px !important;
-        border-bottom: 1px solid #f5f5f5 !important;
+        padding: 15px 0 !important;
+        font-size: 18px !important;
+        font-weight: 500 !important;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.15) !important;
+        /* Viền trắng mờ */
         display: flex !important;
         justify-content: center !important;
+        /* Căn giữa chữ */
+        color: rgba(255, 255, 255, 0.8) !important;
+        /* Chữ trắng mờ */
+        position: relative !important;
+    }
+
+    .header__nav-link--active {
+        color: #ffffff !important;
+        /* Chữ trắng sáng khi active */
+        font-weight: 600 !important;
+    }
+
+    .header__nav-link--active::after {
+        content: '' !important;
+        position: absolute !important;
+        bottom: 0 !important;
+        left: 50% !important;
+        /* Căn giữa gạch chân */
+        transform: translateX(-50%) !important;
+        width: 30px !important;
+        height: 3px !important;
+        background-color: #ffffff !important;
+        /* Gạch chân màu trắng */
+        border-radius: 2px !important;
     }
 
     /* 2. HERO SECTION */
@@ -1564,9 +1623,14 @@
     }
 
     .tag-item {
-        padding: 6px 15px !important;
-        font-size: 13px !important;
+        padding: 10px 20px !important;
+        font-size: 15px !important;
         border-radius: 6px !important;
+    }
+
+    .trending-card h4 {
+        font-size: 19px !important;
+        color: #333 !important;
     }
 
     .social-box {
@@ -1719,7 +1783,8 @@
 
     .pagination {
         margin-top: 20px !important;
-        margin-bottom: 120px !important; /* Tránh bị che bởi bottom nav dock */
+        margin-bottom: 120px !important;
+        /* Tránh bị che bởi bottom nav dock */
     }
 
     .interested-posts-wrapper {
@@ -2000,9 +2065,9 @@
     }
 
     .btn-final {
-        margin-top: 30px !important;
-        align-self: center !important;
-        /* Chỉ căn giữa riêng nút này */
+        margin-top: 15px !important;
+        width: 100% !important;
+        max-width: 100% !important;
         font-weight: 300 !important;
         padding: 0 50px !important;
         font-size: 16px !important;
@@ -2553,75 +2618,76 @@
         font-size: 26px !important;
         padding: 12px !important;
     }
-        border-radius: 12px !important;
-    }
 
-    .btn-call,
-    .btn-zalo {
-        width: auto !important;
-        max-width: 100% !important;
-        padding: 0 25px !important;
-        white-space: nowrap !important;
-        font-size: 15px !important;
-        /* Khóa chết 15px cho màn hình nhỏ nhất */
-    }
+    border-radius: 12px !important;
+}
 
-    .field-group label {
-        font-size: 16px !important;
-    }
+.btn-call,
+.btn-zalo {
+    width: auto !important;
+    max-width: 100% !important;
+    padding: 0 25px !important;
+    white-space: nowrap !important;
+    font-size: 15px !important;
+    /* Khóa chết 15px cho màn hình nhỏ nhất */
+}
 
-    .story-premium__actions .btn-main,
-    .story-premium__actions .btn-sub {
-        width: auto !important;
-        max-width: 100% !important;
-    }
+.field-group label {
+    font-size: 16px !important;
+}
 
-    /* FIX CỤM NÚT THẾ MẠNH CHO MÀN HÌNH NHỎ - XẾP CHỒNG ĐỂ BẰNG NHAU */
-    .strengths__btns {
-        display: flex !important;
-        flex-direction: column !important;
-        align-items: center !important;
-        padding: 0 10px !important;
-        gap: 15px !important;
-    }
+.story-premium__actions .btn-main,
+.story-premium__actions .btn-sub {
+    width: auto !important;
+    max-width: 100% !important;
+}
 
-    .strengths__btns .btn-connect,
-    .strengths__btns .btn-zalo {
-        width: auto !important;
-        padding: 0 25px !important;
-    }
+/* FIX CỤM NÚT THẾ MẠNH CHO MÀN HÌNH NHỎ - XẾP CHỒNG ĐỂ BẰNG NHAU */
+.strengths__btns {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    padding: 0 10px !important;
+    gap: 15px !important;
+}
 
-    .featured-overlay {
-        padding: 20px var(--side-padding) 60px var(--side-padding) !important;
-    }
+.strengths__btns .btn-connect,
+.strengths__btns .btn-zalo {
+    width: auto !important;
+    padding: 0 25px !important;
+}
 
-    .featured-title {
-        font-size: 26px !important;
-        line-height: 1.2 !important;
-    }
+.featured-overlay {
+    padding: 20px var(--side-padding) 60px var(--side-padding) !important;
+}
 
-    .slider-dots {
-        z-index: 1000 !important;
-        bottom: 25px !important;
-        /* Đẩy lên cao cho chắc chắn */
-    }
+.featured-title {
+    font-size: 26px !important;
+    line-height: 1.2 !important;
+}
 
-    .dot {
-        width: 6px !important;
-        height: 6px !important;
-        background: rgba(255, 255, 255, 0.4) !important;
-        border: 1px solid #fff !important;
-    }
+.slider-dots {
+    z-index: 1000 !important;
+    bottom: 25px !important;
+    /* Đẩy lên cao cho chắc chắn */
+}
 
-    .dot.active {
-        background: #fff !important;
-        width: 20px !important;
-    }
+.dot {
+    width: 6px !important;
+    height: 6px !important;
+    background: rgba(255, 255, 255, 0.4) !important;
+    border: 1px solid #fff !important;
+}
 
-    .featured-post-slider {
-        padding-top: 0px !important;
-        padding-bottom: 25px !important;
-    }
+.dot.active {
+    background: #fff !important;
+    width: 20px !important;
+}
+
+.featured-post-slider {
+    padding-top: 0px !important;
+    padding-bottom: 25px !important;
+}
 }
 
 /* Global Utilities */

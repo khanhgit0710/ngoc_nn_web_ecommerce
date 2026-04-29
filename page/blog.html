@@ -63,7 +63,7 @@
                         <img src="../assets/images/bds-da-nang-1.jpg" alt="Dự án 1">
                         <div class="featured-overlay">
                             <div class="overlay-content">
-                                <span class="tag-label">#XU HƯỚNG BĐS</span>
+                                <a href="blog_exp.html" class="tag-label">#XU HƯỚNG BĐS</a>
                                 <h1 class="featured-title">Bản đồ quy hoạch TP.HCM 2026: Những "toạ độ vàng" đang thay
                                     đổi</h1>
                             </div>
@@ -73,7 +73,7 @@
                         <img src="../assets/images/landmark-81.jpg" alt="Dự án 2">
                         <div class="featured-overlay">
                             <div class="overlay-content">
-                                <span class="tag-label">#KIẾN TRÚC</span>
+                                <a href="blog_exp.html" class="tag-label">#KIẾN TRÚC</a>
                                 <h1 class="featured-title">Nghệ thuật chọn hướng nhà đón tài lộc chuẩn phong thủy</h1>
                             </div>
                         </div>
@@ -82,7 +82,7 @@
                         <img src="../assets/images/banner-bds.jpg" alt="Dự án 3">
                         <div class="featured-overlay">
                             <div class="overlay-content">
-                                <span class="tag-label">#PHÁP LÝ</span>
+                                <a href="blog_exp.html" class="tag-label">#PHÁP LÝ</a>
                                 <h1 class="featured-title">Luật Đất đai mới nhất: Những thay đổi quan trọng cần nắm vững
                                 </h1>
                             </div>
@@ -230,11 +230,11 @@
             <div class="container-1000">
                 <h2 class="section-label-inner">CÁC CHUYÊN MỤC</h2>
                 <div class="tags-group">
-                    <a href="#" class="tag-item reveal reveal-zoom reveal-delay-1">#PHONG THỦY</a>
-                    <a href="#" class="tag-item reveal reveal-zoom reveal-delay-2">#XU HƯỚNG BĐS</a>
-                    <a href="#" class="tag-item reveal reveal-zoom reveal-delay-3">#PHÁP LÝ</a>
-                    <a href="../page/blog_exp.html" class="tag-item reveal reveal-zoom reveal-delay-4">#KINH NGHIỆM</a>
-                    <a href="#" class="tag-item reveal reveal-zoom reveal-delay-5">#KIẾN TRÚC</a>
+                     <a href="blog_exp.html" class="tag-item">#PHONG THỦY</a>
+                     <a href="blog_exp.html" class="tag-item">#XU HƯỚNG BĐS</a>
+                     <a href="blog_exp.html" class="tag-item">#PHÁP LÝ</a>
+                     <a href="blog_exp.html" class="tag-item">#KINH NGHIỆM</a>
+                     <a href="blog_exp.html" class="tag-item">#KIẾN TRÚC</a>
                 </div>
             </div>
         </section>
@@ -344,6 +344,71 @@
             const dots = document.querySelectorAll('.dot');
             let currentIndex = 0;
             let autoSlide;
+            let startX = 0;
+            let currentX = 0;
+            let isDragging = false;
+
+            const viewport = document.querySelector('.slider-viewport');
+
+            if (viewport) {
+                viewport.style.cursor = 'grab';
+
+                // Touch (Mobile)
+                viewport.addEventListener('touchstart', (e) => {
+                    clearInterval(autoSlide);
+                    startX = e.touches[0].clientX;
+                    currentX = startX;
+                    isDragging = true;
+                }, { passive: true });
+
+                viewport.addEventListener('touchmove', (e) => {
+                    if (!isDragging) return;
+                    currentX = e.touches[0].clientX;
+                }, { passive: true });
+
+                viewport.addEventListener('touchend', () => {
+                    if (!isDragging) return;
+                    isDragging = false;
+                    handleSwipe();
+                    startAutoSlide();
+                });
+
+                // Mouse Drag (PC)
+                viewport.addEventListener('mousedown', (e) => {
+                    clearInterval(autoSlide);
+                    startX = e.clientX;
+                    currentX = startX;
+                    isDragging = true;
+                    viewport.style.cursor = 'grabbing';
+                });
+
+                window.addEventListener('mousemove', (e) => {
+                    if (!isDragging) return;
+                    currentX = e.clientX;
+                });
+
+                window.addEventListener('mouseup', () => {
+                    if (!isDragging) return;
+                    isDragging = false;
+                    viewport.style.cursor = 'grab';
+                    handleSwipe();
+                    startAutoSlide();
+                });
+            }
+
+            function handleSwipe() {
+                const diffX = startX - currentX;
+                const threshold = 40; // Độ nhạy lướt (px)
+
+                if (Math.abs(diffX) > threshold) {
+                    if (diffX > 0) {
+                        currentIndex = (currentIndex + 1) % slides.length;
+                    } else {
+                        currentIndex = (currentIndex - 1 + slides.length) % slides.length;
+                    }
+                    goToSlide(currentIndex);
+                }
+            }
 
             function goToSlide(index) {
                 if (!wrapper) return;
