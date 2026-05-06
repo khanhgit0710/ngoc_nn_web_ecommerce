@@ -9,8 +9,6 @@
     <link rel="stylesheet" href="../css/main.css?v=2.1">
     <link rel="stylesheet" href="../css/reponsive.css?v=2.1">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
 
@@ -23,7 +21,7 @@
     <!-- HEADER -->
     <header class="header">
         <div class="header__container">
-            <input type="checkbox" id="menu-toggle" class="header__checkbox" style="display: none !important; position: absolute !important; visibility: hidden !important;">
+            <input type="checkbox" id="menu-toggle" class="header__checkbox header__checkbox--hidden">
             <label for="menu-toggle" class="header__hamburger">
                 <span></span><span></span><span></span>
             </label>
@@ -53,36 +51,40 @@
         </div>
     </header>
 
-    <main style="padding-top: 100px;">
-        <!-- HERO BANNER SECTION -->
-        <section class="page-banner">
-            <div style="max-width: 1000px; margin: 0 auto; position: relative; z-index: 2;">
-                <h1>Tài Chính Thông Minh</h1>
-                <p>Công cụ phân tích hạn mức vay, kế hoạch trả nợ nhanh chóng giúp tối ưu dòng tiền đầu tư.</p>
+    <main class="main-tinh-lai">
+        <!-- 1. HERO BANNER SECTION -->
+        <section class="hero hero--tinh-lai">
+            <div class="hero__content container-1000">
+                <h1 class="hero__title">Chủ động tài chính</h1>
+                <div class="hero__separator">
+                    <span class="line"></span>
+                    <i class="fas fa-house-chimney"></i>
+                    <span class="line"></span>
+                </div>
+                <p>Công cụ tính lãi vay thông minh - Tối ưu kế hoạch mua nhà.</p>
             </div>
         </section>
 
-        <!-- CALC SECTION -->
-        <div class="calc-container">
-            <h1 class="calc-title">Bảng Tính Lãi Suất Vay Mua BĐS</h1>
-            
+        <!-- 2. CORE CALCULATOR SECTION -->
+        <div class="calc-container reveal reveal-scale">
             <div class="calc-grid">
                 <!-- CONTROLS -->
                 <div class="calc-controls">
+                    <h3 class="calc-side-title"><i class="fas fa-sliders-h"></i> Thông số khoản vay</h3>
                     <!-- LOAN AMOUNT -->
                     <div class="control-group">
                         <div class="control-label">
-                            <span>Số tiền vay</span>
-                            <span class="control-value" id="val-amount">1,000,000,000 đ</span>
+                            <span>Số tiền vay (VNĐ)</span>
+                            <input type="text" class="control-input" id="val-amount" value="1,000,000,000">
                         </div>
-                        <input type="range" class="luxury-slider" id="slider-amount" min="50000000" max="20000000000" step="50000000" value="1000000000">
+                        <input type="range" class="luxury-slider" id="slider-amount" min="50000000" max="100000000000" step="50000000" value="1000000000">
                     </div>
 
                     <!-- TERM -->
                     <div class="control-group">
                         <div class="control-label">
-                            <span>Thời hạn vay</span>
-                            <span class="control-value" id="val-term">15 năm</span>
+                            <span>Thời hạn vay (Năm)</span>
+                            <input type="text" class="control-input" id="val-term" value="15">
                         </div>
                         <input type="range" class="luxury-slider" id="slider-term" min="1" max="35" step="1" value="15">
                     </div>
@@ -90,8 +92,8 @@
                     <!-- INTEREST -->
                     <div class="control-group">
                         <div class="control-label">
-                            <span>Lãi suất ưu đãi</span>
-                            <span class="control-value" id="val-interest">8.5 %/năm</span>
+                            <span>Lãi suất ưu đãi (%/năm)</span>
+                            <input type="text" class="control-input" id="val-interest" value="8.5">
                         </div>
                         <input type="range" class="luxury-slider" id="slider-interest" min="1" max="18" step="0.1" value="8.5">
                     </div>
@@ -103,7 +105,7 @@
                         </div>
                         <div class="radio-group">
                             <input type="radio" name="method" id="method-annuity" class="radio-input" value="annuity" checked>
-                            <label for="method-annuity" class="radio-label">Gốc lãi đều hàng tháng</label>
+                            <label for="method-annuity" class="radio-label">Gốc lãi đều</label>
 
                             <input type="radio" name="method" id="method-reducing" class="radio-input" value="reducing">
                             <label for="method-reducing" class="radio-label">Dư nợ giảm dần</label>
@@ -116,6 +118,18 @@
                     <div class="result-header" id="txt-result-header">Cần trả cố định hàng tháng</div>
                     <div class="result-main-value" id="res-monthly">0 đ</div>
 
+                    <!-- VISUAL RATIO BAR [NEW] -->
+                    <div class="ratio-bar-container">
+                        <div class="ratio-labels">
+                            <span>Tiền gốc</span>
+                            <span>Tiền lãi</span>
+                        </div>
+                        <div class="ratio-bar">
+                            <div class="ratio-bar-fill ratio-bar-principal" id="bar-principal" style="width: 60%;"></div>
+                            <div class="ratio-bar-fill ratio-bar-interest" id="bar-interest" style="width: 40%;"></div>
+                        </div>
+                    </div>
+
                     <div class="result-stats">
                         <div class="stat-row">
                             <span>Gốc cần trả hàng tháng</span>
@@ -125,17 +139,113 @@
                             <span>Tổng tiền lãi phải trả</span>
                             <span class="stat-value" id="res-total-interest">0 đ</span>
                         </div>
-                        <div class="stat-row">
-                            <span>Tổng tiền gốc + lãi</span>
-                            <span class="stat-value" id="res-total-payment">0 đ</span>
+                        <div class="stat-row stat-row--total">
+                            <span class="stat-label--bold">Tổng gốc + lãi</span>
+                            <span class="stat-value stat-value--highlight" id="res-total-payment">0 đ</span>
                         </div>
                     </div>
+                    <p class="calc-disclaimer"> Kết quả chỉ mang tính chất tham khảo dựa trên lãi suất phổ thông hiện tại.</p>
                 </div>
             </div>
         </div>
 
-        <!-- COLLAPSIBLE SCHEDULE -->
-        <div class="schedule-section">
+        <!-- 3. VISUALIZATION SECTION -->
+        <section class="section-loan-chart reveal reveal-top">
+            <div class="container-1000">
+                <div class="loan-chart-container">
+                    <div class="chart-header">
+                        <h3 class="chart-title"><i class="fas fa-chart-pie"></i> Phân tích tỷ trọng vốn</h3>
+                        <p class="chart-subtitle">Cân đối giữa số tiền vay gốc và tổng lãi suất phải trả</p>
+                    </div>
+                    
+                    <div class="chart-horizontal">
+                        <!-- GỐC -->
+                        <div class="chart-row">
+                            <div class="chart-info">
+                                <span class="chart-label">Số tiền vay (Gốc)</span>
+                                <span class="chart-value" id="chart-val-principal">0%</span>
+                            </div>
+                            <div class="chart-bar-bg">
+                                <div class="chart-bar-fill bar--principal" id="chart-bar-principal"></div>
+                            </div>
+                        </div>
+
+                        <!-- LÃI -->
+                        <div class="chart-row">
+                            <div class="chart-info">
+                                <span class="chart-label">Tổng tiền lãi phải trả</span>
+                                <span class="chart-value" id="chart-val-interest">0%</span>
+                            </div>
+                            <div class="chart-bar-bg">
+                                <div class="chart-bar-fill bar--interest" id="chart-bar-interest"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="chart-footer-note">
+                        <i class="fas fa-lightbulb"></i> Bảng tính giúp bạn tối ưu kế hoạch tài chính cá nhân.
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. SMART ANALYSIS SECTION -->
+        <section class="section-smart-analysis reveal reveal-top">
+            <div class="container-1000">
+                <div class="analysis-grid">
+                    <div class="analysis-card">
+                        <div class="analysis-icon"><i class="fas fa-coins"></i></div>
+                        <div class="analysis-info">
+                            <span class="analysis-label">Tổng vốn thực chi</span>
+                            <strong class="analysis-value" id="smart-total-cost">0 đ</strong>
+                            <p class="analysis-desc">Bao gồm cả vốn vay và lãi suất</p>
+                        </div>
+                    </div>
+                    <div class="analysis-card">
+                        <div class="analysis-icon"><i class="fas fa-coffee"></i></div>
+                        <div class="analysis-info">
+                            <span class="analysis-label">Chi phí lãi / ngày</span>
+                            <strong class="analysis-value" id="smart-daily-interest">0 đ</strong>
+                            <p class="analysis-desc">Tương đương một ly cafe mỗi ngày</p>
+                        </div>
+                    </div>
+                <div class="analysis-card">
+                    <div class="analysis-icon"><i class="fas fa-hand-holding-heart"></i></div>
+                    <div class="analysis-info">
+                            <span class="analysis-label">Thu nhập an toàn</span>
+                            <strong class="analysis-value" id="smart-min-income">0 đ</strong>
+                            <p class="analysis-desc">Mức thu nhập gợi ý để trả nợ thoải mái</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 5. TRUST & EVIDENCE SECTION -->
+        <section class="trust-section reveal reveal-top">
+            <div class="container-1000">
+                <div class="bank-partners-container">
+                    <p class="bank-partners-subtitle">Hỗ trợ giải ngân từ các đối tác chiến lược</p>
+                    <div class="bank-logos">
+                        <div class="bank-logo-item">
+                            <img src="../assets/images/vietcombank-logo.jpg" alt="Vietcombank" class="logo-vcb">
+                        </div>
+                        <div class="bank-logo-item">
+                            <img src="../assets/images/techcombank-logo.jpg" alt="Techcombank" class="logo-tcb">
+                        </div>
+                        <div class="bank-logo-item">
+                            <img src="../assets/images/BIDV-logo.jpg" alt="BIDV" class="logo-bidv">
+                        </div>
+                        <div class="bank-logo-item">
+                            <img src="../assets/images/VP-logo.jpg" alt="VPBank" class="logo-vpb">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. AMORTIZATION TABLE SECTION -->
+        <div class="schedule-section reveal reveal-top">
             <button class="toggle-schedule-btn" id="btn-toggle-schedule">
                 <i class="fas fa-calendar-alt"></i> Xem lịch trình thanh toán chi tiết
             </button>
@@ -157,59 +267,92 @@
             </div>
         </div>
 
-        <!-- ĐỐI TÁC NGÂN HÀNG (Trust Signals) -->
-        <section class="bank-partners" style="max-width: 1000px; margin: 0 auto 60px; text-align: center; padding: 0 20px;">
-            <h4 style="font-family: 'Montserrat', sans-serif; font-size: 16px; color: #888; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 30px;">Đối tác ngân hàng bảo lãnh</h4>
-            <div style="display: flex; justify-content: center; align-items: center; gap: 40px; flex-wrap: wrap; opacity: 0.6;">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/2/25/Logo_Vietcombank.svg" alt="Vietcombank" style="height: 30px; filter: grayscale(1);">
-                <img src="https://upload.wikimedia.org/wikipedia/vi/7/7a/Techcombank_logo.svg" alt="Techcombank" style="height: 30px; filter: grayscale(1);">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/e/e9/Logo_BIDV.svg" alt="BIDV" style="height: 30px; filter: grayscale(1);">
+        <!-- 5. FAQ SECTION [NEW] -->
+        <section class="faq-section reveal reveal-top">
+            <div class="container-1000">
+                <h2 class="section-title">Câu hỏi <span>thường gặp</span></h2>
+                <div class="faq-grid">
+                    <div class="faq-item">
+                        <div class="faq-question">Vay tất toán trước hạn có bị phạt không? <i class="fas fa-chevron-down"></i></div>
+                        <div class="faq-answer">Hầu hết các ngân hàng đều có phí phạt tất toán trước hạn trong 1-5 năm đầu, thường dao động từ 1% - 3% trên dư nợ còn lại. Sau thời gian này thường sẽ được miễn phí.</div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question">Hồ sơ chứng minh thu nhập gồm những gì? <i class="fas fa-chevron-down"></i></div>
+                        <div class="faq-answer">Bạn cần chuẩn bị Hợp đồng lao động, Sao kê lương 3-6 tháng gần nhất. Nếu kinh doanh tự do, cần cung cấp sổ sách thu chi, hóa đơn hoặc giấy phép kinh doanh.</div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question">Lãi suất thả nổi được tính như thế nào? <i class="fas fa-chevron-down"></i></div>
+                        <div class="faq-answer">Sau thời gian ưu đãi, lãi suất = Lãi suất cơ sở (hoặc lãi suất huy động 12-24 tháng) + Biên độ cố định (thường từ 3% - 4.5%).</div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question">Tỷ lệ vay tối đa là bao nhiêu? <i class="fas fa-chevron-down"></i></div>
+                        <div class="faq-answer">Các ngân hàng đối tác của Ngọc NN hiện hỗ trợ vay tối đa lên đến 70% - 80% giá trị tài sản đảm bảo, thời hạn vay lên đến 35 năm.</div>
+                    </div>
+                </div>
             </div>
         </section>
 
-        <!-- FORM ĐĂNG KÝ TƯ VẤN LÃI VAY -->
-        <div class="form-container reveal reveal-scale" style="margin-bottom: 60px;">
-            <div class="container-1000">
-                <h2 class="form-container-title">Đăng Ký Tư Vấn <span>Hồ Sơ Vay</span></h2>
-                <div class="why-us__desc reveal reveal-1">
-                    <p class="section-desc">Để lại thông tin, Ngọc NN sẽ hỗ trợ làm việc trực tiếp với ngân hàng đối tác.</p>
+        <!-- 6. CTA BANNER SECTION [NEW] -->
+        <section class="cta-banner-section reveal reveal-scale">
+            <div class="cta-banner-content">
+                <div class="cta-text">
+                    <h2>Nhận tư vấn kế hoạch tài chính chi tiết</h2>
+                    <p>Ngọc NN sẽ hỗ trợ bạn làm việc trực tiếp với ngân hàng để có lãi suất tốt nhất và hồ sơ duyệt nhanh trong 24h.</p>
                 </div>
-
-                <form class="form-final reveal-2">
-                    <label class="label-top">Có dấu (*) là thông tin cần thiết</label>
-                    <input type="text" class="input-final--strong reveal reveal-scale reveal-delay-1" placeholder="*Họ tên" required>
-                    <input type="tel" class="input-final--strong reveal reveal-scale reveal-delay-2" placeholder="*Số điện thoại" required>
-                    
-                    <div class="field-group reveal reveal-scale reveal-delay-3" style="margin-top: 20px;">
-                        <label>Ghi chú nhu cầu (ví dụ: Vay mua nhà phố Thủ Đức)</label>
-                        <textarea class="input-final" rows="3" placeholder="Tôi muốn tư vấn khoản vay 2 tỷ trong 20 năm..."></textarea>
-                    </div>
-                    <button type="submit" class="btn-final reveal reveal-scale reveal-delay-4">GỬI YÊU CẦU TƯ VẤN</button>
-                </form>
+                <div class="cta-action">
+                    <button class="btn-premium-cta" onclick="openPopup()">
+                        <i class="fas fa-paper-plane"></i> ĐĂNG KÝ TƯ VẤN NGAY
+                    </button>
+                </div>
             </div>
-        </div>
+        </section>
 
-        <!-- TIN TỨC LIÊN QUAN -->
-        <section class="related-news-section">
-            <h2>Tin Tức Tài Chính BĐS</h2>
-            <div class="related-news-grid">
-                <!-- News Card 1 -->
-                <article class="related-news-card">
-                    <img src="https://cdn.thuvienphapluat.vn/phap-luat/2022-2/DTML/300126/nghi-dinh-49-2026-nd-cp.jpg" alt="Lãi suất" class="related-news-img">
-                    <div class="related-news-body">
-                        <h3 class="related-news-title"><a href="blog_detail.html">Lãi suất ngân hàng 2026: Đâu là thời điểm vàng để vay mua nhà?</a></h3>
-                        <p class="related-news-text">Cập nhật biểu đồ biến động lãi suất ưu đãi của các ngân hàng Big 4 trong quý mới nhất...</p>
-                    </div>
-                </article>
+        <!-- 7. KIẾN THỨC BĐS DÒNG TIỀN & MẸO ĐẦU TƯ -->
+        <section class="related-news-section reveal reveal-top">
+            <div class="container-1000">
+                <h2 class="section-title">BĐS Dòng Tiền & <span>Mẹo Đầu Tư</span></h2>
+                
+                <div class="trending-slider-container">
+                    <!-- Navigation Buttons (Floating) -->
+                    <button class="nav-btn-trending prev-news"><i class="fas fa-chevron-left"></i></button>
+                    <button class="nav-btn-trending next-news"><i class="fas fa-chevron-right"></i></button>
 
-                <!-- News Card 2 -->
-                <article class="related-news-card">
-                    <img src="https://thanhnienviet.mediacdn.vn/thumb_w/480/wp-content/uploads/sites/7/2024/03/tra-cuu-quy-hoach-truc-tuyen.jpg" alt="Thủ tục" class="related-news-img">
-                    <div class="related-news-body">
-                        <h3 class="related-news-title"><a href="blog_detail.html">Hồ sơ chứng minh thu nhập vay mua nhà gồm những giấy tờ gì?</a></h3>
-                        <p class="related-news-text">Hướng dẫn chuẩn bị hồ sơ pháp lý nguồn thu từ lương, kinh doanh để duyệt vay 24h...</p>
+                    <div class="trending-slider-viewport">
+                        <div class="trending-grid">
+                            <!-- News Card 1 -->
+                            <div class="trending-card">
+                                <div class="thumb-media">
+                                    <img src="https://vn.joboko.com/blogs/img/2020/1/bi-quyet-thanh-cong-danh-cho-nhan-vien-kinh-doanh-bat-dong-san-2.jpg" alt="Dòng tiền">
+                                </div>
+                                <h4><a href="blog_detail.html" class="stretched-link">Lợi nhuận kép từ BĐS dòng tiền: Xu hướng đầu tư bền vững 2026</a></h4>
+                            </div>
+
+                            <!-- News Card 2 -->
+                            <div class="trending-card">
+                                <div class="thumb-media">
+                                    <img src="https://bizflyportal.mediacdn.vn/thumb_wm/1000,100/bizflyportal/images/tam16397086382744.jpeg" alt="Mẹo đầu tư">
+                                </div>
+                                <h4><a href="blog_detail.html" class="stretched-link">5 Mẹo tối ưu dòng tiền khi vận hành căn hộ cho thuê cao cấp</a></h4>
+                            </div>
+
+                            <!-- News Card 3 -->
+                            <div class="trending-card">
+                                <div class="thumb-media">
+                                    <img src="https://image.plo.vn/w1000/Uploaded/2026/cqjwqcdwp/2019_12_16/10-can-ho_spqh.jpg.webp" alt="Kinh nghiệm">
+                                </div>
+                                <h4><a href="blog_detail.html" class="stretched-link">Kinh nghiệm chọn mua nhà phố mặt tiền để kinh doanh sinh lời ngay</a></h4>
+                            </div>
+
+                            <!-- News Card 4 -->
+                            <div class="trending-card">
+                                <div class="thumb-media">
+                                    <img src="https://cdn.thuvienphapluat.vn/phap-luat/2022-2/DTML/300126/nghi-dinh-49-2026-nd-cp.jpg" alt="Pháp lý">
+                                </div>
+                                <h4><a href="blog_detail.html" class="stretched-link">Chiến lược dùng đòn bẩy tài chính thông minh để mua BĐS dòng tiền</a></h4>
+                            </div>
+                        </div>
                     </div>
-                </article>
+                </div>
             </div>
         </section>
 
@@ -269,6 +412,78 @@
                 </div>
             </div>
         </section>
+
+        <footer class="footer-section">
+            <div class="footer-container">
+                <div class="footer__brand">
+                    <h2>NGỌC NN</h2>
+                    <div class="footer__brand-sub"><strong>NHÀ MÔI GIỚI BĐS UY TÍN TẠI TP HCM</strong></strong></div>
+                    <p>Giúp bạn tìm <strong>đúng nhà – đúng giá – đúng pháp lý</strong>. Chuyên nhà phố, nhà hẻm, nhà
+                        mặt tiền tại Gò Vấp – Phú Nhuận – Bình Thạnh – Thủ Đức – Quận 3, Quận 10, Tân Bình, Tân Phú...
+                        Với Ngọc NN, mỗi giao dịch không chỉ là mua/bán được một căn nhà, mà là <strong>giúp khách hàng
+                            tránh rủi ro – tiết kiệm tiền – và an tâm lâu dài</strong> sau khi mua.</p>
+                </div>
+
+                <div class="footer__column">
+                    <h4>MENU</h4>
+                    <ul class="footer__list">
+                        <li><a href="../index.html">Trang chủ</a></li>
+                        <li><a href="about_me.html">Giới thiệu</a></li>
+                        <li><a href="ky_gui.html">Ký gửi nhà đất</a></li>
+                        <li><a href="tim_nha.html">Tìm nhà theo yêu cầu</a></li>
+                        <li><a href="blog.html">Blog</a></li>
+                        <li><a href="contact.html">Liên hệ</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer__column">
+                    <h4>DỊCH VỤ</h4>
+                    <ul class="footer__list">
+                        <li><a href="#">Hỗ trợ thủ tục nhà đất</a></li>
+                        <li><a href="#">Tư vấn pháp lý BĐS</a></li>
+                        <li><a href="#">Hỗ trợ vay mua BĐS</a></li>
+                        <li><a href="#">Tài chính nhà đất</a></li>
+                        <li><a href="#">Nhận quảng cáo BĐS</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer__column">
+                    <h4>KẾT NỐI NGỌC NN</h4>
+                    <ul class="footer__contact-info">
+                        <li><i class="fas fa-phone-alt"></i><strong>0888819198</strong></li>
+                        <li><i class="fas fa-comments"></i>zalo.com/0888819198</li>
+                        <li><i class="fas fa-globe"></i>ngocnn.vn</li>
+                        <li><i class="fas fa-envelope"></i>ngocnn.vnn@gmail.com</li>
+                        <li><i class="fas fa-map-marker-alt"></i>183/4 Phạm Văn Đồng, Hiệp Bình Thủ Đức</li>
+                    </ul>
+
+                    <div class="footer__badges">
+                        <img src="https://www.dmca.com/img/dmca-compliant-grayscale.png" alt="DMCA">
+                        <img src="https://realtycandy.com/wp-content/uploads/bb-plugin/cache/The-Joy-of-SSL-landscape-c5b03a8795fb50e615cf246b8d38ebd8-6yg97adjtowh.png"
+                            alt="SSL">
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom-bar">
+                <div class="footer-bottom-container">
+                    <div class="footer-social-group">
+                        <span>Kết nối cùng Ngọc NN trên Social</span>
+                        <div class="footer-social-icons">
+                            <a href="#" class="fb-link"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#" class="yt-link"><i class="fab fa-youtube"></i></a>
+                            <a href="#" class="tt-link"><i class="fab fa-tiktok"></i></a>
+                        </div>
+                    </div>
+                    <div class="footer-links-group">
+                        <a href="#">Chính sách chung</a> <span>|</span>
+                        <a href="#">Bảo mật</a> <span>|</span>
+                        <a href="#">Quyền riêng tư</a> <span>|</span>
+                        <a href="#">Cam kết</a>
+                    </div>
+                </div>
+            </div>
+        </footer>
     </main>
 
     <!-- FLOATING CONTACT CLUSTER -->

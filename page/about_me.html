@@ -785,7 +785,6 @@
                         </div>
                     </div>
 
-                    <!-- BỘ CHẤM ĐIỀU HƯỚNG LUXURY -->
 
                 </div>
 
@@ -1094,7 +1093,7 @@
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             z-index: 99999999;
             display: none; flex-direction: column;
-            background: rgba(10, 10, 10, 0.9);
+            background: rgba(0, 0, 0, 0.4);
             color: #fff; font-family: 'Inter', sans-serif;
             transition: all 0.4s ease;
         }
@@ -1183,11 +1182,40 @@
 
         /* Mobile */
         @media (max-width: 768px) {
+            #lb-header, #lb-footer, #lb-img-box { 
+                pointer-events: none;
+            }
+            .lb-action-btn, .lb-share-container, #lb-img-main, .lb-nav {
+                pointer-events: auto;
+            }
             #lb-header { padding: 0 15px; }
             #lb-actions { gap: 10px; }
-            .lb-nav { display: none !important; }
-            #lb-img-box { width: 100vw !important; height: 100% !important; }
-            #lb-img-main { width: 100vw !important; max-width: 100vw !important; object-fit: contain !important; box-shadow: none !important; }
+            .lb-nav {
+                display: flex !important;
+                align-items: center;
+                justify-content: center;
+                background: rgba(0,0,0,0.4) !important;
+                border-radius: 50% !important;
+                width: 45px !important;
+                height: 45px !important;
+                padding: 0 !important;
+                font-size: 24px !important;
+                color: rgba(255,255,255,0.7) !important;
+                top: 50% !important;
+                transform: translateY(-50%) !important;
+                z-index: 10002 !important;
+            }
+            .lb-prev { left: 15px !important; }
+            .lb-next { right: 15px !important; }
+            #lb-img-box { width: 100vw !important; height: 100% !important; display: flex; align-items: center; justify-content: center; }
+            #lb-img-main { 
+                width: 100% !important; 
+                height: 100% !important; 
+                max-width: 100vw !important; 
+                max-height: 85vh !important; 
+                object-fit: contain !important; 
+                box-shadow: none !important; 
+            }
             #lb-share-menu { right: -50px; }
         }
 
@@ -1304,6 +1332,14 @@
                 zoomLevel = 1;
                 lbImg.style.transform = `scale(1)`;
                 shareMenu.classList.remove('active');
+
+                // Preload Next/Prev Images for smooth swiping
+                if (images && images.length > 1) {
+                    const nextIdx = (currIdx + 1) % images.length;
+                    const prevIdx = (currIdx - 1 + images.length) % images.length;
+                    if (images[nextIdx]) new Image().src = images[nextIdx].src;
+                    if (images[prevIdx]) new Image().src = images[prevIdx].src;
+                }
             }
 
             function closeLightbox() {
@@ -1311,6 +1347,35 @@
                 document.body.style.overflow = '';
                 shareMenu.classList.remove('active');
                 if (document.fullscreenElement) document.exitFullscreen();
+            }
+
+            function getRenderedImageRect(img) {
+                const ratio = img.naturalWidth / img.naturalHeight;
+                let width = img.clientWidth;
+                let height = img.clientHeight;
+                let imgRatio = width / height;
+
+                let rw, rh, rx, ry;
+                if (imgRatio > ratio) {
+                    rh = height;
+                    rw = rh * ratio;
+                } else {
+                    rw = width;
+                    rh = rw / ratio;
+                }
+
+                rx = (width - rw) / 2;
+                ry = (height - rh) / 2;
+
+                const rect = img.getBoundingClientRect();
+                return {
+                    left: rect.left + rx,
+                    top: rect.top + ry,
+                    width: rw,
+                    height: rh,
+                    right: rect.left + rx + rw,
+                    bottom: rect.top + ry + rh
+                };
             }
 
             // Zoom Control
@@ -1350,35 +1415,46 @@
 
             // Navigation
             function navigate(step) {
-                const dir = step > 0 ? -1 : 1;
-                lbImg.style.transition = 'transform 0.25s ease-out, opacity 0.25s ease-out';
-                lbImg.style.transform = `translateX(${dir * 50}vw)`;
+                // Pure Opacity Fade to eliminate swipe lag on heavy images
+                lbImg.style.transition = 'opacity 0.15s ease-out';
                 lbImg.style.opacity = '0';
 
                 setTimeout(() => {
                     currIdx = (currIdx + step + images.length) % images.length;
                     updateImage();
 
-                    lbImg.style.transition = 'none';
-                    lbImg.style.transform = `translateX(${-dir * 50}vw)`;
-
-                    // Force reflow
-                    void lbImg.offsetWidth;
-
-                    lbImg.style.transition = 'transform 0.25s ease-out, opacity 0.25s ease-out';
-                    lbImg.style.transform = `translateX(0) scale(1)`;
-                    lbImg.style.opacity = '1';
-                }, 250);
+                    requestAnimationFrame(() => {
+                        requestAnimationFrame(() => {
+                            lbImg.style.transition = 'opacity 0.15s ease-out';
+                            lbImg.style.opacity = '1';
+                        });
+                    });
+                }, 150);
             }
 
             document.getElementById('lbNext').onclick = (e) => { e.stopPropagation(); navigate(1); };
             document.getElementById('lbPrev').onclick = (e) => { e.stopPropagation(); navigate(-1); };
             document.getElementById('lbClose').onclick = closeLightbox;
 
-            // Close on Backdrop Click
+            // Close on Backdrop Click (Click out of image area)
             lbMain.onclick = (e) => {
-                if (e.target === lbMain || e.target.id === 'lb-body') closeLightbox();
-                else if (!shareMenu.contains(e.target)) shareMenu.classList.remove('active');
+                const isImg = e.target.id === 'lb-img-main';
+                const isNav = e.target.closest('.lb-nav') || e.target.closest('#lb-header');
+                const isShare = e.target.closest('#lb-share-menu') || e.target.id === 'lbShareBtn';
+
+                if (isImg) {
+                    const rect = getRenderedImageRect(e.target);
+                    if (e.clientX < rect.left || e.clientX > rect.right || e.clientY < rect.top || e.clientY > rect.bottom) {
+                        closeLightbox();
+                        return;
+                    }
+                }
+
+                if (!isImg && !isNav && !isShare) {
+                    closeLightbox();
+                } else if (!isShare && e.target.id !== 'lbShareBtn') {
+                    shareMenu.classList.remove('active');
+                }
             };
 
             document.addEventListener('keydown', (e) => {
@@ -1392,13 +1468,41 @@
             let touchStartX = 0;
             let touchEndX = 0;
 
+            let touchStartY = 0;
             lbMain.addEventListener('touchstart', e => {
                 touchStartX = e.changedTouches[0].screenX;
+                touchStartY = e.changedTouches[0].screenY;
             }, { passive: true });
 
             lbMain.addEventListener('touchend', e => {
                 touchEndX = e.changedTouches[0].screenX;
-                handleSwipe();
+                let touchEndY = e.changedTouches[0].screenY;
+                let clientX = e.changedTouches[0].clientX;
+                let clientY = e.changedTouches[0].clientY;
+                const swipeThreshold = 30;
+
+                if (Math.abs(touchEndX - touchStartX) > swipeThreshold || Math.abs(touchEndY - touchStartY) > swipeThreshold) {
+                    handleSwipe();
+                } else {
+                    // Tap logic for mobile backdrop click
+                    const isImg = e.target.id === 'lb-img-main';
+                    const isNav = e.target.closest('.lb-nav') || e.target.closest('#lb-header');
+                    const isShare = e.target.closest('#lb-share-menu') || e.target.id === 'lbShareBtn';
+
+                    if (isImg) {
+                        const rect = getRenderedImageRect(e.target);
+                        if (clientX < rect.left || clientX > rect.right || clientY < rect.top || clientY > rect.bottom) {
+                            closeLightbox();
+                            return;
+                        }
+                    }
+
+                    if (!isImg && !isNav && !isShare) {
+                        closeLightbox();
+                    } else if (!isShare && e.target.id !== 'lbShareBtn') {
+                        shareMenu.classList.remove('active');
+                    }
+                }
             }, { passive: true });
 
             function handleSwipe() {
