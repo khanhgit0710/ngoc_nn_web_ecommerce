@@ -423,15 +423,7 @@ document.addEventListener('DOMContentLoaded', () => {
    BLOCK: LUXURY POLISH LOGIC (PRELOADER, CURSOR, BACK TO TOP)
    ============================================================ */
 
-// 1. PRELOADER HANDLER
-window.addEventListener("load", function () {
-    const preloader = document.querySelector(".preloader");
-    if (preloader) {
-        setTimeout(() => {
-            preloader.classList.add("preloader--hidden");
-        }, 1000); // 1s delay for luxury feeling
-    }
-});
+// 1. PRELOADER HANDLER REMOVED PER USER REQUEST
 
 // 2. BACK TO TOP HANDLER
 document.addEventListener("DOMContentLoaded", function () {

@@ -1,14 +1,17 @@
 document.addEventListener("DOMContentLoaded", function () {
-    // Elements
+    // 1. Elements
     const sliderAmount = document.getElementById("slider-amount");
     const sliderTerm = document.getElementById("slider-term");
     const sliderInterest = document.getElementById("slider-interest");
-    const methodAnnuity = document.getElementById("method-annuity");
-    const methodReducing = document.getElementById("method-reducing");
+    const sliderGrace = document.getElementById("slider-grace");
 
     const valAmount = document.getElementById("val-amount");
     const valTerm = document.getElementById("val-term");
     const valInterest = document.getElementById("val-interest");
+    const valGrace = document.getElementById("val-grace");
+
+    const methodAnnuity = document.getElementById("method-annuity");
+    const methodReducing = document.getElementById("method-reducing");
 
     const resMonthly = document.getElementById("res-monthly");
     const resPrincipal = document.getElementById("res-principal");
@@ -20,131 +23,206 @@ document.addEventListener("DOMContentLoaded", function () {
     const scheduleBox = document.getElementById("schedule-box");
     const scheduleBody = document.getElementById("schedule-body");
 
-    // Format Currency
+    // 2. Format Currency
     function formatVND(value) {
         return new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(value).replace('₫', 'đ');
     }
 
-    // Calculation Logic
+    // 3. Calculation Logic
     function calculateLoan() {
         if (!sliderAmount || !sliderTerm || !sliderInterest) return;
-        const amount = parseFloat(sliderAmount.value);
-        const termMonths = parseInt(sliderTerm.value) * 12;
-        const yearlyRate = parseFloat(sliderInterest.value) / 100;
+
+        const amount = Number(sliderAmount.value);
+        const termMonths = Number(sliderTerm.value) * 12;
+        const yearlyRate = Number(sliderInterest.value) / 100;
         const monthlyRate = yearlyRate / 12;
+        const graceMonths = sliderGrace ? Number(sliderGrace.value) : 0;
+        const postGraceTerm = termMonths - graceMonths;
 
         let totalInterest = 0;
         let scheduleHTML = "";
+        let peakMonthly = 0;
 
-        if (methodAnnuity.checked) {
-            // EMI / Gốc lãi đều
-            txtResultHeader.textContent = "Cần trả cố định hàng tháng";
-            const emi = amount * monthlyRate * Math.pow(1 + monthlyRate, termMonths) / (Math.pow(1 + monthlyRate, termMonths) - 1);
-            
-            resMonthly.textContent = formatVND(emi);
-            resPrincipal.textContent = "Tính đều theo kỳ";
-            
+        if (methodAnnuity && methodAnnuity.checked) {
+            const emiPostGrace = postGraceTerm > 0 ? (amount * monthlyRate * Math.pow(1 + monthlyRate, postGraceTerm) / (Math.pow(1 + monthlyRate, postGraceTerm) - 1)) : 0;
+            const interestOnly = amount * monthlyRate;
+
+            if (graceMonths > 0) {
+                txtResultHeader.innerHTML = `Giai đoạn ân hạn (Lãi trả tháng): <br> <small style="font-weight: 400; opacity: 0.7; text-transform: none;">Từ tháng ${graceMonths + 1} trả: ${formatVND(emiPostGrace)}</small>`;
+                resMonthly.textContent = formatVND(interestOnly);
+            } else {
+                txtResultHeader.textContent = "Cần trả cố định hàng tháng";
+                resMonthly.textContent = formatVND(emiPostGrace);
+            }
+
+            resPrincipal.textContent = graceMonths > 0 ? `Ân hạn ${graceMonths} tháng` : "Tính đều theo kỳ";
+            peakMonthly = emiPostGrace;
+
             let remainingBalance = amount;
             for (let i = 1; i <= termMonths; i++) {
                 const interestPay = remainingBalance * monthlyRate;
-                const principalPay = emi - interestPay;
+                let principalPay = 0;
+                let currentEmi = 0;
+
+                if (i <= graceMonths) {
+                    principalPay = 0;
+                    currentEmi = interestPay;
+                } else {
+                    currentEmi = emiPostGrace;
+                    principalPay = currentEmi - interestPay;
+                }
+
                 remainingBalance -= principalPay;
                 totalInterest += interestPay;
 
-                scheduleHTML += `<tr>
-                    <td>Tháng ${i}</td>
-                    <td>${formatVND(principalPay)}</td>
-                    <td>${formatVND(interestPay)}</td>
-                    <td>${formatVND(emi)}</td>
-                    <td style="color: #888;">${formatVND(Math.max(0, remainingBalance))}</td>
-                </tr>`;
+                scheduleHTML += `<tr><td>Tháng ${i}${i <= graceMonths ? ' <span class="badge badge--grace">ÂN HẠN</span>' : ''}</td><td>${formatVND(principalPay)}</td><td>${formatVND(interestPay)}</td><td>${formatVND(currentEmi)}</td><td>${formatVND(Math.max(0, remainingBalance))}</td></tr>`;
+            }
+        } else {
+            // Reducing Balance
+            const monthlyPrincipal = postGraceTerm > 0 ? (amount / postGraceTerm) : 0;
+            const interestOnly = amount * monthlyRate;
+
+            if (graceMonths > 0) {
+                txtResultHeader.innerHTML = `Giai đoạn ân hạn (Lãi trả tháng): <br> <small style="font-weight: 400; opacity: 0.7; text-transform: none;">Từ tháng ${graceMonths + 1} trả gốc: ${formatVND(monthlyPrincipal)} + lãi</small>`;
+                resMonthly.textContent = formatVND(interestOnly);
+            } else {
+                txtResultHeader.textContent = "Thanh toán tháng đầu tiên";
+                resMonthly.textContent = formatVND(monthlyPrincipal + interestOnly);
             }
 
-            resTotalInterest.textContent = formatVND(totalInterest);
-            resTotalPayment.textContent = formatVND(amount + totalInterest);
-
-        } else {
-            // Dư nợ giảm dần
-            txtResultHeader.textContent = "Cần trả tháng đầu tiên";
-            const monthlyPrincipal = amount / termMonths;
-            const firstMonthInterest = amount * monthlyRate;
-            
-            resMonthly.textContent = formatVND(monthlyPrincipal + firstMonthInterest);
             resPrincipal.textContent = formatVND(monthlyPrincipal);
+            peakMonthly = monthlyPrincipal + interestOnly;
 
             let remainingBalance = amount;
             for (let i = 1; i <= termMonths; i++) {
                 const interestPay = remainingBalance * monthlyRate;
-                const emi = monthlyPrincipal + interestPay;
-                remainingBalance -= monthlyPrincipal;
+                let principalPay = (i <= graceMonths) ? 0 : monthlyPrincipal;
+                let currentTotal = principalPay + interestPay;
+
+                remainingBalance -= principalPay;
                 totalInterest += interestPay;
 
-                scheduleHTML += `<tr>
-                    <td>Tháng ${i}</td>
-                    <td>${formatVND(monthlyPrincipal)}</td>
-                    <td>${formatVND(interestPay)}</td>
-                    <td>${formatVND(emi)}</td>
-                    <td style="color: #888;">${formatVND(Math.max(0, remainingBalance))}</td>
-                </tr>`;
+                scheduleHTML += `<tr><td>Tháng ${i}${i <= graceMonths ? ' <span class="badge badge--grace">ÂN HẠN</span>' : ''}</td><td>${formatVND(principalPay)}</td><td>${formatVND(interestPay)}</td><td>${formatVND(currentTotal)}</td><td>${formatVND(Math.max(0, remainingBalance))}</td></tr>`;
             }
-
-            resTotalInterest.textContent = formatVND(totalInterest);
-            resTotalPayment.textContent = formatVND(amount + totalInterest);
         }
 
+        if (resTotalInterest) resTotalInterest.textContent = formatVND(totalInterest);
+        if (resTotalPayment) resTotalPayment.textContent = formatVND(amount + totalInterest);
         if (scheduleBody) scheduleBody.innerHTML = scheduleHTML;
 
-        // Update Visual Bar [NEW]
-        updateVisualBar(amount, totalInterest);
+        updateVisualBar(amount, totalInterest, peakMonthly);
     }
 
-    // Visual Ratio Bar Update
-    function updateVisualBar(principal, interest) {
-        const total = principal + interest;
+    // 4. UI Update
+    function updateVisualBar(principal, interest, peakMonthly) {
+        const total = Number(principal) + Number(interest);
         if (total === 0) return;
 
-        const principalPercent = (principal / total) * 100;
-        const interestPercent = (interest / total) * 100;
+        const pPct = (principal / total) * 100;
+        const iPct = (interest / total) * 100;
 
-        // Header Horizontal Bar (if exists)
-        const barPrincipal = document.getElementById("bar-principal");
-        const barInterest = document.getElementById("bar-interest");
-        if (barPrincipal) barPrincipal.style.width = principalPercent + "%";
-        if (barInterest) barInterest.style.width = interestPercent + "%";
+        const barP = document.getElementById("bar-principal");
+        const barI = document.getElementById("bar-interest");
+        if (barP) barP.style.width = pPct + "%";
+        if (barI) barI.style.width = iPct + "%";
 
-        // Chart Elements
-        const chartBarPrincipal = document.getElementById("chart-bar-principal");
-        const chartBarInterest = document.getElementById("chart-bar-interest");
-        const chartValPrincipal = document.getElementById("chart-val-principal");
-        const chartValInterest = document.getElementById("chart-val-interest");
+        const cBarP = document.getElementById("chart-bar-principal");
+        const cBarI = document.getElementById("chart-bar-interest");
+        const cValP = document.getElementById("chart-val-principal");
+        const cValI = document.getElementById("chart-val-interest");
 
-        // Update Widths
-        if (chartBarPrincipal) chartBarPrincipal.style.width = principalPercent + "%";
-        if (chartBarInterest) chartBarInterest.style.width = interestPercent + "%";
-        
-        // Update Labels with Money Format
-        if (chartValInterest) {
-            chartValInterest.innerHTML = `<span class="pct">${Math.round(interestPercent)}%</span> <span class="amt">(${formatVND(interest)})</span>`;
+        if (cBarP) cBarP.style.width = pPct + "%";
+        if (cBarI) cBarI.style.width = iPct + "%";
+        if (cValP) cValP.innerHTML = `${Math.round(pPct)}% <small style="font-weight:400; color:#888;">(${formatVND(principal)})</small>`;
+        if (cValI) cValI.innerHTML = `${Math.round(iPct)}% <small style="font-weight:400; color:#888;">(${formatVND(interest)})</small>`;
+
+        const sTotal = document.getElementById("smart-total-cost");
+        const sDaily = document.getElementById("smart-daily-interest");
+        const sIncome = document.getElementById("smart-min-income");
+        const sGrace = document.getElementById("smart-grace-cost");
+
+        if (sTotal) sTotal.textContent = formatVND(total);
+        const yRate = Number(sliderInterest.value) / 100;
+        if (sDaily) sDaily.textContent = formatVND((principal * yRate) / 365);
+        if (sIncome) sIncome.textContent = formatVND(peakMonthly / 0.4);
+
+        // Grace Cost Calc
+        const gMonths = Number(sliderGrace.value);
+        if (gMonths > 0) {
+            let interestNoGrace = 0;
+            const termTotal = Number(sliderTerm.value) * 12;
+            const rateMonthly = Number(sliderInterest.value) / 100 / 12;
+            
+            if (methodAnnuity.checked) {
+                const emiNG = principal * rateMonthly * Math.pow(1 + rateMonthly, termTotal) / (Math.pow(1 + rateMonthly, termTotal) - 1);
+                interestNoGrace = (emiNG * termTotal) - principal;
+            } else {
+                let tempRem = principal;
+                const monthlyP = principal / termTotal;
+                for (let j = 0; j < termTotal; j++) { 
+                    interestNoGrace += tempRem * rateMonthly; 
+                    tempRem -= monthlyP; 
+                }
+            }
+            
+            const diff = interest - interestNoGrace;
+            if (sGrace) sGrace.textContent = formatVND(Math.max(0, diff));
+        } else {
+            if (sGrace) sGrace.textContent = "0 đ";
         }
-
-        // Smart Analysis Update
-        const smartTotalCost = document.getElementById("smart-total-cost");
-        const smartDailyInterest = document.getElementById("smart-daily-interest");
-        const smartMinIncome = document.getElementById("smart-min-income");
-
-        if (smartTotalCost) smartTotalCost.textContent = formatVND(principal + interest);
-        
-        // Estimate daily interest (using term months from current context)
-        const termSlider = document.getElementById("slider-term");
-        const months = termSlider ? parseInt(termSlider.value) * 12 : 12;
-        if (smartDailyInterest) smartDailyInterest.textContent = formatVND(interest / months / 30);
-
-        // Safe income = Monthly payment / 0.4 (40% rule)
-        const resMonthlyText = document.getElementById("res-monthly").textContent;
-        // Parse raw number from formatted string (very rough but works for display)
-        const monthlyAmount = parseInt(resMonthlyText.replace(/[^0-9]/g, ''));
-        if (smartMinIncome) smartMinIncome.textContent = formatVND(monthlyAmount / 0.4);
     }
+
+    function updateLabels() {
+        if (valAmount) valAmount.value = formatVND(sliderAmount.value);
+        if (valTerm) valTerm.value = sliderTerm.value + " năm";
+        if (valInterest) valInterest.value = sliderInterest.value + " %";
+        if (valGrace) {
+            const g = Number(sliderGrace.value);
+            valGrace.value = g === 0 ? "Không chọn" : g + " tháng";
+        }
+    }
+
+    // 5. Listeners
+    [sliderAmount, sliderTerm, sliderInterest, sliderGrace].forEach(el => {
+        if (el) el.addEventListener("input", () => { updateLabels(); calculateLoan(); });
+    });
+
+    if (valAmount) {
+        valAmount.addEventListener("input", function () {
+            let v = parseInt(this.value.replace(/[^0-9]/g, ''));
+            if (!isNaN(v)) { sliderAmount.value = v; calculateLoan(); }
+        });
+        valAmount.addEventListener("blur", updateLabels);
+    }
+    if (valTerm) {
+        valTerm.addEventListener("input", function () {
+            let v = parseInt(this.value.replace(/[^0-9]/g, ''));
+            if (!isNaN(v)) { sliderTerm.value = v; calculateLoan(); }
+        });
+        valTerm.addEventListener("blur", updateLabels);
+    }
+    if (valInterest) {
+        valInterest.addEventListener("input", function () {
+            let v = parseFloat(this.value.replace(/[^0-9.]/g, ''));
+            if (!isNaN(v)) { sliderInterest.value = v; calculateLoan(); }
+        });
+        valInterest.addEventListener("blur", updateLabels);
+    }
+
+    if (btnToggleSchedule) {
+        btnToggleSchedule.addEventListener("click", () => {
+            const isHidden = scheduleBox.style.display !== "block";
+            scheduleBox.style.display = isHidden ? "block" : "none";
+            btnToggleSchedule.innerHTML = isHidden ? '<i class="fas fa-chevron-up"></i> Thu gọn lịch trình' : '<i class="fas fa-calendar-alt"></i> Xem lịch trình thanh toán chi tiết';
+        });
+    }
+
+    document.querySelectorAll(".mark-item").forEach(item => {
+        item.addEventListener("click", function () {
+            sliderGrace.value = this.getAttribute("data-val");
+            updateLabels(); calculateLoan();
+        });
+    });
 
     // FAQ Toggle
     const faqItems = document.querySelectorAll(".faq-item");
@@ -152,7 +230,6 @@ document.addEventListener("DOMContentLoaded", function () {
         const question = item.querySelector(".faq-question");
         if (question) {
             question.addEventListener("click", () => {
-                // Close other open items
                 faqItems.forEach(otherItem => {
                     if (otherItem !== item) otherItem.classList.remove("active");
                 });
@@ -161,187 +238,40 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 
-    // Update Labels & Inputs
-    function updateLabels() {
-        if (valAmount) valAmount.value = formatVND(sliderAmount.value);
-        if (valTerm) valTerm.value = sliderTerm.value + " năm";
-        if (valInterest) valInterest.value = sliderInterest.value + " %";
-    }
-
-    // Manual Input Listeners
-    if (valAmount) {
-        valAmount.addEventListener("change", function() {
-            let value = parseInt(this.value.replace(/[^0-9]/g, ''));
-            if (isNaN(value)) value = 1000000000;
-            sliderAmount.value = value;
-            updateLabels();
-            calculateLoan();
-        });
-    }
-
-    if (valTerm) {
-        valTerm.addEventListener("change", function() {
-            let value = parseInt(this.value.replace(/[^0-9]/g, ''));
-            if (isNaN(value)) value = 15;
-            sliderTerm.value = value;
-            updateLabels();
-            calculateLoan();
-        });
-    }
-
-    if (valInterest) {
-        valInterest.addEventListener("change", function() {
-            let value = parseFloat(this.value.replace(/[^0-9.]/g, ''));
-            if (isNaN(value)) value = 8.5;
-            sliderInterest.value = value;
-            updateLabels();
-            calculateLoan();
-        });
-    }
-
-    // Listeners for Sliders
-    const inputs = [sliderAmount, sliderTerm, sliderInterest];
-    inputs.forEach(el => {
-        if (el) {
-            el.addEventListener("input", () => {
-                updateLabels();
-                calculateLoan();
-            });
-        }
-    });
-
-    const radios = [methodAnnuity, methodReducing];
-    radios.forEach(el => {
-        if (el) el.addEventListener("change", calculateLoan);
-    });
-
-    // Toggle Schedule
-    if (btnToggleSchedule) {
-        btnToggleSchedule.addEventListener("click", () => {
-            if (scheduleBox.style.display === "block") {
-                scheduleBox.style.display = "none";
-                btnToggleSchedule.innerHTML = '<i class="fas fa-calendar-alt"></i> Xem lịch trình thanh toán chi tiết';
-            } else {
-                scheduleBox.style.display = "block";
-                btnToggleSchedule.innerHTML = '<i class="fas fa-chevron-up"></i> Thu gọn lịch trình';
-            }
-        });
-    }
-
-    // Init from URL
-    const urlParams = new URLSearchParams(window.location.search);
-    const amountParam = urlParams.get('amount');
-    if (amountParam && sliderAmount) {
-        sliderAmount.value = amountParam;
-        const backBtn = document.getElementById('back-btn');
-        if (backBtn) backBtn.style.display = 'inline-flex';
-    }
-
-    // Init
-    updateLabels();
-    calculateLoan();
-
-    // ==========================================
-    // NEWS SLIDER LOGIC
-    // ==========================================
+    // News Slider Logic
     const newsWrapper = document.querySelector('.trending-grid');
     const newsCards = document.querySelectorAll('.trending-card');
     const btnNext = document.querySelector('.next-news');
     const btnPrev = document.querySelector('.prev-news');
-    const viewport = document.querySelector('.trending-slider-viewport');
 
     if (newsWrapper && newsCards.length > 0) {
         let currentIndex = 0;
-        const totalCards = newsCards.length;
-        
-        function getCardsPerView() {
-            if (window.innerWidth <= 600) return 1;
-            if (window.innerWidth <= 992) return 2;
-            return 3;
-        }
-
         function updateSlider() {
-            const cardsPerView = getCardsPerView();
-            const maxIndex = Math.max(0, totalCards - cardsPerView);
-            if (currentIndex > maxIndex) currentIndex = maxIndex;
-            
-            const gap = 15;
-            const cardWidth = 320; // Exact width from main.css
-            const moveX = currentIndex * (cardWidth + gap);
+            const cardsPerView = window.innerWidth <= 600 ? 1 : (window.innerWidth <= 992 ? 2 : 3);
+            const maxIdx = Math.max(0, newsCards.length - cardsPerView);
+            if (currentIndex > maxIdx) currentIndex = maxIdx;
+            const moveX = currentIndex * (320 + 5);
             newsWrapper.style.transform = `translateX(-${moveX}px)`;
-
-            // Button States (Always clear as requested)
-            if (btnPrev) btnPrev.style.pointerEvents = currentIndex === 0 ? "none" : "auto";
-            if (btnNext) btnNext.style.pointerEvents = currentIndex >= maxIndex ? "none" : "auto";
-            
-            if (btnPrev) btnPrev.style.opacity = "1";
-            if (btnNext) btnNext.style.opacity = "1";
+            if (btnPrev) btnPrev.style.opacity = currentIndex === 0 ? "0.3" : "1";
+            if (btnNext) btnNext.style.opacity = currentIndex >= maxIdx ? "0.3" : "1";
         }
-
-        if (btnNext) {
-            btnNext.addEventListener('click', () => {
-                const maxIndex = Math.max(0, totalCards - getCardsPerView());
-                if (currentIndex < maxIndex) {
-                    currentIndex++;
-                    updateSlider();
-                }
-            });
-        }
-
-        if (btnPrev) {
-            btnPrev.addEventListener('click', () => {
-                if (currentIndex > 0) {
-                    currentIndex--;
-                    updateSlider();
-                }
-            });
-        }
-
-        // Swipe Support
-        let startX = 0;
-        let isDragging = false;
-
-        if (viewport) {
-            viewport.addEventListener('mousedown', (e) => {
-                startX = e.pageX;
-                isDragging = true;
-            });
-
-            window.addEventListener('mousemove', (e) => {
-                if (!isDragging) return;
-                const x = e.pageX;
-                const walk = startX - x;
-                if (Math.abs(walk) > 100) {
-                    if (walk > 0) btnNext.click();
-                    else btnPrev.click();
-                    isDragging = false;
-                }
-            });
-
-            window.addEventListener('mouseup', () => isDragging = false);
-
-            // Touch Support
-            viewport.addEventListener('touchstart', (e) => {
-                startX = e.touches[0].pageX;
-            }, { passive: true });
-
-            viewport.addEventListener('touchend', (e) => {
-                const endX = e.changedTouches[0].pageX;
-                const walk = startX - endX;
-                if (Math.abs(walk) > 50) {
-                    if (walk > 0) btnNext.click();
-                    else btnPrev.click();
-                }
-            }, { passive: true });
-        }
-
+        if (btnNext) btnNext.addEventListener('click', () => { if (currentIndex < newsCards.length - (window.innerWidth <= 992 ? 2 : 3)) { currentIndex++; updateSlider(); } });
+        if (btnPrev) btnPrev.addEventListener('click', () => { if (currentIndex > 0) { currentIndex--; updateSlider(); } });
         window.addEventListener('resize', updateSlider);
         updateSlider();
     }
+
+    // Listen for method changes
+    [methodAnnuity, methodReducing].forEach(radio => {
+        radio.addEventListener("input", calculateLoan);
+    });
+
+    // Initial calculation
+    updateLabels();
+    calculateLoan();
 });
 
-// Global Function for CTA
-window.openPopup = function() {
-    const popupOverlay = document.getElementById('luxuryPopupOverlay');
-    if (popupOverlay) popupOverlay.classList.add('active');
+window.openPopup = function () {
+    const p = document.getElementById('luxuryPopupOverlay');
+    if (p) p.classList.add('active');
 };
