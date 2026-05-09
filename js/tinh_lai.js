@@ -3,11 +3,15 @@ document.addEventListener("DOMContentLoaded", function () {
     const sliderAmount = document.getElementById("slider-amount");
     const sliderTerm = document.getElementById("slider-term");
     const sliderInterest = document.getElementById("slider-interest");
+    const sliderInterestPeriod = document.getElementById("slider-interest-period");
+    const sliderInterestFloat = document.getElementById("slider-interest-float");
     const sliderGrace = document.getElementById("slider-grace");
 
     const valAmount = document.getElementById("val-amount");
     const valTerm = document.getElementById("val-term");
     const valInterest = document.getElementById("val-interest");
+    const valInterestPeriod = document.getElementById("val-interest-period");
+    const valInterestFloat = document.getElementById("val-interest-float");
     const valGrace = document.getElementById("val-grace");
 
     const methodAnnuity = document.getElementById("method-annuity");
@@ -34,76 +38,89 @@ document.addEventListener("DOMContentLoaded", function () {
 
         const amount = Number(sliderAmount.value);
         const termMonths = Number(sliderTerm.value) * 12;
-        const yearlyRate = Number(sliderInterest.value) / 100;
-        const monthlyRate = yearlyRate / 12;
+        const promoRateYearly = Number(sliderInterest.value) / 100;
+        
+        // Default to constant rate if promo/float inputs are missing
+        const promoMonths = sliderInterestPeriod ? Number(sliderInterestPeriod.value) : 9999;
+        const floatRateYearly = sliderInterestFloat ? Number(sliderInterestFloat.value) / 100 : promoRateYearly;
+
         const graceMonths = sliderGrace ? Number(sliderGrace.value) : 0;
         const postGraceTerm = termMonths - graceMonths;
 
         let totalInterest = 0;
         let scheduleHTML = "";
         let peakMonthly = 0;
+        let emiAfterGrace = 0;
 
-        if (methodAnnuity && methodAnnuity.checked) {
-            const emiPostGrace = postGraceTerm > 0 ? (amount * monthlyRate * Math.pow(1 + monthlyRate, postGraceTerm) / (Math.pow(1 + monthlyRate, postGraceTerm) - 1)) : 0;
-            const interestOnly = amount * monthlyRate;
+        // Helper to get rate for specific month index i (1-indexed)
+        function getRateForMonth(monthIdx) {
+            return (monthIdx <= promoMonths) ? (promoRateYearly / 12) : (floatRateYearly / 12);
+        }
 
-            if (graceMonths > 0) {
-                txtResultHeader.innerHTML = `Giai đoạn ân hạn (Lãi trả tháng): <br> <small style="font-weight: 400; opacity: 0.7; text-transform: none;">Từ tháng ${graceMonths + 1} trả: ${formatVND(emiPostGrace)}</small>`;
-                resMonthly.textContent = formatVND(interestOnly);
-            } else {
-                txtResultHeader.textContent = "Cần trả cố định hàng tháng";
-                resMonthly.textContent = formatVND(emiPostGrace);
-            }
+        let remainingBalance = amount;
 
-            resPrincipal.textContent = graceMonths > 0 ? `Ân hạn ${graceMonths} tháng` : "Tính đều theo kỳ";
-            peakMonthly = emiPostGrace;
+        // --- CALCULATION LOOP ---
+        for (let i = 1; i <= termMonths; i++) {
+            const mRate = getRateForMonth(i);
+            const interestPay = remainingBalance * mRate;
+            let principalPay = 0;
+            let currentTotal = 0;
 
-            let remainingBalance = amount;
-            for (let i = 1; i <= termMonths; i++) {
-                const interestPay = remainingBalance * monthlyRate;
-                let principalPay = 0;
-                let currentEmi = 0;
-
+            if (methodAnnuity && methodAnnuity.checked) {
+                // ANNUITY (GỐC LÃI ĐỀU)
                 if (i <= graceMonths) {
                     principalPay = 0;
-                    currentEmi = interestPay;
+                    currentTotal = interestPay;
                 } else {
-                    currentEmi = emiPostGrace;
-                    principalPay = currentEmi - interestPay;
+                    // Recalculate EMI if first month after grace or rate changes
+                    if (i === graceMonths + 1 || i === promoMonths + 1) {
+                        const remTerm = termMonths - i + 1;
+                        if (remTerm > 0) {
+                            emiAfterGrace = remainingBalance * mRate * Math.pow(1 + mRate, remTerm) / (Math.pow(1 + mRate, remTerm) - 1);
+                        } else {
+                            emiAfterGrace = remainingBalance + interestPay;
+                        }
+                    }
+                    currentTotal = emiAfterGrace;
+                    principalPay = currentTotal - interestPay;
                 }
-
-                remainingBalance -= principalPay;
-                totalInterest += interestPay;
-
-                scheduleHTML += `<tr><td>Tháng ${i}${i <= graceMonths ? ' <span class="badge badge--grace">ÂN HẠN</span>' : ''}</td><td>${formatVND(principalPay)}</td><td>${formatVND(interestPay)}</td><td>${formatVND(currentEmi)}</td><td>${formatVND(Math.max(0, remainingBalance))}</td></tr>`;
-            }
-        } else {
-            // Reducing Balance
-            const monthlyPrincipal = postGraceTerm > 0 ? (amount / postGraceTerm) : 0;
-            const interestOnly = amount * monthlyRate;
-
-            if (graceMonths > 0) {
-                txtResultHeader.innerHTML = `Giai đoạn ân hạn (Lãi trả tháng): <br> <small style="font-weight: 400; opacity: 0.7; text-transform: none;">Từ tháng ${graceMonths + 1} trả gốc: ${formatVND(monthlyPrincipal)} + lãi</small>`;
-                resMonthly.textContent = formatVND(interestOnly);
             } else {
-                txtResultHeader.textContent = "Thanh toán tháng đầu tiên";
-                resMonthly.textContent = formatVND(monthlyPrincipal + interestOnly);
+                // REDUCING BALANCE (DƯ NỢ GIẢM DẦN)
+                if (i <= graceMonths) {
+                    principalPay = 0;
+                    currentTotal = interestPay;
+                } else {
+                    principalPay = amount / postGraceTerm;
+                    currentTotal = principalPay + interestPay;
+                }
             }
 
-            resPrincipal.textContent = formatVND(monthlyPrincipal);
-            peakMonthly = monthlyPrincipal + interestOnly;
-
-            let remainingBalance = amount;
-            for (let i = 1; i <= termMonths; i++) {
-                const interestPay = remainingBalance * monthlyRate;
-                let principalPay = (i <= graceMonths) ? 0 : monthlyPrincipal;
-                let currentTotal = principalPay + interestPay;
-
-                remainingBalance -= principalPay;
-                totalInterest += interestPay;
-
-                scheduleHTML += `<tr><td>Tháng ${i}${i <= graceMonths ? ' <span class="badge badge--grace">ÂN HẠN</span>' : ''}</td><td>${formatVND(principalPay)}</td><td>${formatVND(interestPay)}</td><td>${formatVND(currentTotal)}</td><td>${formatVND(Math.max(0, remainingBalance))}</td></tr>`;
+            // Safeguard: Principal cannot exceed remaining balance
+            if (principalPay > remainingBalance) {
+                principalPay = remainingBalance;
+                currentTotal = principalPay + interestPay;
             }
+
+            remainingBalance -= principalPay;
+            totalInterest += interestPay;
+
+            if (currentTotal > peakMonthly) peakMonthly = currentTotal;
+
+            // Result labels update (only once based on first months)
+            if (i === 1) {
+                if (graceMonths > 0) {
+                    txtResultHeader.innerHTML = `Giai đoạn ân hạn (Trả lãi): <br> <small style="font-weight: 400; opacity: 0.7; text-transform: none;">Từ tháng ${graceMonths + 1} trả ước tính: ${formatVND(emiAfterGrace || (amount/postGraceTerm + amount*mRate))}</small>`;
+                    resMonthly.textContent = formatVND(currentTotal);
+                } else {
+                    txtResultHeader.textContent = methodAnnuity.checked ? "Cần trả cố định hàng tháng" : "Thanh toán tháng đầu tiên";
+                    resMonthly.textContent = formatVND(currentTotal);
+                }
+                if (resPrincipal) {
+                    resPrincipal.textContent = (i <= graceMonths) ? "0 đ" : formatVND(principalPay);
+                }
+            }
+
+            scheduleHTML += `<tr><td>Tháng ${i}${i <= graceMonths ? ' <span class="badge badge--grace">ÂN HẠN</span>' : ''}</td><td>${formatVND(principalPay)}</td><td>${formatVND(interestPay)}</td><td>${formatVND(currentTotal)}</td><td>${formatVND(Math.max(0, remainingBalance))}</td></tr>`;
         }
 
         if (resTotalInterest) resTotalInterest.textContent = formatVND(totalInterest);
@@ -144,29 +161,17 @@ document.addEventListener("DOMContentLoaded", function () {
         if (sTotal) sTotal.textContent = formatVND(total);
         const yRate = Number(sliderInterest.value) / 100;
         if (sDaily) sDaily.textContent = formatVND((principal * yRate) / 365);
-        if (sIncome) sIncome.textContent = formatVND(peakMonthly / 0.4);
+        // Thu nhập đề xuất = Đỉnh thanh toán hàng tháng x 2.5 (quản trị rủi ro)
+        if (sIncome) sIncome.textContent = formatVND(peakMonthly * 2.5);
 
-        // Grace Cost Calc
+        // Grace Cost Calc (Simplified diff)
         const gMonths = Number(sliderGrace.value);
         if (gMonths > 0) {
-            let interestNoGrace = 0;
-            const termTotal = Number(sliderTerm.value) * 12;
-            const rateMonthly = Number(sliderInterest.value) / 100 / 12;
-            
-            if (methodAnnuity.checked) {
-                const emiNG = principal * rateMonthly * Math.pow(1 + rateMonthly, termTotal) / (Math.pow(1 + rateMonthly, termTotal) - 1);
-                interestNoGrace = (emiNG * termTotal) - principal;
-            } else {
-                let tempRem = principal;
-                const monthlyP = principal / termTotal;
-                for (let j = 0; j < termTotal; j++) { 
-                    interestNoGrace += tempRem * rateMonthly; 
-                    tempRem -= monthlyP; 
-                }
-            }
-            
-            const diff = interest - interestNoGrace;
-            if (sGrace) sGrace.textContent = formatVND(Math.max(0, diff));
+            // Calculate what interest would have been without grace (simplified approach)
+            // Roughly: Grace Months * (Initial Monthly Interest - Average Monthly Interest saved if paying principal)
+            const mRate = Number(sliderInterest.value) / 100 / 12;
+            const extraInterest = principal * mRate * gMonths;
+            sGrace.textContent = formatVND(extraInterest);
         } else {
             if (sGrace) sGrace.textContent = "0 đ";
         }
@@ -176,6 +181,8 @@ document.addEventListener("DOMContentLoaded", function () {
         if (valAmount) valAmount.value = formatVND(sliderAmount.value);
         if (valTerm) valTerm.value = sliderTerm.value + " năm";
         if (valInterest) valInterest.value = sliderInterest.value + " %";
+        if (valInterestPeriod && sliderInterestPeriod) valInterestPeriod.value = sliderInterestPeriod.value + " tháng";
+        if (valInterestFloat && sliderInterestFloat) valInterestFloat.value = sliderInterestFloat.value + " %";
         if (valGrace) {
             const g = Number(sliderGrace.value);
             valGrace.value = g === 0 ? "Không chọn" : g + " tháng";
@@ -183,7 +190,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     // 5. Listeners
-    [sliderAmount, sliderTerm, sliderInterest, sliderGrace].forEach(el => {
+    [sliderAmount, sliderTerm, sliderInterest, sliderInterestPeriod, sliderInterestFloat, sliderGrace].forEach(el => {
         if (el) el.addEventListener("input", () => { updateLabels(); calculateLoan(); });
     });
 
@@ -207,6 +214,20 @@ document.addEventListener("DOMContentLoaded", function () {
             if (!isNaN(v)) { sliderInterest.value = v; calculateLoan(); }
         });
         valInterest.addEventListener("blur", updateLabels);
+    }
+    if (valInterestPeriod) {
+        valInterestPeriod.addEventListener("input", function () {
+            let v = parseInt(this.value.replace(/[^0-9]/g, ''));
+            if (!isNaN(v)) { sliderInterestPeriod.value = v; calculateLoan(); }
+        });
+        valInterestPeriod.addEventListener("blur", updateLabels);
+    }
+    if (valInterestFloat) {
+        valInterestFloat.addEventListener("input", function () {
+            let v = parseFloat(this.value.replace(/[^0-9.]/g, ''));
+            if (!isNaN(v)) { sliderInterestFloat.value = v; calculateLoan(); }
+        });
+        valInterestFloat.addEventListener("blur", updateLabels);
     }
 
     if (btnToggleSchedule) {

@@ -569,11 +569,11 @@ document.addEventListener("DOMContentLoaded", function () {
                 <i class="fas fa-map-marked-alt"></i>
                 <span>Đặt Nhà</span>
             </a>
-            <a href="javascript:void(0)" class="bottom-nav-item">
+            <a href="tinh_lai.html" class="bottom-nav-item">
                 <i class="fas fa-calculator"></i>
                 <span>Tính Lãi</span>
             </a>
-            <a href="javascript:void(0)" class="bottom-nav-item">
+            <a href="quang_cao.html" class="bottom-nav-item">
                 <i class="fas fa-tv"></i>
                 <span>Quảng Cáo</span>
             </a>

@@ -174,6 +174,9 @@
         max-width: 100vw !important;
         overflow-x: clip !important;
         overflow-y: visible !important;
+    }
+
+    .footer-signature-center {
         padding-bottom: 80px !important;
     }
 
@@ -335,6 +338,8 @@
     .footer-container,
     .footer-bottom-container,
     .footer-copyright-bar,
+    .footer-copyright-bar-signature,
+    .footer-signature-container,
     .section-title,
     .section-label,
     .container-1000 {
@@ -2768,5 +2773,476 @@
         width: 100% !important;
         height: 100% !important;
         object-fit: cover !important;
+    }
+}
+
+/* ==========================================================================
+   PAGE: TINH LAI & FAQ RESPONSIVE (1024PX - 768PX - 480PX - 360PX)
+   ========================================================================== */
+
+/* BREAKPOINT: 1024PX */
+@media (max-width: 1024px) {
+    /* --- TINH LAI PAGE --- */
+    .hero--tinh-lai .hero__title {
+        font-size: 40px !important;
+    }
+
+    .calc-container {
+        margin: 40px auto !important;
+        padding: 30px 20px !important;
+    }
+
+    .calc-grid {
+        gap: 30px !important;
+    }
+
+    .analysis-grid {
+        gap: 15px !important;
+    }
+
+    .analysis-card {
+        padding: 15px !important;
+    }
+
+    /* --- FAQ PAGE --- */
+    .faq-hero-top-row {
+        gap: 30px !important;
+    }
+
+    .faq-page-hero h1 {
+        font-size: 36px !important;
+    }
+
+    .faq-expert-card-premium {
+        min-width: 300px !important;
+    }
+
+    /* --- FOOTER & HOTLINE --- */
+    .signature-nav {
+        gap: 30px !important;
+    }
+}
+
+/* BREAKPOINT: 768PX */
+@media (max-width: 768px) {
+    .footer-signature-center {
+        padding-bottom: 0 !important;
+    }
+
+    /* --- TINH LAI PAGE --- */
+    .hero--tinh-lai {
+        padding: 80px 0 40px !important;
+    }
+
+    .hero--tinh-lai .hero__title {
+        font-size: 32px !important;
+    }
+
+    .calc-grid {
+        grid-template-columns: 1fr !important;
+        gap: 40px !important;
+    }
+
+    .calc-result {
+        border-left: none !important;
+        border-top: 1px solid rgba(183, 114, 70, 0.1) !important;
+        padding-top: 30px !important;
+        padding-left: 0 !important;
+    }
+
+    .schedule-wrapper {
+        overflow-x: auto !important;
+        -webkit-overflow-scrolling: touch !important;
+    }
+
+    .schedule-table {
+        min-width: 600px !important;
+    }
+
+    .analysis-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+    }
+
+    .cta-banner-content {
+        flex-direction: column !important;
+        text-align: center !important;
+        padding: 30px 20px !important;
+    }
+
+    .cta-text p {
+        margin: 0 auto 20px !important;
+    }
+
+    /* --- FAQ PAGE --- */
+    .faq-hero-top-row {
+        flex-direction: column !important;
+        text-align: center !important;
+    }
+
+    .faq-expert-card-premium {
+        width: 100% !important;
+        max-width: 400px !important;
+        margin: 0 auto !important;
+    }
+
+    .faq-categories {
+        display: flex !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        overflow-x: auto !important;
+        white-space: nowrap !important;
+        justify-content: center !important;
+        padding-bottom: 15px !important;
+        -webkit-overflow-scrolling: touch !important;
+    }
+
+    .faq-category-btn {
+        flex: 0 0 auto !important;
+        padding: 10px 30px !important;
+        font-size: 17px !important;
+    }
+
+    .loan-form-btn {
+        grid-column: span 2 !important;
+        width: 100% !important;
+    }
+
+    .promo-mid-content {
+        padding: 30px 20px !important;
+        text-align: center !important;
+    }
+
+    .btn-promo-inline {
+        margin: 20px auto 0 !important;
+        display: inline-flex !important;
+    }
+
+    /* --- FOOTER & HOTLINE --- */
+    .hub-hotline__number {
+        font-size: 32px !important;
+        white-space: nowrap !important;
+    }
+
+    .hub-hotline__display {
+        padding: 10px 20px !important;
+        gap: 15px !important;
+        width: 100% !important;
+    }
+
+    .footer-hub__bottom {
+        gap: 15px !important; /* Giảm gap mặc định 30px của thẻ cha */
+    }
+
+    .hub-buttons {
+        flex-direction: column !important;
+        align-items: center !important;
+        gap: 15px !important;
+        padding: 0 !important;
+        margin: 0 auto !important; /* Xoá margin-top 20px */
+        width: 100% !important;
+    }
+
+    .btn-luxury-action {
+        flex: 0 0 auto !important;
+        width: 200px;
+        height: 45px;
+        margin: 0 auto !important; /* Tạo auto margin 80px mỗi bên như hình */
+        padding: 0 25px !important;
+        font-size: 15px !important;
+        font-weight: 400 !important;
+        border-radius: 8px !important;
+        font-family: 'Roboto', sans-serif !important;
+    }
+
+    .hub-vibrate-icon {
+        font-size: 24px !important;
+    }
+
+    .signature-nav {
+        flex-wrap: wrap !important;
+        justify-content: center !important;
+        gap: 20px 30px !important;
+    }
+
+    .signature-contact-line {
+        display: none !important;
+    }
+
+    .footer-bottom-bar {
+        padding: 0 !important;
+    }
+
+    .schedule-section {
+        margin-top: 5px !important;
+        margin-bottom: 10px !important;
+    }
+
+    .schedule-wrapper {
+        margin-top: 0 !important;
+        padding-top: 0 !important;
+    }
+
+    .calc-container {
+        padding: 15px 15px !important;
+        margin-bottom: 0 !important;
+    }
+
+    .calc-result {
+        padding-bottom: 20px !important;
+    }
+
+    .chart-row:last-child {
+        margin-bottom: 15px !important;
+    }
+
+    .chart-horizontal {
+        padding-left: 8px !important;
+        padding-right: 8px !important;
+    }
+
+    .analysis-label {
+        font-size: 18px !important;
+    }
+
+    .cta-banner-section {
+        margin-bottom: 0 !important;
+    }
+}
+
+/* BREAKPOINT: 480PX */
+@media (max-width: 480px) {
+    /* --- TINH LAI PAGE --- */
+    .hero--tinh-lai .hero__title {
+        font-size: 28px !important;
+    }
+
+    .hero--tinh-lai p {
+        font-size: 14px !important;
+    }
+
+    .calc-side-title {
+        font-size: 20px !important;
+    }
+
+    .control-label {
+        font-size: 14px !important;
+    }
+
+    .control-input {
+        font-size: 16px !important;
+        width: 120px !important;
+    }
+
+    .analysis-grid {
+        grid-template-columns: 1fr !important;
+    }
+
+    .bank-logo-item {
+        width: 140px !important;
+        height: 70px !important;
+    }
+
+    .bank-logo-item img {
+        height: 35px !important;
+    }
+
+    /* --- FAQ PAGE --- */
+    .faq-page-hero h1 {
+        font-size: 28px !important;
+    }
+
+    .faq-hero-top-row {
+        gap: 15px !important;
+    }
+
+    .faq-expert-card-premium {
+        margin-top: -5px !important;
+        padding: 15px !important;
+    }
+
+    .expert-name-luxury {
+        font-size: 24px !important;
+        margin-bottom: 10px !important;
+    }
+
+    .faq-search-fullwidth {
+        padding: 0 15px !important;
+        margin-top: 20px !important;
+    }
+
+    .faq-search-wrapper-v2 {
+        padding: 5px 15px !important;
+    }
+
+    .faq-search-input-v2 {
+        padding: 12px 0 !important;
+        font-size: 15px !important;
+    }
+
+    .faq-search-icon-v2 {
+        font-size: 16px !important;
+        margin-right: 12px !important;
+    }
+
+    .faq-question {
+        padding: 15px 20px !important;
+        font-size: 16px !important;
+    }
+
+    .faq-answer {
+        padding: 0 20px 20px !important;
+        font-size: 14px !important;
+    }
+
+    .faq-group-title {
+        font-size: 20px !important;
+        padding-left: 8px !important;
+        padding-right: 8px !important;
+    }
+
+    .promo-mid-text {
+        padding: 0 20px !important;
+    }
+
+    .promo-mid-text h3 {
+        font-size: 24px !important;
+        margin-bottom: 10px !important;
+    }
+
+    .promo-mid-text p {
+        font-size: 15px !important;
+        margin-bottom: 25px !important;
+        line-height: 1.6 !important;
+    }
+
+    .btn-promo-inline {
+        padding: 8px 25px !important;
+        font-size: 13px !important;
+        gap: 10px !important;
+    }
+
+    .btn-promo-inline i {
+        width: 26px !important;
+        height: 26px !important;
+        font-size: 13px !important;
+    }
+
+    .faq-categories-wrapper {
+        margin: 15px 0 0 0 !important;
+        padding-top: 0 !important;
+        padding-bottom: 5px !important;
+    }
+
+    .faq-categories {
+        justify-content: flex-start !important;
+        padding-bottom: 5px !important;
+        padding-left: 15px !important;
+        padding-right: 15px !important;
+    }
+
+    .faq-category-btn {
+        padding: 6px 16px !important;
+        font-size: 13px !important;
+    }
+
+    .faq-main-content {
+        padding-bottom: 0 !important;
+    }
+
+    .faq-footer-toggle {
+        padding: 0 !important;
+        margin: 10px 0 !important;
+    }
+
+    .loan-form-grid {
+        grid-template-columns: 1fr !important;
+    }
+
+    .loan-form-field,
+    .loan-form-field[style*="grid-column: span 2"],
+    form.loan-form-grid p[style*="grid-column: span 2"] {
+        grid-column: span 1 !important;
+    }
+
+    .loan-form-inner {
+        padding: 0 !important;
+    }
+
+    .loan-form-inner h2 {
+        font-size: 26px !important;
+    }
+
+    .loan-form-inner p {
+        font-size: 17px !important;
+        margin-bottom: 25px !important;
+    }
+
+    .loan-form-btn {
+        font-size: 14px !important;
+        padding: 15px 10px !important;
+        grid-column: span 1 !important;
+    }
+
+    .loan-form-section {
+        padding-top: 0 !important;
+        padding-bottom: 0 !important;
+    }
+
+    /* --- FOOTER & HOTLINE --- */
+    .hub-hotline__number {
+        font-size: 26px !important;
+    }
+
+    .hub-hotline__display {
+        padding: 8px 15px !important;
+    }
+
+    .floating-contact {
+        bottom: 120px !important; /* Move up to not block footer on small screens */
+    }
+}
+
+/* BREAKPOINT: 360PX */
+@media (max-width: 360px) {
+    :root {
+        --side-padding: 15px !important;
+    }
+
+    .hero--tinh-lai .hero__title {
+        font-size: 24px !important;
+    }
+
+    .result-main-value {
+        font-size: 28px !important;
+    }
+
+    .stat-row {
+        font-size: 13px !important;
+    }
+
+    .faq-page-hero h1 {
+        font-size: 24px !important;
+    }
+
+    .faq-category-btn {
+        padding: 8px 15px !important;
+        font-size: 12px !important;
+    }
+
+    /* --- FOOTER & HOTLINE --- */
+    .hub-hotline__number {
+        font-size: 22px !important;
+    }
+
+    .hub-hotline__display {
+        gap: 10px !important;
+    }
+
+}
+
+@media (max-width: 1024px) {
+    .faq-footer-toggle {
+        padding-top: 30px !important;
+        padding-bottom: 30px !important;
     }
 }
