@@ -557,23 +557,23 @@ document.addEventListener("DOMContentLoaded", function () {
         const dock = document.createElement('div');
         dock.className = 'bottom-nav-dock';
         dock.innerHTML = `
-            <a href="about_me.html" class="bottom-nav-item">
+            <a href="./gioi-thieu.html" class="bottom-nav-item">
                 <i class="fas fa-home"></i>
                 <span>Xem Nhà</span>
             </a>
-            <a href="ky_gui.html" class="bottom-nav-item">
+            <a href="./ky-gui.html" class="bottom-nav-item">
                 <i class="fas fa-hand-holding-usd"></i>
                 <span>Ký Gửi</span>
             </a>
-            <a href="tim_nha.html" class="bottom-nav-item bottom-nav-item--center">
+            <a href="./tim-nha.html" class="bottom-nav-item bottom-nav-item--center">
                 <i class="fas fa-map-marked-alt"></i>
                 <span>Đặt Nhà</span>
             </a>
-            <a href="tinh_lai.html" class="bottom-nav-item">
+            <a href="./tinh-lai.html" class="bottom-nav-item">
                 <i class="fas fa-calculator"></i>
                 <span>Tính Lãi</span>
             </a>
-            <a href="quang_cao.html" class="bottom-nav-item">
+            <a href="./quang-cao.html" class="bottom-nav-item">
                 <i class="fas fa-tv"></i>
                 <span>Quảng Cáo</span>
             </a>
@@ -654,8 +654,8 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
-    // Chỉ tự động hiện popup (15s / 50% scroll) ở trang tim_nha.html
-    if (!window.location.pathname.includes('tim_nha.html')) return;
+    // Chỉ tự động hiện popup (15s / 50% scroll) ở trang tim-nha.html
+    if (!window.location.pathname.includes('tim-nha.html')) return;
 
     // Kiểm tra xem đã hiện popup trong session này chưa
     if (sessionStorage.getItem('luxuryPopupShown')) return;
@@ -712,11 +712,11 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 
-    // Đặc biệt cho trang chủ (about_me.html)
-    if (currentPath.endsWith('/') || currentPath.endsWith('index.html') || currentPath.includes('about_me.html')) {
+    // Đặc biệt cho trang chủ (gioi-thieu.html)
+    if (currentPath.endsWith('/') || currentPath.endsWith('index.html') || currentPath.includes('gioi-thieu.html')) {
         navLinks.forEach(link => {
             const href = link.getAttribute('href');
-            if (href && href.includes('about_me.html')) {
+            if (href && href.includes('gioi-thieu.html')) {
                 link.classList.add('header__nav-link--active');
             }
         });

@@ -52,8 +52,8 @@
 }
 
 .header__logo-sub {
-    font-size: 7px;
-    font-weight: 700;
+    font-size: 6px;
+    font-weight: 600;
     text-transform: uppercase;
     color: var(--color-primary);
     line-height: 1.2;
@@ -63,7 +63,8 @@
 }
 
 .header__logo-img {
-    height: 35px; /* Slightly smaller for better balance */
+    height: 35px;
+    /* Slightly smaller for better balance */
     width: 100%;
     display: block;
     filter: brightness(0) saturate(100%) invert(56%) sepia(21%) saturate(1450%) hue-rotate(345deg) brightness(91%) contrast(84%);
@@ -319,7 +320,6 @@
     font-size: var(--font-size-h1);
     font-weight: 700;
     line-height: 1.3;
-    letter-spacing: 2px;
     position: relative;
     background: linear-gradient(120deg, #fff 40%, #e79059 50%, #fff 60%);
     background-size: 200% auto;
@@ -885,7 +885,8 @@
 
 /* --- SOCIAL CARD: Hiệu ứng Luxury --- */
 .social__card {
-    background: #ffffff; /* Chuyển về trắng theo yêu cầu trước đó */
+    background: #ffffff;
+    /* Chuyển về trắng theo yêu cầu trước đó */
     border: 1px solid #f3e5ab;
     border-radius: 8px;
     padding: 10px 20px;
@@ -923,9 +924,19 @@
 }
 
 @keyframes iconLag {
-    0%, 100% { transform: scale(1.1) rotate(0deg); }
-    25% { transform: scale(1.1) rotate(8deg); }
-    75% { transform: scale(1.1) rotate(-8deg); }
+
+    0%,
+    100% {
+        transform: scale(1.1) rotate(0deg);
+    }
+
+    25% {
+        transform: scale(1.1) rotate(8deg);
+    }
+
+    75% {
+        transform: scale(1.1) rotate(-8deg);
+    }
 }
 
 /* --- CONTENT: Ép lên một hàng --- */
@@ -951,7 +962,8 @@
     color: var(--color-text);
     font-weight: 700;
     white-space: nowrap;
-    flex-shrink: 1; /* Cho phép nó co lại nếu cần */
+    flex-shrink: 1;
+    /* Cho phép nó co lại nếu cần */
     overflow: hidden;
     text-overflow: ellipsis;
     min-width: 0;
@@ -1930,8 +1942,15 @@
     padding: 15px 20px;
     font-size: var(--font-size-content);
     color: var(--color-text);
+    font-weight: 600;
+    /* Increased weight */
     transition: all 0.4s cubic-bezier(0.2, 1, 0.3, 1);
     outline: none;
+}
+
+.input-final::placeholder {
+    font-weight: 500;
+    color: #999;
 }
 
 /* Hiệu ứng Focus: Viền đậm lên và tỏa sáng nhẹ */
@@ -1972,7 +1991,8 @@ textarea.input-final {
     display: block;
     font-size: 15px;
     color: var(--color-primary);
-    font-weight: 600;
+    font-weight: 700;
+    /* Increased from 600 */
     margin-bottom: 2px;
 
     /* Chốt chặn để nhảy cho mượt */
@@ -3672,7 +3692,7 @@ textarea.input-final {
     margin-bottom: 15px;
 } */
 
-h1.featured-title {
+.featured-title {
     font-size: 34px !important;
     /* Hoặc var(--font-size-title) */
     font-family: 'Roboto', sans-serif;
@@ -3684,7 +3704,7 @@ h1.featured-title {
     transform-origin: left center;
 }
 
-h1.featured-title:hover {
+.featured-title:hover {
     color: #f6be7e !important;
     transform: scale(1.03);
 }
@@ -8510,8 +8530,9 @@ p,
 
 /* --- FOOTER REDESIGN: THE SIGNATURE CENTER (LUXURY) --- */
 .footer-signature-center {
-    background: #fffdf5; /* Cream Ivory */
-    padding: 60px 0 0 0;
+    background: #fffdf5;
+    /* Cream Ivory */
+    padding: 30px 0 0 0;
     color: #5d3420;
     position: relative;
     overflow: hidden;
@@ -8531,7 +8552,8 @@ p,
     height: 120%;
     background: url('../assets/images/logo/ngoc-nn-logo-mau.png') no-repeat center;
     background-size: contain;
-    opacity: 0.03; /* Ultra subtle ghost effect */
+    opacity: 0.03;
+    /* Ultra subtle ghost effect */
     filter: grayscale(100%);
     pointer-events: none;
     z-index: 0;
@@ -8556,6 +8578,7 @@ p,
 .signature-hotline-wrap {
     margin-bottom: 40px;
 }
+
 .signature-slogan {
     font-size: 13px;
     font-weight: 700;
@@ -8667,9 +8690,17 @@ p,
     transform: translateY(-3px) scale(1.1);
 }
 
-.footer-social-icons a.fb-link { background: #3b5998; }
-.footer-social-icons a.yt-link { background: #ff0000; }
-.footer-social-icons a.tt-link { background: #000; }
+.footer-social-icons a.fb-link {
+    background: #3b5998;
+}
+
+.footer-social-icons a.yt-link {
+    background: #ff0000;
+}
+
+.footer-social-icons a.tt-link {
+    background: #000;
+}
 
 .footer-links-group {
     display: flex;
@@ -8868,7 +8899,8 @@ p,
 
 /* --- FOOTER REDESIGN V2 (COMPACT CREAM & BROWN) --- */
 .footer-section-v2 {
-    background: #fffdf5; /* Cream Ivory */
+    background: #fffdf5;
+    /* Cream Ivory */
     padding: 50px 0 0 0;
     color: #5d3420;
     border-top: 1px solid rgba(183, 114, 70, 0.1);
@@ -8978,9 +9010,17 @@ p,
     transform: translateY(-2px);
 }
 
-.footer-social-icons a.fb-link { background: #3b5998; }
-.footer-social-icons a.yt-link { background: #ff0000; }
-.footer-social-icons a.tt-link { background: #000; }
+.footer-social-icons a.fb-link {
+    background: #3b5998;
+}
+
+.footer-social-icons a.yt-link {
+    background: #ff0000;
+}
+
+.footer-social-icons a.tt-link {
+    background: #000;
+}
 
 .footer-links-group a {
     text-decoration: none;
@@ -9113,7 +9153,18 @@ p,
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
     transition: all 0.4s;
     border: 1px solid #eee;
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(20px);
 }
+
+.back-to-top.show {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0);
+}
+
+
 
 .back-to-top:hover {
     background: var(--color-primary);
@@ -9122,7 +9173,7 @@ p,
 }
 
 .contact-bubble--zalo {
-    background: #0068ff;
+    background: transparent;
 }
 
 .contact-bubble--hotline {
@@ -9209,7 +9260,7 @@ p,
 
 .calc-container {
     max-width: 1000px;
-    margin: 60px auto 40px;
+    margin: 40px auto 40px;
     background: rgba(255, 255, 255, 0.85);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
@@ -9337,11 +9388,10 @@ p,
 }
 
 .bank-partners-subtitle {
-    font-size: 16px;
+    font-size: 18px;
     color: #888;
     text-transform: uppercase;
-    letter-spacing: 2px;
-    margin-bottom: 30px;
+    margin-bottom: 10px;
     text-align: center;
 }
 
@@ -9393,6 +9443,8 @@ p,
 
 .faq-question {
     padding: 22px 30px;
+    margin: 0;
+    /* Đảm bảo không có margin mặc định của h3 */
     font-weight: 600;
     color: #333;
     cursor: pointer;
@@ -9409,7 +9461,7 @@ p,
 }
 
 .faq-answer {
-    padding: 0 30px 25px;
+    padding: 5px 30px 5px !important;
     color: #666;
     font-size: 16px;
     line-height: 1.7;
@@ -9429,7 +9481,7 @@ p,
 
 .faq-item.active .faq-question {
     color: var(--color-primary);
-    padding-bottom: 15px;
+    padding-bottom: 12px;
 }
 
 .faq-item.active .faq-question i {
@@ -9631,7 +9683,7 @@ p,
     font-size: 18px;
     font-weight: 700;
     text-align: right;
-    width: 150px;
+    width: 200px;
     padding: 2px 0;
     transition: all 0.3s ease;
     outline: none;
@@ -9741,6 +9793,34 @@ p,
 #method-reducing:checked~label[for="method-reducing"] {
     color: #ffffff;
     /* White text on orange slider */
+}
+
+.method-hint {
+    margin-top: 15px;
+    padding: 10px 15px;
+    background: rgba(183, 114, 70, 0.05);
+    border-left: 3px solid var(--color-primary);
+    border-radius: 4px;
+    font-size: 15px;
+    color: #666;
+    line-height: 1.5;
+    min-height: 40px;
+    display: flex;
+    align-items: center;
+}
+
+.method-hint span {
+    display: none;
+}
+
+.method-hint span.active {
+    display: block;
+    animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(5px); }
+    to { opacity: 1; transform: translateY(0); }
 }
 
 /* GRACE MARKS */
@@ -9879,7 +9959,7 @@ p,
 .trust-section {
     max-width: 1000px;
     margin: 30px auto 0 !important;
-    padding: 0 20px;
+    padding: 0;
 }
 
 .commitment-bar {
@@ -10224,9 +10304,10 @@ p,
 }
 
 .calc-disclaimer-note {
-    font-size: 16px;
+    font-size: 15px !important;
     color: #555;
     margin-bottom: 25px;
+    font-style: italic !important;
 }
 
 .calc-disclaimer-note i {
@@ -10235,7 +10316,8 @@ p,
 }
 
 .calc-disclaimer-note a {
-    color: #e74c3c; /* Red color */
+    color: #e74c3c;
+    /* Red color */
     text-decoration: none;
     transition: all 0.3s ease;
 }
@@ -10281,7 +10363,7 @@ p,
 .schedule-table {
     width: 100%;
     border-collapse: collapse;
-    font-size: 15px;
+    font-size: 16px;
     color: #444;
     table-layout: fixed;
     /* Ensures even column spacing */
@@ -10301,7 +10383,6 @@ p,
     color: #222;
     text-transform: uppercase;
     font-size: 15px;
-    letter-spacing: 0.5px;
     border-bottom: 2px solid #f0f0f0;
 }
 
@@ -10473,11 +10554,10 @@ p,
 }
 
 .bank-partners-subtitle {
-    font-size: 14px;
+    font-size: 18px;
     color: #888;
     text-transform: uppercase;
-    letter-spacing: 1px;
-    margin-bottom: 30px;
+    /* margin-bottom: 30px; */
     font-weight: 500;
 }
 
@@ -10534,18 +10614,43 @@ p,
 }
 
 @keyframes bankScroll {
-    0% { transform: translateX(0); }
-    100% { transform: translateX(-50%); }
+    0% {
+        transform: translateX(0);
+    }
+
+    100% {
+        transform: translateX(-50%);
+    }
 }
 
 /* Individual Logo Tweaks for Balance - ELEGANT LARGE MODE */
-.logo-vcb { height: 110px !important; } 
-.logo-tcb { height: 125px !important; }
-.logo-bidv { height: 65px !important; }
-.logo-agr { height: 70px !important; }
-.logo-mb { height: 65px !important; }
-.logo-vpb { height: 70px !important; }
-.logo-acb { height: 50px !important; }
+.logo-vcb {
+    height: 110px !important;
+}
+
+.logo-tcb {
+    height: 125px !important;
+}
+
+.logo-bidv {
+    height: 65px !important;
+}
+
+.logo-agr {
+    height: 70px !important;
+}
+
+.logo-mb {
+    height: 65px !important;
+}
+
+.logo-vpb {
+    height: 70px !important;
+}
+
+.logo-acb {
+    height: 50px !important;
+}
 
 /* Manual Visual Balancing - Ultra Safe & Bold */
 
@@ -10632,13 +10737,14 @@ p,
 
 .calc-disclaimer {
     margin-top: 30px;
-    font-size: 15px;
+    font-size: 15px !important;
     color: #888;
     text-align: center;
     display: flex;
     align-items: start;
     justify-content: center;
     gap: 8px;
+    font-style: italic !important;
 }
 
 .calc-disclaimer i {
@@ -10717,7 +10823,7 @@ p,
     width: 100%;
     border-collapse: collapse;
     text-align: left;
-    font-size: 15px;
+    font-size: 16px;
 }
 
 .schedule-table th {
@@ -11416,8 +11522,15 @@ p,
 .faq-page-hero p {
     font-size: 18px;
     color: rgba(255, 255, 255, 0.9);
-    margin-bottom: 40px;
+    margin-bottom: 25px;
     font-weight: 300;
+}
+
+.faq-hero-actions {
+    margin-bottom: 40px;
+    display: flex;
+    justify-content: center;
+    gap: 15px;
 }
 
 .faq-search-container {
@@ -11479,7 +11592,7 @@ p,
 .faq-categories {
     display: flex;
     justify-content: center;
-    gap: 10px;
+    gap: 40px;
     max-width: 1000px;
     margin: 0 auto;
     overflow-x: auto;
@@ -11494,36 +11607,66 @@ p,
 }
 
 .faq-category-btn {
-    padding: 5px 22px;
+    display: inline-block;
+    margin: 0;
+    padding: 8px 30px;
     border-radius: 8px;
     font-size: 16px;
-    font-weight: 600;
+    font-weight: 500;
+    white-space: nowrap;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    cursor: pointer;
+    text-transform: uppercase;
+    background: none;
+    border: none;
+}
+
+/* Nút "TẤT CẢ" giữ nguyên */
+.faq-category-btn[data-category="all"] {
     color: #666;
     background: #f8f9fa;
     border: 1px solid #eee;
-    white-space: nowrap;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    cursor: pointer;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
 }
 
-.faq-category-btn:hover {
+.faq-category-btn[data-category="all"]:hover {
     background: #fff;
     border-color: var(--color-primary);
     color: var(--color-primary);
 }
 
-.faq-category-btn.active {
+.faq-category-btn[data-category="all"].active {
     background: var(--color-primary);
     color: #fff;
     border-color: var(--color-primary);
     box-shadow: 0 5px 15px rgba(183, 114, 70, 0.25);
 }
 
+/* Các nút còn lại */
+.faq-category-btn:not([data-category="all"]) {
+    background: #fffdf5;
+    border: 1px solid var(--color-primary);
+    color: var(--color-primary);
+}
+
+.faq-category-btn:not([data-category="all"]):hover {
+    background: #b77346;
+    color: #fff;
+    border-color: var(--color-btn);
+    box-shadow: 0 8px 20px rgba(160, 82, 45, 0.3);
+}
+
+.faq-category-btn:not([data-category="all"]).active {
+    background: rgba(183, 114, 70, 0.7);
+    color: #fff;
+    border-color: rgba(183, 114, 70, 0.7);
+    box-shadow: 0 5px 15px rgba(183, 114, 70, 0.15);
+    transform: none;
+}
+
 .faq-main-content {
     padding: 0;
     background: #fff;
+    margin: 0;
 }
 
 .faq-group {
@@ -11652,14 +11795,13 @@ p,
 
 /* PROMO BANNER MID */
 .faq-promo-mid {
-    margin: 30px 0;
-    /* Reduced from 80px to tighten layout */
+    margin: 60px 0;
     position: relative;
-    background-image: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.75)), url('../assets/images/planning-bg.png');
+    background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('../assets/images/planning-bg.png');
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
-    border-radius: 8px;
+    border-radius: 12px;
     overflow: hidden;
     color: #fff;
     box-shadow: 0 25px 60px rgba(0, 0, 0, 0.4);
@@ -11667,30 +11809,35 @@ p,
 }
 
 .promo-mid-content {
-    display: grid;
-    grid-template-columns: 1fr;
-    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     align-items: center;
+    text-align: center;
+    min-height: 250px;
 }
 
 .promo-mid-text {
-    padding: 30px 40px;
-    /* Reduced from 40px */
+    padding: 40px 40px;
+    max-width: 1000px;
 }
 
 .promo-mid-text h3 {
     font-family: var(--font-main);
-    font-size: 36px;
+    font-size: 40px;
     margin-bottom: 20px;
-    font-weight: 600;
+    font-weight: 700;
+    color: #fff;
+    text-transform: none;
+    letter-spacing: -0.5px;
 }
 
 .promo-mid-text p {
     font-size: 19px;
-    color: rgba(255, 255, 255, 0.85);
-    margin-bottom: 40px;
-    line-height: 1.8;
-    max-width: 700px;
+    color: rgba(255, 255, 255, 0.95);
+    margin-bottom: 45px;
+    line-height: 1.5;
+    max-width: 800px;
     margin-left: auto;
     margin-right: auto;
 }
@@ -11698,42 +11845,30 @@ p,
 .btn-promo-inline {
     display: inline-flex;
     align-items: center;
-    background: linear-gradient(135deg, #b77246 0%, #8c5635 100%);
-    color: #fff;
-    padding: 10px 35px;
+    justify-content: center;
+    background: #FFFFFF;
+    /* Primary background */
+    color: var(--color-primary);
+    /* White text */
+    padding: 16px 40px;
     border-radius: 8px;
-    font-weight: 700;
+    font-weight: 500;
     text-decoration: none;
-    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    transition: all 0.3s ease;
     text-transform: uppercase;
-    font-size: 15px;
-    letter-spacing: 1px;
-    position: relative;
-    overflow: hidden;
-    box-shadow: 0 10px 25px rgba(183, 114, 70, 0.3);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-}
-
-.btn-promo-inline::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(120deg, transparent, rgba(183, 114, 70, 0.25), transparent);
-    transition: all 0.6s ease;
+    font-size: 16px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    border: 2px;
 }
 
 .btn-promo-inline:hover {
-    transform: translateY(-5px) scale(1.02);
-    box-shadow: 0 15px 35px rgba(183, 114, 70, 0.4);
-    background: linear-gradient(135deg, #c78256 0%, #a76645 100%);
-    color: #fff;
-}
-
-.btn-promo-inline:hover::before {
-    left: 100%;
+    transform: translateY(-5px);
+    background: #d63031;
+    /* Red on hover */
+    border-color: var(--color-primary);
+    color: #ffffff;
+    /* Keep text white */
+    box-shadow: 0 15px 40px rgba(214, 48, 49, 0.4);
 }
 
 /* FAQ HERO BALANCED LAYOUT */
@@ -11859,6 +11994,8 @@ p,
 }
 
 .expert-name-luxury {
+    display: block;
+    /* Thêm để span hoạt động như block */
     font-size: 28px;
     font-weight: 900;
     background: linear-gradient(135deg, #fff 20%, var(--color-primary) 100%);
@@ -11941,9 +12078,8 @@ p,
 
 /* BALANCED FEEDBACK */
 .faq-feedback {
-    margin-top: 2px;
-    /* Reduced margin since we have padding */
-    padding: 10px 30px 10px 30px;
+    /* Balanced margin */
+    padding: 15px 30px 15px 30px;
     /* Top, Right, Bottom, Left */
     border-top: 1px solid rgba(0, 0, 0, 0.05);
     display: flex;
@@ -11962,15 +12098,18 @@ p,
 .feedback-btn {
     background: #f8f9fa;
     border: 1px solid #eee;
-    width: 38px;
+    padding: 0 12px;
     height: 38px;
-    border-radius: 50%;
+    border-radius: 20px;
     display: flex;
     align-items: center;
     justify-content: center;
+    gap: 8px;
+    /* Khoảng cách giữa icon và số */
     cursor: pointer;
     color: #888;
     transition: all 0.3s ease;
+    min-width: 65px;
 }
 
 .feedback-btn:hover {
@@ -12001,8 +12140,8 @@ p,
 .btn-promo-inline:hover {
     transform: translateY(-5px) scale(1.05);
     box-shadow: 0 15px 40px rgba(255, 255, 255, 0.3);
-    background: #fff;
-    color: var(--bg-brown);
+    background: var(--color-primary);
+    color: #fff;
 }
 
 .btn-promo-inline:hover::before {
@@ -12022,20 +12161,23 @@ p,
 
 .faq-footer-toggle {
     text-align: center;
-    padding: 60px 0 60px 0; /* Increased padding */
-    background: #fff; /* White background to separate from footer cream */
+    padding: 60px 0 60px 0;
+    /* Increased padding */
+    background: #fff;
+    /* White background to separate from footer cream */
     border-top: 1px solid #eee;
-    border-bottom: 1px solid #eee; /* Added bottom border */
+    border-bottom: 1px solid #eee;
+    /* Added bottom border */
 }
 
 .faq-footer-toggle button {
     background: linear-gradient(135deg, var(--color-primary), #d97d45);
     border: none;
-    padding: 18px 40px;
+    padding: 18px 30px;
     border-radius: 8px;
     /* Pill shape for modern CTA */
     font-size: 18px;
-    font-weight: 600;
+    font-weight: 400;
     color: #fff;
     cursor: pointer;
     transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
@@ -12101,7 +12243,8 @@ p,
 
 .faq-form-drawer.active {
     max-height: 1200px;
-    margin-bottom: 60px; /* Added margin when active */
+    margin-bottom: 60px;
+    /* Added margin when active */
 }
 
 .drawer-inner {
@@ -12218,7 +12361,7 @@ p,
     border-radius: 12px;
     display: grid;
     grid-template-columns: auto 1fr;
-    grid-template-areas: 
+    grid-template-areas:
         "icon title"
         "links links";
     column-gap: 15px;
@@ -12284,7 +12427,7 @@ p,
     display: flex;
     flex-direction: column;
     gap: 12px;
-    padding-top: 5px; /* Added slight separation from header */
+    padding-top: 5px;
 }
 
 .hub-card__links a {
@@ -12498,7 +12641,7 @@ p,
     font-size: 32px;
     color: #e31b23;
     display: inline-block;
-    transform: scaleX(-1); /* Flip icon to face right way */
+    transform: scaleX(-1);
     animation: hubVibrate 0.3s infinite;
 }
 
@@ -12522,4 +12665,207 @@ p,
     100% {
         transform: scaleX(-1) rotate(0deg);
     }
+}
+
+/* =========================================
+   --- 22. SIGNATURE CENTER FOOTER (New Design) ---
+   ========================================= */
+.footer-signature-center {
+    background-color: #fcfaf7 !important;
+    padding: 40px 0 0 !important;
+    /* Increased top padding */
+    color: #5d3421 !important;
+    text-align: center;
+    font-family: 'Montserrat', sans-serif;
+    position: relative;
+    overflow: hidden;
+    clear: both;
+    z-index: 10;
+}
+
+.footer-signature-center::before {
+    content: 'NGOC NN';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 25vw;
+    font-weight: 900;
+    color: rgba(93, 52, 33, 0.03);
+    white-space: nowrap;
+    pointer-events: none;
+    z-index: -1;
+}
+
+.footer-signature-container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.signature-logo-v3 {
+    text-align: center;
+    width: 100%;
+}
+
+.signature-logo-v3 img {
+    height: 70px;
+    width: auto;
+    margin-bottom: 40px;
+}
+
+.signature-quick-nav {
+    display: flex;
+    justify-content: center;
+    gap: 80px;
+    margin-bottom: 0;
+    /* Margin handled by divider */
+}
+
+.signature-quick-nav a {
+    color: #5d3421 !important;
+    text-decoration: none;
+    font-size: 17px;
+    font-weight: 600;
+    text-transform: uppercase;
+    position: relative;
+    transition: all 0.3s;
+    display: inline-block;
+    /* Changed from flex to prevent layout shift */
+    padding-left: 0;
+}
+
+.signature-quick-nav a::before {
+    content: '';
+    position: absolute;
+    left: -15px;
+    /* Place dot outside the text flow */
+    top: 50%;
+    transform: translateY(-50%) scale(0);
+    width: 6px;
+    height: 6px;
+    background: var(--color-primary);
+    border-radius: 50%;
+    opacity: 0;
+    transition: all 0.3s;
+}
+
+.signature-quick-nav a:hover {
+    color: var(--color-primary) !important;
+}
+
+.signature-quick-nav a:hover::before {
+    opacity: 1;
+    transform: translateY(-50%) scale(1);
+}
+
+.signature-main-nav {
+    display: flex;
+    justify-content: center;
+    gap: 60px;
+    margin-bottom: 40px;
+    /* Room for social icons */
+}
+
+.signature-main-nav a {
+    color: #593523 !important;
+    text-decoration: none;
+    font-size: 20px;
+    font-weight: 600;
+    position: relative;
+    transition: color 0.3s;
+    text-transform: uppercase;
+}
+
+.signature-main-nav a::after {
+    content: '';
+    position: absolute;
+    bottom: -6px;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background: var(--color-primary);
+    transition: all 0.3s ease;
+    transform: translateX(-50%);
+}
+
+.signature-main-nav a:hover {
+    color: var(--color-primary) !important;
+}
+
+.signature-main-nav a:hover::after {
+    width: 100%;
+}
+
+.signature-social-v3 {
+    display: flex;
+    justify-content: center;
+    gap: 45px;
+    margin-bottom: 40px;
+}
+
+.signature-social-v3 a {
+    width: 45px;
+    height: 45px;
+    background: rgba(93, 52, 33, 0.05);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #5d3421 !important;
+    font-size: 18px;
+    transition: all 0.4s;
+    border: 1px solid rgba(93, 52, 33, 0.05);
+}
+
+.signature-social-v3 a:hover {
+    background: var(--color-primary);
+    color: #fff !important;
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(183, 114, 70, 0.2);
+}
+
+.signature-policies-v3 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    font-size: 16px;
+    color: rgba(93, 52, 33, 0.6);
+    margin-bottom: 30px;
+    /* More breathing room at bottom */
+    font-weight: 500;
+}
+
+.signature-policies-v3 a:hover {
+    color: var(--color-primary) !important;
+}
+
+.signature-policies-v3 span {
+    opacity: 0.3;
+}
+
+.signature-line-v3 {
+    width: 50%;
+    height: 1px;
+    background: #5d3421;
+    opacity: 0.1;
+    margin: 20px auto;
+    /* Centered with vertical margin */
+    clear: both;
+}
+
+.signature-copyright-v3 {
+    background-color: #5d3421;
+    padding: 10px 20px;
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.7);
+    text-transform: none;
+    line-height: 1.6;
+    width: 100%;
+    text-align: center;
 }

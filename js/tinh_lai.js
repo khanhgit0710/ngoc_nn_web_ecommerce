@@ -39,7 +39,7 @@ document.addEventListener("DOMContentLoaded", function () {
         const amount = Number(sliderAmount.value);
         const termMonths = Number(sliderTerm.value) * 12;
         const promoRateYearly = Number(sliderInterest.value) / 100;
-        
+
         // Default to constant rate if promo/float inputs are missing
         const promoMonths = sliderInterestPeriod ? Number(sliderInterestPeriod.value) : 9999;
         const floatRateYearly = sliderInterestFloat ? Number(sliderInterestFloat.value) / 100 : promoRateYearly;
@@ -109,10 +109,11 @@ document.addEventListener("DOMContentLoaded", function () {
             // Result labels update (only once based on first months)
             if (i === 1) {
                 if (graceMonths > 0) {
-                    txtResultHeader.innerHTML = `Giai đoạn ân hạn (Trả lãi): <br> <small style="font-weight: 400; opacity: 0.7; text-transform: none;">Từ tháng ${graceMonths + 1} trả ước tính: ${formatVND(emiAfterGrace || (amount/postGraceTerm + amount*mRate))}</small>`;
+                    txtResultHeader.innerHTML = `Giai đoạn ân hạn (Trả lãi): <br> <small style="font-weight: 400; opacity: 0.7; text-transform: none;">Từ tháng ${graceMonths + 1} trả ước tính: ${formatVND(emiAfterGrace || (amount / postGraceTerm + amount * mRate))}</small>`;
                     resMonthly.textContent = formatVND(currentTotal);
                 } else {
-                    txtResultHeader.textContent = methodAnnuity.checked ? "Cần trả cố định hàng tháng" : "Thanh toán tháng đầu tiên";
+                    const isAnnuity = methodAnnuity && methodAnnuity.checked;
+                    txtResultHeader.textContent = isAnnuity ? "Cần trả cố định hàng tháng" : "Thanh toán tháng đầu tiên";
                     resMonthly.textContent = formatVND(currentTotal);
                 }
                 if (resPrincipal) {
@@ -160,18 +161,27 @@ document.addEventListener("DOMContentLoaded", function () {
 
         if (sTotal) sTotal.textContent = formatVND(total);
         const yRate = Number(sliderInterest.value) / 100;
-        if (sDaily) sDaily.textContent = formatVND((principal * yRate) / 365);
+        if (sDaily) sDaily.textContent = formatVND(peakMonthly / 30);
         // Thu nhập đề xuất = Đỉnh thanh toán hàng tháng x 2.5 (quản trị rủi ro)
         if (sIncome) sIncome.textContent = formatVND(peakMonthly * 2.5);
 
-        // Grace Cost Calc (Simplified diff)
+        // Grace Deferment Calc
         const gMonths = Number(sliderGrace.value);
         if (gMonths > 0) {
-            // Calculate what interest would have been without grace (simplified approach)
-            // Roughly: Grace Months * (Initial Monthly Interest - Average Monthly Interest saved if paying principal)
-            const mRate = Number(sliderInterest.value) / 100 / 12;
-            const extraInterest = principal * mRate * gMonths;
-            sGrace.textContent = formatVND(extraInterest);
+            const isAnnuity = methodAnnuity && methodAnnuity.checked;
+            let monthlyPrincipal = 0;
+            const termTotalMonths = Number(sliderTerm.value) * 12;
+            const postGraceTerm = termTotalMonths - gMonths;
+
+            if (isAnnuity) {
+                // Approximate for Annuity: (Total Principal / Post-Grace Months)
+                // In actual Annuity, monthly principal varies, but for this card 
+                // we show the average amount being deferred per month.
+                monthlyPrincipal = principal / postGraceTerm;
+            } else {
+                monthlyPrincipal = principal / postGraceTerm;
+            }
+            if (sGrace) sGrace.textContent = formatVND(monthlyPrincipal * gMonths);
         } else {
             if (sGrace) sGrace.textContent = "0 đ";
         }
@@ -284,12 +294,32 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Listen for method changes
     [methodAnnuity, methodReducing].forEach(radio => {
-        radio.addEventListener("input", calculateLoan);
+        if (radio) {
+            radio.addEventListener("input", () => {
+                const hintAnnuity = document.getElementById("hint-annuity");
+                const hintReducing = document.getElementById("hint-reducing");
+                if (hintAnnuity && hintReducing) {
+                    hintAnnuity.classList.toggle("active", methodAnnuity.checked);
+                    hintReducing.classList.toggle("active", methodReducing.checked);
+                }
+                calculateLoan();
+            });
+        }
     });
 
-    // Initial calculation
+    // Initial calculation & UI state
+    const initHints = () => {
+        const hintAnnuity = document.getElementById("hint-annuity");
+        const hintReducing = document.getElementById("hint-reducing");
+        if (hintAnnuity && hintReducing) {
+            hintAnnuity.classList.toggle("active", methodAnnuity.checked);
+            hintReducing.classList.toggle("active", methodReducing.checked);
+        }
+    };
+
     updateLabels();
     calculateLoan();
+    initHints();
 });
 
 window.openPopup = function () {

@@ -125,10 +125,14 @@ document.addEventListener("DOMContentLoaded", function () {
                 drawer.classList.add("active");
                 toggleBtn.classList.add("active");
                 
-                // Scroll to the form centered in the screen after it starts opening
+                // Precise scroll logic to match user screenshot
                 setTimeout(() => {
-                    drawer.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                }, 300);
+                    const formHeader = drawer.querySelector('.section-title') || drawer;
+                    const yOffset = -150; // Adjust this to match the screenshot precisely (negative means scroll a bit less)
+                    const y = formHeader.getBoundingClientRect().top + window.pageYOffset + yOffset;
+                    
+                    window.scrollTo({ top: y, behavior: 'smooth' });
+                }, 500); // 500ms for CSS transition to settle
             }
         });
     }
