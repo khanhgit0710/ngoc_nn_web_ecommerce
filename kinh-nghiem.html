@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kinh nghiệm & Kiến thức Bất động sản hữu ích | Ngọc NN</title>
-    <meta name="description" content="Tổng hợp kinh nghiệm mua bán nhà đất, kiến thức pháp lý, phong thủy và xu hướng thị trường bất động sản mới nhất tại TP.HCM từ chuyên gia Ngọc NN.">
+    <meta name="description" content="Tổng hợp kinh nghiệm mua bán nhà đất, kiến thức pháp lý và phong thủy từ Ngọc NN. Hướng dẫn chi tiết giúp bạn giao dịch bất động sản an toàn và hiệu quả.">
     <link rel="canonical" href="https://ngocnn.vn/kinh-nghiem.html">
     <meta name="robots" content="index, follow" />
     <link rel="icon" type="image/png" href="./assets/images/logo/ngoc-nn-logo-mau.png">
@@ -14,12 +14,13 @@
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://ngocnn.vn/kinh-nghiem.html">
     <meta property="og:title" content="Kinh nghiệm & Kiến thức Bất động sản hữu ích | Ngọc NN">
-    <meta property="og:description" content="Tổng hợp kinh nghiệm mua bán nhà đất, kiến thức pháp lý và xu hướng thị trường BĐS.">
+    <meta property="og:description" content="Tổng hợp kinh nghiệm mua bán nhà đất, kiến thức pháp lý và phong thủy từ Ngọc NN.">
     <meta property="og:image" content="https://ngocnn.vn/assets/images/logo/ngoc-nn-logo-mau.png">
 
     <link rel="stylesheet" href="./css/base.css?v=2.1">
     <link rel="stylesheet" href="./css/main.css?v=2.1">
     <link rel="stylesheet" href="./css/reponsive.css?v=2.1">
+    <link rel="stylesheet" href="./css/chatbot.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
@@ -279,62 +280,6 @@
                 <a href="#" class="page-nav next"><i class="fas fa-chevron-right"></i></a>
             </div>
         </div>
-    <footer class="footer-signature-center">
-        <!-- TOP SECTION -->
-        <div class="footer-signature-container">
-            <!-- 1. LOGO -->
-            <div class="signature-logo-v3">
-                <img src="./assets/images/logo/ngoc-nn-logo-mau.png" alt="Ngọc NN Logo">
-            </div>
-
-            <!-- 2. QUICK NAV (Dot hover) -->
-            <nav class="signature-quick-nav">
-                <a href="./tinh-lai.html">Tính lãi</a>
-                <a href="./quang-cao.html">Quảng cáo</a>
-                <a href="./faq.html">FAQ</a>
-            </nav>
-        </div>
-
-        <!-- 3. QUICK LINE (Full Width) -->
-        <div class="signature-line-v3"></div>
-
-        <!-- BOTTOM SECTION -->
-        <div class="footer-signature-container" style="padding-top: 0;">
-            <!-- 4. MAIN NAV (Line hover) -->
-            <nav class="signature-main-nav">
-                <a href="./index.html">Trang chủ</a>
-                <a href="./gioi-thieu.html">Giới thiệu</a>
-                <a href="./ky-gui.html">Ký gửi</a>
-                <a href="./tim-nha.html">Tìm nhà</a>
-                <a href="./tin-tuc.html">Tin tức</a>
-                <a href="./contact.html">Liên hệ</a>
-            </nav>
-
-            <!-- 5. SOCIAL ICONS -->
-            <div class="signature-social-v3">
-                <a href="https://facebook.com/ngocnn" target="_blank"><i class="fab fa-facebook-f"></i></a>
-                <a href="https://youtube.com/ngocnn" target="_blank"><i class="fab fa-youtube"></i></a>
-                <a href="#" target="_blank"><i class="fab fa-tiktok"></i></a>
-                <a href="mailto:ngocnn.vnn@gmail.com"><i class="fas fa-envelope"></i></a>
-            </div>
-
-            <!-- 6. POLICIES -->
-            <div class="signature-policies-v3">
-                <a href="#">Chính sách chung</a>
-                <span>|</span>
-                <a href="#">Bảo mật</a>
-                <span>|</span>
-                <a href="#">Quyền riêng tư</a>
-                <span>|</span>
-                <a href="#">Cam kết</a>
-            </div>
-        </div>
-
-        <!-- 7. COPYRIGHT (Full Width) -->
-        <div class="signature-copyright-v3">
-            All rights reserved ©2025 Ngọc NN. Website Được Quản Lý Và Duy Trì Bởi Team Ngọc NN và cộng sự
-        </div>
-    </footer>
 
     <!-- LUXURY FLOATING CONTACT CLUSTER (RIGHT SIDE) -->
     <div class="floating-contact">
@@ -349,6 +294,39 @@
         <a href="tel:0888819198" class="contact-bubble contact-bubble--hotline" data-label="Hotline">
             <i class="fas fa-phone"></i>
         </a>
+
+        <!-- LOCAL CHATBOT TRIGGER -->
+        <div class="chatbot-trigger" data-label="Chat với Ngọc NN">
+            <i class="fas fa-comments"></i>
+        </div>
+    </div>
+
+    <!-- LOCAL CHATBOT WINDOW -->
+    <div class="chatbot-window">
+        <div class="chatbot-header">
+            <div class="chatbot-avatar">
+                <img src="./assets/images/ngoc_nn_consulting.png" alt="Ngọc NN">
+            </div>
+            <div class="chatbot-status">
+                <span class="name">NGỌC NN (Trợ lý ảo)</span>
+                <span class="online">Đang trực tuyến</span>
+            </div>
+        </div>
+        <div class="chatbot-messages">
+            <!-- Messages will be injected by JS -->
+            <div class="typing">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+        <div class="chatbot-input">
+            <input type="text" placeholder="Nhập câu hỏi của bạn...">
+            <button class="chatbot-send">
+                <i class="fas fa-paper-plane"></i>
+            </button>
+        </div>
+    </div>
     </div>
 
     <!-- PC ONLY: CUSTOM CURSOR -->
@@ -357,6 +335,8 @@
 
     <script src="./js/animations.js?v=2.1"></script>
     <script src="./js/main.js?v=2.1"></script>
+    <script src="./js/data-chat.js"></script>
+    <script src="./js/chatbot.js"></script>
 </body>
 
 </html>

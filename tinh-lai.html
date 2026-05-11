@@ -20,6 +20,7 @@
     <link rel="stylesheet" href="./css/base.css?v=2.1">
     <link rel="stylesheet" href="./css/main.css?v=2.1">
     <link rel="stylesheet" href="./css/reponsive.css?v=6.3">
+    <link rel="stylesheet" href="./css/chatbot.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link
         href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap"
@@ -512,12 +513,47 @@
         <a href="tel:0888819198" class="contact-bubble contact-bubble--hotline" data-label="Hotline">
             <i class="fas fa-phone"></i>
         </a>
+
+        <!-- LOCAL CHATBOT TRIGGER -->
+        <div class="chatbot-trigger" data-label="Chat với Ngọc NN">
+            <i class="fas fa-comments"></i>
+        </div>
+    </div>
+
+    <!-- LOCAL CHATBOT WINDOW -->
+    <div class="chatbot-window">
+        <div class="chatbot-header">
+            <div class="chatbot-avatar">
+                <img src="./assets/images/ngoc_nn_consulting.png" alt="Ngọc NN">
+            </div>
+            <div class="chatbot-status">
+                <span class="name">NGỌC NN (Trợ lý ảo)</span>
+                <span class="online">Đang trực tuyến</span>
+            </div>
+        </div>
+        <div class="chatbot-messages">
+            <!-- Messages will be injected by JS -->
+            <div class="typing">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+        <div class="chatbot-input">
+            <input type="text" placeholder="Nhập câu hỏi của sếp...">
+            <button class="chatbot-send">
+                <i class="fas fa-paper-plane"></i>
+            </button>
+        </div>
+    </div>
     </div>
 
     <div class="custom-cursor"></div>
     <div class="cursor-follower"></div>
 
     <script src="./js/main.js?v=2.2"></script>
+    <script src="./js/data-chat.js"></script>
+    <script src="./js/chatbot.js"></script>
     <script src="./js/animations.js?v=2.1"></script>
     <script src="./js/tinh_lai.js?v=2.2"></script>
 </body>
