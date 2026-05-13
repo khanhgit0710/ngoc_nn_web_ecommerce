@@ -11,14 +11,16 @@ document.addEventListener("DOMContentLoaded", function () {
                 question.parentNode.replaceChild(newQuestion, question);
                 
                 newQuestion.addEventListener("click", () => {
-                    const isActive = item.classList.contains("active");
+                    const isOpen = item.classList.contains("is-open");
                     
                     // Close all others in the SAME group
                     const group = item.closest(".faq-group");
-                    group.querySelectorAll(".faq-item").forEach(i => i.classList.remove("active"));
+                    group.querySelectorAll(".faq-item").forEach(i => {
+                        i.classList.remove("is-open");
+                    });
                     
-                    if (!isActive) {
-                        item.classList.add("active");
+                    if (!isOpen) {
+                        item.classList.add("is-open");
                     }
                 });
             }
@@ -47,9 +49,33 @@ document.addEventListener("DOMContentLoaded", function () {
                 }
             });
 
-            // Reset search when switching categories (optional, but cleaner)
-            // searchInput.value = "";
-            // clearHighlights();
+            // Promo Update
+            const promos = document.querySelectorAll(".faq-promo-mid");
+            promos.forEach(promo => {
+                const promoCat = promo.getAttribute("data-category");
+                if (target === "all" || promoCat === target) {
+                    promo.style.display = "block";
+                } else {
+                    promo.style.display = "none";
+                }
+            });
+
+            // Smooth Scroll to specific category OR top
+            if (target === "all") {
+                const contentTop = document.querySelector(".faq-main-content");
+                if (contentTop) {
+                    const yOffset = -180;
+                    const y = contentTop.getBoundingClientRect().top + window.pageYOffset + yOffset;
+                    window.scrollTo({ top: y, behavior: 'smooth' });
+                }
+            } else {
+                const activeGroup = document.getElementById(target);
+                if (activeGroup) {
+                    const yOffset = -180; // Adjusted to not hide under sticky categories
+                    const y = activeGroup.getBoundingClientRect().top + window.pageYOffset + yOffset;
+                    window.scrollTo({ top: y, behavior: 'smooth' });
+                }
+            }
         });
     });
 
@@ -75,7 +101,14 @@ document.addEventListener("DOMContentLoaded", function () {
                     }
                 });
                 if (emptyState) emptyState.style.display = "none";
-                if (promoBanner) promoBanner.style.display = "block";
+                if (promoBanner) {
+                    const promoCat = promoBanner.getAttribute("data-category");
+                    if (activeCategory === "all" || promoCat === activeCategory) {
+                        promoBanner.style.display = "block";
+                    } else {
+                        promoBanner.style.display = "none";
+                    }
+                }
                 return;
             }
 
@@ -136,6 +169,76 @@ document.addEventListener("DOMContentLoaded", function () {
             }
         });
     }
+
+    // 5. Load More Logic
+    const loadMoreBtns = document.querySelectorAll(".btn-faq-load-more");
+
+    loadMoreBtns.forEach(btn => {
+        btn.addEventListener("click", () => {
+            const group = btn.closest(".faq-group");
+            const isExpanding = !group.classList.contains("is-expanded");
+
+            if (isExpanding) {
+                group.classList.add("is-expanded");
+                btn.classList.add("active");
+            } else {
+                group.classList.remove("is-expanded");
+                btn.classList.remove("active");
+                
+                // Scroll back to group title if we're collapsing
+                const groupTitle = group.querySelector(".faq-group-title");
+                if (groupTitle) {
+                    const yOffset = -180;
+                    const y = groupTitle.getBoundingClientRect().top + window.pageYOffset + yOffset;
+                    window.scrollTo({ top: y, behavior: 'smooth' });
+                }
+            }
+        });
+    });
+
+    // 6. Like/Dislike Logic
+    const feedbackBtns = document.querySelectorAll(".btn-feedback");
+
+    feedbackBtns.forEach(btn => {
+        btn.addEventListener("click", (e) => {
+            e.stopPropagation(); // Prevent accordion from toggling
+            
+            const parent = btn.closest(".faq-feedback");
+            const countSpan = btn.querySelector(".count");
+            let count = parseInt(countSpan.textContent);
+            
+            const isLike = btn.classList.contains("like");
+            const otherBtn = isLike ? parent.querySelector(".dislike") : parent.querySelector(".like");
+            
+            if (btn.classList.contains("active")) {
+                // Untoggle current
+                btn.classList.remove("active");
+                countSpan.textContent = count - 1;
+                
+                // Reset icon
+                const icon = btn.querySelector("i");
+                icon.classList.replace("fas", "far");
+            } else {
+                // Toggle current
+                btn.classList.add("active");
+                countSpan.textContent = count + 1;
+                
+                // Change icon to solid
+                const icon = btn.querySelector("i");
+                icon.classList.replace("far", "fas");
+                
+                // If other button is active, untoggle it
+                if (otherBtn.classList.contains("active")) {
+                    otherBtn.classList.remove("active");
+                    const otherCountSpan = otherBtn.querySelector(".count");
+                    otherCountSpan.textContent = parseInt(otherCountSpan.textContent) - 1;
+                    
+                    const otherIcon = otherBtn.querySelector("i");
+                    otherIcon.classList.replace("fas", "far");
+                }
+            }
+        });
+    });
 
     // Initialize
     initAccordions();

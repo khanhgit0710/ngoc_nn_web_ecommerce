@@ -7,7 +7,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
-                entry.target.classList.add('active');
+                entry.target.classList.add('revealed');
             }
         });
     }, observerOptions);
@@ -32,7 +32,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
-                entry.target.classList.add('active');
+                entry.target.classList.add('revealed');
             }
         });
     }, observerOptions);
@@ -152,21 +152,30 @@ document.addEventListener("DOMContentLoaded", function () {
 // ============================================================
 document.addEventListener("DOMContentLoaded", function () {
     const header = document.querySelector('.header');
+    const bottomDock = document.querySelector('.bottom-nav-dock');
     let lastScrollY = window.scrollY;
 
     window.addEventListener("scroll", () => {
-        if (window.scrollY > lastScrollY && window.scrollY > 100) {
-            // Scrolling down
-            header.classList.add("header--hidden");
-        } else {
-            // Scrolling up
-            header.classList.remove("header--hidden");
+        const currentScroll = window.scrollY;
+        const scrollDelta = Math.abs(currentScroll - lastScrollY);
+        const dock = document.querySelector('.bottom-nav-dock');
+
+        if (scrollDelta > 5) {
+            if (currentScroll > lastScrollY && currentScroll > 100) {
+                // Scrolling down
+                header.classList.add("header--hidden");
+                if (dock) dock.classList.add("bottom-nav-dock--hidden");
+            } else {
+                // Scrolling up
+                header.classList.remove("header--hidden");
+                if (dock) dock.classList.remove("bottom-nav-dock--hidden");
+            }
         }
 
-        lastScrollY = window.scrollY;
+        lastScrollY = currentScroll;
 
         // Background glassmorphism effect on scroll
-        if (window.scrollY > 50) {
+        if (currentScroll > 50) {
             header.classList.add("header--scrolled");
         } else {
             header.classList.remove("header--scrolled");
@@ -269,7 +278,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let autoSlideInterval;
 
     function updateSlider() {
-        if (window.innerWidth <= 768) return; // Skip transform on mobile (uses native scroll)
+        if (window.innerWidth <= 1024) return; // Skip transform on mobile (uses native scroll)
 
         const cardWidth = cards[0].offsetWidth + 20; // 20 là gap
         grid.style.transform = `translateX(${-index * cardWidth}px)`;
@@ -309,7 +318,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let dragged = false;
 
     viewport.addEventListener('mousedown', (e) => {
-        if (window.innerWidth <= 768) return;
+        if (window.innerWidth <= 1024) return;
         isDown = true;
         dragged = false;
         startX = e.pageX - viewport.offsetLeft;
@@ -379,13 +388,13 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Set cursor to grab by default for PC
-    if (window.innerWidth > 768) {
+    if (window.innerWidth > 1024) {
         viewport.style.cursor = 'grab';
     }
 
     // MOBILE AUTO-SLIDE LOGIC
     function startAutoSlide() {
-        if (window.innerWidth > 768) return;
+        if (window.innerWidth > 1024) return;
 
         autoSlideInterval = setInterval(() => {
             if (viewport.scrollLeft + viewport.offsetWidth >= viewport.scrollWidth - 10) {
@@ -401,7 +410,7 @@ document.addEventListener('DOMContentLoaded', () => {
         clearInterval(autoSlideInterval);
     }
 
-    if (window.innerWidth <= 768) {
+    if (window.innerWidth <= 1024) {
         startAutoSlide();
         viewport.addEventListener('touchstart', stopAutoSlide);
         viewport.addEventListener('touchend', startAutoSlide);
@@ -410,13 +419,193 @@ document.addEventListener('DOMContentLoaded', () => {
     window.addEventListener('resize', () => {
         updateSlider();
         stopAutoSlide();
-        if (window.innerWidth <= 768) startAutoSlide();
+        if (window.innerWidth <= 1024) startAutoSlide();
     });
 });
 
 /* ==========================================
-   LOGIC MODAL GALLERY - NGOC NN PROJECTS
+   ADVANCED LUXURY LIGHTBOX LOGIC
    ========================================== */
+document.addEventListener("DOMContentLoaded", function () {
+    const lb = document.getElementById('lb-master');
+    const lbImgMain = document.getElementById('lb-img-main');
+    const lbImgPrev = document.querySelector('.lb-side--prev img');
+    const lbImgNext = document.querySelector('.lb-side--next img');
+    const lbCounter = document.querySelector('.lb-counter');
+    const lbCaption = document.getElementById('lb-caption-text');
+    const closeBtn = document.querySelector('.lb-close-advanced');
+
+    if (!lb || !lbImgMain) return;
+
+    let galleryData = [];
+    let currentIndex = 0;
+
+    function refreshGallery() {
+        // Collect images from Deals, Moments, and Feedback sections
+        galleryData = Array.from(document.querySelectorAll('.deal-card img, .moment-item img, .feedback-img img, .swiper-slide img')).map(img => ({
+            src: img.src,
+            alt: img.alt || "Luxury Property View"
+        }));
+
+        // Remove duplicates if any (e.g. from swiper clones)
+        const unique = [];
+        const seen = new Set();
+        galleryData.forEach(item => {
+            if (!seen.has(item.src)) {
+                seen.add(item.src);
+                unique.push(item);
+            }
+        });
+        galleryData = unique;
+    }
+
+    function updateLightbox() {
+        if (galleryData.length === 0) return;
+
+        const current = galleryData[currentIndex];
+        lbImgMain.src = current.src;
+
+        lbCounter.innerText = `${currentIndex + 1} / ${galleryData.length}`;
+        lbCaption.innerText = current.alt;
+    }
+
+    function openLightbox(index) {
+        refreshGallery();
+        currentIndex = index;
+        updateLightbox();
+        lb.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeLightbox() {
+        lb.classList.remove('active');
+        document.body.style.overflow = '';
+    }
+
+    function showNext() {
+        currentIndex = (currentIndex + 1) % galleryData.length;
+        updateLightbox();
+    }
+
+    function showPrev() {
+        currentIndex = (currentIndex - 1 + galleryData.length) % galleryData.length;
+        updateLightbox();
+    }
+
+    // Swipe/Drag Logic for Mobile & PC
+    let startX = 0;
+    let endX = 0;
+    let isDragging = false;
+
+    // Touch Events
+    lb.addEventListener('touchstart', (e) => {
+        startX = e.changedTouches[0].screenX;
+    }, { passive: true });
+
+    lb.addEventListener('touchend', (e) => {
+        endX = e.changedTouches[0].screenX;
+        handleSwipe();
+    }, { passive: true });
+
+    // Mouse Events for PC Swipe
+    lb.addEventListener('mousedown', (e) => {
+        startX = e.screenX;
+        isDragging = true;
+    });
+
+    lb.addEventListener('mouseup', (e) => {
+        if (!isDragging) return;
+        endX = e.screenX;
+        isDragging = false;
+        handleSwipe();
+    });
+
+    lb.addEventListener('mouseleave', () => {
+        isDragging = false;
+    });
+
+    function handleSwipe() {
+        const threshold = 50;
+        if (endX < startX - threshold) showNext();
+        if (endX > startX + threshold) showPrev();
+    }
+
+    // Container-aware Event Delegation for clicks
+    document.addEventListener('click', function (e) {
+        // Find the parent container first
+        const container = e.target.closest('.deal-card, .moment-item, .swiper-slide, .feedback-img');
+        if (container) {
+            const img = container.querySelector('img');
+            if (img) {
+                e.preventDefault();
+                e.stopPropagation();
+                refreshGallery();
+
+                // Find index by src
+                const index = galleryData.findIndex(item => item.src === img.src);
+                if (index !== -1) {
+                    openLightbox(index);
+                }
+            }
+        }
+    });
+
+    // Control Buttons
+    if (closeBtn) closeBtn.onclick = closeLightbox;
+    document.querySelector('.lb-next-btn').onclick = (e) => { e.stopPropagation(); showNext(); };
+    document.querySelector('.lb-prev-btn').onclick = (e) => { e.stopPropagation(); showPrev(); };
+
+    // Fullscreen Toggle
+    const fsBtn = document.getElementById('lb-fs-btn');
+    if (fsBtn) {
+        fsBtn.onclick = () => {
+            if (!document.fullscreenElement) {
+                lb.requestFullscreen().catch(err => console.log(err));
+            } else {
+                document.exitFullscreen();
+            }
+        };
+    }
+
+    // Zoom Logic (Simple toggle)
+    const zoomBtn = document.getElementById('lb-zoom-btn');
+    if (zoomBtn) {
+        zoomBtn.onclick = () => {
+            lbImgMain.classList.toggle('is-zoomed');
+            const icon = zoomBtn.querySelector('i');
+            if (lbImgMain.classList.contains('is-zoomed')) {
+                icon.className = 'fas fa-search-minus';
+            } else {
+                icon.className = 'fas fa-search-plus';
+            }
+        };
+    }
+
+    // Share Logic
+    const shareBtn = document.getElementById('lb-share-btn');
+    if (shareBtn) {
+        shareBtn.onclick = () => {
+            const url = lbImgMain.src;
+            navigator.clipboard.writeText(url).then(() => {
+                alert('Đã sao chép liên kết ảnh!');
+            });
+        };
+    }
+
+    // Keyboard controls
+    document.addEventListener('keydown', (e) => {
+        if (lb.classList.contains('active')) {
+            if (e.key === 'Escape') closeLightbox();
+            if (e.key === 'ArrowRight') showNext();
+            if (e.key === 'ArrowLeft') showPrev();
+        }
+    });
+
+    // Close on background click
+    lb.onclick = (e) => {
+        if (e.target === lb || e.target.classList.contains('lb-stage')) closeLightbox();
+    };
+});
 
 
 /* ============================================================
@@ -598,14 +787,14 @@ document.addEventListener("DOMContentLoaded", function () {
 // ============================================================
 document.addEventListener("DOMContentLoaded", function () {
     let popupOverlay = document.getElementById('luxuryPopupOverlay');
-    
+
     // Tự động tiêm HTML Popup vào toàn trang nếu chưa có
     if (!popupOverlay) {
         const popupHTML = `
         <div class="luxury-popup-overlay" id="luxuryPopupOverlay">
             <div class="luxury-popup">
                 <button class="luxury-popup__close" id="closeLuxuryPopup" aria-label="Đóng">&times;</button>
-                <h2 class="luxury-popup__title">NHẬN TƯ VẤN TỪ <span style="color: var(--color-primary);">NGỌC NN</span></h2>
+                <div class="luxury-popup__title">NHẬN TƯ VẤN TỪ <span style="color: var(--color-primary);">NGỌC NN</span></div>
                 <p class="luxury-popup__subtitle">Để lại thông tin, Ngọc NN sẽ liên hệ hỗ trợ bạn tìm căn nhà ưng ý nhất.</p>
                 <form class="luxury-popup__form" id="luxuryPopupForm">
                     <label class="label-top">Có dấu (*) là thông tin cần thiết</label>
@@ -629,7 +818,7 @@ document.addEventListener("DOMContentLoaded", function () {
     if (!popupOverlay || !closeBtn || !popupForm) return;
 
     // Đóng popup khi bấm nút X hoặc bấm ra ngoài
-    document.addEventListener('click', function(e) {
+    document.addEventListener('click', function (e) {
         if (e.target.closest('#closeLuxuryPopup') || e.target.matches('#luxuryPopupOverlay')) {
             popupOverlay.classList.remove('active');
         }
@@ -648,7 +837,7 @@ document.addEventListener("DOMContentLoaded", function () {
     // Gán popup cho nút Hotline (Tạm thời để bàn giao)
     const hotlineBtn = document.querySelector('.contact-bubble--hotline');
     if (hotlineBtn) {
-        hotlineBtn.addEventListener('click', function(e) {
+        hotlineBtn.addEventListener('click', function (e) {
             e.preventDefault(); // Ngăn hành động gọi điện
             popupOverlay.classList.add('active');
         });
@@ -743,3 +932,50 @@ document.addEventListener('click', function (event) {
 });
 
 
+
+// ============================================================
+// AUTO-SYNC TITLE WITH H1 CONTENT
+document.addEventListener('DOMContentLoaded', function () {
+    const h1 = document.querySelector('h1');
+    if (h1) {
+        const updateTitle = () => {
+            const h1Text = h1.textContent.replace(/\s+/g, ' ').trim();
+            if (h1Text) {
+                if (h1Text.includes('Ngọc NN')) {
+                    document.title = h1Text;
+                } else {
+                    document.title = h1Text + ' | Ngọc NN';
+                }
+            }
+        };
+        updateTitle();
+        const observer = new MutationObserver(updateTitle);
+        observer.observe(h1, { childList: true, characterData: true, subtree: true });
+    }
+});
+
+// ============================================================
+// LUXURY FOOTER CINEMATIC REVEAL ANIMATION
+// ============================================================
+document.addEventListener('DOMContentLoaded', function () {
+    const footer = document.querySelector('.footer-signature-center');
+    if (!footer) return;
+
+    const revealItems = footer.querySelectorAll('.signature-logo-v3, .signature-quick-nav, .signature-line-v3, .signature-main-nav, .signature-social-v3, .signature-policies-v3, .signature-copyright-v3');
+
+    // Tự động gán class và tính toán độ trễ (stagger)
+    revealItems.forEach((el, index) => {
+        el.classList.add('footer-reveal-item');
+        el.style.transitionDelay = `${index * 0.12}s`;
+    });
+
+    const footerObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('revealed');
+            }
+        });
+    }, { threshold: 0.1, rootMargin: "0px 0px 50px 0px" });
+
+    footerObserver.observe(footer);
+});

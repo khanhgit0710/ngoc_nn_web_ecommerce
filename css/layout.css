@@ -11,12 +11,13 @@
     will-change: transform, opacity, filter;
 }
 
-/* Trạng thái hiện (Khi có class .active) */
-.reveal.active {
+/* Trạng thái hiện (Khi có class .revealed) */
+.reveal.revealed {
     opacity: 1;
     filter: blur(0);
     transform: translateY(0) scale(1);
 }
+
 
 /* Các lớp delay để tạo hiệu ứng sóng vỗ (Staggered) */
 .reveal-1 { transition-delay: 0.1s; }

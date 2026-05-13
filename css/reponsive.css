@@ -49,7 +49,8 @@
         height: 250px !important;
         grid-area: left !important;
         border-left: 2px solid rgba(163, 93, 54, 0.2) !important;
-        padding-left: 30px !important;
+        padding-left: 10px !important;
+        padding-right: 20px !important;
     }
 
     .criteria__middle {
@@ -62,8 +63,9 @@
 
     .btn-show-more {
         grid-area: button !important;
-        margin-left: var(--side-padding) !important;
-        margin-top: var(--side-padding) !important;
+        margin-left: 0 !important;
+        margin-top: 10px !important;
+        width: 290px !important;
     }
 }
 
@@ -177,23 +179,113 @@
     }
 
     .footer-signature-center {
-        padding-bottom: 70px !important;
+        padding-top: 60px !important;
+        padding-bottom: 0 !important;
+    }
+
+    .signature-copyright-v3 {
+        padding-bottom: 85px !important;
     }
 
     .section-label-inner,
     .section-label-inner--exp,
     .toc-title,
     .interested-title {
-        font-size: 16px !important;
+        font-size: 22px !important;
+    }
+
+    .section-label-inner::after,
+    .section-label-inner--exp::after {
+        display: none !important;
+    }
+
+    .reveal {
+        opacity: 0 !important;
+        transform: translateY(20px) !important;
+        transition: opacity 1.2s cubic-bezier(0.19, 1, 0.22, 1),
+            transform 1.2s cubic-bezier(0.19, 1, 0.22, 1) !important;
+    }
+
+    .reveal.active {
+        opacity: 1 !important;
+        transform: translateY(0) !important;
+    }
+
+    .highlight-item h3 {
+        font-size: 18px !important;
+    }
+
+    .trending-header,
+    .slider-controls {
+        display: none !important;
+    }
+
+    .trending-slider-viewport {
+        overflow-x: auto !important;
+        scrollbar-width: none !important;
+        -ms-overflow-style: none !important;
+        -webkit-overflow-scrolling: touch !important;
+    }
+
+    .trending-slider-viewport::-webkit-scrollbar {
+        display: none !important;
+    }
+
+    .section-header-inline {
+        display: none !important;
+    }
+
+    .trending-grid {
+        align-items: stretch !important;
+        gap: 10px !important;
+    }
+
+    .trending-title-link,
+    .news-title a {
+        font-size: 18px !important;
+        line-height: 1.2 !important;
+        min-height: 2.4em !important;
+        display: -webkit-box !important;
+        -webkit-line-clamp: 2 !important;
+        -webkit-box-orient: vertical !important;
+        overflow: hidden !important;
+        margin-bottom: 8px !important;
+    }
+
+    .trending-card {
+        display: flex !important;
+        flex-direction: column !important;
+        height: auto !important;
+    }
+
+    .trending-card .btn-mini-luxury {
+        margin-top: auto !important;
+        /* Push tag to the bottom */
+        align-self: flex-start !important;
+        width: auto !important;
     }
 
     .section-label-inner--exp {
         padding-left: 8px !important;
+        margin-top: 0 !important;
+    }
+
+    .post-toc {
+        margin: 0 !important;
+        padding: 10px !important;
     }
 
     .toc-list a,
     .interested-list li a {
         font-size: 18px !important;
+    }
+
+    .toc-list li.toc-sub {
+        padding-left: 20px !important;
+    }
+
+    .toc-list li.toc-sub-2 {
+        padding-left: 40px !important;
     }
 
     .page-title--large {
@@ -208,15 +300,34 @@
         left: 0 !important;
         right: 0 !important;
         z-index: 9999 !important;
-        background: rgba(255, 255, 255, 0.96) !important;
-        backdrop-filter: blur(20px) !important;
-        -webkit-backdrop-filter: blur(20px) !important;
-        border-top: 1px solid rgba(183, 114, 70, 0.25) !important;
+        background: rgba(255, 255, 255, 0.98) !important;
+        backdrop-filter: blur(25px) !important;
+        -webkit-backdrop-filter: blur(25px) !important;
+        border-top: 1px solid rgba(183, 114, 70, 0.12) !important;
         height: calc(65px + env(safe-area-inset-bottom, 0px)) !important;
         padding-bottom: env(safe-area-inset-bottom, 0px) !important;
         justify-content: space-around !important;
         align-items: center !important;
-        box-shadow: 0 -5px 30px rgba(0, 0, 0, 0.12) !important;
+        box-shadow: 0 -15px 50px rgba(0, 0, 0, 0.1) !important;
+
+        /* Ultra-Fluid Fluid Transition - Slower for Luxury feel */
+        transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1),
+            opacity 1s ease,
+            visibility 1s !important;
+        transition-delay: 0s !important;
+        will-change: transform, opacity;
+        opacity: 1 !important;
+        visibility: visible !important;
+        transform: translateY(0) scale(1) !important;
+    }
+
+    .bottom-nav-dock--hidden {
+        transform: translateY(110%) scale(0.96) !important;
+        opacity: 0 !important;
+        visibility: hidden !important;
+        transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1),
+            opacity 0.6s ease,
+            visibility 0.6s !important;
     }
 
     .bottom-nav-item {
@@ -226,11 +337,51 @@
         justify-content: center !important;
         text-decoration: none !important;
         color: #222222 !important;
-        /* Đậm đà, nổi bật hơn */
         gap: 6px !important;
         flex: 1 !important;
         height: 100% !important;
-        transition: all 0.3s ease !important;
+        transition: all 0.5s cubic-bezier(0.2, 1, 0.3, 1) !important;
+
+        /* Staggered setup */
+        transform: translateY(0);
+        opacity: 1;
+    }
+
+    /* Staggered Reveal Logic when NOT hidden - Slower reveal */
+    .bottom-nav-dock:not(.bottom-nav-dock--hidden) .bottom-nav-item {
+        animation: navItemReveal 1.2s cubic-bezier(0.16, 1, 0.3, 1) both;
+    }
+
+    .bottom-nav-dock:not(.bottom-nav-dock--hidden) .bottom-nav-item:nth-child(1) {
+        animation-delay: 0.15s;
+    }
+
+    .bottom-nav-dock:not(.bottom-nav-dock--hidden) .bottom-nav-item:nth-child(2) {
+        animation-delay: 0.25s;
+    }
+
+    .bottom-nav-dock:not(.bottom-nav-dock--hidden) .bottom-nav-item:nth-child(3) {
+        animation-delay: 0.35s;
+    }
+
+    .bottom-nav-dock:not(.bottom-nav-dock--hidden) .bottom-nav-item:nth-child(4) {
+        animation-delay: 0.45s;
+    }
+
+    .bottom-nav-dock:not(.bottom-nav-dock--hidden) .bottom-nav-item:nth-child(5) {
+        animation-delay: 0.55s;
+    }
+
+    @keyframes navItemReveal {
+        0% {
+            transform: translateY(30px);
+            opacity: 0;
+        }
+
+        100% {
+            transform: translateY(0);
+            opacity: 1;
+        }
     }
 
     .bottom-nav-item i {
@@ -351,6 +502,12 @@
         padding-right: var(--side-padding) !important;
         margin-left: auto !important;
         margin-right: auto !important;
+    }
+
+    /* Full width for hero slider */
+    .featured-post-slider .container-1000 {
+        padding-left: 0 !important;
+        padding-right: 0 !important;
     }
 
     /* 1. HEADER & NAVIGATION */
@@ -505,7 +662,7 @@
         line-height: 1.1 !important;
         padding-bottom: 10px !important;
         margin: 0 !important;
-        white-space: nowrap !important;
+        white-space: normal !important;
     }
 
     .about-hero-premium__subtitle,
@@ -538,10 +695,10 @@
         display: flex !important;
         flex-direction: row !important;
         /* Put buttons on the same row at 1024px */
-        gap: var(--side-padding) !important;
+        gap: 12px !important;
         margin-top: 25px !important;
         width: 100% !important;
-        justify-content: flex-start !important;
+        justify-content: center !important;
         align-items: center !important;
     }
 
@@ -624,6 +781,7 @@
     .criteria__right {
         width: 100% !important;
         padding: 0 !important;
+        gap: 20px !important;
     }
 
     .criteria-list {
@@ -658,12 +816,11 @@
     }
 
     .criteria-item__text h3 {
-        font-size: 18px !important;
         margin-bottom: 10px !important;
     }
 
     .criteria-item__text p {
-        font-size: 18px !important;
+        font-size: 16px !important;
     }
 
     /* 5. FEEDBACK SECTION (DUO VIEW - 2 ẢNH CẠNH NHAU) */
@@ -694,7 +851,7 @@
     .feedback__content h2 {
         width: 100% !important;
         text-align: center !important;
-        margin-bottom: 30px !important;
+        margin-bottom: 20px !important;
     }
 
     .feedback__content h2 {
@@ -708,7 +865,7 @@
     }
 
     .feedback__content .tag {
-        margin-bottom: 30px !important;
+        margin-bottom: 20px !important;
     }
 
     /* -----------------------------------------
@@ -734,7 +891,7 @@
     .commit__header h2,
     .feedback__content h2,
     .core-values__title {
-        font-size: 30px !important;
+        font-size: 34px !important;
         margin-top: var(--side-padding) !important;
         line-height: 1.2 !important;
         text-transform: uppercase !important;
@@ -742,6 +899,22 @@
         /* Đậm đà, cao cấp */
         white-space: normal !important;
         word-wrap: break-word !important;
+    }
+
+    h3 {
+        font-size: 20px !important;
+    }
+
+    p {
+        font-size: 16px !important;
+    }
+
+    li {
+        font-size: 18px !important;
+    }
+
+    .quote-content p {
+        font-size: 30px !important;
     }
 
     .section-title span,
@@ -776,7 +949,7 @@
     .criteria__desc,
     .commit__header p,
     .feedback__content p {
-        font-size: var(--font-size-h4) !important;
+        font-size: 18px !important;
         line-height: 1.6 !important;
         margin-bottom: 0 !important;
         /* Force remove gap here too */
@@ -1118,8 +1291,8 @@
 
     .news-card {
         flex-direction: column !important;
-        gap: var(--side-padding) !important;
-        margin-bottom: 10px !important;
+        gap: 0 !important;
+        margin-bottom: 0 !important;
     }
 
     .news-media {
@@ -1223,6 +1396,14 @@
         padding-right: var(--side-padding) !important;
     }
 
+    .contact__grid {
+        margin-top: 15px !important;
+    }
+
+    .social__grid {
+        gap: 15px !important;
+    }
+
     .about-hero-premium {
         min-height: 500px !important;
         /* "Hút mỡ" khoảng trống thừa */
@@ -1256,7 +1437,15 @@
         width: 100% !important;
     }
 
-    .about-hero-premium__subtitle-box,
+    .about-hero-premium__subtitle-box {
+        margin-top: 25px !important;
+        display: flex !important;
+        flex-direction: column !important;
+        width: 100% !important;
+        gap: 12px !important;
+        margin-bottom: 30px !important;
+    }
+
     .about-hero-premium__subtitle,
     .about-hero-premium__subtitle-main {
         text-align: center !important;
@@ -1290,6 +1479,30 @@
 
     .about-hero-premium__right {
         display: none !important;
+    }
+
+    .benefit-item {
+        flex-direction: column !important;
+        align-items: center !important;
+        text-align: center !important;
+        gap: 15px !important;
+    }
+
+    .benefit-item:hover {
+        transform: translateY(-5px) !important;
+    }
+
+    .benefits-premium__container {
+        justify-content: center !important;
+    }
+
+    .benefits-premium__content {
+        margin: 0 auto !important;
+        text-align: center !important;
+    }
+
+    .benefits-premium__list {
+        align-items: center !important;
     }
 
     /* CORE VALUES RESET FOR 768PX */
@@ -1337,18 +1550,17 @@
 
     .value-item__num {
         font-size: 70px !important;
-        margin-bottom: -20px !important;
+        margin-bottom: 0 !important;
         /* Overlap slightly for luxury feel */
         color: rgba(255, 255, 255, 0.1) !important;
     }
 
     .value-item__text h3 {
-        font-size: 16px !important;
         margin-bottom: 10px !important;
     }
 
     .value-item__text p {
-        font-size: 18px !important;
+        font-size: 16px !important;
         line-height: 1.4 !important;
         opacity: 0.8 !important;
     }
@@ -1409,7 +1621,7 @@
     }
 
     .v-card p {
-        font-size: 18px !important;
+        font-size: 16px !important;
     }
 
     .story-premium__actions {
@@ -1522,7 +1734,15 @@
     }
 
     .criteria-section .btn-show-more {
-        margin-top: 30px !important;
+        width: 200px !important;
+        height: 48px !important;
+        margin-top: 25px !important;
+        margin-left: auto !important;
+        margin-right: auto !important;
+        display: flex !important;
+        justify-content: center !important;
+        align-items: center !important;
+        padding: 0 !important;
     }
 
     .expertise-slim__action {
@@ -1583,27 +1803,38 @@
     ----------------------------------------- */
     .categories-section,
     .categories-section--exp,
-    .trending-container,
     .latest-news,
-    .latest-news-inner,
-    .blog-header,
+    .latest-news-inner {
+        padding: 5px var(--side-padding) !important;
+    }
+
+    .trending-container {
+        padding: 5px var(--side-padding) !important;
+    }
+
+    .blog-header {
+        padding: 20px var(--side-padding) !important;
+    }
+
     .trending-header,
     .page-title,
     .post-body,
     .interested-posts-wrapper {
         padding-left: var(--side-padding) !important;
         padding-right: var(--side-padding) !important;
+        padding-top: 0 !important;
+        padding-bottom: 0 !important;
+    }
+
+    .page-main-title {
+        font-size: 24px !important;
+        margin: 10px 0 0 0 !important;
+        text-align: center !important;
     }
 
     /* Đặc biệt cho Chuyên mục: Bọc lề cho tiêu đề nhưng để tags/container tràn lề */
     .categories-section .container-1000,
-    .categories-section--exp {
-        padding-left: 0 !important;
-        padding-right: 0 !important;
-    }
-
-    .categories-section .section-label-inner,
-    .categories-section--exp .section-label-inner {
+    .categories-section--exp .container-1000 {
         padding-left: var(--side-padding) !important;
         padding-right: var(--side-padding) !important;
     }
@@ -1626,7 +1857,11 @@
         display: flex !important;
         flex-wrap: wrap !important;
         gap: 10px !important;
-        justify-content: center !important;
+        justify-content: flex-start !important;
+    }
+
+    .news-grid {
+        gap: 0 !important;
     }
 
     .tag-item {
@@ -1635,8 +1870,8 @@
         border-radius: 6px !important;
     }
 
-    .trending-card h4 {
-        font-size: 19px !important;
+    .trending-card h3 {
+        font-size: 20px !important;
         color: #333 !important;
     }
 
@@ -1676,11 +1911,15 @@
     .commit__header h2,
     .feedback__content h2,
     .core-values__title {
-        font-size: 36px !important;
+        font-size: 34px !important;
         line-height: 1.2 !important;
         text-transform: uppercase !important;
         font-weight: 700 !important;
         /* Đồng bộ viết hoa cho cân */
+    }
+
+    h3 {
+        font-size: 20px !important;
     }
 
     .section-description,
@@ -1707,14 +1946,20 @@
     .btn-luxury-toggle {
         display: none !important;
     }
+
+    .faq-question {
+        font-size: 18px !important;
+        font-weight: 400 !important;
+        line-height: 1.3 !important;
+    }
 }
 
 @media (max-width: 480px) {
     :root {
         --side-padding: 8px !important;
         /* Chốt cứng 8px cho toàn bộ Mobile */
-        --font-size-content: 18px !important;
-        /* Tăng lên 18px theo ý fen */
+        --font-size-content: 16px !important;
+        /* Tải về 16px theo ý sếp */
     }
 
     /* TRIỆT TIÊU LỖI THANH CUỘN NGANG (SCROLL X) */
@@ -1788,6 +2033,30 @@
         object-fit: cover !important;
     }
 
+    .news-info {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 4px !important;
+        padding: 8px 0 !important;
+    }
+
+    .news-info .news-title,
+    .news-info .news-footer {
+        margin: 0 !important;
+    }
+
+    .news-info .news-excerpt {
+        margin-top: -2px !important;
+        margin-bottom: 0 !important;
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+    }
+
+    .news-card,
+    .stretched-link {
+        padding-bottom: 0 !important;
+    }
+
     .pagination {
         margin-top: var(--side-padding) !important;
         margin-bottom: 120px !important;
@@ -1803,19 +2072,22 @@
     main .news-excerpt,
     main .post-sapo,
     main .entry-content p,
+    .tag {
+        font-size: 16px !important;
+    }
+
     .bullet-list,
     .bullet-list li,
-    .tag,
     .typo-list li {
         font-size: 18px !important;
     }
 
-    /* ĐẶC TRỊ TRANG LIÊN HỆ LÊN 18PX CHO CÂN */
+    /* ĐẶC TRỊ TRANG LIÊN HỆ LÊN 16PX CHO CÂN */
     main .info__text,
     main .contact__note p,
     main .info__item,
     main .info p {
-        font-size: 18px !important;
+        font-size: 16px !important;
     }
 
     .info__icon {
@@ -1921,10 +2193,20 @@
     .kygui-intro p,
     .benefits-premium p,
     .request-item p,
-    .form-notes p,
-    .form-notes ul li,
+    .form-notes p {
+        font-size: 16px !important;
+        line-height: 1.6 !important;
+        margin-bottom: var(--side-padding) !important;
+    }
+
     .section-desc,
     .section-subtitle {
+        font-size: 18px !important;
+        line-height: 1.6 !important;
+        margin-bottom: var(--side-padding) !important;
+    }
+
+    .form-notes ul li {
         font-size: 18px !important;
         line-height: 1.6 !important;
         margin-bottom: var(--side-padding) !important;
@@ -1934,17 +2216,26 @@
         margin-bottom: 0 !important;
     }
 
-    .values-badges,
-    .why-us__desc {
-        font-size: 18px !important;
-        /* Trả về 18px cho slogan/badges */
+    .values-badges {
+        font-size: 16px !important;
         line-height: 1.5 !important;
         margin-bottom: 0 !important;
     }
 
+    .footer-contact p {
+        font-size: 18px !important;
+        padding: 0 !important;
+        margin: 0 !important;
+    }
+
+    .breadcrumb {
+        text-align: left !important;
+        font-size: 11px !important;
+    }
+
     .creative-label {
         text-align: center !important;
-        font-size: 16px !important;
+        font-size: 22px !important;
         width: 100% !important;
         margin-top: 25px !important;
         margin-bottom: 10px !important;
@@ -1958,7 +2249,7 @@
     .benefits-premium__subtitle {
         font-size: 18px !important;
         line-height: 1.4 !important;
-        text-align: left !important;
+        text-align: center !important;
     }
 
     .benefits-premium__content {
@@ -1969,6 +2260,14 @@
     .featured-overlay {
         padding: var(--side-padding) var(--side-padding) 65px var(--side-padding) !important;
         /* Tăng thêm padding bottom để không đè lên dots khi dots được đẩy lên cao */
+        width: 100% !important;
+        left: 0 !important;
+        right: 0 !important;
+        border-radius: 0 !important;
+    }
+
+    .featured-post-slider img {
+        border-radius: 0 !important;
     }
 
     .featured-title {
@@ -2144,6 +2443,30 @@
         gap: var(--side-padding) !important;
     }
 
+    /* GIỚI THIỆU - CHỈNH H3 LÊN 22PX THEO Ý FEN */
+
+    .ex-card__label {
+        font-size: 18px !important;
+    }
+
+    .value-item__text h3,
+    .commit-item__text h3,
+    .stagger-card__content h3,
+    .criteria-item__text h3,
+    .slim-box__inner h3,
+    .benefit-item__text h3,
+    .benefit-item h3,
+    .info-group h3,
+    .why-card-small__content h3 {
+        font-size: 20px !important;
+    }
+
+    .faq-question {
+        font-size: 18px !important;
+        font-weight: 400 !important;
+        line-height: 1.3 !important;
+    }
+
     .about-hero-premium__tag,
     .about-hero-premium__title,
     .about-hero-premium__subtitle-box,
@@ -2159,10 +2482,19 @@
         align-items: center !important;
     }
 
+    .about-hero-premium__tag {
+        margin-bottom: 15px !important;
+    }
+
     .about-hero-premium__title {
         font-size: 60px !important;
-        line-height: 1 !important;
-        margin: 0 !important;
+        line-height: 1.1 !important;
+        margin-bottom: 15px !important;
+    }
+
+    .about-hero-premium__subtitle-box {
+        margin-top: 15px !important;
+        gap: 10px !important;
     }
 
     .about-stats-group {
@@ -2173,7 +2505,7 @@
         flex-direction: row !important;
         flex-wrap: wrap !important;
         justify-content: center !important;
-        gap: 8px !important;
+        gap: 20px !important;
         margin-top: 10px !important;
     }
 
@@ -2186,8 +2518,7 @@
 
     .about-hero-premium__actions .btn-hero-solid,
     .about-hero-premium__actions .btn-hero-link {
-        width: auto !important;
-        min-width: 200px !important;
+        width: 270px !important;
         max-width: 100% !important;
         display: inline-flex !important;
         justify-content: center !important;
@@ -2225,7 +2556,7 @@
     .commit__header h2,
     .feedback__content h2,
     .core-values__title {
-        font-size: 30px !important;
+        font-size: 26px !important;
         text-transform: uppercase !important;
         font-weight: 700 !important;
         white-space: normal !important;
@@ -2235,6 +2566,10 @@
         margin-bottom: var(--side-padding) !important;
         /* Cân bằng khoảng cách xuống Slogan */
         line-height: 1.2 !important;
+    }
+
+    h3 {
+        font-size: 20px !important;
     }
 
     .section-title span,
@@ -2254,7 +2589,9 @@
     .expertise-slim__header p,
     .criteria__desc,
     .commit__header p,
-    .feedback__content p {
+    .feedback__content p,
+    .info p,
+    .info__text {
         font-size: 18px !important;
     }
 
@@ -2296,9 +2633,20 @@
     }
 
     /* Đưa Feedback và Commit vô giữa ở mobile */
+    .commit-item {
+        text-align: center !important;
+        margin-left: auto !important;
+        margin-right: auto !important;
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        gap: 15px !important;
+    }
+
     .feedback__content,
     .commit__header,
-    .commit-item,
     .commit-item__text {
         text-align: center !important;
         margin-left: auto !important;
@@ -2310,8 +2658,8 @@
         align-items: center !important;
     }
 
-    .commit-item__text h4 {
-        font-size: 18px !important;
+    .commit-item__text h3 {
+        font-size: 20px !important;
     }
 
     .feedback__content h2,
@@ -2340,7 +2688,7 @@
     }
 
     .quote-content p {
-        font-size: 22px !important;
+        font-size: 30px !important;
         letter-spacing: 0 !important;
     }
 
@@ -2369,7 +2717,7 @@
     }
 
     .highlight-news-full {
-        margin-top: 10px !important;
+        margin-top: 0px !important;
         margin-bottom: 0px !important;
         padding-bottom: 0px !important;
         padding-top: 0px !important;
@@ -2389,6 +2737,7 @@
         transform: none !important;
         /* Xóa sạch translateY bậc thang từ PC */
         width: 100% !important;
+        padding: 25px !important;
     }
 
     .footer-left {
@@ -2443,6 +2792,46 @@
     .trending-section--exp {
         padding-top: 0 !important;
         padding-bottom: 0 !important;
+    }
+
+    /* Giảm padding-bottom của phần cam kết xuống còn 20px trên thiết bị di động nhỏ */
+    .commit-sectionani {
+        padding-bottom: 20px !important;
+    }
+
+    /* Giảm gap giữa các mục đặc quyền trên thiết bị di động nhỏ */
+    .benefits-premium__list {
+        gap: 8px !important;
+    }
+
+    /* Giảm margin-bottom của phần đặc quyền trên thiết bị di động nhỏ */
+    .benefits-premium.reveal.active.revealed,
+    .benefits-premium {
+        margin-bottom: 30px !important;
+    }
+
+    /* Bỏ hoàn toàn padding-bottom và margin-bottom cho form-container trên thiết bị di động nhỏ */
+    .form-container.reveal.active.revealed,
+    .form-container {
+        padding-bottom: 0 !important;
+        margin-bottom: 0 !important;
+    }
+
+    /* Giảm margin-top của creative-label xuống còn 10px trên thiết bị di động nhỏ */
+    .creative-label {
+        margin-top: 10px !important;
+    }
+
+    /* Thu hẹp khoảng cách trên dưới của đường phân cách đặc quyền trên thiết bị di động nhỏ */
+    .benefits-premium__divider {
+        margin-top: 10px !important;
+        margin-bottom: 10px !important;
+    }
+
+    /* Giảm margin-top của calc-container trên thiết bị di động nhỏ */
+    .calc-container.reveal.active.revealed,
+    .calc-container {
+        margin-top: 20px !important;
     }
 }
 
@@ -2512,7 +2901,9 @@
         padding-bottom: 50px !important;
     }
 
-    .latest-news {
+    .latest-news,
+    .faq-section,
+    .faq-section {
         padding-top: 0 !important;
     }
 
@@ -2580,7 +2971,7 @@
     }
 
     .quote-content p {
-        font-size: 22px !important;
+        font-size: 30px !important;
         letter-spacing: 0 !important;
     }
 
@@ -2648,6 +3039,11 @@
     width: auto !important;
     max-width: 100% !important;
 }
+
+.btn-main {
+    padding: 0 50px !important;
+}
+
 
 /* FIX CỤM NÚT THẾ MẠNH CHO MÀN HÌNH NHỎ - XẾP CHỒNG ĐỂ BẰNG NHAU */
 .strengths__btns {
@@ -2738,9 +3134,9 @@
         width: 320px !important;
     }
 
+    .impressive-deals.reveal.active.revealed,
     .impressive-deals {
-        margin-bottom: 60px !important;
-        /* Trả lại 60px theo yêu cầu mới */
+        margin-bottom: 0 !important;
         padding-bottom: 0 !important;
     }
 
@@ -2784,6 +3180,7 @@
 
 /* BREAKPOINT: 1024PX */
 @media (max-width: 1024px) {
+
     /* --- TINH LAI PAGE --- */
     .hero--tinh-lai .hero__title {
         font-size: 40px !important;
@@ -2811,7 +3208,11 @@
         padding: 80px 0 60px !important;
     }
 
-    .faq-promo-mid, 
+    .faq-promo-mid {
+        margin: 30px 0 !important;
+        border-radius: 0 !important;
+    }
+
     .promo-mid-content {
         border-radius: 0 !important;
     }
@@ -2869,6 +3270,11 @@
         padding-bottom: 0 !important;
     }
 
+    .highlight-item h3,
+    .highlight-content h3 {
+        text-align: justify !important;
+    }
+
     /* --- TINH LAI PAGE --- */
     .hero--tinh-lai {
         padding: 80px 0 40px !important;
@@ -2890,6 +3296,31 @@
         padding-left: 0 !important;
     }
 
+    .calc-controls {
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+    }
+
+    .control-label h4 {
+        font-size: 14px !important;
+        margin: 0 !important;
+    }
+
+    .control-input {
+        width: 125px !important;
+        max-width: 45% !important;
+        font-size: 14px !important;
+        padding: 5px 8px !important;
+    }
+
+    #val-amount {
+        width: 180px !important;
+        max-width: 60% !important;
+        font-size: 16px !important;
+        padding-left: 4px !important;
+        padding-right: 4px !important;
+    }
+
     .schedule-wrapper {
         overflow-x: auto !important;
         -webkit-overflow-scrolling: touch !important;
@@ -2907,10 +3338,15 @@
         flex-direction: column !important;
         text-align: center !important;
         padding: 30px var(--side-padding) !important;
+        gap: 15px !important;
     }
 
     .cta-text p {
-        margin: 0 auto var(--side-padding) !important;
+        margin: 0 auto !important;
+    }
+
+    .btn-premium-cta {
+        margin-top: 10px !important;
     }
 
     /* --- FAQ PAGE --- */
@@ -2935,13 +3371,16 @@
         overflow-x: auto !important;
         white-space: nowrap !important;
         justify-content: center !important;
+        padding-left: var(--side-padding) !important;
+        padding-right: var(--side-padding) !important;
         padding-bottom: var(--side-padding) !important;
         -webkit-overflow-scrolling: touch !important;
+        gap: 15px !important;
     }
 
     .faq-category-btn {
         flex: 0 0 auto !important;
-        padding: 10px 30px !important;
+        padding: 10px 45px !important;
         font-size: 17px !important;
     }
 
@@ -2963,56 +3402,71 @@
     /* --- FOOTER & HOTLINE --- */
     .footer-signature-center {
         padding-top: 40px !important;
-        padding-bottom: 70px !important; /* Space for bottom dock */
+        padding-bottom: 0 !important;
+    }
+
+    .signature-copyright-v3 {
+        padding-bottom: 90px !important;
+        /* Extra space for bottom dock */
+    }
+
+    .signature-logo-v3 {
+        margin-bottom: 25px !important;
     }
 
     .signature-logo-v3 img {
-        height: 50px !important;
-        margin-bottom: 30px !important;
+        height: 60px !important;
+        margin-bottom: 0 !important;
     }
 
     .signature-quick-nav {
-        gap: var(--side-padding) 40px !important;
+        gap: 35px !important;
         flex-wrap: wrap !important;
         padding: 0 var(--side-padding) !important;
-        margin-bottom: var(--side-padding) !important;
+        margin-bottom: 32px !important;
         justify-content: center !important;
     }
 
     .signature-quick-nav a {
-        font-size: 16px !important;
+        font-size: 15px !important;
     }
 
     .signature-main-nav {
-        gap: var(--side-padding) 30px !important;
+        gap: 20px !important;
         flex-wrap: wrap !important;
         padding: 0 var(--side-padding) !important;
-        margin-bottom: 30px !important;
+        margin-bottom: 32px !important;
         justify-content: center !important;
     }
 
     .signature-main-nav a {
-        font-size: 16px !important;
+        font-size: 14px !important;
+    }
+
+    /* Ẩn dấu chấm ngăn cách khi rớt dòng trên mobile */
+    .signature-main-nav a::after {
+        display: none !important;
     }
 
     .signature-social-v3 {
         gap: 25px !important;
-        margin-bottom: 30px !important;
+        margin-bottom: 32px !important;
         justify-content: center !important;
     }
 
     .signature-social-v3 a {
-        width: 40px !important;
-        height: 40px !important;
-        font-size: 16px !important;
+        width: auto !important;
+        height: auto !important;
+        font-size: 18px !important;
     }
 
     .signature-policies-v3 {
-        gap: 10px var(--side-padding) !important;
+        gap: 15px !important;
         flex-wrap: wrap !important;
         font-size: 14px !important;
         padding: 0 var(--side-padding) !important;
         justify-content: center !important;
+        margin-bottom: 24px !important;
     }
 
     .signature-policies-v3 span {
@@ -3022,6 +3476,7 @@
     .signature-copyright-v3 {
         font-size: 12px !important;
         padding: var(--side-padding) !important;
+        text-align: center !important;
     }
 
     .hub-hotline__number {
@@ -3036,7 +3491,8 @@
     }
 
     .footer-hub__bottom {
-        gap: var(--side-padding) !important; /* Giảm gap mặc định 30px của thẻ cha */
+        gap: var(--side-padding) !important;
+        /* Giảm gap mặc định 30px của thẻ cha */
     }
 
     .hub-buttons {
@@ -3044,7 +3500,8 @@
         align-items: center !important;
         gap: var(--side-padding) !important;
         padding: 0 !important;
-        margin: 0 auto !important; /* Xoá margin-top var(--side-padding) */
+        margin: 0 auto !important;
+        /* Xoá margin-top var(--side-padding) */
         width: 100% !important;
     }
 
@@ -3052,7 +3509,8 @@
         flex: 0 0 auto !important;
         width: 200px;
         height: 45px;
-        margin: 0 auto !important; /* Tạo auto margin 80px mỗi bên như hình */
+        margin: 0 auto !important;
+        /* Tạo auto margin 80px mỗi bên như hình */
         padding: 0 25px !important;
         font-size: 16px !important;
         font-weight: 400 !important;
@@ -3089,7 +3547,7 @@
     }
 
     .calc-container {
-        padding: var(--side-padding) 15px !important;
+        padding: 0 15px var(--side-padding) 15px !important;
         margin-bottom: 0 !important;
     }
 
@@ -3117,21 +3575,28 @@
 
 /* BREAKPOINT: 480PX */
 @media (max-width: 480px) {
+
     /* --- TINH LAI PAGE --- */
     .hero--tinh-lai .hero__title {
         font-size: 32px !important;
     }
 
     .hero--tinh-lai p {
-        font-size: 14px !important;
+        font-size: 18px !important;
     }
 
     .calc-side-title {
-        font-size: 16px !important;
+        font-size: 20px !important;
     }
 
     .control-label {
-        font-size: 14px !important;
+        font-size: 16px !important;
+        white-space: nowrap !important;
+        /* Force same line */
+    }
+
+    .control-label span {
+        flex-shrink: 0 !important;
     }
 
     .control-input {
@@ -3186,18 +3651,30 @@
 
     .faq-question {
         padding: var(--side-padding) var(--side-padding) !important;
-        font-size: 16px !important;
+        font-size: 17px !important;
+        font-weight: 400 !important;
+        line-height: 1.3 !important;
     }
 
     .faq-answer {
-        padding: 0 var(--side-padding) 20px !important;
+        padding: 0 var(--side-padding) 0;
         font-size: 14px !important;
     }
 
+    .faq-question span {
+        font-size: 17px !important;
+    }
+
     .faq-group-title {
-        font-size: 16px !important;
+        font-size: 20px !important;
+        padding-top: 15px !important;
         padding-left: 8px !important;
         padding-right: 8px !important;
+        margin-bottom: 15px !important;
+    }
+
+    .faq-grid {
+        margin-top: 20px !important;
     }
 
     .promo-mid-text {
@@ -3228,9 +3705,9 @@
     }
 
     .faq-categories-wrapper {
-        margin: var(--side-padding) 0 0 0 !important;
+        margin: 8px 0 !important;
         padding-top: 0 !important;
-        padding-bottom: 5px !important;
+        padding-bottom: 0 !important;
     }
 
     .faq-categories {
@@ -3238,20 +3715,27 @@
         padding-bottom: 5px !important;
         padding-left: var(--side-padding) !important;
         padding-right: var(--side-padding) !important;
+        gap: 10px !important;
     }
 
     .faq-category-btn {
-        padding: 6px 16px !important;
+        padding: 10px 35px !important;
         font-size: 13px !important;
     }
 
     .faq-main-content {
+        padding-top: 0 !important;
         padding-bottom: 0 !important;
     }
 
     .faq-footer-toggle {
         padding: 0 !important;
-        margin: 10px 0 !important;
+        margin-top: 10px !important;
+        margin-bottom: 0 !important;
+    }
+
+    .faq-form-drawer.active {
+        margin-bottom: 0 !important;
     }
 
     .loan-form-grid {
@@ -3290,7 +3774,7 @@
 
     /* --- FOOTER & HOTLINE --- */
     .footer-signature-center {
-        padding-bottom: 70px !important;
+        padding-bottom: 0 !important;
     }
 
     .hub-hotline__number {
@@ -3341,7 +3825,7 @@
 
     /* --- FOOTER & HOTLINE --- */
     .footer-signature-center {
-        padding-bottom: 70px !important;
+        padding-bottom: 0 !important;
     }
 
     .hub-hotline__number {
@@ -3369,7 +3853,11 @@
     }
 }
 
-.calc-disclaimer-note, .calc-disclaimer { font-size: 15px !important; font-style: italic !important; }
+.calc-disclaimer-note,
+.calc-disclaimer {
+    font-size: 15px !important;
+    font-style: italic !important;
+}
 
 /* ==========================================================================
    LANDING PAGE (QUANG-CAO.HTML) ADDITIONAL RESPONSIVE
@@ -3379,122 +3867,126 @@
         grid-template-columns: 1fr !important;
         gap: 10px !important;
     }
-    
+
     .gallery-main {
         height: 300px !important;
     }
-    
+
     .gallery-sidebar {
         flex-direction: row !important;
         gap: 10px !important;
     }
-    
+
     .gallery-item {
         height: 150px !important;
         flex: 1 !important;
     }
-    
+
     .evidence-badges-luxury {
         grid-template-columns: 1fr !important;
         gap: var(--side-padding) !important;
     }
-    
+
     .badge-card {
         padding: var(--side-padding) !important;
         gap: var(--side-padding) !important;
     }
-    
+
     .badge-icon {
         width: 40px !important;
         height: 40px !important;
         font-size: 16px !important;
     }
-    
+
     .loan-form-grid {
         grid-template-columns: 1fr !important;
         gap: var(--side-padding) !important;
     }
-    
+
     .span-2 {
         grid-column: span 1 !important;
     }
-    
+
     .sales-hero {
         padding: 120px var(--side-padding) 80px !important;
         min-height: auto !important;
     }
-    
+
     .hero-title {
         font-size: 52px !important;
         margin-bottom: 10px !important;
         line-height: 1.1 !important;
     }
-    
+
     .hero-author {
         font-size: 24px !important;
         margin-bottom: 30px !important;
     }
-    
+
     .sales-hero__subtitle {
         font-size: 16px !important;
         margin-bottom: 35px !important;
     }
-    
+
     .hero-actions {
-        gap: var(--side-padding) !important;
-    }
-    
-    .btn-premium-cta {
-        height: 50px !important;
-        padding: 0 25px !important;
-        font-size: 14px !important;
+        display: flex !important;
+        flex-direction: row !important;
+        gap: 12px !important;
+        justify-content: center !important;
         width: 100% !important;
+    }
+
+    .btn-premium-cta {
+        height: 46px !important;
+        padding: 0 12px !important;
+        font-size: 13px !important;
+        flex: 1 !important;
+        width: auto !important;
     }
 }
 
 @media (max-width: 480px) {
     .hero-title {
-        font-size: 42px !important;
+        font-size: 78px !important;
+        margin: 20px 0;
     }
-    
+
     .countdown-number {
         font-size: 32px !important;
     }
-    
+
     .countdown-item {
         padding: var(--side-padding) 10px !important;
     }
-    
+
     .experience-quote__title {
         font-size: 32px !important;
     }
-    
+
     .experience-quote__text {
         font-size: 16px !important;
     }
-    
+
     .stagger-card {
         padding: var(--side-padding) !important;
         gap: var(--side-padding) !important;
         border-radius: 16px !important;
     }
-    
+
     .stagger-card__icon {
         width: 45px !important;
         height: 45px !important;
         font-size: 24px !important;
     }
-    
-    .stagger-card__content h3 {
-        font-size: 18px !important;
-    }
-    
+
+    .stagger-card__content h3 {}
+
     .details-grid {
         gap: 30px !important;
     }
-    
+
     .details-features li {
-        font-size: 16px !important;
+        font-size: 18px !important;
         gap: 10px !important;
     }
 }
@@ -3504,6 +3996,7 @@
     .trust-scroller__track {
         gap: 50px !important;
     }
+
     .trust-scroller__item img {
         height: 35px !important;
     }
@@ -3511,7 +4004,8 @@
 
 
 @media (max-width: 768px) {
-    .why-staggered__container, 
+
+    .why-staggered__container,
     .sales-hero__content,
     .details-section .container-1000,
     .gallery-section .container-1000,
@@ -3524,7 +4018,7 @@
     .why-staggered__right {
         gap: 15px !important;
     }
-    
+
     .stagger-card {
         width: 100% !important;
         margin-left: 0 !important;
@@ -3541,13 +4035,14 @@
         flex-direction: column !important;
         align-items: center !important;
     }
-    
+
     .experience-quote__text {
         text-align: justify !important;
         hyphens: auto !important;
     }
-    
-    .section-description, .sales-hero__subtitle {
+
+    .section-description,
+    .sales-hero__subtitle {
         text-align: justify !important;
     }
 }
@@ -3559,7 +4054,7 @@
         gap: 15px !important;
         margin: 15px auto !important;
     }
-    
+
     .hero--tinh-lai .hero__separator i {
         font-size: 16px !important;
     }
@@ -3570,16 +4065,16 @@
     .calc-controls {
         gap: 12px !important;
     }
-    
+
     .control-group {
         gap: 5px !important;
     }
-    
+
     .calc-side-title {
         margin-bottom: 15px !important;
-        font-size: 18px !important;
+        font-size: 20px !important;
     }
-    
+
     .luxury-slider {
         margin: 5px 0 !important;
     }
@@ -3590,12 +4085,12 @@
     .calc-controls {
         gap: 18px !important;
     }
-    
+
     .control-group {
         gap: 10px !important;
         margin-bottom: 10px !important;
     }
-    
+
     .control-label {
         margin-bottom: 0px !important;
     }
@@ -3607,7 +4102,7 @@
         padding-top: 0 !important;
         padding-bottom: 0 !important;
     }
-    
+
     .calc-container {
         padding-top: 15px !important;
     }
@@ -3623,7 +4118,7 @@
         font-size: 15px !important;
         white-space: nowrap !important;
     }
-    
+
     .toggle-schedule-btn i {
         margin-right: 8px !important;
     }
@@ -3639,14 +4134,14 @@
         line-height: 1.4 !important;
         min-width: 80px !important;
     }
-    
+
     .schedule-table td {
-        font-size: 12px !important;
+        font-size: 15px !important;
         padding: 10px 5px !important;
         text-align: center !important;
         vertical-align: middle !important;
     }
-    
+
     .schedule-wrapper {
         border-radius: 8px !important;
         margin-top: 15px !important;
@@ -3659,9 +4154,10 @@
         padding-left: var(--side-padding) !important;
         padding-right: var(--side-padding) !important;
     }
-    
-    .schedule-table th, .schedule-table td {
-        font-size: 13px !important;
+
+    .schedule-table th,
+    .schedule-table td {
+        font-size: 15px !important;
         padding: 12px 6px !important;
     }
 }
@@ -3669,8 +4165,8 @@
 
 @media (max-width: 768px) {
     .faq-group-title {
-        font-size: 18px !important;
-        margin-bottom: 20px !important;
+        font-size: 20px !important;
+        margin-bottom: 15px !important;
     }
 }
 
@@ -3681,12 +4177,12 @@
         gap: 8px !important;
         flex-wrap: wrap !important;
     }
-    
+
     .faq-feedback span {
         flex: 1 1 100% !important;
         margin-bottom: 8px !important;
     }
-    
+
     .feedback-actions {
         width: 100% !important;
         justify-content: flex-start !important;
@@ -3700,12 +4196,12 @@
         gap: 5px !important;
         flex-wrap: nowrap !important;
     }
-    
+
     .faq-feedback span {
         font-size: 13px !important;
         white-space: nowrap !important;
     }
-    
+
     .feedback-btn {
         padding: 4px 6px !important;
         font-size: 12px !important;
@@ -3722,9 +4218,16 @@
         max-width: 280px !important;
         margin: 0 auto !important;
     }
-    
+
     .faq-footer-toggle {
-        padding: 40px var(--side-padding) !important;
+        padding: 30px var(--side-padding) !important;
+        background: transparent !important;
+        border-top: none !important;
+        border-bottom: none !important;
+    }
+
+    .faq-form-drawer {
+        background: transparent !important;
     }
 }
 
@@ -3750,7 +4253,7 @@
         gap: 10px !important;
         width: 100% !important;
     }
-    
+
     .btn-luxury-action {
         flex: 1 !important;
         width: auto !important;
@@ -3775,19 +4278,25 @@
         align-items: stretch !important;
         width: 100% !important;
     }
-    
+
     .hub-hotline__display {
         width: 100% !important;
         max-width: 100% !important;
         box-sizing: border-box !important;
         display: flex !important;
         justify-content: center !important;
-        padding: 15px 10px !important;
+        align-items: center !important;
+        padding: 20px 10px !important;
+        gap: 15px !important;
     }
-    
+
     .hub-hotline__number {
-        font-size: 32px !important;
+        font-size: 44px !important;
         font-weight: 900 !important;
+    }
+
+    .hub-hotline__display .hub-vibrate-icon {
+        font-size: 38px !important;
     }
 }
 
@@ -3801,7 +4310,290 @@
 
 @media (max-width: 768px) {
     .hub-card__links a {
-        font-size: 16px !important;
+        font-size: 18px !important;
+    }
+
+    /* MINI FLOATING CONTACT ON MOBILE */
+    .floating-contact {
+        left: 15px !important;
+        right: auto !important;
+        bottom: 70px !important;
+        /* Above bottom nav dock */
+        gap: 12px !important;
+    }
+
+    .contact-bubble,
+    .back-to-top {
+        width: 42px !important;
+        height: 42px !important;
+        font-size: 18px !important;
+    }
+
+    .contact-bubble img {
+        width: 100% !important;
+        height: 100% !important;
+        border-radius: 50% !important;
+    }
+
+    .contact-bubble::after {
+        display: none !important;
+        /* Hide labels on mobile to save space */
     }
 }
 
+/* Fix Related News Section Margin on Responsive */
+@media (max-width: 1024px) {
+    .related-news-section.reveal.reveal-top.active {
+        margin: 30px 0 !important;
+    }
+
+    .main-tinh-lai .related-news-section.reveal.reveal-top.active,
+    .main-tinh-lai .related-news-section {
+        margin: 0 !important;
+    }
+}
+
+/* Final overrides */
+@media (max-width: 480px) {
+
+    .faq-section.reveal.reveal-top.active,
+    .faq-section {
+        padding-top: 0 !important;
+    }
+
+    .bank-partners-box {
+        padding-top: 0 !important;
+        padding-bottom: 0 !important;
+        margin-top: 20px !important;
+        margin-bottom: 20px !important;
+    }
+
+    .trust-section {
+        margin-top: 0 !important;
+        margin-bottom: 0 !important;
+        padding-top: 0 !important;
+        padding-bottom: 0 !important;
+    }
+
+    .bank-partners-subtitle {
+        font-size: 20px !important;
+        padding-left: 8px !important;
+        padding-right: 8px !important;
+    }
+
+    .toggle-schedule-btn {
+        margin-bottom: 10px !important;
+        margin-top: 10px !important;
+
+    }
+
+    .calc-disclaimer-note {
+        margin-top: 5px !important;
+        margin-bottom: 5px !important;
+    }
+
+    /* POLICIES ON MOBILE: 2x2 Grid, remove pipe separator */
+    .signature-policies-v3 {
+        display: grid !important;
+        grid-template-columns: 1fr 1fr !important;
+        gap: 15px 10px !important;
+        text-align: center !important;
+        margin-bottom: 25px !important;
+    }
+
+    .signature-policies-v3 a {
+        justify-content: center !important;
+        font-size: 12px !important;
+        width: 100% !important;
+    }
+
+    /* Đảo thứ tự để hàng 1 (2 từ), hàng 2 (3 từ) */
+    .signature-policies-v3 a:nth-child(1) {
+        order: 3;
+    }
+
+    /* Chính sách chung (3 từ) */
+    .signature-policies-v3 a:nth-child(2) {
+        order: 1;
+    }
+
+    /* Bảo mật (2 từ) */
+    .signature-policies-v3 a:nth-child(3) {
+        order: 4;
+    }
+
+    /* Quyền riêng tư (3 từ) */
+    .signature-policies-v3 a:nth-child(4) {
+        order: 2;
+    }
+
+    /* Cam kết (2 từ) */
+
+    .signature-policies-v3 a::after {
+        display: none !important;
+    }
+
+    /* FIX SQUASHED SOCIAL ICONS ON MOBILE */
+    .signature-social-v3 {
+        gap: 15px !important;
+    }
+
+    .signature-social-v3 a {
+        width: 45px !important;
+        height: 45px !important;
+        flex-shrink: 0 !important;
+        border-radius: 50% !important;
+        /* Tròn trịa đẹp hơn trên mobile */
+        border: 1.5px solid rgba(183, 114, 70, 0.5) !important;
+        /* Viền rõ hơn xíu */
+    }
+
+    .benefits-premium__tag {
+        text-align: center !important;
+    }
+
+    .profile-quote__text {
+        font-size: 38px !important;
+    }
+
+    /* Increase mobile margin-bottom spacing from 8px to 12px for all tags and titles */
+    .section-label,
+    .criteria__label,
+    .story-premium__tag,
+    .strengths__tag,
+    .commit__header .tag,
+    .feedback__content .tag,
+    .core-values__subtitle,
+    .section-title,
+    .criteria__title,
+    .story-premium__title,
+    .strengths__title,
+    .commit__header h2,
+    .feedback__content h2,
+    .core-values__title {
+        margin-bottom: 12px !important;
+    }
+
+    /* Increase button gap slightly for story and strengths sections on mobile */
+    .story-premium__actions,
+    .strengths__btns {
+        gap: 15px !important;
+    }
+
+    /* Decrease margin-bottom of s-card title on mobile */
+    .s-card__content h3 {
+        margin-bottom: 8px !important;
+    }
+
+    /* Decrease margin-bottom of benefits-premium divider on mobile */
+    .benefits-premium__divider {
+        margin-bottom: 20px !important;
+    }
+
+    /* Turn off margin-bottom of hub-qr-center on mobile */
+    .hub-qr-center.reveal.active.revealed,
+    .hub-qr-center {
+        margin-bottom: 0 !important;
+    }
+}
+
+/* FAQ Mobile Dropdown Fix */
+@media (max-width: 768px) {
+    .faq-group {
+        margin-bottom: 30px !important;
+    }
+
+    .faq-item.reveal,
+    .faq-item.reveal-up {
+        opacity: 1 !important;
+        transform: translateY(0) !important;
+        visibility: visible !important;
+    }
+
+    .faq-grid-wrapper:not(.is-expanded) {
+        max-height: none !important;
+        overflow: visible !important;
+    }
+
+    .faq-grid-wrapper:not(.is-expanded) .faq-item:nth-child(n+5) {
+        display: none !important;
+    }
+
+    .faq-grid-wrapper:not(.is-expanded) .faq-item:nth-child(4) {
+        max-height: 55px !important;
+        overflow: hidden !important;
+        pointer-events: none !important;
+        margin-bottom: 0 !important;
+        border-bottom: none !important;
+        -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 10%, rgba(0,0,0,0) 100%) !important;
+        mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 10%, rgba(0,0,0,0) 100%) !important;
+    }
+
+    .faq-grid-wrapper:not(.is-expanded) .faq-grid-faded {
+        height: 60px !important;
+        background: none !important;
+    }
+
+    .faq-grid-wrapper.is-expanded .faq-grid-faded {
+        height: 20px !important;
+        margin-top: 5px !important;
+        padding-bottom: 0 !important;
+    }
+
+    .faq-item.is-open .faq-answer {
+        display: block !important;
+        height: auto !important;
+        min-height: 0 !important;
+        max-height: 1000px !important;
+        opacity: 1 !important;
+        padding: 15px var(--side-padding) 10px var(--side-padding) !important;
+        visibility: visible !important;
+        overflow: visible !important;
+    }
+
+    .faq-feedback {
+        margin-top: 12px !important;
+        padding-top: 10px !important;
+    }
+
+    .faq-item.is-open .faq-question i,
+    .faq-item.is-open .faq-toggle i {
+        transform: rotate(180deg) !important;
+        color: var(--color-primary) !important;
+    }
+
+    .faq-item.is-open .faq-question {
+        color: var(--color-primary) !important;
+        padding-bottom: 10px !important;
+    }
+}
+
+/* BREAKPOINT: 480PX (SPECIFIC OVERRIDES) */
+@media (max-width: 480px) {
+    #find-house-form .btn-final,
+    #ky-gui-form .btn-final,
+    .faq-form-drawer .btn-final {
+        margin-top: 12px !important;
+    }
+
+    .btn-feedback {
+        display: inline-flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        height: 32px !important;
+        padding: 0 12px !important;
+    }
+
+    .btn-feedback i {
+        display: inline-flex !important;
+        align-items: center !important;
+        margin-top: 1px !important;
+    }
+
+    .btn-feedback .count {
+        display: inline-flex !important;
+        align-items: center !important;
+        position: relative !important;
+        top: 2px !important;
+    }
+}

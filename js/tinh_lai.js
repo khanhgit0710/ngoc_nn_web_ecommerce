@@ -19,9 +19,12 @@ document.addEventListener("DOMContentLoaded", function () {
 
     const resMonthly = document.getElementById("res-monthly");
     const resPrincipal = document.getElementById("res-principal");
+    const resMonthlyInterest = document.getElementById("res-monthly-interest");
     const resTotalInterest = document.getElementById("res-total-interest");
     const resTotalPayment = document.getElementById("res-total-payment");
     const txtResultHeader = document.getElementById("txt-result-header");
+    const lblMonthlyInterest = document.getElementById("lbl-monthly-interest");
+    const lblPrincipalPayment = document.getElementById("lbl-principal-payment");
 
     const btnToggleSchedule = document.getElementById("btn-toggle-schedule");
     const scheduleBox = document.getElementById("schedule-box");
@@ -36,7 +39,12 @@ document.addEventListener("DOMContentLoaded", function () {
     function calculateLoan() {
         if (!sliderAmount || !sliderTerm || !sliderInterest) return;
 
-        const amount = Number(sliderAmount.value);
+        let amount = 0;
+        if (valAmount) {
+            amount = parseInt(valAmount.value.replace(/[^0-9]/g, '')) || 0;
+        } else {
+            amount = Number(sliderAmount.value);
+        }
         const termMonths = Number(sliderTerm.value) * 12;
         const promoRateYearly = Number(sliderInterest.value) / 100;
 
@@ -50,55 +58,67 @@ document.addEventListener("DOMContentLoaded", function () {
         let totalInterest = 0;
         let scheduleHTML = "";
         let peakMonthly = 0;
+        
+        // Pre-calculate post-grace payments for labels
         let emiAfterGrace = 0;
+        let firstPostGracePrincipal = 0;
+        let firstPostGraceInterest = 0;
 
-        // Helper to get rate for specific month index i (1-indexed)
-        function getRateForMonth(monthIdx) {
-            return (monthIdx <= promoMonths) ? (promoRateYearly / 12) : (floatRateYearly / 12);
+        const isAnnuity = methodAnnuity && methodAnnuity.checked;
+
+        if (postGraceTerm > 0) {
+            const mRateAtPostGrace = (graceMonths + 1 <= promoMonths) ? (promoRateYearly / 12) : (floatRateYearly / 12);
+            if (isAnnuity) {
+                // SẾP NGỌC LOGIC: Lãi suất phẳng (Lấy tháng đầu dư nợ giảm dần làm chuẩn trả đều)
+                const monthlyPrincipal = amount / postGraceTerm;
+                const monthlyInterest = amount * mRateAtPostGrace;
+                emiAfterGrace = Math.round(monthlyPrincipal + monthlyInterest);
+            } else {
+                firstPostGracePrincipal = Math.round(amount / postGraceTerm);
+                firstPostGraceInterest = Math.round(amount * mRateAtPostGrace);
+                emiAfterGrace = firstPostGracePrincipal + firstPostGraceInterest;
+            }
         }
 
         let remainingBalance = amount;
 
         // --- CALCULATION LOOP ---
         for (let i = 1; i <= termMonths; i++) {
-            const mRate = getRateForMonth(i);
-            const interestPay = remainingBalance * mRate;
+            const mRate = (i <= promoMonths) ? (promoRateYearly / 12) : (floatRateYearly / 12);
+            let interestPay = 0;
             let principalPay = 0;
             let currentTotal = 0;
 
-            if (methodAnnuity && methodAnnuity.checked) {
-                // ANNUITY (GỐC LÃI ĐỀU)
+            if (isAnnuity) {
+                // ANNUITY (SẾP NGỌC LOGIC - PHẲNG TUYỆT ĐỐI)
+                interestPay = Math.round(amount * mRate); // Luôn tính trên gốc ban đầu
                 if (i <= graceMonths) {
                     principalPay = 0;
                     currentTotal = interestPay;
                 } else {
-                    // Recalculate EMI if first month after grace or rate changes
+                    // Recalculate EMI if rate changes
                     if (i === graceMonths + 1 || i === promoMonths + 1) {
-                        const remTerm = termMonths - i + 1;
-                        if (remTerm > 0) {
-                            emiAfterGrace = remainingBalance * mRate * Math.pow(1 + mRate, remTerm) / (Math.pow(1 + mRate, remTerm) - 1);
-                        } else {
-                            emiAfterGrace = remainingBalance + interestPay;
-                        }
+                        emiAfterGrace = Math.round((amount / postGraceTerm) + (amount * mRate));
                     }
                     currentTotal = emiAfterGrace;
                     principalPay = currentTotal - interestPay;
                 }
             } else {
                 // REDUCING BALANCE (DƯ NỢ GIẢM DẦN)
+                interestPay = Math.round(remainingBalance * mRate); // Lãi trên dư nợ thực tế
                 if (i <= graceMonths) {
                     principalPay = 0;
                     currentTotal = interestPay;
                 } else {
-                    principalPay = amount / postGraceTerm;
+                    principalPay = Math.round(amount / postGraceTerm);
                     currentTotal = principalPay + interestPay;
                 }
             }
 
-            // Safeguard: Principal cannot exceed remaining balance
-            if (principalPay > remainingBalance) {
+            // Safeguard: Last month or principal cannot exceed remaining balance
+            if (i === termMonths || (principalPay > remainingBalance && i > graceMonths)) {
                 principalPay = remainingBalance;
-                currentTotal = principalPay + interestPay;
+                if (!isAnnuity) currentTotal = principalPay + interestPay;
             }
 
             remainingBalance -= principalPay;
@@ -108,16 +128,30 @@ document.addEventListener("DOMContentLoaded", function () {
 
             // Result labels update (only once based on first months)
             if (i === 1) {
+                // Update specific row labels based on method
+                if (lblMonthlyInterest) {
+                    lblMonthlyInterest.textContent = isAnnuity ? "Tiền lãi hàng tháng" : "Tiền lãi tháng đầu";
+                }
+                if (lblPrincipalPayment) {
+                    lblPrincipalPayment.textContent = isAnnuity ? "Gốc cần trả hàng tháng" : "Gốc cần trả tháng đầu";
+                }
+
                 if (graceMonths > 0) {
-                    txtResultHeader.innerHTML = `Giai đoạn ân hạn (Trả lãi): <br> <small style="font-weight: 400; opacity: 0.7; text-transform: none;">Từ tháng ${graceMonths + 1} trả ước tính: ${formatVND(emiAfterGrace || (amount / postGraceTerm + amount * mRate))}</small>`;
+                    txtResultHeader.innerHTML = `Giai đoạn ân hạn (Trả lãi): <br> <small style="font-weight: 400; opacity: 0.7; text-transform: none;">Từ tháng ${graceMonths + 1} trả dự kiến: ${formatVND(emiAfterGrace)}</small>`;
                     resMonthly.textContent = formatVND(currentTotal);
                 } else {
-                    const isAnnuity = methodAnnuity && methodAnnuity.checked;
                     txtResultHeader.textContent = isAnnuity ? "Cần trả cố định hàng tháng" : "Thanh toán tháng đầu tiên";
                     resMonthly.textContent = formatVND(currentTotal);
                 }
+
                 if (resPrincipal) {
                     resPrincipal.textContent = (i <= graceMonths) ? "0 đ" : formatVND(principalPay);
+                }
+                if (resMonthlyInterest) {
+                    resMonthlyInterest.textContent = formatVND(interestPay);
+                }
+                if (resTotalPayment) {
+                    resTotalPayment.textContent = formatVND(currentTotal);
                 }
             }
 
@@ -125,7 +159,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
 
         if (resTotalInterest) resTotalInterest.textContent = formatVND(totalInterest);
-        if (resTotalPayment) resTotalPayment.textContent = formatVND(amount + totalInterest);
+        // if (resTotalPayment) resTotalPayment.textContent = formatVND(amount + totalInterest); // Bỏ dòng này vì đã chuyển vào loop tháng đầu
         if (scheduleBody) scheduleBody.innerHTML = scheduleHTML;
 
         updateVisualBar(amount, totalInterest, peakMonthly);
@@ -157,7 +191,7 @@ document.addEventListener("DOMContentLoaded", function () {
         const sTotal = document.getElementById("smart-total-cost");
         const sDaily = document.getElementById("smart-daily-interest");
         const sIncome = document.getElementById("smart-min-income");
-        const sGrace = document.getElementById("smart-grace-cost");
+        const sGrace = document.getElementById("smart-grace-benefit");
 
         if (sTotal) sTotal.textContent = formatVND(total);
         const yRate = Number(sliderInterest.value) / 100;
@@ -174,9 +208,6 @@ document.addEventListener("DOMContentLoaded", function () {
             const postGraceTerm = termTotalMonths - gMonths;
 
             if (isAnnuity) {
-                // Approximate for Annuity: (Total Principal / Post-Grace Months)
-                // In actual Annuity, monthly principal varies, but for this card 
-                // we show the average amount being deferred per month.
                 monthlyPrincipal = principal / postGraceTerm;
             } else {
                 monthlyPrincipal = principal / postGraceTerm;
@@ -187,8 +218,11 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }
 
-    function updateLabels() {
-        if (valAmount) valAmount.value = formatVND(sliderAmount.value);
+    function updateLabels(source = 'all') {
+        if ((source === 'sliderAmount' || source === 'init') && valAmount) {
+            valAmount.value = formatVND(Number(sliderAmount.value));
+        }
+        
         if (valTerm) valTerm.value = sliderTerm.value + " năm";
         if (valInterest) valInterest.value = sliderInterest.value + " %";
         if (valInterestPeriod && sliderInterestPeriod) valInterestPeriod.value = sliderInterestPeriod.value + " tháng";
@@ -200,16 +234,52 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     // 5. Listeners
-    [sliderAmount, sliderTerm, sliderInterest, sliderInterestPeriod, sliderInterestFloat, sliderGrace].forEach(el => {
-        if (el) el.addEventListener("input", () => { updateLabels(); calculateLoan(); });
+    [sliderTerm, sliderInterest, sliderInterestPeriod, sliderInterestFloat, sliderGrace].forEach(el => {
+        if (el) el.addEventListener("input", () => { updateLabels('other'); calculateLoan(); });
     });
+
+    if (sliderAmount) {
+        sliderAmount.addEventListener("input", function () {
+            updateLabels('sliderAmount');
+            calculateLoan();
+        });
+    }
+
+    // Smart Mouse Wheel Fine-tune for Loan Amount
+    if (sliderAmount) {
+        sliderAmount.addEventListener("wheel", function (e) {
+            if (document.activeElement === this || e.ctrlKey) { // Prevent accidental scroll jumps
+                e.preventDefault();
+                const direction = e.deltaY < 0 ? 1 : -1;
+                this.value = parseInt(this.value) + (direction * 100000000); // Tinh chỉnh 100 triệu
+                this.dispatchEvent(new Event('input'));
+            }
+        }, { passive: false });
+        
+        // Optional: Also allow wheel when hovering
+        sliderAmount.addEventListener("mouseenter", () => {
+            sliderAmount.title = "Dùng con lăn chuột để tinh chỉnh 100 triệu";
+        });
+    }
 
     if (valAmount) {
         valAmount.addEventListener("input", function () {
+            // "Input để chính xác tuyệt đối" - Allow any value within range, no snapping
             let v = parseInt(this.value.replace(/[^0-9]/g, ''));
-            if (!isNaN(v)) { sliderAmount.value = v; calculateLoan(); }
+            if (!isNaN(v)) {
+                // Ensure value stays within slider min/max
+                v = Math.max(0, Math.min(v, 60000000000));
+                sliderAmount.value = v;
+                calculateLoan();
+            }
         });
-        valAmount.addEventListener("blur", updateLabels);
+        valAmount.addEventListener("blur", function () {
+            let v = parseInt(this.value.replace(/[^0-9]/g, ''));
+            if (!isNaN(v)) {
+                v = Math.max(0, Math.min(v, 60000000000));
+                this.value = formatVND(v);
+            }
+        });
     }
     if (valTerm) {
         valTerm.addEventListener("input", function () {
@@ -244,7 +314,7 @@ document.addEventListener("DOMContentLoaded", function () {
         btnToggleSchedule.addEventListener("click", () => {
             const isHidden = scheduleBox.style.display !== "block";
             scheduleBox.style.display = isHidden ? "block" : "none";
-            btnToggleSchedule.innerHTML = isHidden ? '<i class="fas fa-chevron-up"></i> Thu gọn lịch trình' : '<i class="fas fa-calendar-alt"></i> Xem lịch trình thanh toán chi tiết';
+            btnToggleSchedule.innerHTML = isHidden ? '<i class="fas fa-chevron-up"></i> Thu gọn lịch trình' : '<i class="fas fa-calendar-alt"></i> Xem lịch trình thanh toán';
         });
     }
 
@@ -296,30 +366,15 @@ document.addEventListener("DOMContentLoaded", function () {
     [methodAnnuity, methodReducing].forEach(radio => {
         if (radio) {
             radio.addEventListener("input", () => {
-                const hintAnnuity = document.getElementById("hint-annuity");
-                const hintReducing = document.getElementById("hint-reducing");
-                if (hintAnnuity && hintReducing) {
-                    hintAnnuity.classList.toggle("active", methodAnnuity.checked);
-                    hintReducing.classList.toggle("active", methodReducing.checked);
-                }
                 calculateLoan();
             });
         }
     });
 
-    // Initial calculation & UI state
-    const initHints = () => {
-        const hintAnnuity = document.getElementById("hint-annuity");
-        const hintReducing = document.getElementById("hint-reducing");
-        if (hintAnnuity && hintReducing) {
-            hintAnnuity.classList.toggle("active", methodAnnuity.checked);
-            hintReducing.classList.toggle("active", methodReducing.checked);
-        }
-    };
 
-    updateLabels();
+
+    updateLabels('init');
     calculateLoan();
-    initHints();
 });
 
 window.openPopup = function () {
