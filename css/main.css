@@ -3919,6 +3919,10 @@ textarea.input-final {
 .trending-slider-viewport {
     width: 100%;
     overflow: hidden;
+    background: #f7f7f7; /* Màu xám nhạt cao cấp */
+    padding: 24px 16px;
+    border-radius: 12px;
+    box-sizing: border-box;
 }
 
 .trending-grid {
