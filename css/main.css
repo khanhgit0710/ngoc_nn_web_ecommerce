@@ -8582,6 +8582,46 @@ p,
     box-shadow: 0 10px 20px rgba(183, 114, 70, 0.2);
 }
 
+.btn-show-more-feedback--mobile {
+    display: none !important;
+}
+
+.btn-show-more-commit {
+    margin: 50px auto 0 !important;
+    display: flex !important;
+    width: fit-content !important;
+    min-width: 190px;
+    align-self: center;
+}
+
+.btn-show-more-moments,
+.btn-show-more-deals {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 290px !important;
+    height: 50px !important;
+    background: var(--color-primary) !important;
+    color: #fff !important;
+    border: 1.5px solid var(--color-primary) !important;
+    border-radius: var(--radius-luxury) !important;
+    font-size: 14.7px !important;
+    font-weight: 300 !important;
+    text-transform: uppercase !important;
+    margin: 50px auto 0 !important;
+    text-decoration: none !important;
+    transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1) !important;
+    align-self: center !important;
+}
+
+.btn-show-more-moments:hover,
+.btn-show-more-deals:hover {
+    background: transparent !important;
+    color: var(--color-primary) !important;
+    border-color: var(--color-primary) !important;
+    box-shadow: 0 10px 20px rgba(183, 114, 70, 0.2) !important;
+}
+
 /* --- TÃ™Y CHá»ˆNH PAGINATION LUXURY --- */
 .feedback-pagination {
     bottom: -10px !important;
@@ -13476,7 +13516,8 @@ img[src*="vpbank-logo.jpg"] {
     object-fit: contain;
     border-radius: 4px;
     box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5);
-    transition: transform 0.4s ease;
+    /* Transition chỉ dùng cho zoom, KHÔNG dùng cho slide (JS tự handle) */
+    transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .lb-main img.is-zoomed {
@@ -13629,12 +13670,14 @@ img[src*="vpbank-logo.jpg"] {
 
 .lb-main {
     flex: 0 0 65% !important;
-    /* Fix width to ensure center */
     max-width: 65% !important;
     display: flex;
     justify-content: center;
     align-items: center;
     z-index: 5;
+    /* Cần thiết cho slide animation 2-layer */
+    position: relative;
+    overflow: hidden;
 }
 
 .lb-main img {
@@ -13642,7 +13685,6 @@ img[src*="vpbank-logo.jpg"] {
     max-height: 80vh;
     display: block;
     margin: 0 auto;
-    /* Extra insurance */
 }
 
 .lb-side {
@@ -13708,6 +13750,9 @@ img[src*="vpbank-logo.jpg"] {
 .lb-main {
     flex: 0 1 auto !important;
     max-width: 100% !important;
+    /* Giữ overflow:hidden để clip ảnh đang slide */
+    position: relative !important;
+    overflow: hidden !important;
 }
 
 @media (max-width: 1024px) {

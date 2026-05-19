@@ -459,20 +459,117 @@ document.addEventListener("DOMContentLoaded", function () {
         galleryData = unique;
     }
 
-    function updateLightbox() {
+    let isAnimating = false;
+
+    function updateLightbox(direction) {
         if (galleryData.length === 0) return;
 
         const current = galleryData[currentIndex];
-        lbImgMain.src = current.src;
 
-        lbCounter.innerText = `${currentIndex + 1} / ${galleryData.length}`;
-        lbCaption.innerText = current.alt;
+        // Nếu không có direction (open lần đầu), chỉ set ảnh trực tiếp
+        if (!direction) {
+            lbImgMain.src = current.src;
+            lbCounter.innerText = `${currentIndex + 1} / ${galleryData.length}`;
+            lbCaption.innerText = current.alt;
+            return;
+        }
+
+        // Slide animation: tạo ảnh mới bay vào, ảnh cũ bay ra
+        if (isAnimating) return;
+        isAnimating = true;
+
+        const lbMain = lbImgMain.closest('.lb-main') || lbImgMain.parentElement;
+
+        // Tạo thẻ img mới
+        const newImg = document.createElement('img');
+        newImg.src = current.src;
+        newImg.alt = current.alt;
+        newImg.style.cssText = lbImgMain.style.cssText;
+        newImg.className = lbImgMain.className.replace('is-zoomed', '');
+        newImg.id = '';
+        newImg.style.position = 'absolute';
+        newImg.style.top = '0';
+        newImg.style.left = '0';
+        newImg.style.width = '100%';
+        newImg.style.height = '100%';
+        newImg.style.objectFit = 'contain';
+        newImg.style.borderRadius = '4px';
+        newImg.style.willChange = 'transform, opacity';
+        newImg.style.transition = 'none';
+        newImg.style.transform = direction === 'next' ? 'translateX(60px)' : 'translateX(-60px)';
+        newImg.style.opacity = '0';
+
+        // Cũng set style cho ảnh cũ chuẩn bị bay ra
+        lbImgMain.style.position = 'absolute';
+        lbImgMain.style.top = '0';
+        lbImgMain.style.left = '0';
+        lbImgMain.style.width = '100%';
+        lbImgMain.style.height = '100%';
+        lbImgMain.style.willChange = 'transform, opacity';
+        lbImgMain.style.transition = 'none';
+
+        // Đảm bảo container relative
+        lbMain.style.position = 'relative';
+
+        lbMain.appendChild(newImg);
+
+        // Force reflow rồi bắt đầu animate
+        void newImg.offsetWidth;
+
+        const DURATION = 320;
+        const EASING = 'cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+
+        // Ảnh cũ bay ra
+        lbImgMain.style.transition = `transform ${DURATION}ms ${EASING}, opacity ${DURATION}ms ease`;
+        lbImgMain.style.transform = direction === 'next' ? 'translateX(-60px)' : 'translateX(60px)';
+        lbImgMain.style.opacity = '0';
+
+        // Ảnh mới bay vào
+        newImg.style.transition = `transform ${DURATION}ms ${EASING}, opacity ${DURATION}ms ease`;
+        newImg.style.transform = 'translateX(0)';
+        newImg.style.opacity = '1';
+
+        setTimeout(() => {
+            // Swap: xóa ảnh cũ, gán id + ref cho ảnh mới
+            lbMain.removeChild(lbImgMain);
+            newImg.id = 'lb-img-main';
+            newImg.style.position = '';
+            newImg.style.top = '';
+            newImg.style.left = '';
+            newImg.style.width = '';
+            newImg.style.height = '';
+            newImg.style.willChange = '';
+            newImg.style.transition = '';
+            newImg.style.transform = '';
+            newImg.style.opacity = '';
+
+            // Cập nhật reference
+            lbMain.style.position = '';
+
+            // Cập nhật biến lbImgMain toàn cục bằng cách reassign cho closure
+            // Dùng thủ thuật: ghi đè pointer events block
+            newImg.style.pointerEvents = 'none';
+            newImg.style.userSelect = 'none';
+
+            lbCounter.innerText = `${currentIndex + 1} / ${galleryData.length}`;
+            lbCaption.innerText = current.alt;
+
+            isAnimating = false;
+        }, DURATION + 20);
     }
 
     function openLightbox(index) {
         refreshGallery();
         currentIndex = index;
-        updateLightbox();
+        // Lấy lại reference mới nhất của lbImgMain
+        const freshImg = document.getElementById('lb-img-main');
+        if (freshImg) {
+            freshImg.src = galleryData[currentIndex].src;
+            freshImg.style.transform = '';
+            freshImg.style.opacity = '';
+        }
+        lbCounter.innerText = `${currentIndex + 1} / ${galleryData.length}`;
+        if (lbCaption) lbCaption.innerText = galleryData[currentIndex].alt;
 
         document.body.classList.add('lb-open');
         document.documentElement.classList.add('lb-open');
@@ -485,16 +582,92 @@ document.addEventListener("DOMContentLoaded", function () {
 
         document.body.classList.remove('lb-open');
         document.documentElement.classList.remove('lb-open');
+        isAnimating = false;
     }
 
     function showNext() {
+        if (isAnimating) return;
         currentIndex = (currentIndex + 1) % galleryData.length;
-        updateLightbox();
+        const currentImg = document.getElementById('lb-img-main');
+        navigateTo(currentIndex, 'next', currentImg);
     }
 
     function showPrev() {
+        if (isAnimating) return;
         currentIndex = (currentIndex - 1 + galleryData.length) % galleryData.length;
-        updateLightbox();
+        const currentImg = document.getElementById('lb-img-main');
+        navigateTo(currentIndex, 'prev', currentImg);
+    }
+
+    function navigateTo(index, direction, oldImg) {
+        if (galleryData.length === 0 || !oldImg) return;
+        if (isAnimating) return;
+        isAnimating = true;
+
+        const current = galleryData[index];
+        const lbMain = oldImg.parentElement;
+
+        const newImg = document.createElement('img');
+        newImg.src = current.src;
+        newImg.alt = current.alt;
+        newImg.style.cssText = '';
+        newImg.className = 'lb-slide-in';
+        newImg.style.position = 'absolute';
+        newImg.style.inset = '0';
+        newImg.style.width = '100%';
+        newImg.style.height = '100%';
+        newImg.style.maxHeight = '80vh';
+        newImg.style.objectFit = 'contain';
+        newImg.style.borderRadius = '4px';
+        newImg.style.boxShadow = '0 30px 60px rgba(0,0,0,0.5)';
+        newImg.style.willChange = 'transform, opacity';
+        newImg.style.pointerEvents = 'none';
+        newImg.style.userSelect = 'none';
+        newImg.style.webkitUserDrag = 'none';
+        newImg.style.transition = 'none';
+        newImg.style.transform = direction === 'next' ? 'translateX(55px)' : 'translateX(-55px)';
+        newImg.style.opacity = '0';
+
+        lbMain.style.position = 'relative';
+        lbMain.style.overflow = 'hidden';
+
+        oldImg.style.willChange = 'transform, opacity';
+        oldImg.style.transition = 'none';
+
+        lbMain.appendChild(newImg);
+        void newImg.offsetWidth; // force reflow
+
+        const DURATION = 300;
+        const EASE = 'cubic-bezier(0.4, 0, 0.2, 1)';
+        const trans = `transform ${DURATION}ms ${EASE}, opacity ${DURATION}ms ease`;
+
+        oldImg.style.transition = trans;
+        oldImg.style.transform = direction === 'next' ? 'translateX(-55px)' : 'translateX(55px)';
+        oldImg.style.opacity = '0';
+
+        newImg.style.transition = trans;
+        newImg.style.transform = 'translateX(0)';
+        newImg.style.opacity = '1';
+
+        setTimeout(() => {
+            lbMain.removeChild(oldImg);
+            newImg.id = 'lb-img-main';
+            newImg.style.position = '';
+            newImg.style.inset = '';
+            newImg.style.width = '';
+            newImg.style.height = '';
+            newImg.style.willChange = '';
+            newImg.style.transition = '';
+            newImg.style.transform = '';
+            newImg.style.opacity = '';
+            lbMain.style.position = '';
+            lbMain.style.overflow = '';
+
+            lbCounter.innerText = `${currentIndex + 1} / ${galleryData.length}`;
+            if (lbCaption) lbCaption.innerText = current.alt;
+
+            isAnimating = false;
+        }, DURATION + 30);
     }
 
     // Swipe/Drag Logic for Mobile & PC
