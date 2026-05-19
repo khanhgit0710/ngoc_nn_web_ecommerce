@@ -211,8 +211,22 @@
         transform: translateY(0) !important;
     }
 
+    /* Restore premium scale reveal animation for sales-hero on mobile */
+    .sales-hero.reveal.reveal-scale {
+        opacity: 0 !important;
+        transform: scale(0.9) !important;
+        transition: opacity 1.5s cubic-bezier(0.19, 1, 0.22, 1),
+            transform 1.5s cubic-bezier(0.19, 1, 0.22, 1) !important;
+    }
+
+    .sales-hero.reveal.reveal-scale.active,
+    .sales-hero.reveal.reveal-scale.revealed {
+        opacity: 1 !important;
+        transform: scale(1) !important;
+    }
+
     .highlight-item h3 {
-        font-size: 18px !important;
+        font-size: 20px !important;
     }
 
     .trending-header,
@@ -241,8 +255,10 @@
     }
 
     .trending-title-link,
-    .news-title a {
-        font-size: 18px !important;
+    .news-title a,
+    .stretched-link {
+        font-size: 20px !important;
+        font-weight: 600 !important;
         line-height: 1.2 !important;
         min-height: 2.4em !important;
         display: -webkit-box !important;
@@ -1135,25 +1151,31 @@
 
     /* FIX CỤM NÚT THẾ MẠNH CHO MOBILE/TABLET */
     .strengths__btns {
-        display: grid !important;
-        grid-template-columns: 1fr 1fr !important;
-        gap: 10px !important;
+        display: flex !important;
+        flex-direction: column;
+        align-items: center !important;
+        gap: 15px !important;
         width: 100% !important;
         margin-top: 30px !important;
-        padding: 0 10px !important;
+        padding: 0 20px !important;
         box-sizing: border-box !important;
     }
 
     .strengths__btns .btn-connect,
     .strengths__btns .btn-zalo {
-        width: auto !important;
-        /* Tuyệt đối không Full-width */
+        width: 100% !important;
+        max-width: 150px !important;
+        /* Symmetrical equal sizing on mobile */
+        height: 52px !important;
+        font-size: 14px !important;
+        font-weight: 300 !important;
+        /* Elegant light weight */
         margin: 0 !important;
         text-align: center !important;
         display: flex !important;
         justify-content: center !important;
         align-items: center !important;
-        white-space: nowrap !important;
+        white-space: nowrap;
     }
 
     .social-box:last-child {
@@ -1394,6 +1416,12 @@
     .container-1000 {
         padding-left: var(--side-padding) !important;
         padding-right: var(--side-padding) !important;
+    }
+
+    /* Set why-us__desc and values-badges font-size to 18px on mobile/responsive */
+    .values-badges,
+    .why-us__desc {
+        font-size: 18px !important;
     }
 
     .contact__grid {
@@ -1658,6 +1686,34 @@
         width: 100% !important;
         transform: none !important;
         opacity: 1 !important;
+    }
+
+    /* Set tags and list items inside slim-box to 18px font-size on mobile/responsive */
+    .slim-box .tag,
+    .slim-box .list li {
+        font-size: 18px !important;
+    }
+
+    /* Kygui-intro description text alignment and inline wrapper behavior on mobile */
+    .kygui-intro__desc {
+        text-align: left !important;
+        margin-top: 15px !important;
+        margin-bottom: 25px !important;
+    }
+
+    .kygui-intro__desc p,
+    .luxury-paragraph {
+        text-align: left !important;
+        word-break: normal !important;
+    }
+
+    .kygui-intro__desc p strong,
+    .luxury-paragraph strong {
+        display: inline !important;
+    }
+
+    .kygui-intro__desc br {
+        display: block !important;
     }
 
     /* -----------------------------------------
@@ -1939,6 +1995,12 @@
 
     .news-card {
         margin-bottom: 0 !important;
+        gap: 0 !important;
+        border-bottom: none !important;
+    }
+
+    .news-grid {
+        gap: 18px !important;
     }
 
     /* HIDE BUTTONS ON TABLET/MOBILE */
@@ -2036,8 +2098,8 @@
     .news-info {
         display: flex !important;
         flex-direction: column !important;
-        gap: 4px !important;
-        padding: 8px 0 !important;
+        gap: 2px !important;
+        padding: 0px !important;
     }
 
     .news-info .news-title {
@@ -2056,9 +2118,13 @@
         margin-right: 0 !important;
     }
 
-    .news-card,
+    .news-card {
+        padding-bottom: 0 !important;
+    }
+
     .stretched-link {
         padding-bottom: 0 !important;
+        font-weight: 600 !important;
     }
 
     .pagination {
@@ -2077,7 +2143,7 @@
     main .post-sapo,
     main .entry-content p,
     .tag {
-        font-size: 16px !important;
+        font-size: 18px !important;
     }
 
     .bullet-list,
@@ -2198,7 +2264,7 @@
     .benefits-premium p,
     .request-item p,
     .form-notes p {
-        font-size: 16px !important;
+        font-size: 18px !important;
         line-height: 1.6 !important;
         margin-bottom: var(--side-padding) !important;
     }
@@ -2221,7 +2287,7 @@
     }
 
     .values-badges {
-        font-size: 16px !important;
+        font-size: 18px !important;
         line-height: 1.5 !important;
         margin-bottom: 0 !important;
     }
@@ -2463,6 +2529,13 @@
     .info-group h3,
     .why-card-small__content h3 {
         font-size: 20px !important;
+    }
+
+    .info-group p,
+    .info-group ul {
+        font-size: 18px !important;
+        /* Larger 18px size ONLY on Mobile screens */
+        line-height: 1.7 !important;
     }
 
     .faq-question {
@@ -2728,6 +2801,13 @@
     }
 
     /* RESET BẬC THANG CHO MOBILE - CÁCH ĐỀU NHAU */
+    .why-us-minimal {
+        padding: 15px var(--side-padding) !important;
+        border: none !important;
+        background: transparent !important;
+        box-shadow: none !important;
+    }
+
     .why-us-minimal__grid {
         display: flex !important;
         flex-direction: column !important;
@@ -2970,6 +3050,11 @@
         font-size: 18px !important;
     }
 
+    .values-badges p,
+    .why-us__desc p {
+        font-size: 18px !important;
+    }
+
     .error-msg {
         font-size: 18px !important;
     }
@@ -3054,14 +3139,8 @@
     display: flex !important;
     flex-direction: column !important;
     align-items: center !important;
-    padding: 0 10px !important;
-    gap: var(--side-padding) !important;
-}
-
-.strengths__btns .btn-connect,
-.strengths__btns .btn-zalo {
-    width: auto !important;
-    padding: 0 25px !important;
+    padding: 0 20px !important;
+    gap: 15px !important;
 }
 
 .featured-overlay {
@@ -3301,12 +3380,12 @@
     }
 
     .calc-controls {
-        padding-left: 0 !important;
-        padding-right: 0 !important;
+        padding-left: 8px !important;
+        padding-right: 8px !important;
     }
 
     .control-label h4 {
-        font-size: 14px !important;
+        font-size: 16px !important;
         margin: 0 !important;
     }
 
@@ -3419,20 +3498,21 @@
     }
 
     .signature-logo-v3 img {
-        height: 60px !important;
+        height: 80px !important;
+        max-width: 100% !important;
         margin-bottom: 0 !important;
     }
 
     .signature-quick-nav {
-        gap: 35px !important;
+        gap: 40px !important;
         flex-wrap: wrap !important;
         padding: 0 var(--side-padding) !important;
-        margin-bottom: 32px !important;
+        margin-bottom: 26px !important;
         justify-content: center !important;
     }
 
     .signature-quick-nav a {
-        font-size: 15px !important;
+        font-size: 18px !important;
     }
 
     .signature-main-nav {
@@ -3444,7 +3524,7 @@
     }
 
     .signature-main-nav a {
-        font-size: 14px !important;
+        font-size: 18px !important;
     }
 
     /* Ẩn dấu chấm ngăn cách khi rớt dòng trên mobile */
@@ -3467,7 +3547,7 @@
     .signature-policies-v3 {
         gap: 15px !important;
         flex-wrap: wrap !important;
-        font-size: 14px !important;
+        font-size: 16px !important;
         padding: 0 var(--side-padding) !important;
         justify-content: center !important;
         margin-bottom: 24px !important;
@@ -3478,7 +3558,7 @@
     }
 
     .signature-copyright-v3 {
-        font-size: 12px !important;
+        font-size: 15px !important;
         padding: var(--side-padding) !important;
         text-align: center !important;
     }
@@ -3495,14 +3575,14 @@
     }
 
     .footer-hub__bottom {
-        gap: var(--side-padding) !important;
+        gap: 40px !important;
         /* Giảm gap mặc định 30px của thẻ cha */
     }
 
     .hub-buttons {
         flex-direction: column !important;
         align-items: center !important;
-        gap: var(--side-padding) !important;
+        gap: 40px !important;
         padding: 0 !important;
         margin: 0 auto !important;
         /* Xoá margin-top var(--side-padding) */
@@ -3575,6 +3655,31 @@
     .cta-banner-section {
         margin-bottom: 0 !important;
     }
+
+    .bank-logo-item {
+        width: 160px !important;
+        height: 80px !important;
+    }
+
+    .bank-logo-item img,
+    .bank-logo-item .logo-vcb,
+    .bank-logo-item .logo-tcb,
+    .bank-logo-item .logo-bidv,
+    .bank-logo-item .logo-agr,
+    .bank-logo-item .logo-mb,
+    .bank-logo-item .logo-acb,
+    .bank-logo-item .logo-scb,
+    .bank-logo-item img[src*="vpbank-logo.jpg"] {
+        height: 40px !important;
+        max-height: 40px !important;
+        max-width: 130px !important;
+        width: auto !important;
+        transform: none !important;
+    }
+
+    .bank-marquee-track {
+        gap: 50px !important;
+    }
 }
 
 /* BREAKPOINT: 480PX */
@@ -3589,14 +3694,23 @@
         font-size: 18px !important;
     }
 
+    .calc-container {
+        padding-left: 8px !important;
+        padding-right: 8px !important;
+        width: calc(100% - 16px) !important;
+        margin-left: auto !important;
+        margin-right: auto !important;
+        box-sizing: border-box !important;
+    }
+
     .calc-side-title {
-        font-size: 20px !important;
+        font-size: 22px !important;
+        font-weight: 800 !important;
     }
 
     .control-label {
-        font-size: 16px !important;
-        white-space: nowrap !important;
-        /* Force same line */
+        font-size: 15px !important;
+        white-space: normal !important;
     }
 
     .control-label span {
@@ -3604,8 +3718,9 @@
     }
 
     .control-input {
-        font-size: 16px !important;
-        width: 190px !important;
+        font-size: 14px !important;
+        width: 150px !important;
+        max-width: 50% !important;
     }
 
     .analysis-grid {
@@ -3613,12 +3728,35 @@
     }
 
     .bank-logo-item {
-        width: 140px !important;
-        height: 70px !important;
+        width: 120px !important;
+        height: 60px !important;
     }
 
-    .bank-logo-item img {
-        height: 35px !important;
+    .bank-logo-item img,
+    .bank-logo-item .logo-vcb,
+    .bank-logo-item .logo-tcb,
+    .bank-logo-item .logo-bidv,
+    .bank-logo-item .logo-agr,
+    .bank-logo-item .logo-mb,
+    .bank-logo-item .logo-acb,
+    .bank-logo-item .logo-scb {
+        height: 30px !important;
+        max-height: 30px !important;
+        max-width: 100px !important;
+        width: auto !important;
+        transform: none !important;
+    }
+
+    .bank-logo-item img[src*="vpbank-logo.jpg"] {
+        height: 42px !important;
+        max-height: 42px !important;
+        max-width: 110px !important;
+        width: auto !important;
+        transform: scale(1.35) !important;
+    }
+
+    .bank-marquee-track {
+        gap: 30px !important;
     }
 
     /* --- FAQ PAGE --- */
@@ -3655,18 +3793,18 @@
 
     .faq-question {
         padding: var(--side-padding) var(--side-padding) !important;
-        font-size: 17px !important;
-        font-weight: 400 !important;
+        font-size: 18px !important;
+        font-weight: 500 !important;
         line-height: 1.3 !important;
     }
 
     .faq-answer {
         padding: 0 var(--side-padding) 0;
-        font-size: 14px !important;
+        font-size: 16px !important;
     }
 
     .faq-question span {
-        font-size: 17px !important;
+        font-size: 18px !important;
     }
 
     .faq-group-title {
@@ -3679,6 +3817,15 @@
 
     .faq-grid {
         margin-top: 20px !important;
+    }
+
+    .faq-footer {
+        margin-top: 15px !important;
+    }
+
+    .news-section-footer {
+        margin-top: 10px !important;
+        margin-bottom: 10px !important;
     }
 
     .promo-mid-text {
@@ -3916,10 +4063,45 @@
         min-height: auto !important;
     }
 
-    .hero-title {
-        font-size: 52px !important;
-        margin-bottom: 10px !important;
-        line-height: 1.1 !important;
+    .sales-hero__content {
+        align-items: center !important;
+        text-align: center !important;
+        padding: 0 var(--side-padding) !important;
+    }
+
+    .sales-hero .hero-title-container {
+        align-items: center !important;
+        line-height: 0.95 !important;
+        margin-bottom: 15px !important;
+        width: 100% !important;
+    }
+
+    .sales-hero .hero-author-title {
+        font-family: 'Anton', sans-serif !important;
+        font-size: clamp(100px, 16vw, 300px) !important;
+        font-weight: 400 !important;
+        letter-spacing: 0.4px !important;
+        text-align: center !important;
+        line-height: 1.0 !important;
+        transform: scaleX(1.18) !important;
+        transform-origin: center !important;
+        display: inline-block !important;
+        width: auto !important;
+        text-shadow: 0 3px 10px rgba(0, 0, 0, 0.5), 0 8px 25px rgba(0, 0, 0, 0.7) !important;
+    }
+
+    .sales-hero .hero-main-title {
+        font-family: 'Anton', sans-serif !important;
+        font-size: clamp(50px, 7vw, 42px) !important;
+        font-weight: 400 !important;
+        letter-spacing: -0.02em !important;
+        text-align: center !important;
+        line-height: 1.05 !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        margin: 0 !important;
+        display: block !important;
+        text-shadow: 0 3px 10px rgba(0, 0, 0, 0.5), 0 8px 25px rgba(0, 0, 0, 0.7) !important;
     }
 
     .hero-author {
@@ -3930,6 +4112,67 @@
     .sales-hero__subtitle {
         font-size: 16px !important;
         margin-bottom: 35px !important;
+        text-align: center !important;
+        margin-left: auto !important;
+        margin-right: auto !important;
+    }
+
+    .sales-hero .about-hero-premium__tagline {
+        display: flex !important;
+        flex-direction: row !important;
+        flex-wrap: nowrap !important;
+        justify-content: center !important;
+        gap: 12px !important;
+        margin-left: auto !important;
+        margin-right: auto !important;
+        margin-bottom: 25px !important;
+        width: 100% !important;
+    }
+
+    .sales-hero .about-tag-badge {
+        font-size: 22px !important;
+        font-weight: 100 !important;
+        white-space: nowrap !important;
+    }
+
+    .sales-hero .about-tag-badge:not(:last-child)::after {
+        content: "•" !important;
+        margin-left: 12px !important;
+        font-size: 10px !important;
+    }
+
+    .sales-hero .about-stats-group {
+        display: grid !important;
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 15px 0 !important;
+        max-width: 100% !important;
+        padding: 0 !important;
+        background: none !important;
+        backdrop-filter: none !important;
+        -webkit-backdrop-filter: none !important;
+        border: none !important;
+        margin-bottom: 30px !important;
+    }
+
+    .sales-hero .about-stats-item {
+        border-right: none !important;
+        padding: 0 10px !important;
+    }
+
+    .sales-hero .about-stats-item:nth-child(odd) {
+        border-right: 1px solid rgba(255, 255, 255, 0.12) !important;
+    }
+
+    .sales-hero .about-stats-item:first-child {
+        padding-left: 10px !important;
+    }
+
+    .sales-hero .about-stats__number {
+        font-size: 26px !important;
+    }
+
+    .sales-hero .about-stats__label {
+        font-size: 18px !important;
     }
 
     .hero-actions {
@@ -3938,7 +4181,7 @@
         gap: 12px !important;
         justify-content: center !important;
         width: 100% !important;
-        margin-top: 40px !important;
+        margin-top: 20px !important;
     }
 
     .btn-premium-cta {
@@ -4077,7 +4320,8 @@
 
     .calc-side-title {
         margin-bottom: 15px !important;
-        font-size: 20px !important;
+        font-size: 22px !important;
+        font-weight: 800 !important;
     }
 
     .luxury-slider {
@@ -4098,6 +4342,23 @@
 
     .control-label {
         margin-bottom: 0px !important;
+    }
+
+    /* Center method-toggle on mobile and prevent layout clipping */
+    .method-toggle-container {
+        display: flex !important;
+        justify-content: center !important;
+        width: 100% !important;
+    }
+
+    .method-toggle {
+        width: calc(100% - 20px) !important;
+        max-width: 340px !important;
+        margin: 10px auto !important;
+    }
+
+    .method-btn {
+        font-size: 13px !important;
     }
 }
 
@@ -4408,7 +4669,7 @@
 
     .signature-policies-v3 a {
         justify-content: center !important;
-        font-size: 12px !important;
+        font-size: 16px !important;
         width: 100% !important;
     }
 
@@ -4440,12 +4701,12 @@
 
     /* FIX SQUASHED SOCIAL ICONS ON MOBILE */
     .signature-social-v3 {
-        gap: 15px !important;
+        gap: 20px !important;
     }
 
     .signature-social-v3 a {
-        width: 45px !important;
-        height: 45px !important;
+        width: 55px !important;
+        height: 55px !important;
         flex-shrink: 0 !important;
         border-radius: 50% !important;
         /* Tròn trịa đẹp hơn trên mobile */
@@ -4525,13 +4786,13 @@
     }
 
     .faq-grid-wrapper:not(.is-expanded) .faq-item:nth-child(4) {
-        max-height: 55px !important;
+        max-height: 75px !important;
         overflow: hidden !important;
         pointer-events: none !important;
         margin-bottom: 0 !important;
         border-bottom: none !important;
-        -webkit-mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1) 10%, rgba(0, 0, 0, 0) 100%) !important;
-        mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1) 10%, rgba(0, 0, 0, 0) 100%) !important;
+        -webkit-mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0) 80%) !important;
+        mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0) 80%) !important;
     }
 
     .faq-grid-wrapper:not(.is-expanded) .faq-grid-faded {
@@ -4601,5 +4862,437 @@
         align-items: center !important;
         position: relative !important;
         top: 2px !important;
+    }
+}
+
+/* Force Lightbox Caption to be extra compact and borderless on Mobile & Tablet screens */
+@media (max-width: 768px) {
+    .lb-caption-container {
+        background-color: var(--color-primary) !important;
+        border-top: 1px solid rgba(255, 255, 255, 0.15) !important;
+        padding: 8px 15px !important;
+        height: 44px !important;
+        /* Even more low-profile on mobile screens to save space */
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        box-sizing: border-box !important;
+        border-radius: 4px !important;
+    }
+
+    #lb-caption-text {
+        color: #ffffff !important;
+        font-weight: 500 !important;
+        font-size: 13px !important;
+        /* Balanced font size for smaller screens */
+        letter-spacing: 0.03em !important;
+        background: transparent !important;
+        /* Remove dark pill background */
+        border: none !important;
+        /* Remove inner border */
+        padding: 0 !important;
+        /* Remove inner padding */
+        backdrop-filter: none !important;
+        /* Remove blur effect */
+        border-radius: 0 !important;
+        /* Remove border radius */
+        box-shadow: none !important;
+    }
+
+    /* Expand lightbox image to almost edge-to-edge / full width on Mobile */
+    .lb-main {
+        flex: 0 0 100% !important;
+        max-width: 100% !important;
+        padding: 0 5px !important;
+        /* Minimal spacing for premium edge-to-edge cinematic look */
+    }
+
+    #lb-img-main {
+        width: 96vw !important;
+        max-width: 96vw !important;
+        height: auto !important;
+        max-height: 72vh !important;
+        object-fit: contain !important;
+    }
+
+    .lb-track {
+        gap: 0 !important;
+    }
+
+    /* ==========================================================================
+       MOBILE LOGO SIZING & SPACING
+       ========================================================================== */
+    img[src*="vpbank-logo.jpg"] {
+        height: 120px !important;
+        max-height: 120px !important;
+        transform: scale(2.1) !important;
+    }
+
+    img[src*="vietcombank-logo.jpg"] {
+        height: 95px !important;
+        max-height: 95px !important;
+        transform: translateY(-6px) scale(1.3) !important;
+    }
+
+    img[src*="techcombank-logo.jpg"] {
+        height: 110px !important;
+        max-height: 110px !important;
+        transform: scale(1.25) !important;
+    }
+
+    /* ==========================================================================
+       MOBILE FAQ LAYOUT OVERRIDES
+       ========================================================================== */
+    .faq-footer {
+        margin-top: 18px !important;
+    }
+
+    .faq-question {
+        font-weight: 900 !important;
+        font-size: 18px !important;
+        padding: 14px 20px !important;
+        min-height: 64px !important;
+        display: flex !important;
+        align-items: center !important;
+    }
+
+    .faq-answer {
+        padding: 0px 20px 14px !important;
+    }
+
+    .faq-grid {
+        gap: 3px !important;
+    }
+
+    .faq-item {
+        margin-bottom: 3px !important;
+    }
+}
+
+
+/* ==========================================================================
+   FOOTER-HUB MOBILE COMPACT REDESIGN
+   Giảm ~69% không gian dọc — Giữ chất luxury
+   ========================================================================== */
+
+@media (max-width: 768px) {
+
+    .hub-title-sub {
+        display: none !important;
+    }
+
+    /* --- SECTION HEADER: Thu gọn --- */
+    .footer-contact .section-label {
+        margin-bottom: 8px !important;
+    }
+
+    .footer-contact .section-title {
+        font-size: 24px !important;
+        margin-bottom: 8px !important;
+    }
+
+    .footer-contact .values-badges {
+        margin-bottom: 0 !important;
+    }
+
+    .footer-contact .values-badges p {
+        font-size: 18px !important;
+        margin-bottom: 0 !important;
+    }
+
+    /* --- FOOTER HUB CONTAINER --- */
+    .footer-hub {
+        margin-top: 20px !important;
+    }
+
+    /* --- GRID: 2x2 Compact Social Cards --- */
+    .footer-hub__grid {
+        display: grid !important;
+        grid-template-columns: 1fr 1fr !important;
+        grid-template-rows: auto auto auto !important;
+        gap: 10px !important;
+    }
+
+    /* QR Center → Xuống dưới, nằm ngang với hotline */
+    .hub-qr-center {
+        grid-column: 1 / -1 !important;
+        grid-row: auto !important;
+        flex-direction: row !important;
+        gap: 20px !important;
+        padding: 16px !important;
+        margin-bottom: 0 !important;
+        background: #fff !important;
+        border: 1px solid #f0f0f0 !important;
+        border-radius: 12px !important;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03) !important;
+        order: 10 !important;
+    }
+
+    /* QR Wrapper thu nhỏ */
+    .hub-qr-wrapper {
+        width: 160px !important;
+        height: 160px !important;
+        min-width: 160px !important;
+        padding: 8px !important;
+        margin-bottom: 0 !important;
+        border-radius: 10px !important;
+    }
+
+    .hub-qr-logo {
+        width: 36px !important;
+        height: 36px !important;
+        font-size: 13px !important;
+        border-radius: 5px !important;
+    }
+
+    .hub-qr-tag {
+        font-size: 16px !important;
+        text-align: center !important;
+    }
+
+    /* --- SOCIAL CARDS: Compact Mode --- */
+    .hub-card {
+        padding: 14px !important;
+        border-radius: 10px !important;
+        grid-template-columns: 36px 1fr !important;
+        grid-template-areas:
+            "icon title"
+            "icon title" !important;
+        column-gap: 10px !important;
+        row-gap: 0 !important;
+        cursor: pointer !important;
+        position: relative !important;
+        overflow: hidden !important;
+        transition: all 0.35s cubic-bezier(0.165, 0.84, 0.44, 1) !important;
+        align-self: start !important;
+    }
+
+    /* Hub card placement: 2x2 */
+    .hub-card--tl {
+        grid-column: 1 !important;
+        grid-row: 1 !important;
+        order: 1 !important;
+    }
+
+    .hub-card--tr {
+        grid-column: 2 !important;
+        grid-row: 1 !important;
+        order: 2 !important;
+    }
+
+    .hub-card--bl {
+        grid-column: 1 !important;
+        grid-row: 2 !important;
+        order: 3 !important;
+    }
+
+    .hub-card--br {
+        grid-column: 2 !important;
+        grid-row: 2 !important;
+        order: 4 !important;
+    }
+
+    .hub-card__icon {
+        width: 36px !important;
+        height: 36px !important;
+        border-radius: 8px !important;
+        font-size: 14px !important;
+    }
+
+    .hub-card__title {
+        font-size: 16px !important;
+        line-height: 1.3 !important;
+        white-space: nowrap !important;
+        overflow: hidden !important;
+        text-overflow: ellipsis !important;
+    }
+
+    /* Sub-links: ẩn mặc định, show khi expanded */
+    .hub-card__links {
+        grid-area: links !important;
+        grid-column: 1 / -1 !important;
+        max-height: 0 !important;
+        overflow: hidden !important;
+        opacity: 0 !important;
+        padding-top: 0 !important;
+        gap: 6px !important;
+        transition: max-height 0.4s cubic-bezier(0.165, 0.84, 0.44, 1),
+            opacity 0.3s ease,
+            padding-top 0.3s ease !important;
+    }
+
+    .hub-card.expanded .hub-card__links {
+        max-height: 200px !important;
+        opacity: 1 !important;
+        padding-top: 10px !important;
+    }
+
+    .hub-card.expanded {
+        grid-template-areas:
+            "icon title"
+            "links links" !important;
+        row-gap: 4px !important;
+        border-color: var(--color-primary) !important;
+        box-shadow: 0 8px 25px rgba(183, 114, 70, 0.08) !important;
+    }
+
+    .hub-card__links a {
+        font-size: 16px !important;
+        padding: 2px 0 !important;
+        display: flex !important;
+        flex-wrap: wrap !important;
+        justify-content: flex-start !important;
+        text-align: left !important;
+        row-gap: 2px !important;
+    }
+
+    .hub-card__links a span {
+        font-size: 16px !important;
+        margin-left: 0 !important;
+        flex: 1 1 100% !important;
+        display: block !important;
+        text-align: left !important;
+        white-space: nowrap !important;
+        color: var(--color-primary) !important;
+    }
+
+    /* Expand indicator arrow */
+    .hub-card::after {
+        content: '\f078' !important;
+        font-family: 'Font Awesome 6 Free' !important;
+        font-weight: 900 !important;
+        position: absolute !important;
+        top: 16px !important;
+        right: 12px !important;
+        font-size: 8px !important;
+        color: rgba(0, 0, 0, 0.2) !important;
+        transition: all 0.35s cubic-bezier(0.165, 0.84, 0.44, 1) !important;
+    }
+
+    .hub-card.expanded::after {
+        transform: rotate(180deg) !important;
+        color: var(--color-primary) !important;
+    }
+
+    /* --- BOTTOM: QR + Hotline inline --- */
+    .footer-hub__bottom {
+        gap: 20px !important;
+        margin-top: 40px !important;
+    }
+
+    .hub-hotline {
+        width: 100% !important;
+    }
+
+    .hub-hotline__label {
+        font-size: 16px !important;
+        color: #999 !important;
+    }
+
+    .hub-hotline__display {
+        padding: 10px 16px !important;
+        gap: 12px !important;
+        border-width: 1.5px !important;
+        border-radius: 10px !important;
+        margin: 10px 0 0 0 !important;
+    }
+
+    .hub-hotline__number {
+        font-size: 28px !important;
+        font-weight: 900 !important;
+    }
+
+    .hub-vibrate-icon {
+        font-size: 22px !important;
+    }
+
+    /* --- CTA BUTTONS: Compact row --- */
+    .hub-buttons {
+        flex-direction: row !important;
+        gap: 8px !important;
+        width: 100% !important;
+    }
+
+    .btn-luxury-action {
+        flex: 1 !important;
+        height: 46px !important;
+        font-size: 13px !important;
+        padding: 0 8px !important;
+        border-radius: 10px !important;
+        font-weight: 500 !important;
+        letter-spacing: 0.5px !important;
+        gap: 8px !important;
+    }
+
+    .btn-luxury-action i {
+        font-size: 14px !important;
+    }
+
+    .btn-zalo-icon {
+        width: 20px !important;
+        height: 20px !important;
+    }
+}
+
+/* Ultra-compact refinements for small phones */
+@media (max-width: 380px) {
+    .hub-card__title {
+        font-size: 10px !important;
+    }
+
+    .hub-card__icon {
+        width: 32px !important;
+        height: 32px !important;
+        font-size: 13px !important;
+    }
+
+    .hub-card {
+        padding: 12px !important;
+        column-gap: 8px !important;
+    }
+
+    .hub-qr-wrapper {
+        width: 130px !important;
+        height: 130px !important;
+        min-width: 130px !important;
+    }
+
+    .hub-hotline__number {
+        font-size: 24px !important;
+    }
+
+    .btn-luxury-action {
+        height: 42px !important;
+        font-size: 12px !important;
+    }
+}
+
+/* FAQ QUESTION TYPOGRAPHY & VERTICAL SYMMETRY POLISH ON MOBILE */
+@media (max-width: 480px) {
+    .faq-question {
+        font-size: 16px !important;
+        font-weight: 500 !important;
+        line-height: 1.4 !important;
+        min-height: unset !important;
+        padding-top: 12px !important;
+        padding-bottom: 12px !important;
+        display: flex !important;
+        align-items: center !important;
+    }
+    
+    h3.faq-question {
+        margin-top: 10px !important;
+        font-weight: 600 !important;
+        font-size: 18px !important;
+    }
+
+    h4.faq-question {
+        margin-top: 10px !important;
+        font-weight: 600 !important;
+        font-size: 18px !important;
+    }
+
+    .about-hero-premium__tagline {
+        margin-top: 25px !important;
     }
 }

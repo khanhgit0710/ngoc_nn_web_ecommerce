@@ -675,7 +675,7 @@
 
 /* Animation khi Focus: Label bay lÃªn cá»±c mÆ°á»£t */
 .form__group:focus-within .form__label,
-.form__input:not(:placeholder-shown)+.form__label {
+.form__input:not(:placeholder-shown)~.form__label {
     transform: translateY(-25px) scale(0.85);
     color: var(--color-primary);
     font-weight: 700;
@@ -1104,7 +1104,7 @@
 
 /* Bá» cÃ¡i CSS fix <br> cÅ© vÃ¬ mÃ¬nh khÃ´ng dÃ¹ng ná»¯a */
 .kygui-intro__desc br {
-    display: none;
+    display: block;
 }
 
 /* REVEAL (Giá»¯ nguyÃªn Ä‘á»™ mÆ°á»£t cá»§a KhÃ¡nh) */
@@ -1200,11 +1200,10 @@
 }
 
 .info-group h3 {
-    font-size: var(--font-size-label);
+    font-size: 18px;
     color: #000;
     font-weight: 700;
     margin-bottom: 12px;
-    letter-spacing: 0.5px;
     transition: color 0.4s ease;
 }
 
@@ -1222,13 +1221,13 @@
     transition: all 0.3s ease;
 }
 
-/* .info-group p,
+.info-group p,
 .info-group ul {
-    font-size: var(--font-size-content);
+    font-size: 16px;
     color: var(--color-text);
     line-height: 1.6;
     margin: 0;
-} */
+}
 
 
 /* --- BUTTON Äá»’NG Bá»˜ CART (ULTRA SHINE) --- */
@@ -2910,7 +2909,7 @@ textarea.input-final {
    ========================================================================== */
 .footer-contact {
     width: 100%;
-    background-color: #fff7ec;
+    background-color: #fdf9f6;
 
     /* 2. CÄƒn chá»‰nh ná»™i dung bÃªn trong */
     padding: 40px 0;
@@ -3602,25 +3601,17 @@ textarea.input-final {
     color: #fff !important;
 }
 
-/* .btn-connect:hover {
-    color: #ffffff;
-} */
 
-/* Hiá»‡u á»©ng áº£nh zoom khi slide Ä‘Æ°á»£c hiá»ƒn thá»‹ (Ä‘Ã£ táº¯t theo yÃªu cáº§u) */
 .slide.active img {
     border-radius: 8px;
 }
 
-/* Overlay Ä‘en má» sang trá»ng */
 .featured-overlay {
     position: absolute;
     inset: 0;
-    /* Phá»§ kÃ­n 4 gÃ³c */
     background: rgba(0, 0, 0, 0.5);
-    /* MÃ u Ä‘en phá»§ Ä‘á»u 50% Ä‘á»™ má» */
     display: flex;
     align-items: flex-end;
-    /* Giá»¯ chá»¯ á»Ÿ dÆ°á»›i */
     padding: 40px 40px;
     z-index: 2;
     border-radius: 8px;
@@ -3825,7 +3816,7 @@ textarea.input-final {
 /* Layout tá»•ng cho Grid */
 /* --- 1. CONTAINER CHÃNH --- */
 .trending-section {
-    padding: 0 0 30px 0;
+    padding: 0 0 20px 0;
     margin: 0;
     overflow: hidden;
     color: #bababa !important;
@@ -3852,7 +3843,7 @@ textarea.input-final {
     display: flex;
     justify-content: space-between;
     align-items: flex-end;
-    margin-bottom: 20px;
+    margin-bottom: 0px;
 }
 
 /* NÃºt Ä‘iá»u hÆ°á»›ng */
@@ -3919,9 +3910,8 @@ textarea.input-final {
 .trending-slider-viewport {
     width: 100%;
     overflow: hidden;
-    background: #f7f7f7; /* Màu xám nhạt cao cấp */
-    padding: 24px 16px;
-    border-radius: 12px;
+    padding: 8px 0 20px 0;
+    border-radius: 8px;
     box-sizing: border-box;
 }
 
@@ -3997,8 +3987,8 @@ textarea.input-final {
 
 /* --- 5. TIÃŠU Äá»€ --- */
 .trending-title-link {
-    font-size: var(--font-size-h5);
-    font-weight: 750;
+    font-size: 18px;
+    font-weight: 600;
     line-height: 1.2;
     color: #333;
     margin: 4px 0 6px;
@@ -4174,7 +4164,7 @@ textarea.input-final {
 }
 
 .highlight-item h3 {
-    font-size: 18px;
+    font-size: 20px;
     color: #444;
     font-weight: 600;
     /* TrÃ¬nh bÃ y Ä‘áº­m nhÆ° yÃªu cáº§u */
@@ -4244,13 +4234,13 @@ textarea.input-final {
 
 /* --- 5. LATEST NEWS (LIST Dá»ŒC) --- */
 .categories-section {
-    padding: 30px 0 30px 0;
+    padding: 30px 0 20px 0;
     margin: 0;
     width: 100%;
 }
 
 .categories-section--exp {
-    padding: 25px 0 !important;
+    padding: 0 !important;
     margin: 0;
     width: 100%;
 }
@@ -4364,7 +4354,7 @@ textarea.input-final {
 
 /* --- 2. TIN Má»šI NHáº¤T (NEWS LIST) --- */
 .latest-news {
-    margin: 0;
+    margin-top: 15px;
     padding: 0 0 !important;
 }
 
@@ -4415,7 +4405,7 @@ textarea.input-final {
 .news-grid {
     display: flex;
     flex-direction: column;
-    gap: 18px;
+    gap: 12px;
     width: 100%;
 }
 
@@ -4423,21 +4413,15 @@ textarea.input-final {
 .news-card {
     display: flex;
     align-items: stretch;
-    /* DÃ£n Ä‘á»u Ä‘á»ƒ text ngang báº±ng áº£nh */
     gap: 20px;
-    /* TÄƒng gap cho thoÃ¡ng */
     padding: 0;
     background: transparent;
     transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
     position: relative;
-    /* Quan trá»ng cho stretched-link */
     cursor: pointer;
     margin-bottom: 0px;
-    /* Táº¡o khoáº£ng cÃ¡ch giá»¯a cÃ¡c card */
-    /* padding-bottom: 10px; */
     padding-bottom: 12px;
     border-bottom: 1px solid #eee;
-    /* ÄÆ°á»ng káº» nháº¡t hÆ¡n cho sang */
 }
 
 .stretched-link::after {
@@ -4450,14 +4434,32 @@ textarea.input-final {
     z-index: 1;
 }
 
-.news-title a {
-    text-decoration: none;
-    color: inherit;
-    transition: color 0.3s ease;
+.trending-title-link,
+.news-title a,
+.stretched-link {
+    font-size: 18px !important;
+    font-weight: 600 !important;
+    line-height: 1.2 !important;
+    color: #333 !important;
+    margin: 4px 0 6px !important;
+    padding: 0 4px !important;
+    display: -webkit-box !important;
+    -webkit-line-clamp: 2 !important;
+    -webkit-box-orient: vertical !important;
+    overflow: hidden !important;
+    transition: all 0.3s ease !important;
+    text-align: left !important;
+    text-decoration: none !important;
+    min-height: 2.4em !important;
 }
 
-.news-title a:hover {
-    color: var(--color-primary);
+.trending-title-link:hover,
+.news-title a:hover,
+.stretched-link:hover,
+.trending-card:hover .trending-title-link,
+.news-card:hover .news-title a,
+.news-card:hover .stretched-link {
+    color: var(--color-primary) !important;
 }
 
 /* HIá»†U á»¨NG HOVER Tá»”NG THá»‚ */
@@ -4508,22 +4510,17 @@ textarea.input-final {
 }
 
 .news-title {
-    font-size: 22px;
-    /* TÄƒng size chÃºt cho cÃ¢n Ä‘á»‘i */
-    font-weight: 500;
-    line-height: 1.15;
-    color: #1a1a1a;
     margin-bottom: 0;
     transition: all 0.3s ease;
-    text-align: justify;
 }
 
-.news-card:hover:not(:has(.btn-mini-luxury:hover)) .news-title {
-    color: var(--color-primary);
+.news-card:hover:not(:has(.btn-mini-luxury:hover)) .news-title a,
+.news-card:hover:not(:has(.btn-mini-luxury:hover)) .stretched-link {
+    color: var(--color-primary) !important;
 }
 
 .news-excerpt {
-    font-size: var(--font-size-label);
+    font-size: 16px;
     color: #555;
     line-height: 1.6;
     margin-bottom: 15px;
@@ -4531,7 +4528,6 @@ textarea.input-final {
     margin-top: 10px;
     display: -webkit-box;
     -webkit-line-clamp: 2;
-    /* Giá»›i háº¡n 2 dÃ²ng Ä‘á»ƒ ná»™i dung vá»«a báº±ng áº£nh */
     -webkit-box-orient: vertical;
     overflow: hidden;
     text-align: justify;
@@ -4541,11 +4537,9 @@ textarea.input-final {
 .news-footer {
     position: relative;
     z-index: 2;
-    /* Ná»•i lÃªn trÃªn stretched-link */
     margin-top: auto;
 }
 
-/* Hiá»‡u á»©ng khi Hover nÃºt riÃªng biá»‡t */
 .btn-mini-luxury:hover {
     background: var(--color-primary) !important;
     color: #fff !important;
@@ -4553,10 +4547,7 @@ textarea.input-final {
     transform: translateY(-2px);
 }
 
-/* Utility classes for Scroll Reveals */
 
-/* 1. Reveal cÆ¡ báº£n (DÆ°á»›i lÃªn) */
-/* Redundant reveal removed - consolidated at line 4497 */
 
 /* 4. Story Decoration Specific */
 .story-premium__decoration.reveal {
@@ -5157,7 +5148,7 @@ textarea.input-final {
     padding: 0px 15px;
     border: 1px solid #cfcfcf;
     border-radius: 8px;
-    font-size: var(--font-size-label);
+    font-size: 16px;
     color: #666;
     margin: 0 8px 8px 0;
     transition: 0.3s;
@@ -5499,7 +5490,7 @@ textarea.input-final {
     font-style: italic;
     line-height: 1.6;
     color: #555;
-    font-size: 17px;
+    font-size: 16px;
     margin-bottom: 25px !important;
     position: relative;
     text-align: justify;
@@ -5519,7 +5510,7 @@ textarea.input-final {
 /* NÃšT XEM THÃŠM: TINH Táº¾ */
 .btn-author-more {
     display: inline-block;
-    padding: 6px 40px;
+    padding: 1px 40px;
     border: 1.5px solid var(--color-primary);
     color: var(--color-primary);
     font-weight: 300;
@@ -5948,7 +5939,7 @@ textarea.input-final {
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 30px;
+    gap: 5px;
     margin-top: 50px;
     opacity: 0;
     animation: aboutSlideUp 0.8s ease forwards 0.5s;
@@ -6682,9 +6673,8 @@ p.story-premium__desc {
 
 /* --- BUTTONS --- */
 .strengths__btns {
-    display: flex;
+    display: inline-flex;
     align-items: center;
-    /* Äáº£m báº£o nÃºt cao báº±ng nhau vÃ  tháº³ng hÃ ng */
     justify-content: center;
     gap: 20px;
     margin-top: 40px;
@@ -6723,10 +6713,6 @@ p.story-premium__desc {
     }
 }
 
-/* CÃ¡c thÃ nh pháº§n chá»¯ cÅ©ng lÃ m tÆ°Æ¡ng tá»± náº¿u Ã´ng muá»‘n cháº¡y chá»¯ */
-.strengths__btns {
-    /* Animation removed to favor scroll reveal */
-}
 
 /* --- Tá»”NG THá»‚ SECTION --- */
 .core-values {
@@ -7636,7 +7622,7 @@ p.story-premium__desc {
     width: 240px;
     height: 500px !important;
     position: relative;
-    border-radius: 8px;
+    border-radius: 4px;
     overflow: hidden;
     cursor: pointer;
     background: #f5f5f5;
@@ -9617,7 +9603,7 @@ p,
 
 .faq-item {
     background: #fff;
-    border-radius: 12px;
+    border-radius: 8px;
     border: 1px solid #eee;
     overflow: hidden;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -9715,6 +9701,47 @@ p,
     transform: translateX(6px);
 }
 
+.news-section-footer {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.btn-news-view-all {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    padding: 16px 40px;
+    background: var(--color-primary);
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    font-weight: 300;
+    font-size: 16px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    cursor: pointer;
+    text-decoration: none;
+    box-shadow: 0 10px 20px rgba(183, 114, 70, 0.2);
+}
+
+.btn-news-view-all:hover {
+    background: var(--color-btn);
+    transform: translateY(-5px);
+    box-shadow: 0 15px 35px rgba(183, 114, 70, 0.35);
+}
+
+.btn-news-view-all i {
+    font-size: 14px;
+    transition: transform 0.3s ease;
+}
+
+.btn-news-view-all:hover i {
+    transform: translateX(6px);
+}
+
 /* CTA BANNER */
 .cta-banner-section {
     max-width: 1000px;
@@ -9761,7 +9788,7 @@ p,
     transition: all 0.3s;
     box-shadow: 0 10px 20px rgba(183, 114, 70, 0.3);
     white-space: nowrap;
-    margin-top: 60px !important;
+    margin-top: 20px !important;
 }
 
 .btn-premium-cta:hover {
@@ -10927,9 +10954,17 @@ p,
     height: 65px !important;
 }
 
-.logo-vpb {
-    height: 70px !important;
+img[src*="vpbank-logo.jpg"] {
+    height: 100px !important;
+    max-height: 100px !important;
+    transform: scale(1.35) !important;
 }
+
+.bank-logo-item:hover img[src*="vpbank-logo.jpg"] {
+    transform: scale(1.48) !important;
+}
+
+
 
 .logo-acb {
     height: 50px !important;
@@ -12032,7 +12067,7 @@ p,
 .faq-grid {
     display: grid;
     grid-template-columns: 1fr;
-    gap: 12px;
+    gap: 2px;
 }
 
 .faq-item {
@@ -12054,7 +12089,7 @@ p,
 }
 
 .faq-question {
-    padding: 10px 30px;
+    padding: 20px 30px;
     font-weight: 600;
     font-size: 18px;
     cursor: pointer;
@@ -12610,6 +12645,8 @@ p,
         width: 90%;
         justify-content: center;
     }
+
+
 }
 
 /* ==========================================================================
@@ -12617,10 +12654,11 @@ p,
    ========================================================================== */
 .footer-signature-center {
     --metallic-copper: linear-gradient(135deg, #e68d5e, #b35a32, #ffd6a5, #8b3c1a);
-    background: linear-gradient(145deg, #1a1410 0%, #0a0705 100%) !important;
-    /* Deep luxury coffee-black */
+    background: #fff7ec !important;
+    /* Premium light cream signature background */
     padding: 70px 0 0 !important;
-    color: #E4E4E7 !important;
+    color: #5d564f !important;
+    /* Premium warm dark taupe/brown for excellent light background contrast */
     text-align: center;
     font-family: 'Montserrat', sans-serif;
     position: relative;
@@ -12630,7 +12668,7 @@ p,
     flex-direction: column;
     align-items: center;
     clear: both;
-    border-top: 1px solid rgba(183, 114, 70, 0.15);
+    border-top: 5px solid #5d3420;
 }
 
 /* Subtle brand tone glow & Monogram Pattern */
@@ -12642,7 +12680,7 @@ p,
     transform: translateX(-50%);
     width: 70%;
     height: 100%;
-    background: radial-gradient(ellipse at top, rgba(183, 114, 70, 0.06) 0%, transparent 60%);
+    background: radial-gradient(ellipse at top, rgba(183, 114, 70, 0.08) 0%, transparent 60%);
     pointer-events: none;
     z-index: -1;
 }
@@ -12655,8 +12693,8 @@ p,
     width: 100%;
     height: 100%;
     background-image:
-        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='rgba(183,114,70,0.5)'%3E%3Cpath d='M12 0l1.5 8.5L22 12l-8.5 1.5L12 24l-1.5-8.5L2 12l8.5-1.5z'/%3E%3C/svg%3E"),
-        conic-gradient(rgba(255, 255, 255, 0.02) 90deg, transparent 90deg 180deg, rgba(255, 255, 255, 0.02) 180deg 270deg, transparent 270deg);
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='rgba(183,114,70,0.06)'%3E%3Cpath d='M12 0l1.5 8.5L22 12l-8.5 1.5L12 24l-1.5-8.5L2 12l8.5-1.5z'/%3E%3C/svg%3E"),
+        conic-gradient(rgba(0, 0, 0, 0.012) 90deg, transparent 90deg 180deg, rgba(0, 0, 0, 0.012) 180deg 270deg, transparent 270deg);
     background-position: right 40px bottom 40px, 0 0;
     background-size: 30px 30px, 40px 40px;
     background-repeat: no-repeat, repeat;
@@ -12679,17 +12717,19 @@ p,
 }
 
 .signature-logo-v3 img {
-    height: 65px;
+    height: 100px;
     width: auto;
-    filter: brightness(0) invert(1) opacity(0.85);
-    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+    filter: brightness(0) saturate(100%) invert(18%) sepia(35%) saturate(1637%) hue-rotate(344deg) brightness(93%) contrast(92%) !important;
+    /* Mathematically exact CSS filter for #5d3420 */
+    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1) !important;
+    opacity: 0.95 !important;
 }
 
 .signature-logo-v3:hover img {
-    opacity: 1;
-    transform: scale(1.05);
-    filter: brightness(0) saturate(100%) invert(56%) sepia(21%) saturate(1450%) hue-rotate(345deg) brightness(91%) contrast(84%);
-    /* Brand color filter */
+    opacity: 1 !important;
+    transform: scale(1.05) !important;
+    filter: brightness(0) saturate(100%) invert(52%) sepia(35%) saturate(1324%) hue-rotate(338deg) brightness(96%) contrast(89%) !important;
+    /* Mathematically exact CSS filter for brand copper #b77246 on hover */
 }
 
 /* Sub-menu (Quick Nav) */
@@ -12697,7 +12737,7 @@ p,
     display: flex;
     justify-content: center;
     gap: 90px;
-    margin-bottom: 35px;
+    margin-bottom: 30px;
     flex-wrap: wrap;
 }
 
@@ -12705,10 +12745,9 @@ p,
     color: #9e7960 !important;
     /* Copper text */
     text-decoration: none;
-    font-size: 14px;
-    font-weight: 500;
+    font-size: 18px;
+    font-weight: 600;
     text-transform: uppercase;
-    letter-spacing: 1.5px;
     transition: all 0.3s ease;
     position: relative;
     padding-bottom: 4px;
@@ -12737,8 +12776,9 @@ p,
 }
 
 .signature-quick-nav a:hover {
-    color: #fff !important;
-    text-shadow: 0 0 10px rgba(183, 114, 70, 0.4);
+    color: var(--color-primary) !important;
+    /* Brand copper hover color */
+    text-shadow: none;
 }
 
 .signature-quick-nav a:hover::after {
@@ -12757,19 +12797,18 @@ p,
 .signature-main-nav {
     display: flex;
     justify-content: center;
-    gap: 50px;
+    gap: 60px;
     margin-bottom: 35px;
     flex-wrap: wrap;
 }
 
 .signature-main-nav a {
-    color: #F3F2F0 !important;
-    /* Premium off-white */
+    color: #4a3e36 !important;
+    /* Premium deep espresso/dark copper for high-contrast luxury look */
     text-decoration: none;
-    font-size: 14px;
-    font-weight: 600;
+    font-size: 18px;
+    font-weight: 700;
     text-transform: uppercase;
-    letter-spacing: 2px;
     transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
     position: relative;
     padding: 5px 0;
@@ -12779,7 +12818,7 @@ p,
 .signature-main-nav a:not(:last-child)::after {
     content: '•';
     position: absolute;
-    right: -25px;
+    right: -30px;
     top: 50%;
     transform: translate(50%, -50%);
     color: rgba(183, 114, 70, 0.6);
@@ -12813,19 +12852,19 @@ p,
 /* Social Icons */
 .signature-social-v3 {
     display: flex;
-    gap: 30px;
+    gap: 40px;
     margin-bottom: 35px;
 }
 
 .signature-social-v3 a {
     color: rgba(183, 114, 70, 0.8) !important;
     font-size: 18px;
-    width: 45px;
-    height: 45px;
+    width: 50px;
+    height: 50px;
     display: flex;
     align-items: center;
     justify-content: center;
-    border-radius: 12px;
+    border-radius: 8px;
     background: transparent;
     border: 1px solid rgba(183, 114, 70, 0.4);
     transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
@@ -12852,10 +12891,9 @@ p,
     color: #716c65 !important;
     /* Dimmer warm gray */
     text-decoration: none;
-    font-size: 13px;
-    font-weight: 500;
+    font-size: 16px;
+    font-weight: 600;
     text-transform: capitalize;
-    letter-spacing: 0.5px;
     transition: all 0.3s ease;
     display: inline-flex;
     align-items: center;
@@ -12864,11 +12902,11 @@ p,
 .signature-policies-v3 a:not(:last-child)::after {
     content: '|';
     margin: 0 25px;
-    color: rgba(255, 255, 255, 0.2);
+    color: rgba(0, 0, 0, 0.15) !important;
 }
 
 .signature-policies-v3 a:hover {
-    color: #d1cdc7 !important;
+    color: var(--color-primary) !important;
 }
 
 /* Copyright Bar */
@@ -12876,12 +12914,12 @@ p,
     width: 100%;
     padding: 20px 20px;
     border-top: 1px solid rgba(183, 114, 70, 0.15);
-    background: rgba(0, 0, 0, 0.3);
-    color: #9e7960 !important;
-    font-size: 11px;
+    background: #5d3420 !important;
+    color: #c9c9c9 !important;
+    /* Rich warm dark taupe copyright text */
+    font-size: 15px;
     font-weight: 300;
     text-align: center;
-    letter-spacing: 1.5px;
 }
 
 /* Cinematic Reveal Animation */
@@ -12928,8 +12966,8 @@ p,
 
 .hub-qr-wrapper {
     position: relative;
-    width: 240px;
-    height: 240px;
+    width: 200px;
+    height: 200px;
     padding: 12px;
     background: #fff;
     border: 1px solid #eee;
@@ -12950,14 +12988,14 @@ p,
     left: 50%;
     transform: translate(-50%, -50%);
     background: #fff;
-    width: 50px;
-    height: 50px;
+    width: 60px;
+    height: 60px;
     display: flex;
     align-items: center;
     justify-content: center;
     font-weight: 900;
     color: var(--color-primary);
-    font-size: 16px;
+    font-size: 18px;
     border-radius: 8px;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
 }
@@ -13036,6 +13074,7 @@ p,
     font-weight: 700;
     margin-bottom: 0;
     display: block;
+    white-space: nowrap; /* Prevent title from wrapping to a second line on PC */
 }
 
 .hub-card__links {
@@ -13192,6 +13231,15 @@ p,
     color: #fff;
 }
 
+.btn-zalo-icon {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    object-fit: cover;
+    display: inline-block;
+    vertical-align: middle;
+}
+
 .btn-luxury-action:hover {
     transform: translateY(-5px);
     box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
@@ -13235,6 +13283,36 @@ p,
     .hub-hotline__number {
         font-size: 40px;
     }
+
+    /* Wrap social card links to two lines on tablet/mobile to prevent overflow */
+    .hub-card__links a {
+        flex-wrap: wrap;
+        row-gap: 3px;
+        position: relative;
+        padding-right: 20px;
+        justify-content: flex-start;
+        text-align: left;
+    }
+
+    .hub-card__links a span {
+        margin-left: 0;
+        flex: 1 1 100%;
+        font-size: 13px;
+        white-space: nowrap;
+        display: block;
+        text-align: left;
+    }
+
+    .hub-card__links a i {
+        position: absolute;
+        right: 0;
+        top: 50%;
+        transform: translateY(-50%);
+    }
+
+    .hub-card__links a:hover i {
+        transform: translateY(-50%) translateX(4px);
+    }
 }
 
 @media (max-width: 600px) {
@@ -13259,7 +13337,7 @@ p,
     align-items: center;
     justify-content: center;
     gap: 20px;
-    padding: 10px 56px ;
+    padding: 10px 56px;
     border: 2px solid #e31b23;
     border-radius: 8px;
     margin: 10px auto 0;
@@ -13628,15 +13706,14 @@ p,
 }
 
 .lb-main {
-    flex: 0 0 85% !important;
-    /* Expand to fill space better */
-    max-width: 85% !important;
+    flex: 0 1 auto !important;
+    max-width: 100% !important;
 }
 
 @media (max-width: 1024px) {
     .lb-main {
-        flex: 0 0 95% !important;
-        max-width: 95% !important;
+        flex: 0 1 auto !important;
+        max-width: 100% !important;
     }
 }
 
@@ -13848,13 +13925,12 @@ textarea::placeholder {
 }
 
 
-/* Reset Highlight Card to look like others but with RED text */
 .analysis-card--highlight {
     background: #fff !important;
     box-shadow: var(--shadow-sm) !important;
     border: 1px solid rgba(0, 0, 0, 0.05) !important;
-    border-top: 4px solid #e74c3c !important;
-    /* Red top border for accent */
+    border-top: 4px solid #DB0000 !important;
+    /* Pure Red top border for accent */
 }
 
 .analysis-card--highlight .analysis-label {
@@ -13862,8 +13938,8 @@ textarea::placeholder {
 }
 
 .analysis-card--highlight .analysis-value {
-    color: #e74c3c !important;
-    /* Red color for the main value */
+    color: #DB0000 !important;
+    /* Pure Red color for the main value */
 }
 
 .analysis-card--highlight .analysis-desc {
@@ -13871,22 +13947,22 @@ textarea::placeholder {
 }
 
 .analysis-card--highlight .analysis-icon {
-    background: rgba(231, 76, 60, 0.1) !important;
-    /* Light red background for icon */
-    color: #e74c3c !important;
-    /* Red icon */
+    background: rgba(219, 0, 0, 0.1) !important;
+    /* Light pure red background for icon */
+    color: #DB0000 !important;
+    /* Pure Red icon */
 }
 
 .analysis-card--highlight:hover {
     box-shadow: var(--shadow-md) !important;
-    border-color: #e74c3c !important;
+    border-color: #DB0000 !important;
 }
 
 
 /* Also set the label to RED for the highlighted card */
 .analysis-card--highlight .analysis-label {
-    color: #e74c3c !important;
-    font-weight: 700 !important;
+    color: #DB0000 !important;
+    font-weight: 400 !important;
     /* Make it a bit bolder too */
 }
 
@@ -14210,7 +14286,7 @@ textarea::placeholder {
 
 /* Scoped background for Related News on Tinh Lai page */
 .main-tinh-lai .related-news-section {
-    background-color: #f8f9fa !important;
+    background-color: #ffffff !important;
     padding-top: 80px !important;
     padding-bottom: 80px !important;
 }
@@ -14241,7 +14317,7 @@ textarea::placeholder {
 
 /* Darker Gray background for Related News on Tinh Lai page */
 .main-tinh-lai .related-news-section {
-    background-color: #f0f2f5 !important;
+    background-color: #ffffff !important;
 }
 
 
@@ -14254,7 +14330,7 @@ textarea::placeholder {
 
 /* Global Luxury Cream background for FAQ sections */
 .faq-section {
-    background-color: #fff7ec !important;
+    background-color: #ffffff !important;
 }
 
 
@@ -14273,3 +14349,127 @@ textarea::placeholder {
 .commit__header h2 {
     margin-bottom: 20px !important;
 } */
+
+/* Force Strengths buttons on PC/Laptop (screens > 768px) to lay side-by-side on 1 row */
+@media (min-width: 769px) {
+    html body .strengths .strengths__btns {
+        display: flex !important;
+        flex-direction: row !important;
+        /* Force 1 row on PC! */
+        align-items: center !important;
+        justify-content: center !important;
+        gap: 20px !important;
+        margin-top: 40px !important;
+    }
+
+    html body .strengths .strengths__btns .btn-connect,
+    html body .strengths .strengths__btns .btn-zalo {
+        width: 260px !important;
+        /* Perfect symmetrical equal width on PC */
+        height: 52px !important;
+        /* Perfect symmetrical equal height on PC */
+        display: inline-flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        font-size: 14px !important;
+        font-weight: 300 !important;
+        /* Elegant light weight */
+        text-transform: uppercase !important;
+        border-radius: 12px !important;
+        box-sizing: border-box !important;
+        transition: all 0.3s ease !important;
+    }
+
+    html body .strengths .strengths__btns .btn-connect {
+        margin-bottom: 0 !important;
+        /* Eliminate bottom offset margin to align perfectly */
+    }
+}
+
+/* Custom Advanced Luxury Lightbox System Styling - Match Brand Identity on PC & Mobile */
+.lb-toolbar {
+    background-color: var(--color-primary) !important;
+    padding: 10px 20px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    border-radius: 4px !important;
+    /* Slightly rounded corners */
+}
+
+.lb-toolbar .lb-counter {
+    color: #ffffff !important;
+    font-weight: 500 !important;
+    font-size: 14px !important;
+}
+
+.lb-toolbar .lb-tool-btn,
+.lb-toolbar .lb-close-advanced {
+    color: #ffffff !important;
+    background: transparent !important;
+    border: none !important;
+    font-size: 18px !important;
+    opacity: 0.85 !important;
+    cursor: pointer !important;
+    transition: opacity 0.3s ease, transform 0.2s ease !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 8px !important;
+}
+
+.lb-toolbar .lb-close-advanced {
+    font-size: 28px !important;
+    line-height: 1 !important;
+}
+
+.lb-toolbar .lb-tool-btn:hover,
+.lb-toolbar .lb-close-advanced:hover {
+    opacity: 1 !important;
+    transform: scale(1.08) !important;
+}
+
+.lb-caption-container {
+    background-color: var(--color-primary) !important;
+    border-top: 1px solid rgba(255, 255, 255, 0.15) !important;
+    padding: 10px 20px !important;
+    height: 50px !important;
+    /* Extremely sleek and compact height */
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    box-sizing: border-box !important;
+    border-radius: 4px !important;
+    /* Slightly rounded corners */
+}
+
+#lb-caption-text {
+    color: #ffffff !important;
+    font-weight: 500 !important;
+    font-size: 14px !important;
+    letter-spacing: 0.03em !important;
+    background: transparent !important;
+    /* Remove dark pill background */
+    border: none !important;
+    /* Remove inner border */
+    padding: 0 !important;
+    /* Remove inner padding */
+    backdrop-filter: none !important;
+    /* Remove blur effect */
+    border-radius: 0 !important;
+    /* Remove border radius */
+    box-shadow: none !important;
+}
+
+/* Scroll Lock for Lightbox System - Prevents vertical scrolling without scroll jumping */
+html.lb-open,
+body.lb-open {
+    overflow: hidden !important;
+    touch-action: none !important;
+    /* Blocks all touch scrolling gestures natively */
+}
+
+#lb-master {
+    touch-action: pan-x !important;
+    /* Allow only horizontal swipe gestures inside Lightbox */
+}

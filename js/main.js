@@ -473,13 +473,18 @@ document.addEventListener("DOMContentLoaded", function () {
         refreshGallery();
         currentIndex = index;
         updateLightbox();
+
+        document.body.classList.add('lb-open');
+        document.documentElement.classList.add('lb-open');
+
         lb.classList.add('active');
-        document.body.style.overflow = 'hidden';
     }
 
     function closeLightbox() {
         lb.classList.remove('active');
-        document.body.style.overflow = '';
+
+        document.body.classList.remove('lb-open');
+        document.documentElement.classList.remove('lb-open');
     }
 
     function showNext() {
@@ -494,28 +499,34 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Swipe/Drag Logic for Mobile & PC
     let startX = 0;
+    let startY = 0;
     let endX = 0;
+    let endY = 0;
     let isDragging = false;
 
     // Touch Events
     lb.addEventListener('touchstart', (e) => {
         startX = e.changedTouches[0].screenX;
+        startY = e.changedTouches[0].screenY;
     }, { passive: true });
 
     lb.addEventListener('touchend', (e) => {
         endX = e.changedTouches[0].screenX;
+        endY = e.changedTouches[0].screenY;
         handleSwipe();
     }, { passive: true });
 
     // Mouse Events for PC Swipe
     lb.addEventListener('mousedown', (e) => {
         startX = e.screenX;
+        startY = e.screenY;
         isDragging = true;
     });
 
     lb.addEventListener('mouseup', (e) => {
         if (!isDragging) return;
         endX = e.screenX;
+        endY = e.screenY;
         isDragging = false;
         handleSwipe();
     });
@@ -526,8 +537,18 @@ document.addEventListener("DOMContentLoaded", function () {
 
     function handleSwipe() {
         const threshold = 50;
-        if (endX < startX - threshold) showNext();
-        if (endX > startX + threshold) showPrev();
+        const diffX = endX - startX;
+        const diffY = endY - startY;
+
+        // If vertical swipe (Up or Down) is dominant and exceeds threshold, close the lightbox
+        if (Math.abs(diffY) > threshold && Math.abs(diffY) > Math.abs(diffX)) {
+            closeLightbox();
+            return;
+        }
+
+        // Horizontal swipe (Left or Right) for navigating images
+        if (diffX < -threshold) showNext();
+        if (diffX > threshold) showPrev();
     }
 
     // Container-aware Event Delegation for clicks
@@ -601,9 +622,15 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 
-    // Close on background click
+    // Close on background click (clicking anywhere except the image, nav buttons, toolbar, or caption container)
     lb.onclick = (e) => {
-        if (e.target === lb || e.target.classList.contains('lb-stage')) closeLightbox();
+        if (e.target.closest('#lb-img-main') ||
+            e.target.closest('.lb-nav') ||
+            e.target.closest('.lb-toolbar') ||
+            e.target.closest('.lb-caption-container')) {
+            return;
+        }
+        closeLightbox();
     };
 });
 
@@ -739,6 +766,38 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 // ============================================================
+// HUB-CARD MOBILE ACCORDION (FOOTER-HUB COMPACT)
+// ============================================================
+document.addEventListener("DOMContentLoaded", function () {
+    const hubCards = document.querySelectorAll('.hub-card');
+    if (!hubCards.length) return;
+
+    hubCards.forEach(card => {
+        card.addEventListener('click', function (e) {
+            // Chỉ chạy trên mobile (≤768px)
+            if (window.innerWidth > 768) return;
+
+            // Nếu click vào link thì cho đi bình thường
+            if (e.target.closest('a')) return;
+
+            e.preventDefault();
+            e.stopPropagation();
+
+            const isExpanded = this.classList.contains('expanded');
+
+            // Accordion: đóng tất cả card khác
+            hubCards.forEach(c => c.classList.remove('expanded'));
+
+            // Toggle card hiện tại
+            if (!isExpanded) {
+                this.classList.add('expanded');
+            }
+        });
+    });
+});
+
+
+// ============================================================
 // INJECT BOTTOM NAVIGATION DOCK (MOBILE & TABLET)
 // ============================================================
 document.addEventListener("DOMContentLoaded", function () {
@@ -824,15 +883,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 
-    // Xử lý submit form (Demo)
-    popupForm.addEventListener('submit', (e) => {
-        e.preventDefault();
-        const name = document.getElementById('popupName').value;
-        const phone = document.getElementById('popupPhone').value;
-
-        alert(`Cảm ơn ${name}! Ngọc NN sẽ liên hệ với bạn qua số ${phone} trong thời gian sớm nhất.`);
-        popupOverlay.classList.remove('active');
-    });
+    // Xử lý submit form (sẽ do hệ thống Global Form Validator xử lý để đảm bảo đồng bộ)
 
     // Gán popup cho nút Hotline (Tạm thời để bàn giao)
     const hotlineBtn = document.querySelector('.contact-bubble--hotline');
@@ -978,4 +1029,426 @@ document.addEventListener('DOMContentLoaded', function () {
     }, { threshold: 0.1, rootMargin: "0px 0px 50px 0px" });
 
     footerObserver.observe(footer);
+});
+
+// ============================================================
+// GLOBAL PREMIUM FORM VALIDATOR & LUXURY ALERT DIALOG
+// ============================================================
+function showLuxuryAlert(message, isSuccess = false) {
+    // Remove existing luxury alert if any
+    const existing = document.getElementById('luxury-alert-modal');
+    if (existing) existing.remove();
+
+    // Inject luxury keyframe styles if not present
+    let styleTag = document.getElementById('luxury-alert-styles');
+    if (!styleTag) {
+        styleTag = document.createElement('style');
+        styleTag.id = 'luxury-alert-styles';
+        styleTag.textContent = `
+            @keyframes luxuryPulseRed {
+                0% { box-shadow: 0 0 0 0 rgba(219, 0, 0, 0.4); transform: scale(1); }
+                50% { box-shadow: 0 0 0 15px rgba(219, 0, 0, 0); transform: scale(1.05); }
+                100% { box-shadow: 0 0 0 0 rgba(219, 0, 0, 0); transform: scale(1); }
+            }
+            @keyframes luxuryPulseGreen {
+                0% { box-shadow: 0 0 0 0 rgba(39, 174, 96, 0.4); transform: scale(1); }
+                50% { box-shadow: 0 0 0 15px rgba(39, 174, 96, 0); transform: scale(1.05); }
+                100% { box-shadow: 0 0 0 0 rgba(39, 174, 96, 0); transform: scale(1); }
+            }
+        `;
+        document.head.appendChild(styleTag);
+    }
+
+    const modal = document.createElement('div');
+    modal.id = 'luxury-alert-modal';
+    modal.style.cssText = `
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(10, 5, 5, 0.55);
+        backdrop-filter: blur(12px) saturate(180%);
+        -webkit-backdrop-filter: blur(12px) saturate(180%);
+        z-index: 100000;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        opacity: 0;
+        transition: opacity 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+    `;
+
+    const box = document.createElement('div');
+    box.style.cssText = `
+        background: #ffffff;
+        border-top: 5px solid ${isSuccess ? '#27ae60' : '#DB0000'};
+        border-bottom: 1px solid rgba(183, 114, 70, 0.12);
+        border-left: 1px solid rgba(183, 114, 70, 0.12);
+        border-right: 1px solid rgba(183, 114, 70, 0.12);
+        padding: 45px 35px 35px;
+        border-radius: 16px;
+        max-width: 440px;
+        width: 90%;
+        text-align: center;
+        box-shadow: 0 30px 70px rgba(0, 0, 0, 0.22);
+        transform: scale(0.85);
+        transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.4s ease;
+    `;
+
+    const iconContainer = document.createElement('div');
+    iconContainer.style.cssText = `
+        width: 82px;
+        height: 82px;
+        margin: 0 auto 24px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: ${isSuccess ? 'rgba(39, 174, 96, 0.08)' : 'rgba(219, 0, 0, 0.08)'};
+        border-radius: 50%;
+        animation: ${isSuccess ? 'luxuryPulseGreen 2s infinite ease-in-out' : 'luxuryPulseRed 2s infinite ease-in-out'};
+    `;
+
+    const icon = document.createElement('i');
+    icon.className = isSuccess ? 'fas fa-check-circle' : 'fas fa-exclamation-triangle';
+    icon.style.cssText = `
+        font-size: 38px;
+        color: ${isSuccess ? '#27ae60' : '#DB0000'};
+    `;
+    iconContainer.appendChild(icon);
+
+    const categoryTitle = document.createElement('div');
+    categoryTitle.innerText = isSuccess ? 'THÀNH CÔNG' : 'THÔNG BÁO';
+    categoryTitle.style.cssText = `
+        font-family: 'Montserrat', 'Inter', sans-serif;
+        font-size: 15px;
+        font-weight: 700;
+        letter-spacing: 3px;
+        color: ${isSuccess ? '#27ae60' : 'var(--color-primary, #b77246)'};
+        margin-bottom: 12px;
+        text-transform: uppercase;
+    `;
+
+    const titleText = document.createElement('h3');
+    titleText.innerText = message;
+    titleText.style.cssText = `
+        font-family: 'Montserrat', 'Inter', sans-serif;
+        font-size: 18px;
+        font-weight: 700;
+        line-height: 1.5;
+        color: #111;
+        margin: 0 0 12px;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+    `;
+
+    const subtitleText = document.createElement('p');
+    subtitleText.innerText = isSuccess 
+        ? 'Thông tin của bạn đã được tiếp nhận. Ngọc sẽ sớm liên hệ lại.' 
+        : 'Vui lòng hoàn thành đầy đủ thông tin bắt buộc và điền đúng định dạng trước khi gửi lại.';
+    subtitleText.style.cssText = `
+        font-family: 'Montserrat', 'Inter', sans-serif;
+        font-size: 13.5px;
+        font-weight: 500;
+        line-height: 1.6;
+        color: #666;
+        margin: 0 0 28px;
+    `;
+
+    const btn = document.createElement('button');
+    btn.innerText = 'ĐỒNG Ý';
+    btn.style.cssText = `
+        background: ${isSuccess ? 'linear-gradient(135deg, #27ae60 0%, #1e8449 100%)' : 'linear-gradient(135deg, #DB0000 0%, #a80000 100%)'};
+        color: #fff;
+        border: none;
+        padding: 14px 48px;
+        font-size: 16px;
+        font-weight: 300;
+        font-family: 'Montserrat', 'Inter', sans-serif;
+        border-radius: 8px;
+        cursor: pointer;
+        letter-spacing: 1.5px;
+        text-transform: uppercase;
+        transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+        box-shadow: ${isSuccess ? '0 8px 20px rgba(39, 174, 96, 0.3)' : '0 8px 20px rgba(219, 0, 0, 0.35)'};
+    `;
+
+    btn.onmouseover = () => {
+        btn.style.transform = 'translateY(-2px) scale(1.03)';
+        btn.style.boxShadow = isSuccess ? '0 12px 25px rgba(39, 174, 96, 0.4)' : '0 12px 25px rgba(219, 0, 0, 0.45)';
+    };
+    btn.onmouseout = () => {
+        btn.style.transform = 'translateY(0) scale(1)';
+        btn.style.boxShadow = isSuccess ? '0 8px 20px rgba(39, 174, 96, 0.3)' : '0 8px 20px rgba(219, 0, 0, 0.35)';
+    };
+
+    box.appendChild(iconContainer);
+    box.appendChild(categoryTitle);
+    box.appendChild(titleText);
+    box.appendChild(subtitleText);
+    box.appendChild(btn);
+    modal.appendChild(box);
+    document.body.appendChild(modal);
+
+    // Animate in
+    setTimeout(() => {
+        modal.style.opacity = '1';
+        box.style.transform = 'scale(1)';
+    }, 50);
+
+    const closeAlert = () => {
+        modal.style.opacity = '0';
+        box.style.transform = 'scale(0.85)';
+        setTimeout(() => modal.remove(), 400);
+    };
+
+    btn.onclick = closeAlert;
+    modal.onclick = (e) => {
+        if (e.target === modal) closeAlert();
+    };
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    // --------------------------------------------------------
+    // REAL-TIME INPUT FIELD VALIDATION FUNCTION
+    // --------------------------------------------------------
+    function validateInputField(input) {
+        // Do not validate if calculator input
+        const form = input.closest('form');
+        if (form && (form.classList.contains('loan-calculator-form') || form.id === 'calc-form')) {
+            return true;
+        }
+
+        const val = input.value.trim();
+        let isValid = true;
+        let errorMessage = '';
+
+        // 1. Check required
+        const isRequired = input.hasAttribute('required') || 
+                           (input.tagName === 'INPUT' && (input.type === 'text' || input.type === 'tel' || input.type === 'email')) ||
+                           (input.placeholder && input.placeholder.trim().startsWith('*')) ||
+                           (input.previousElementSibling && input.previousElementSibling.textContent.includes('*')) ||
+                           (input.parentElement && input.parentElement.querySelector('label') && input.parentElement.querySelector('label').textContent.includes('*'));
+
+        if (isRequired && val === '') {
+            isValid = false;
+            errorMessage = 'Vui lòng điền thông tin này';
+        } else if (val !== '') {
+            // 2. Validate Phone Number (SDT)
+            const isPhoneInput = input.type === 'tel' || 
+                                input.id.toLowerCase().includes('phone') || 
+                                input.id.toLowerCase().includes('sdt') || 
+                                input.name.toLowerCase().includes('phone') || 
+                                input.name.toLowerCase().includes('sdt') ||
+                                input.placeholder.toLowerCase().includes('số điện thoại') ||
+                                input.placeholder.toLowerCase().includes('sđt');
+
+            if (isPhoneInput) {
+                const hasLetters = /[a-zA-Z]/g.test(val);
+                const digitsOnly = val.replace(/[^0-9]/g, '');
+
+                if (hasLetters || digitsOnly.length < 9 || digitsOnly.length > 10 || /[^0-9\s\-\+\(\)]/.test(val)) {
+                    isValid = false;
+                    errorMessage = 'SĐT quy định 9-10 chữ số, không chứa chữ';
+                }
+            }
+
+            // 3. Validate Email
+            const isEmailInput = input.type === 'email' || 
+                                input.id.toLowerCase().includes('email') || 
+                                input.name.toLowerCase().includes('email') ||
+                                input.placeholder.toLowerCase().includes('email');
+
+            if (isEmailInput) {
+                const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if (!emailPattern.test(val)) {
+                    isValid = false;
+                    errorMessage = 'Email sai cấu trúc (Ví dụ: name@example.com)';
+                }
+            }
+        }
+
+        // Toggle error element display dynamically
+        let errorEl = input.nextElementSibling;
+        if (!errorEl || !errorEl.classList.contains('luxury-error-inline')) {
+            errorEl = document.createElement('div');
+            errorEl.className = 'luxury-error-inline';
+            errorEl.style.cssText = `
+                color: #DB0000;
+                font-size: 12px;
+                font-family: 'Montserrat', 'Inter', sans-serif;
+                font-weight: 600;
+                margin-top: 4px;
+                margin-bottom: 8px;
+                text-align: left;
+                display: block;
+                opacity: 0;
+                transform: translateY(-5px);
+                transition: all 0.3s ease;
+            `;
+            input.insertAdjacentElement('afterend', errorEl);
+        }
+
+        if (!isValid) {
+            input.style.borderColor = '#DB0000';
+            input.style.boxShadow = '0 0 5px rgba(219, 0, 0, 0.2)';
+            errorEl.innerText = errorMessage;
+            // Force reflow
+            errorEl.offsetHeight;
+            errorEl.style.opacity = '1';
+            errorEl.style.transform = 'translateY(0)';
+        } else {
+            input.style.borderColor = '';
+            input.style.boxShadow = '';
+            errorEl.style.opacity = '0';
+            errorEl.style.transform = 'translateY(-5px)';
+            setTimeout(() => {
+                if (errorEl.style.opacity === '0') {
+                    errorEl.innerText = '';
+                }
+            }, 300);
+        }
+
+        return isValid;
+    }
+
+    // Disable native HTML5 bubble tooltips globally for customer forms
+    function setupFormNoValidate(form) {
+        if (form.classList.contains('loan-calculator-form') || form.id === 'calc-form') {
+            return;
+        }
+        form.setAttribute('novalidate', 'true');
+    }
+
+    // Attach real-time validation to all customer inputs on focus/input/blur/change
+    function setupRealTimeValidation(form) {
+        if (form.classList.contains('loan-calculator-form') || form.id === 'calc-form') {
+            return;
+        }
+        setupFormNoValidate(form);
+        const inputs = form.querySelectorAll('input, textarea, select');
+        inputs.forEach(input => {
+            input.addEventListener('input', () => validateInputField(input));
+            input.addEventListener('blur', () => validateInputField(input));
+            input.addEventListener('change', () => validateInputField(input));
+        });
+    }
+
+    // Setup for forms already present in DOM
+    document.querySelectorAll('form').forEach(form => setupRealTimeValidation(form));
+
+    // Handle dynamically added/injected forms (like popup overlay form if active later)
+    const observer = new MutationObserver(mutations => {
+        mutations.forEach(mutation => {
+            mutation.addedNodes.forEach(node => {
+                if (node.tagName === 'FORM') {
+                    setupRealTimeValidation(node);
+                } else if (node.querySelectorAll) {
+                    node.querySelectorAll('form').forEach(form => setupRealTimeValidation(form));
+                }
+            });
+        });
+    });
+    observer.observe(document.body, { childList: true, subtree: true });
+
+    // Intercept form submissions
+    document.addEventListener('submit', function (e) {
+        const form = e.target.closest('form');
+        if (!form) return;
+
+        // Skip calculator form
+        if (form.classList.contains('loan-calculator-form') || form.id === 'calc-form') {
+            return;
+        }
+
+        e.preventDefault();
+
+        let formIsValid = true;
+        let missingRequired = false;
+        let firstInvalidField = null;
+
+        const inputs = form.querySelectorAll('input, textarea, select');
+        inputs.forEach(input => {
+            const fieldValid = validateInputField(input);
+            if (!fieldValid) {
+                formIsValid = false;
+                if (!firstInvalidField) {
+                    firstInvalidField = input;
+                }
+                const val = input.value.trim();
+                const isRequired = input.hasAttribute('required') || 
+                                   (input.tagName === 'INPUT' && (input.type === 'text' || input.type === 'tel' || input.type === 'email')) ||
+                                   (input.placeholder && input.placeholder.trim().startsWith('*')) ||
+                                   (input.previousElementSibling && input.previousElementSibling.textContent.includes('*')) ||
+                                   (input.parentElement && input.parentElement.querySelector('label') && input.parentElement.querySelector('label').textContent.includes('*'));
+                if (isRequired && val === '') {
+                    missingRequired = true;
+                }
+            }
+        });
+
+        if (!formIsValid) {
+            if (firstInvalidField) {
+                firstInvalidField.focus();
+            }
+            return;
+        }
+
+        // Form is successfully submitted!
+        form.reset();
+
+        // Clear all success status and hide error elements
+        inputs.forEach(input => {
+            input.style.borderColor = '';
+            input.style.boxShadow = '';
+            const errorEl = input.nextElementSibling;
+            if (errorEl && errorEl.classList.contains('luxury-error-inline')) {
+                errorEl.style.opacity = '0';
+                errorEl.style.transform = 'translateY(-5px)';
+                setTimeout(() => { errorEl.innerText = ''; }, 300);
+            }
+        });
+
+        // Show a beautiful inline green success message under the submit button
+        const submitBtn = form.querySelector('button[type="submit"]') || form.querySelector('.btn-final') || form.querySelector('.form__btn-submit');
+        if (submitBtn) {
+            let successEl = submitBtn.nextElementSibling;
+            if (!successEl || !successEl.classList.contains('luxury-success-inline')) {
+                successEl = document.createElement('div');
+                successEl.className = 'luxury-success-inline';
+                successEl.style.cssText = `
+                    color: #27ae60;
+                    font-size: 14px;
+                    font-family: 'Montserrat', 'Inter', sans-serif;
+                    font-weight: 700;
+                    margin-top: 12px;
+                    text-align: center;
+                    display: block;
+                    opacity: 0;
+                    transform: translateY(-5px);
+                    transition: all 0.3s ease;
+                `;
+                submitBtn.insertAdjacentElement('afterend', successEl);
+            }
+
+            successEl.innerHTML = '<i class="fas fa-check-circle" style="margin-right: 6px;"></i> ĐÃ GỬI THÔNG TIN THÀNH CÔNG';
+            // Force reflow
+            successEl.offsetHeight;
+            successEl.style.opacity = '1';
+            successEl.style.transform = 'translateY(0)';
+
+            // Hide after 5 seconds
+            setTimeout(() => {
+                successEl.style.opacity = '0';
+                successEl.style.transform = 'translateY(-5px)';
+            }, 5000);
+        }
+
+        // Close popup overlay after success if it is the luxury popup form
+        const popupOverlay = document.getElementById('luxuryPopupOverlay');
+        if (popupOverlay && form.id === 'luxuryPopupForm') {
+            setTimeout(() => {
+                popupOverlay.classList.remove('active');
+            }, 2500);
+        }
+    });
 });
